@@ -1,4 +1,4 @@
-import 'package:forui_base/features/home/presentation/screens/home_screen.dart';
+import 'package:forui_base/features/home/presentation/screens/home_screen_main.dart';
 import 'package:forui_base/features/login/presentation/screens/login_screen.dart';
 import 'package:go_router/go_router.dart';
 
@@ -19,7 +19,7 @@ final router = GoRouter(
     GoRoute(
       path: '/home',
       name: RouteName.home.name,
-      builder: (context, state) => HomeScreen(),
+      builder: (context, state) => HomeScreenMain(),
     ),
   ],
 );
