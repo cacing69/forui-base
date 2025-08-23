@@ -24,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Libraries"),
+              Text("App Libraries"),
               Gap(5),
               FItem(
                 prefix: Icon(FIcons.codesandbox, color: Colors.blue.shade900),
@@ -56,13 +56,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 title: const Text('json_annotation'),
                 suffix: Icon(FIcons.chevronRight),
               ),
+              FItem(
+                prefix: Icon(FIcons.codesandbox, color: Colors.blue.shade900),
+                title: const Text('flutter_riverpod'),
+                suffix: Icon(FIcons.chevronRight),
+              ),
             ],
           ),
           FDivider(),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Libraries (Dev)"),
+              Text("Development Libraries"),
               Gap(5),
               FItem(
                 prefix: Icon(FIcons.bugPlay, color: Colors.orange.shade900),
@@ -82,6 +87,20 @@ class _HomeScreenState extends State<HomeScreen> {
               FItem(
                 prefix: Icon(FIcons.bugPlay, color: Colors.orange.shade900),
                 title: const Text('json_serializable'),
+                suffix: Icon(FIcons.chevronRight),
+              ),
+              FItem(
+                prefix: Icon(FIcons.bugPlay, color: Colors.orange.shade900),
+                title: const Text('riverpod_lint'),
+                suffix: Icon(FIcons.chevronRight),
+              ),
+              FItem(
+                prefix: Icon(FIcons.bugPlay, color: Colors.orange.shade900),
+                title: const Text('custom_lint'),
+                suffix: Icon(FIcons.chevronRight),
+              ),FItem(
+                prefix: Icon(FIcons.bugPlay, color: Colors.orange.shade900),
+                title: const Text('riverpod_generator'),
                 suffix: Icon(FIcons.chevronRight),
               ),
             ],

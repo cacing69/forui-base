@@ -57,16 +57,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           prefix: const Icon(FIcons.eye),
                           title: const Text('Preview Avatar'),
                           onPress: () {
-                            showDialog(
-                              context: context,
-                              builder: (_) => Dialog(
-                                child: InteractiveViewer(
-                                  child: Image.network(
+                            // showDialog(
+                            //   context: context,
+                            //   builder: (_) => Dialog(
+                            //     child: InteractiveViewer(
+                            //       child: Image.network(
+                            //         'https://avatars.githubusercontent.com/u/36250619?v=4',
+                            //         fit: BoxFit.contain,
+                            //       ),
+                            //     ),
+                            //   ),
+                            // );
+
+                            context.pushNamed(
+                              RouteName.fullScreenPhotoViewer.name,
+                              queryParameters: {
+                                'imageUrl':
                                     'https://avatars.githubusercontent.com/u/36250619?v=4',
-                                    fit: BoxFit.contain,
-                                  ),
-                                ),
-                              ),
+                              },
                             );
                           },
                         ),
@@ -138,46 +146,31 @@ class _ProfileScreenState extends State<ProfileScreen> {
             children: [
               FTile(
                 prefix: Icon(FIcons.mail, color: Colors.amber.shade700),
-                title: Text(
-                  'Email',
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
+                title: Text('Email'),
                 details: Text("ibnuul@gmail.com"),
                 onPress: () {},
               ),
               FTile(
                 prefix: Icon(FIcons.smartphone, color: Colors.green.shade700),
-                title: Text(
-                  'Phone',
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
+                title: Text('Phone'),
                 details: Text("+62 896 7216 5341"),
                 onPress: () {},
               ),
               FTile(
                 prefix: Icon(FIcons.github),
-                title: Text(
-                  'Github',
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
+                title: Text('Github'),
                 details: Text("cacing69"),
                 onPress: () {},
               ),
               FTile(
                 prefix: Icon(FIcons.linkedin, color: Colors.blue.shade700),
-                title: Text(
-                  'Linkedin',
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
+                title: Text('Linkedin'),
                 details: Text("ibnul-mutaki"),
                 onPress: () {},
               ),
               FTile(
                 prefix: Icon(FIcons.facebook, color: Colors.blue.shade700),
-                title: Text(
-                  'Facebook',
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
+                title: Text('Facebook'),
                 details: Text("ibnuul"),
                 onPress: () {},
               ),

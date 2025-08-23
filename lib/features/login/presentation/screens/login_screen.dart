@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:forui/forui.dart';
 import 'package:forui_base/router.dart';
+import 'package:forui_base/shared/presentation/providers/config_app_notifier.dart';
+import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  ConsumerState<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends ConsumerState<LoginScreen> {
   bool _obscureText = true;
 
   @override
@@ -41,6 +44,27 @@ class _LoginScreenState extends State<LoginScreen> {
                 ],
               ),
             ),
+          ),
+          FHeaderAction(
+            icon:
+                ref.watch(configAppNotifierProvider).themeData ==
+                    FThemes.zinc.light
+                ? Icon(FIcons.moon)
+                : Icon(FIcons.sun),
+            onPress: () {
+              // debugPrint();
+
+              if (ref.watch(configAppNotifierProvider).themeData ==
+                  FThemes.zinc.light) {
+                ref
+                    .read(configAppNotifierProvider.notifier)
+                    .changeTheme(FThemes.zinc.dark);
+              } else {
+                ref
+                    .read(configAppNotifierProvider.notifier)
+                    .changeTheme(FThemes.zinc.light);
+              }
+            },
           ),
         ],
       ),
@@ -103,13 +127,21 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                   child: const Text('Login'),
                 ),
-                const SizedBox(height: 16),
+                Gap(10),
                 FButton(
                   style: FButtonStyle.outline(),
                   onPress: () {
-                    context.goNamed(RouteName.home.name);
+                    // context.goNamed(RouteName.home.name);
                   },
                   child: const Text('Register'),
+                ),
+                Gap(10),
+                FButton(
+                  style: FButtonStyle.ghost(),
+                  onPress: () {
+                    context.goNamed(RouteName.home.name);
+                  },
+                  child: const Text('Guest'),
                 ),
               ],
             ),
