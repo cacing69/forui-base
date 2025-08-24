@@ -24,7 +24,10 @@ class _HomeScreenState extends State<HomeScreen> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("App Libraries"),
+              Text(
+                "General Dependencies",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
               Gap(5),
               FItem(
                 prefix: Icon(FIcons.codesandbox, color: Colors.blue.shade900),
@@ -61,13 +64,31 @@ class _HomeScreenState extends State<HomeScreen> {
                 title: const Text('flutter_riverpod'),
                 suffix: Icon(FIcons.chevronRight),
               ),
+              FItem(
+                prefix: Icon(FIcons.codesandbox, color: Colors.blue.shade900),
+                title: const Text('dio'),
+                suffix: Icon(FIcons.chevronRight),
+              ),
+              FItem(
+                prefix: Icon(FIcons.codesandbox, color: Colors.blue.shade900),
+                title: const Text('retrofit'),
+                suffix: Icon(FIcons.chevronRight),
+              ),
+              FItem(
+                prefix: Icon(FIcons.codesandbox, color: Colors.blue.shade900),
+                title: const Text('hooks_riverpod'),
+                suffix: Icon(FIcons.chevronRight),
+              ),
             ],
           ),
           FDivider(),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Development Libraries"),
+              Text(
+                "Development Dependencies",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
               Gap(5),
               FItem(
                 prefix: Icon(FIcons.bugPlay, color: Colors.orange.shade900),
@@ -98,9 +119,20 @@ class _HomeScreenState extends State<HomeScreen> {
                 prefix: Icon(FIcons.bugPlay, color: Colors.orange.shade900),
                 title: const Text('custom_lint'),
                 suffix: Icon(FIcons.chevronRight),
-              ),FItem(
+              ),
+              FItem(
                 prefix: Icon(FIcons.bugPlay, color: Colors.orange.shade900),
                 title: const Text('riverpod_generator'),
+                suffix: Icon(FIcons.chevronRight),
+              ),
+              FItem(
+                prefix: Icon(FIcons.bugPlay, color: Colors.orange.shade900),
+                title: const Text('pretty_dio_logger'),
+                suffix: Icon(FIcons.chevronRight),
+              ),
+              FItem(
+                prefix: Icon(FIcons.bugPlay, color: Colors.orange.shade900),
+                title: const Text('retrofit_generator'),
                 suffix: Icon(FIcons.chevronRight),
               ),
             ],

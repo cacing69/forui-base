@@ -1,12 +1,20 @@
 import 'package:forui_base/features/home/presentation/screens/home_screen_main.dart';
 import 'package:forui_base/features/login/presentation/screens/login_screen.dart';
 import 'package:forui_base/shared/presentation/screens/full_screen_photo_viewer.dart';
+import 'package:forui_base/shared/presentation/screens/nominatim_search_location_screen.dart';
 import 'package:go_router/go_router.dart';
 
-enum RouteName { init, home, login, fullScreenPhotoViewer }
+enum RouteName {
+  init,
+  home,
+  login,
+  fullScreenPhotoViewer,
+  nominatimSearchLocation,
+}
 
 final router = GoRouter(
   routes: [
+    // General Purpose Route
     GoRoute(
       path: '/',
       name: RouteName.init.name,
@@ -31,5 +39,11 @@ final router = GoRouter(
         );
       },
     ),
+    GoRoute(
+      path: '/nominatim-search-location',
+      name: RouteName.nominatimSearchLocation.name,
+      builder: (context, state) => NominatimSearchLocationScreen(),
+    ),
+    // Mini Apps Route
   ],
 );
