@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:forui/forui.dart';
+import 'package:forui_base/core/constant/user_static.dart';
 import 'package:forui_base/router.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
@@ -36,11 +37,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Ibnul Mutaki",
+                        "${userStatic.firstName!} ${userStatic.lastName!}",
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                        userStatic.bio!,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),

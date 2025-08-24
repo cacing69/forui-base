@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:forui_base/shared/data/models/nominatim/search_response.dart';
 import 'package:forui_base/shared/presentation/providers/dio/nominatim_http_client.dart';
 import 'package:retrofit/retrofit.dart';

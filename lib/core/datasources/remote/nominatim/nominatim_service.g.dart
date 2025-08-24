@@ -127,22 +127,51 @@ class _NominatimService implements NominatimService {
 // RiverpodGenerator
 // **************************************************************************
 
+@ProviderFor(nominatimService)
+const nominatimServiceProvider = NominatimServiceProvider._();
+
+final class NominatimServiceProvider
+    extends
+        $FunctionalProvider<
+          NominatimService,
+          NominatimService,
+          NominatimService
+        >
+    with $Provider<NominatimService> {
+  const NominatimServiceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'nominatimServiceProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$nominatimServiceHash();
+
+  @$internal
+  @override
+  $ProviderElement<NominatimService> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  NominatimService create(Ref ref) {
+    return nominatimService(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(NominatimService value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<NominatimService>(value),
+    );
+  }
+}
+
 String _$nominatimServiceHash() => r'18a1f68932989d38e5fb5286ec3607ed58826d7d';
 
-/// See also [nominatimService].
-@ProviderFor(nominatimService)
-final nominatimServiceProvider = AutoDisposeProvider<NominatimService>.internal(
-  nominatimService,
-  name: r'nominatimServiceProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$nominatimServiceHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef NominatimServiceRef = AutoDisposeProviderRef<NominatimService>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

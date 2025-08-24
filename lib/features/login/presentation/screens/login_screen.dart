@@ -23,6 +23,27 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         title: const Text('Authentication'),
         suffixes: [
           FHeaderAction(
+            icon:
+                ref.watch(configAppNotifierProvider).themeData ==
+                    FThemes.zinc.light
+                ? Icon(FIcons.moon)
+                : Icon(FIcons.sun),
+            onPress: () {
+              // debugPrint();
+
+              if (ref.watch(configAppNotifierProvider).themeData ==
+                  FThemes.zinc.light) {
+                ref
+                    .read(configAppNotifierProvider.notifier)
+                    .changeTheme(FThemes.zinc.dark);
+              } else {
+                ref
+                    .read(configAppNotifierProvider.notifier)
+                    .changeTheme(FThemes.zinc.light);
+              }
+            },
+          ),
+          FHeaderAction(
             icon: Icon(FIcons.info),
             onPress: () => showFDialog(
               context: context,
@@ -44,27 +65,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 ],
               ),
             ),
-          ),
-          FHeaderAction(
-            icon:
-                ref.watch(configAppNotifierProvider).themeData ==
-                    FThemes.zinc.light
-                ? Icon(FIcons.moon)
-                : Icon(FIcons.sun),
-            onPress: () {
-              // debugPrint();
-
-              if (ref.watch(configAppNotifierProvider).themeData ==
-                  FThemes.zinc.light) {
-                ref
-                    .read(configAppNotifierProvider.notifier)
-                    .changeTheme(FThemes.zinc.dark);
-              } else {
-                ref
-                    .read(configAppNotifierProvider.notifier)
-                    .changeTheme(FThemes.zinc.light);
-              }
-            },
           ),
         ],
       ),

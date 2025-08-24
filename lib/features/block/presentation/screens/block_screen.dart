@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:forui/forui.dart';
+import 'package:forui_base/router.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 
 class BlockScreen extends StatefulWidget {
   const BlockScreen({super.key});
@@ -55,6 +57,26 @@ class _BlockScreenState extends State<BlockScreen> {
                 ),
                 subtitle: const Text(
                   'Select a location on the map or search to pick your desired address.',
+                ),
+              ),
+            ),
+            FButton.raw(
+              onPress: () {
+                context.pushNamed(RouteName.blockNominatimSearch.name);
+              },
+              child: SizedBox(
+                width: double.infinity,
+                child: FCard(
+                  title: Padding(
+                    padding: const EdgeInsets.only(bottom: 5),
+                    child: const Text(
+                      'Nominatim Search',
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  ),
+                  subtitle: const Text(
+                    'Search for a location by entering a place name or address using Nominatim API.',
+                  ),
                 ),
               ),
             ),
