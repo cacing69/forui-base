@@ -233,18 +233,20 @@ class _BlockNominatimSearchScreenState
                                         )
                                         .value
                                         ?.isEmpty ??
-                                    true && searchFocusNode.hasFocus) &&
+                                    true &&
+                                        searchFocusNode.hasFocus &&
+                                        searchController.text.isEmpty) &&
                                 !ref
                                     .watch(blockNominatimSearchNotifierProvider)
                                     .isLoading) {
                               return Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Skeleton.keep(
-                                    child: Text(
-                                      "Selected data will shown below",
-                                    ),
-                                  ),
+                                  // Skeleton.keep(
+                                  //   child: Text(
+                                  //     "Selected data will shown below",
+                                  //   ),
+                                  // ),
                                   Gap(5),
                                   Material(
                                     elevation: 0, // hilangkan shadow
@@ -255,17 +257,21 @@ class _BlockNominatimSearchScreenState
                                       ),
                                       borderRadius: BorderRadius.circular(8),
                                     ),
-                                    child: FItem(
-                                      title: Text("Empty result"),
-                                      subtitle: Text(
-                                        "No locations match your search",
-                                      ),
+                                    child: Column(
+                                      children: [
+                                        FItem(
+                                          title: Text("Empty result"),
+                                          subtitle: Text(
+                                            "No locations match your search",
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ],
                               );
                             }
-                            return Text("Selected data will shown below");
+                            return SizedBox.shrink();
                           },
                         ),
                         clearable: (e) => e.text.isNotEmpty,
@@ -297,7 +303,7 @@ class _BlockNominatimSearchScreenState
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: ConstrainedBox(
-                            constraints: const BoxConstraints(maxHeight: 200),
+                            constraints: const BoxConstraints(maxHeight: 450),
                             child: ref
                                 .watch(blockNominatimSearchNotifierProvider)
                                 .when(
