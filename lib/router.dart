@@ -1,7 +1,7 @@
 import 'package:forui_base/features/block/presentation/screens/block/block_nominatim_search_screen.dart';
 import 'package:forui_base/features/home/presentation/screens/home_screen_main.dart';
 import 'package:forui_base/features/login/presentation/screens/login_screen.dart';
-import 'package:forui_base/shared/presentation/screens/full_screen_photo_viewer.dart';
+import 'package:forui_base/shared/presentation/screens/full_screen_photo_viewer_screen.dart';
 import 'package:forui_base/shared/presentation/screens/nominatim_search_location_screen.dart';
 import 'package:go_router/go_router.dart';
 
@@ -38,7 +38,7 @@ final router = GoRouter(
       path: '/full-screen-photo-viewer',
       name: RouteName.fullScreenPhotoViewer.name,
       builder: (context, state) {
-        return FullScreenPhotoViewer(
+        return FullScreenPhotoViewerScreen(
           imageUrl: state.uri.queryParameters['imageUrl']!,
         );
       },

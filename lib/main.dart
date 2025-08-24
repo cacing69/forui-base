@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:forui/forui.dart';
 import 'package:forui_base/router.dart';
@@ -26,6 +27,8 @@ class _ApplicationState extends ConsumerState<Application> {
       final brightness = MediaQuery.of(context).platformBrightness;
       final notifier = ref.read(configAppNotifierProvider.notifier);
 
+      SystemChannels.textInput.invokeMethod('TextInput.hide');
+
       notifier.changeTheme(
         brightness == Brightness.dark ? FThemes.zinc.dark : FThemes.zinc.light,
       );
@@ -40,6 +43,7 @@ class _ApplicationState extends ConsumerState<Application> {
       title: 'Forui Base',
       builder: (context, child) =>
           FTheme(data: configApp.themeData!, child: child!),
+      theme: configApp.themeData!.toApproximateMaterialTheme(),
       routerConfig: router,
     );
   }

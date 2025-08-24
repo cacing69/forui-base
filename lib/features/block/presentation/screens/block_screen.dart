@@ -22,7 +22,16 @@ class _BlockScreenState extends State<BlockScreen> {
               children: [
                 Text("Blocks"),
                 Gap(15),
-                Flexible(child: const FTextField(hint: "Search Blocks...")),
+                Flexible(
+                  child: FTextField(
+                    hint: "Search Blocks...",
+                    style: (e) => e.copyWith(
+                      contentPadding: e.contentPadding.add(
+                        EdgeInsetsGeometry.only(right: 25),
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
             Positioned(
@@ -40,6 +49,7 @@ class _BlockScreenState extends State<BlockScreen> {
           ],
         ),
       ),
+      resizeToAvoidBottomInset: false,
       child: SingleChildScrollView(
         physics: AlwaysScrollableScrollPhysics(),
         child: Column(

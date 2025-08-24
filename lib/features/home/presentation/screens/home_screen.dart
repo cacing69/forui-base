@@ -18,8 +18,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return FScaffold(
+      resizeToAvoidBottomInset: false,
       header: FHeader(
-        title: Text("Forui Base"),
+        title: Text("Codebase"),
         suffixes: [
           FHeaderAction(
             icon:
@@ -118,20 +119,23 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                                       onPress: () {},
                                     ),
                                     FSidebarItem(
-                                      icon: const Icon(FIcons.folderGit),
+                                      icon: const Icon(FIcons.folderGit2),
                                       label: const Text('Repositories'),
                                       initiallyExpanded: false,
                                       onPress: () {},
                                       children: [
                                         FSidebarItem(
+                                          icon: const Icon(FIcons.code),
                                           label: const Text('logam-mulia-api'),
                                           onPress: () {},
                                         ),
                                         FSidebarItem(
+                                          icon: const Icon(FIcons.code),
                                           label: const Text('koa-rest'),
                                           onPress: () {},
                                         ),
                                         FSidebarItem(
+                                          icon: const Icon(FIcons.code),
                                           label: const Text('koa-graphql'),
                                           onPress: () {},
                                         ),
@@ -259,6 +263,21 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 FItem(
                   prefix: Icon(FIcons.codesandbox, color: Colors.blue.shade900),
                   title: const Text('skeletonizer'),
+                  suffix: Icon(FIcons.chevronRight),
+                ),
+                FItem(
+                  prefix: Icon(FIcons.codesandbox, color: Colors.blue.shade900),
+                  title: const Text('equatable'),
+                  suffix: Icon(FIcons.chevronRight),
+                ),
+                FItem(
+                  prefix: Icon(FIcons.codesandbox, color: Colors.blue.shade900),
+                  title: const Text('latlong2'),
+                  suffix: Icon(FIcons.chevronRight),
+                ),
+                FItem(
+                  prefix: Icon(FIcons.codesandbox, color: Colors.blue.shade900),
+                  title: const Text('forui_hooks'),
                   suffix: Icon(FIcons.chevronRight),
                 ),
               ],

@@ -1,11 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:forui/theme.dart';
 import 'package:forui/widgets/scaffold.dart';
 
-class FullScreenPhotoViewer extends StatelessWidget {
+class FullScreenPhotoViewerScreen extends StatelessWidget {
   final String imageUrl;
 
-  const FullScreenPhotoViewer({super.key, required this.imageUrl});
+  const FullScreenPhotoViewerScreen({super.key, required this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +17,17 @@ class FullScreenPhotoViewer extends StatelessWidget {
           children: [
             Center(
               child: InteractiveViewer(
+                // Tambahkan boundary untuk memungkinkan zoom
+                boundaryMargin: const EdgeInsets.all(20.0),
+                minScale: 0.5,
+                maxScale: 2.5,
                 child: CachedNetworkImage(
                   imageUrl: imageUrl,
-                  fit: BoxFit.contain,
+                  // Ubah 'fit' agar dapat menutupi area yang dapat dilihat
+                  fit: BoxFit.fitWidth,
+                  // Gunakan 'width' dan 'height' agar bisa memenuhi layar
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height,
                 ),
               ),
             ),
@@ -26,7 +35,7 @@ class FullScreenPhotoViewer extends StatelessWidget {
               top: 16,
               left: 16,
               child: IconButton(
-                icon: const Icon(Icons.close, color: Colors.white),
+                icon: Icon(Icons.close, color: context.theme.colors.foreground),
                 onPressed: () => Navigator.pop(context),
               ),
             ),

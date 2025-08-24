@@ -84,6 +84,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       obscureText: _obscureText,
                       label: Text('Password'),
                       hint: 'ex: 123456',
+                      style: (e) => e.copyWith(
+                        contentPadding: e.contentPadding.add(
+                          EdgeInsetsGeometry.only(right: 25),
+                        ),
+                      ),
                     ),
                     Positioned(
                       right: 0,
