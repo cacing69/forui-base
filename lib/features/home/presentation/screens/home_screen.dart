@@ -1,11 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:forui/forui.dart';
 import 'package:forui_base/core/constant/user_static.dart';
 import 'package:forui_base/shared/presentation/providers/config_app_notifier.dart';
 import 'package:gap/gap.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -29,8 +30,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 ? Icon(FIcons.moon)
                 : Icon(FIcons.sun),
             onPress: () {
-              // debugPrint();
-
               if (ref.watch(configAppNotifierProvider).themeData ==
                   FThemes.zinc.light) {
                 ref
@@ -50,11 +49,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 context: context,
                 mainAxisMaxRatio: null,
                 constraints: BoxConstraints(
-                  // minWidth: MediaQuery.of(context).size.width * 0.8,
                   maxWidth: MediaQuery.of(context).size.width * 0.8,
                   maxHeight: double.infinity,
                 ),
-                // useSafeArea: true,
                 side: FLayout.ltr,
                 builder: (context) => Container(
                   decoration: BoxDecoration(
@@ -77,12 +74,46 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                                         CrossAxisAlignment.center,
                                     children: [
                                       Gap(20),
-                                      CircleAvatar(
-                                        radius: 25, // ukuran lingkaran
-                                        backgroundColor:
-                                            Colors.blue, // warna latar
-                                        backgroundImage: CachedNetworkImageProvider(
-                                          "https://avatars.githubusercontent.com/u/36250619?v=4",
+                                      // CircleAvatar(
+                                      //   radius: 25, // ukuran lingkaran
+                                      //   backgroundColor:
+                                      //       Colors.blue, // warna latar
+                                      //   backgroundImage: CachedNetworkImageProvider(
+                                      //     "https://avatars.githubusercontent.com/u/36250619?v=4",
+                                      //   ),
+                                      // ),
+                                      SizedBox(
+                                        height: 50,
+                                        width: 50,
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color:
+                                                context.theme.colors.foreground,
+                                          ),
+                                          clipBehavior: Clip.antiAlias,
+                                          child: CachedNetworkImage(
+                                            imageUrl: userStatic.avatar!,
+                                            placeholder: (context, url) =>
+                                                const Center(
+                                                  child: Skeletonizer.zone(
+                                                    child: Bone.circle(
+                                                      size: 70,
+                                                    ),
+                                                  ),
+                                                ),
+                                            errorWidget:
+                                                (context, url, error) => Icon(
+                                                  FIcons.info,
+                                                  color: context
+                                                      .theme
+                                                      .colors
+                                                      .background,
+                                                ),
+                                            width: 150,
+                                            height: 150,
+                                            fit: BoxFit.cover,
+                                          ),
                                         ),
                                       ),
                                       Gap(20),
@@ -211,72 +242,114 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 ),
                 Gap(5),
                 FItem(
-                  prefix: Icon(FIcons.codesandbox, color: Colors.blue.shade900),
+                  prefix: Icon(
+                    FIcons.codesandbox,
+                    color: context.theme.colors.primary,
+                  ),
                   title: const Text('forui'),
                   suffix: Icon(FIcons.chevronRight),
                 ),
                 FItem(
-                  prefix: Icon(FIcons.codesandbox, color: Colors.blue.shade900),
+                  prefix: Icon(
+                    FIcons.codesandbox,
+                    color: context.theme.colors.primary,
+                  ),
                   title: const Text('flutter_hooks'),
                   suffix: Icon(FIcons.chevronRight),
                 ),
                 FItem(
-                  prefix: Icon(FIcons.codesandbox, color: Colors.blue.shade900),
+                  prefix: Icon(
+                    FIcons.codesandbox,
+                    color: context.theme.colors.primary,
+                  ),
                   title: const Text('gap'),
                   suffix: Icon(FIcons.chevronRight),
                 ),
                 FItem(
-                  prefix: Icon(FIcons.codesandbox, color: Colors.blue.shade900),
+                  prefix: Icon(
+                    FIcons.codesandbox,
+                    color: context.theme.colors.primary,
+                  ),
                   title: const Text('cached_network_image'),
                   suffix: Icon(FIcons.chevronRight),
                 ),
                 FItem(
-                  prefix: Icon(FIcons.codesandbox, color: Colors.blue.shade900),
+                  prefix: Icon(
+                    FIcons.codesandbox,
+                    color: context.theme.colors.primary,
+                  ),
                   title: const Text('freezed_annotation'),
                   suffix: Icon(FIcons.chevronRight),
                 ),
                 FItem(
-                  prefix: Icon(FIcons.codesandbox, color: Colors.blue.shade900),
+                  prefix: Icon(
+                    FIcons.codesandbox,
+                    color: context.theme.colors.primary,
+                  ),
                   title: const Text('json_annotation'),
                   suffix: Icon(FIcons.chevronRight),
                 ),
                 FItem(
-                  prefix: Icon(FIcons.codesandbox, color: Colors.blue.shade900),
+                  prefix: Icon(
+                    FIcons.codesandbox,
+                    color: context.theme.colors.primary,
+                  ),
                   title: const Text('flutter_riverpod'),
                   suffix: Icon(FIcons.chevronRight),
                 ),
                 FItem(
-                  prefix: Icon(FIcons.codesandbox, color: Colors.blue.shade900),
+                  prefix: Icon(
+                    FIcons.codesandbox,
+                    color: context.theme.colors.primary,
+                  ),
                   title: const Text('dio'),
                   suffix: Icon(FIcons.chevronRight),
                 ),
                 FItem(
-                  prefix: Icon(FIcons.codesandbox, color: Colors.blue.shade900),
+                  prefix: Icon(
+                    FIcons.codesandbox,
+                    color: context.theme.colors.primary,
+                  ),
                   title: const Text('retrofit'),
                   suffix: Icon(FIcons.chevronRight),
                 ),
                 FItem(
-                  prefix: Icon(FIcons.codesandbox, color: Colors.blue.shade900),
+                  prefix: Icon(
+                    FIcons.codesandbox,
+                    color: context.theme.colors.primary,
+                  ),
                   title: const Text('flutter_svg'),
                   suffix: Icon(FIcons.chevronRight),
                 ),
                 FItem(
-                  prefix: Icon(FIcons.codesandbox, color: Colors.blue.shade900),
+                  prefix: Icon(
+                    FIcons.codesandbox,
+                    color: context.theme.colors.primary,
+                  ),
                   title: const Text('skeletonizer'),
                   suffix: Icon(FIcons.chevronRight),
                 ),
                 FItem(
-                  prefix: Icon(FIcons.codesandbox, color: Colors.blue.shade900),
+                  prefix: Icon(
+                    FIcons.codesandbox,
+                    color: context.theme.colors.primary,
+                  ),
                   title: const Text('equatable'),
                   suffix: Icon(FIcons.chevronRight),
                 ),
                 FItem(
-                  prefix: Icon(FIcons.codesandbox, color: Colors.blue.shade900),
+                  prefix: Icon(
+                    FIcons.codesandbox,
+                    color: context.theme.colors.primary,
+                  ),
                   title: const Text('latlong2'),
                   suffix: Icon(FIcons.chevronRight),
                 ),
                 FItem(
-                  prefix: Icon(FIcons.codesandbox, color: Colors.blue.shade900),
+                  prefix: Icon(
+                    FIcons.codesandbox,
+                    color: context.theme.colors.primary,
+                  ),
                   title: const Text('forui_hooks'),
                   suffix: Icon(FIcons.chevronRight),
                 ),
@@ -292,47 +365,74 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 ),
                 Gap(5),
                 FItem(
-                  prefix: Icon(FIcons.bugPlay, color: Colors.orange.shade900),
+                  prefix: Icon(
+                    FIcons.bugPlay,
+                    color: context.theme.colors.destructive,
+                  ),
                   title: const Text('flutter_lints'),
                   suffix: Icon(FIcons.chevronRight),
                 ),
                 FItem(
-                  prefix: Icon(FIcons.bugPlay, color: Colors.orange.shade900),
+                  prefix: Icon(
+                    FIcons.bugPlay,
+                    color: context.theme.colors.destructive,
+                  ),
                   title: const Text('build_runner'),
                   suffix: Icon(FIcons.chevronRight),
                 ),
                 FItem(
-                  prefix: Icon(FIcons.bugPlay, color: Colors.orange.shade900),
+                  prefix: Icon(
+                    FIcons.bugPlay,
+                    color: context.theme.colors.destructive,
+                  ),
                   title: const Text('freezed'),
                   suffix: Icon(FIcons.chevronRight),
                 ),
                 FItem(
-                  prefix: Icon(FIcons.bugPlay, color: Colors.orange.shade900),
+                  prefix: Icon(
+                    FIcons.bugPlay,
+                    color: context.theme.colors.destructive,
+                  ),
                   title: const Text('json_serializable'),
                   suffix: Icon(FIcons.chevronRight),
                 ),
                 FItem(
-                  prefix: Icon(FIcons.bugPlay, color: Colors.orange.shade900),
+                  prefix: Icon(
+                    FIcons.bugPlay,
+                    color: context.theme.colors.destructive,
+                  ),
                   title: const Text('riverpod_lint'),
                   suffix: Icon(FIcons.chevronRight),
                 ),
                 FItem(
-                  prefix: Icon(FIcons.bugPlay, color: Colors.orange.shade900),
+                  prefix: Icon(
+                    FIcons.bugPlay,
+                    color: context.theme.colors.destructive,
+                  ),
                   title: const Text('custom_lint'),
                   suffix: Icon(FIcons.chevronRight),
                 ),
                 FItem(
-                  prefix: Icon(FIcons.bugPlay, color: Colors.orange.shade900),
+                  prefix: Icon(
+                    FIcons.bugPlay,
+                    color: context.theme.colors.destructive,
+                  ),
                   title: const Text('riverpod_generator'),
                   suffix: Icon(FIcons.chevronRight),
                 ),
                 FItem(
-                  prefix: Icon(FIcons.bugPlay, color: Colors.orange.shade900),
+                  prefix: Icon(
+                    FIcons.bugPlay,
+                    color: context.theme.colors.destructive,
+                  ),
                   title: const Text('pretty_dio_logger'),
                   suffix: Icon(FIcons.chevronRight),
                 ),
                 FItem(
-                  prefix: Icon(FIcons.bugPlay, color: Colors.orange.shade900),
+                  prefix: Icon(
+                    FIcons.bugPlay,
+                    color: context.theme.colors.destructive,
+                  ),
                   title: const Text('retrofit_generator'),
                   suffix: Icon(FIcons.chevronRight),
                 ),

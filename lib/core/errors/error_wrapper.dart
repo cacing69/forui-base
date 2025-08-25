@@ -1,11 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:forui_base/core/errors/failure.dart';
 
 Failure errorWrapper(Exception e) {
   String? errorMessage;
-
-  debugPrint(e.toString());
 
   if (e is DioException) {
     if (e.type == DioExceptionType.unknown) {

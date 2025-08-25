@@ -1,7 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:forui/assets.dart';
 import 'package:forui/theme.dart';
+import 'package:forui/widgets/button.dart';
 import 'package:forui/widgets/scaffold.dart';
+import 'package:go_router/go_router.dart';
 
 class FullScreenPhotoViewerScreen extends StatelessWidget {
   final String imageUrl;
@@ -34,9 +37,10 @@ class FullScreenPhotoViewerScreen extends StatelessWidget {
             Positioned(
               top: 16,
               left: 16,
-              child: IconButton(
-                icon: Icon(Icons.close, color: context.theme.colors.foreground),
-                onPressed: () => Navigator.pop(context),
+              child: FButton(
+                style: FButtonStyle.ghost(),
+                onPress: () => context.pop(),
+                child: Icon(FIcons.x, color: context.theme.colors.foreground),
               ),
             ),
           ],

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:forui/forui.dart';
 import 'package:forui_base/router.dart';
@@ -29,8 +29,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 ? Icon(FIcons.moon)
                 : Icon(FIcons.sun),
             onPress: () {
-              // debugPrint();
-
               if (ref.watch(configAppNotifierProvider).themeData ==
                   FThemes.zinc.light) {
                 ref
@@ -53,11 +51,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 title: const Text('About?'),
                 body: const Text('This is a Flutter application.'),
                 actions: [
-                  // FButton(
-                  //   style: FButtonStyle.outline(),
-                  //   onPress: () => Navigator.of(context).pop(),
-                  //   child: const Text('Cancel'),
-                  // ),
                   FButton(
                     onPress: () => context.pop(),
                     child: const Text('Close'),
@@ -68,88 +61,108 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           ),
         ],
       ),
-      child: Column(
+      child: FTabs(
+        initialIndex: 0,
         children: [
-          const SizedBox(height: 5),
-          FCard(
-            title: const Text('Login'),
-            subtitle: const Text('Enter your account details to sign in.'),
+          FTabEntry(
+            label: Text("Login"),
             child: Column(
               children: [
-                const FTextField(label: Text('Username'), hint: 'ex: cacing69'),
-                const SizedBox(height: 10),
-                Stack(
-                  children: [
-                    FTextField(
-                      obscureText: _obscureText,
-                      label: Text('Password'),
-                      hint: 'ex: 123456',
-                      style: (e) => e.copyWith(
-                        contentPadding: e.contentPadding.add(
-                          EdgeInsetsGeometry.only(right: 25),
-                        ),
+                const SizedBox(height: 5),
+                FCard(
+                  title: const Text('Login'),
+                  subtitle: const Text(
+                    'Enter your account details to sign in.',
+                  ),
+                  child: Column(
+                    children: [
+                      const FTextField(
+                        label: Text('Username'),
+                        hint: 'ex: cacing69',
                       ),
-                    ),
-                    Positioned(
-                      right: 0,
-                      bottom: 1,
-                      child: FButton.raw(
+                      const SizedBox(height: 10),
+                      Stack(
+                        children: [
+                          FTextField(
+                            obscureText: _obscureText,
+                            label: Text('Password'),
+                            hint: 'ex: 123456',
+                            style: (e) => e.copyWith(
+                              contentPadding: e.contentPadding.add(
+                                EdgeInsetsGeometry.only(right: 25),
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            right: 0,
+                            bottom: 1,
+                            child: FButton.raw(
+                              style: FButtonStyle.ghost(),
+                              onPress: () {
+                                setState(() {
+                                  _obscureText = !_obscureText;
+                                });
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: AnimatedSwitcher(
+                                  duration: const Duration(milliseconds: 200),
+                                  transitionBuilder: (child, animation) {
+                                    return ScaleTransition(
+                                      scale: animation,
+                                      child: FadeTransition(
+                                        opacity: animation,
+                                        child: child,
+                                      ),
+                                    );
+                                  },
+                                  child: _obscureText
+                                      ? Icon(
+                                          FIcons.eyeOff,
+                                          key: const ValueKey('eyeOff'),
+                                        )
+                                      : Icon(
+                                          FIcons.eye,
+                                          key: const ValueKey('eye'),
+                                        ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 16),
+                      FButton(
+                        onPress: () {
+                          context.goNamed(RouteName.home.name);
+                        },
+                        child: const Text('Login'),
+                      ),
+                      Gap(10),
+                      FButton(
+                        style: FButtonStyle.outline(),
+                        onPress: () {
+                          // context.goNamed(RouteName.home.name);
+                        },
+                        child: const Text('Register'),
+                      ),
+                      Gap(10),
+                      FButton(
                         style: FButtonStyle.ghost(),
                         onPress: () {
-                          setState(() {
-                            _obscureText = !_obscureText;
-                          });
+                          context.goNamed(RouteName.home.name);
                         },
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: AnimatedSwitcher(
-                            duration: const Duration(milliseconds: 200),
-                            transitionBuilder: (child, animation) {
-                              return ScaleTransition(
-                                scale: animation,
-                                child: FadeTransition(
-                                  opacity: animation,
-                                  child: child,
-                                ),
-                              );
-                            },
-                            child: _obscureText
-                                ? Icon(
-                                    FIcons.eyeOff,
-                                    key: const ValueKey('eyeOff'),
-                                  )
-                                : Icon(FIcons.eye, key: const ValueKey('eye')),
-                          ),
-                        ),
+                        child: const Text('Guest'),
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 16),
-                FButton(
-                  onPress: () {
-                    context.goNamed(RouteName.home.name);
-                  },
-                  child: const Text('Login'),
-                ),
-                Gap(10),
-                FButton(
-                  style: FButtonStyle.outline(),
-                  onPress: () {
-                    // context.goNamed(RouteName.home.name);
-                  },
-                  child: const Text('Register'),
-                ),
-                Gap(10),
-                FButton(
-                  style: FButtonStyle.ghost(),
-                  onPress: () {
-                    context.goNamed(RouteName.home.name);
-                  },
-                  child: const Text('Guest'),
+                    ],
+                  ),
                 ),
               ],
             ),
+          ),
+          FTabEntry(
+            label: Text("Register"),
+            child: Column(children: [Placeholder()]),
           ),
         ],
       ),

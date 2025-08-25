@@ -1,10 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:forui/forui.dart';
 import 'package:forui_base/core/constant/user_static.dart';
 import 'package:forui_base/router.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -128,11 +129,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ],
                   builder: (context, controller, child) => GestureDetector(
                     onTap: () => controller.toggle(),
-                    child: CircleAvatar(
-                      radius: 35, // ukuran lingkaran
-                      backgroundColor: Colors.blue, // warna latar
-                      backgroundImage: CachedNetworkImageProvider(
-                        "https://avatars.githubusercontent.com/u/36250619?v=4",
+                    child: SizedBox(
+                      height: 70,
+                      width: 70,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: context.theme.colors.foreground,
+                        ),
+                        clipBehavior: Clip.antiAlias,
+                        child: CachedNetworkImage(
+                          imageUrl: userStatic.avatar!,
+                          placeholder: (context, url) => const Center(
+                            child: Skeletonizer.zone(
+                              child: Bone.circle(size: 70),
+                            ),
+                          ),
+                          errorWidget: (context, url, error) => Icon(
+                            FIcons.info,
+                            color: context.theme.colors.background,
+                          ),
+                          width: 150,
+                          height: 150,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
@@ -146,13 +166,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
             // description: const Text('Personalize your social links'),
             children: [
               FTile(
-                prefix: Icon(FIcons.mail, color: Colors.amber.shade700),
+                prefix: Icon(FIcons.mail),
                 title: Text('Email'),
                 details: Text("ibnuul@gmail.com"),
                 onPress: () {},
               ),
               FTile(
-                prefix: Icon(FIcons.smartphone, color: Colors.green.shade700),
+                prefix: Icon(FIcons.smartphone),
                 title: Text('Phone'),
                 details: Text("+62 896 7216 5341"),
                 onPress: () {},
@@ -164,13 +184,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 onPress: () {},
               ),
               FTile(
-                prefix: Icon(FIcons.linkedin, color: Colors.blue.shade700),
+                prefix: Icon(FIcons.linkedin),
                 title: Text('Linkedin'),
                 details: Text("ibnul-mutaki"),
                 onPress: () {},
               ),
               FTile(
-                prefix: Icon(FIcons.facebook, color: Colors.blue.shade700),
+                prefix: Icon(FIcons.facebook),
                 title: Text('Facebook'),
                 details: Text("ibnuul"),
                 onPress: () {},
