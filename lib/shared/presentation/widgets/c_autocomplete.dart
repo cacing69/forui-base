@@ -59,7 +59,7 @@ class CAutocomplete<T extends Object> extends HookWidget {
           description: description,
           clearable: (e) => e.text.isNotEmpty,
           focusNode: focusNode,
-          onSubmit: (value) => onFieldSubmitted,
+          onSubmit: (value) => onFieldSubmitted(),
           hint: hintText,
         );
       },
@@ -72,6 +72,7 @@ class CAutocomplete<T extends Object> extends HookWidget {
               const Gap(5),
               Material(
                 elevation: 0,
+                clipBehavior: Clip.antiAlias,
                 shape: RoundedRectangleBorder(
                   side: BorderSide(
                     color: context.theme.colors.border,
@@ -79,6 +80,7 @@ class CAutocomplete<T extends Object> extends HookWidget {
                   ),
                   borderRadius: BorderRadius.circular(8),
                 ),
+
                 child: ConstrainedBox(
                   constraints: const BoxConstraints(maxHeight: 450),
                   child: Builder(
@@ -94,20 +96,11 @@ class CAutocomplete<T extends Object> extends HookWidget {
                         itemCount: options.length,
                         itemBuilder: (context, index) {
                           final option = options.elementAt(index);
-                          if (optionItemBuilder != null) {
-                            return optionItemBuilder!(
-                              context,
-                              option,
-                              onSelected,
-                            );
-                          }
-                          return ListTile(
-                            title: Text(
-                              displayStringForOption?.call(option) ??
-                                  option.toString(),
-                            ),
-                            onTap: () => onSelected(option),
-                          );
+                          return optionItemBuilder!(context, option, (
+                            selected,
+                          ) {
+                            onSelected(selected);
+                          });
                         },
                       );
                     },

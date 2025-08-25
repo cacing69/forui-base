@@ -46,7 +46,7 @@ final class BlockNominatimSearchNotifierProvider
 }
 
 String _$blockNominatimSearchNotifierHash() =>
-    r'a258c7a6f818bc14cdac7f229a3f59e03578cb43';
+    r'67b97859a9b4511c04de2af6edf8005f00fe23b9';
 
 abstract class _$BlockNominatimSearchNotifier
     extends $Notifier<AsyncValue<List<SearchResponse>?>> {

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_debouncer/flutter_debouncer.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:forui/forui.dart';
-import 'package:forui_base/features/block/presentation/screens/block/block_nominatim_search_notifier.dart';
+import 'package:forui_base/features/block/presentation/screens/block/nominatim_search/block_nominatim_search_notifier.dart';
 import 'package:forui_base/shared/data/models/nominatim/search_response.dart';
 import 'package:forui_base/shared/presentation/widgets/c_autocomplete.dart';
 import 'package:gap/gap.dart';
@@ -29,21 +29,22 @@ class _BlockNominatimSearchScreenState
 
   @override
   Widget build(BuildContext context) {
-    final query = useState<String>('');
+    // final query = useState<String>('');
 
     final TextEditingController searchController = useTextEditingController();
 
     final FocusNode searchFocusNode = useFocusNode();
 
-    final debouncedQuery = useDebounced(query, Duration(milliseconds: 500));
-    useEffect(() {
-      if (debouncedQuery != null && debouncedQuery.value.isNotEmpty) {
-        ref
-            .read(blockNominatimSearchNotifierProvider.notifier)
-            .perform(debouncedQuery.value);
-      }
-      return null;
-    }, [debouncedQuery]);
+    // final debouncedQuery = useDebounced(query, Duration(milliseconds: 500));
+
+    // useEffect(() {
+    //   if (debouncedQuery != null && debouncedQuery.value.isNotEmpty) {
+    //     ref
+    //         .read(blockNominatimSearchNotifierProvider.notifier)
+    //         .perform(debouncedQuery.value);
+    //   }
+    //   return null;
+    // }, [debouncedQuery]);
 
     return FScaffold(
       header: FHeader.nested(
@@ -217,6 +218,7 @@ class _BlockNominatimSearchScreenState
                   .watch(blockNominatimSearchNotifierProvider)
                   .isLoading,
               onSelected: (data) {
+                debugPrint("onSelected:$data");
                 setState(() {
                   selectedData = data;
                 });

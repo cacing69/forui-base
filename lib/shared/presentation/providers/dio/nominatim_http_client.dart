@@ -10,7 +10,7 @@ Dio nominatimHttpClient(Ref ref) {
   final dio = Dio(
     BaseOptions(
       headers: {
-        'User-Agent': 'ForuiBase/1.0',
+        'User-Agent': 'com.cacing69.base.forui/1.0',
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'Accept-Language': 'id',

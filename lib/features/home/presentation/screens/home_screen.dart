@@ -3,10 +3,14 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:forui/forui.dart';
+import 'package:forui_base/core/constant/dependency_static.dart';
 import 'package:forui_base/core/constant/user_static.dart';
+import 'package:forui_base/router.dart';
 import 'package:forui_base/shared/presentation/providers/config_app_notifier.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -93,7 +97,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                                           ),
                                           clipBehavior: Clip.antiAlias,
                                           child: CachedNetworkImage(
-                                            imageUrl: userStatic.avatar!,
+                                            imageUrl: staticUser.avatar!,
                                             placeholder: (context, url) =>
                                                 const Center(
                                                   child: Skeletonizer.zone(
@@ -124,7 +128,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            "${userStatic.firstName!} ${userStatic.lastName!}"
+                                            "${staticUser.firstName!} ${staticUser.lastName!}"
                                                 .trim(),
                                             style: context.theme.typography.lg
                                                 .copyWith(
@@ -142,12 +146,16 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                                 ),
                                 FDivider(),
                                 FSidebarGroup(
-                                  label: const Text('Github'),
+                                  label: const Text('Features'),
                                   children: [
                                     FSidebarItem(
-                                      icon: const Icon(FIcons.bookOpen),
-                                      label: const Text('Overview'),
-                                      onPress: () {},
+                                      icon: const Icon(FIcons.listTodo),
+                                      label: const Text('Backlog'),
+                                      onPress: () {
+                                        context.pushNamed(
+                                          RouteName.blockBacklog.name,
+                                        );
+                                      },
                                     ),
                                     FSidebarItem(
                                       icon: const Icon(FIcons.folderGit2),
@@ -241,118 +249,23 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 Gap(5),
-                FItem(
-                  prefix: Icon(
-                    FIcons.codesandbox,
-                    color: context.theme.colors.primary,
-                  ),
-                  title: const Text('forui'),
-                  suffix: Icon(FIcons.chevronRight),
-                ),
-                FItem(
-                  prefix: Icon(
-                    FIcons.codesandbox,
-                    color: context.theme.colors.primary,
-                  ),
-                  title: const Text('flutter_hooks'),
-                  suffix: Icon(FIcons.chevronRight),
-                ),
-                FItem(
-                  prefix: Icon(
-                    FIcons.codesandbox,
-                    color: context.theme.colors.primary,
-                  ),
-                  title: const Text('gap'),
-                  suffix: Icon(FIcons.chevronRight),
-                ),
-                FItem(
-                  prefix: Icon(
-                    FIcons.codesandbox,
-                    color: context.theme.colors.primary,
-                  ),
-                  title: const Text('cached_network_image'),
-                  suffix: Icon(FIcons.chevronRight),
-                ),
-                FItem(
-                  prefix: Icon(
-                    FIcons.codesandbox,
-                    color: context.theme.colors.primary,
-                  ),
-                  title: const Text('freezed_annotation'),
-                  suffix: Icon(FIcons.chevronRight),
-                ),
-                FItem(
-                  prefix: Icon(
-                    FIcons.codesandbox,
-                    color: context.theme.colors.primary,
-                  ),
-                  title: const Text('json_annotation'),
-                  suffix: Icon(FIcons.chevronRight),
-                ),
-                FItem(
-                  prefix: Icon(
-                    FIcons.codesandbox,
-                    color: context.theme.colors.primary,
-                  ),
-                  title: const Text('flutter_riverpod'),
-                  suffix: Icon(FIcons.chevronRight),
-                ),
-                FItem(
-                  prefix: Icon(
-                    FIcons.codesandbox,
-                    color: context.theme.colors.primary,
-                  ),
-                  title: const Text('dio'),
-                  suffix: Icon(FIcons.chevronRight),
-                ),
-                FItem(
-                  prefix: Icon(
-                    FIcons.codesandbox,
-                    color: context.theme.colors.primary,
-                  ),
-                  title: const Text('retrofit'),
-                  suffix: Icon(FIcons.chevronRight),
-                ),
-                FItem(
-                  prefix: Icon(
-                    FIcons.codesandbox,
-                    color: context.theme.colors.primary,
-                  ),
-                  title: const Text('flutter_svg'),
-                  suffix: Icon(FIcons.chevronRight),
-                ),
-                FItem(
-                  prefix: Icon(
-                    FIcons.codesandbox,
-                    color: context.theme.colors.primary,
-                  ),
-                  title: const Text('skeletonizer'),
-                  suffix: Icon(FIcons.chevronRight),
-                ),
-                FItem(
-                  prefix: Icon(
-                    FIcons.codesandbox,
-                    color: context.theme.colors.primary,
-                  ),
-                  title: const Text('equatable'),
-                  suffix: Icon(FIcons.chevronRight),
-                ),
-                FItem(
-                  prefix: Icon(
-                    FIcons.codesandbox,
-                    color: context.theme.colors.primary,
-                  ),
-                  title: const Text('latlong2'),
-                  suffix: Icon(FIcons.chevronRight),
-                ),
-                FItem(
-                  prefix: Icon(
-                    FIcons.codesandbox,
-                    color: context.theme.colors.primary,
-                  ),
-                  title: const Text('forui_hooks'),
-                  suffix: Icon(FIcons.chevronRight),
-                ),
+                ...staticGeneralDependencies.map((dep) {
+                  return FItem(
+                    prefix: Icon(dep.icon!),
+                    title: Text(dep.name!),
+                    suffix: (dep.url?.length ?? 0) > 1
+                        ? Icon(FIcons.externalLink)
+                        : null,
+                    subtitle: (dep.url?.length ?? 0) > 1
+                        ? Text(dep.url!)
+                        : SizedBox.shrink(),
+                    onPress: (dep.url?.length ?? 0) > 1
+                        ? () {
+                            launchUrl(Uri.parse(dep.url!));
+                          }
+                        : null,
+                  );
+                }),
               ],
             ),
             FDivider(),
@@ -364,78 +277,26 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 Gap(5),
-                FItem(
-                  prefix: Icon(
-                    FIcons.bugPlay,
-                    color: context.theme.colors.destructive,
-                  ),
-                  title: const Text('flutter_lints'),
-                  suffix: Icon(FIcons.chevronRight),
-                ),
-                FItem(
-                  prefix: Icon(
-                    FIcons.bugPlay,
-                    color: context.theme.colors.destructive,
-                  ),
-                  title: const Text('build_runner'),
-                  suffix: Icon(FIcons.chevronRight),
-                ),
-                FItem(
-                  prefix: Icon(
-                    FIcons.bugPlay,
-                    color: context.theme.colors.destructive,
-                  ),
-                  title: const Text('freezed'),
-                  suffix: Icon(FIcons.chevronRight),
-                ),
-                FItem(
-                  prefix: Icon(
-                    FIcons.bugPlay,
-                    color: context.theme.colors.destructive,
-                  ),
-                  title: const Text('json_serializable'),
-                  suffix: Icon(FIcons.chevronRight),
-                ),
-                FItem(
-                  prefix: Icon(
-                    FIcons.bugPlay,
-                    color: context.theme.colors.destructive,
-                  ),
-                  title: const Text('riverpod_lint'),
-                  suffix: Icon(FIcons.chevronRight),
-                ),
-                FItem(
-                  prefix: Icon(
-                    FIcons.bugPlay,
-                    color: context.theme.colors.destructive,
-                  ),
-                  title: const Text('custom_lint'),
-                  suffix: Icon(FIcons.chevronRight),
-                ),
-                FItem(
-                  prefix: Icon(
-                    FIcons.bugPlay,
-                    color: context.theme.colors.destructive,
-                  ),
-                  title: const Text('riverpod_generator'),
-                  suffix: Icon(FIcons.chevronRight),
-                ),
-                FItem(
-                  prefix: Icon(
-                    FIcons.bugPlay,
-                    color: context.theme.colors.destructive,
-                  ),
-                  title: const Text('pretty_dio_logger'),
-                  suffix: Icon(FIcons.chevronRight),
-                ),
-                FItem(
-                  prefix: Icon(
-                    FIcons.bugPlay,
-                    color: context.theme.colors.destructive,
-                  ),
-                  title: const Text('retrofit_generator'),
-                  suffix: Icon(FIcons.chevronRight),
-                ),
+                ...staticDevelopmentDependencies.map((dep) {
+                  return FItem(
+                    prefix: Icon(
+                      dep.icon!,
+                      color: context.theme.colors.destructive,
+                    ),
+                    title: Text(dep.name!),
+                    suffix: dep.url!.length > 1
+                        ? Icon(FIcons.externalLink)
+                        : null,
+                    subtitle: dep.url!.length > 1
+                        ? Text(dep.url!)
+                        : SizedBox.shrink(),
+                    onPress: dep.url!.length > 1
+                        ? () {
+                            launchUrl(Uri.parse(dep.url!));
+                          }
+                        : null,
+                  );
+                }),
                 Gap(20),
               ],
             ),

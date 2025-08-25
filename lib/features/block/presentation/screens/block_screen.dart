@@ -55,18 +55,23 @@ class _BlockScreenState extends State<BlockScreen> {
         child: Column(
           spacing: 10,
           children: [
-            SizedBox(
-              width: double.infinity,
-              child: FCard(
-                title: Padding(
-                  padding: const EdgeInsets.only(bottom: 5),
-                  child: const Text(
-                    'Location Picker',
-                    style: TextStyle(fontSize: 16),
+            FButton.raw(
+              onPress: () {
+                context.pushNamed(RouteName.blockLocationPicker.name);
+              },
+              child: SizedBox(
+                width: double.infinity,
+                child: FCard(
+                  title: Padding(
+                    padding: const EdgeInsets.only(bottom: 5),
+                    child: const Text(
+                      'Location Picker',
+                      style: TextStyle(fontSize: 16),
+                    ),
                   ),
-                ),
-                subtitle: const Text(
-                  'Select a location on the map or search to pick your desired address.',
+                  subtitle: const Text(
+                    'Select a location on the map or search to pick your desired address.',
+                  ),
                 ),
               ),
             ),
