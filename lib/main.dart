@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:forui/forui.dart';
+import 'package:forui_base/core/config/env.dart';
 import 'package:forui_base/router.dart';
 import 'package:forui_base/shared/presentation/providers/config_app_notifier.dart';
 
@@ -22,6 +23,8 @@ class _ApplicationState extends ConsumerState<Application> {
   @override
   void initState() {
     super.initState();
+
+    debugPrint('API URL: ${Env.apiAppCctvDomain}');
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final brightness = MediaQuery.of(context).platformBrightness;

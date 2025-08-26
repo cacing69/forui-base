@@ -3,7 +3,7 @@ import 'package:forui_base/core/datasources/remote/nominatim/nominatim_service.d
 import 'package:forui_base/core/errors/error_wrapper.dart';
 import 'package:forui_base/core/errors/failure.dart';
 import 'package:forui_base/shared/data/models/nominatim/search_response.dart';
-import 'package:forui_base/shared/domain/repositories/nominatim_repositories.dart';
+import 'package:forui_base/shared/domain/repositories/nominatim_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'nominatim_repository_impl.g.dart';

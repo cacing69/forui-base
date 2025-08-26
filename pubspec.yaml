@@ -55,6 +55,8 @@ dependencies:
   url_launcher: ^6.3.2
   flutter_launcher_icons: ^0.14.4
   flutter_map_animations: ^0.9.0
+  envied: ^1.2.0
+  jiffy: ^6.4.3
 
 dev_dependencies:
   flutter_test:
@@ -66,7 +68,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^6.0.0
-  build_runner: ^2.5.4
+  build_runner: ^2.7.0
   freezed: ^3.2.0
   json_serializable: ^6.9.5
   riverpod_lint: ^3.0.0-dev.17
@@ -74,6 +76,7 @@ dev_dependencies:
   riverpod_generator: ^3.0.0-dev.17
   pretty_dio_logger: ^1.4.0
   retrofit_generator: '^10.0.0'
+  envied_generator: ^1.2.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -88,6 +91,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - .env
     - assets/images/
     - assets/icons/
   #   - images/a_dot_ham.jpeg

@@ -92,6 +92,16 @@ final List<Dependency> generalDependenciesStatic = [
     name: "flutter_map_animations",
     url: "https://github.com/TesteurManiak/flutter_map_animations",
   ),
+  Dependency(
+    icon: FIcons.codesandbox,
+    name: "envied",
+    url: "https://pub.dev/packages/envied",
+  ),
+  Dependency(
+    icon: FIcons.codesandbox,
+    name: "jiffy",
+    url: "https://pub.dev/packages/jiffy",
+  ),
 ];
 
 final List<Dependency> developmentDependenciesStatic = [
@@ -139,5 +149,10 @@ final List<Dependency> developmentDependenciesStatic = [
     icon: FIcons.bugPlay,
     name: 'retrofit_generator',
     url: 'https://pub.dev/packages/retrofit_generator',
+  ),
+  Dependency(
+    icon: FIcons.bugPlay,
+    name: 'envied_generator',
+    url: 'https://pub.dev/packages/envied_generator',
   ),
 ];

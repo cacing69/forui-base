@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -18,17 +19,18 @@ Dio nominatimHttpClient(Ref ref) {
     ),
   );
 
-  // TODO : Check dan pastikan hanya berjalan dalam mode debug
-  dio.interceptors.add(
-    PrettyDioLogger(
-      requestHeader: true,
-      requestBody: true,
-      responseHeader: false,
-      responseBody: true,
-      error: true,
-      compact: false,
-    ),
-  );
+  if (kDebugMode) {
+    dio.interceptors.add(
+      PrettyDioLogger(
+        requestHeader: true,
+        requestBody: true,
+        responseHeader: false,
+        responseBody: true,
+        error: true,
+        compact: false,
+      ),
+    );
+  }
 
   return dio;
 }
