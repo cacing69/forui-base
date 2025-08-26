@@ -6,6 +6,7 @@ import 'package:forui/forui.dart';
 import 'package:forui_base/core/config/env.dart';
 import 'package:forui_base/router.dart';
 import 'package:forui_base/shared/presentation/providers/config_app_notifier.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 void main() {
   debugPaintSizeEnabled = false;
@@ -46,7 +47,9 @@ class _ApplicationState extends ConsumerState<Application> {
       title: 'Forui Base',
       builder: (context, child) =>
           FTheme(data: configApp.themeData!, child: child!),
-      theme: configApp.themeData!.toApproximateMaterialTheme(),
+      theme: configApp.themeData!.toApproximateMaterialTheme().copyWith(
+        extensions: [SkeletonizerConfigData(effect: PulseEffect())],
+      ),
       routerConfig: router,
     );
   }

@@ -102,6 +102,11 @@ final List<Dependency> generalDependenciesStatic = [
     name: "jiffy",
     url: "https://pub.dev/packages/jiffy",
   ),
+  Dependency(
+    icon: FIcons.codesandbox,
+    name: "stack_trace",
+    url: "https://pub.dev/packages/stack_trace",
+  ),
 ];
 
 final List<Dependency> developmentDependenciesStatic = [

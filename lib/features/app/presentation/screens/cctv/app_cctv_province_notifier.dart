@@ -6,7 +6,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'app_cctv_province_notifier.g.dart';
 
-@Riverpod(keepAlive: true)
+@Riverpod(keepAlive: false)
 class AppCctvProvinceNotifier extends _$AppCctvProvinceNotifier {
   @override
   AsyncValue<TResponse<List<Province>>?> build() {

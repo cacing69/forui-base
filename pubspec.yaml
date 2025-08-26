@@ -57,6 +57,7 @@ dependencies:
   flutter_map_animations: ^0.9.0
   envied: ^1.2.0
   jiffy: ^6.4.3
+  stack_trace: ^1.12.1
 
 dev_dependencies:
   flutter_test:
