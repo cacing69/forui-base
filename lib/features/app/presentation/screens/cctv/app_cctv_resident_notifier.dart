@@ -10,8 +10,11 @@ part 'app_cctv_resident_notifier.g.dart';
 class AppCctvResidentNotifier extends _$AppCctvResidentNotifier {
   @override
   AsyncValue<TResponse<List<Resident>>?> build() {
-    perform(ResidentQuery());
-    return const AsyncValue.loading();
+    // return AsyncValue.loading();
+
+    return AsyncValue.data(
+      TResponse<List<Resident>>(status: 'success', message: null, data: []),
+    );
   }
 
   Future<void> perform(ResidentQuery params) async {

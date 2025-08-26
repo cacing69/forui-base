@@ -18,4 +18,12 @@ class TResponse<T> {
 
   Map<String, dynamic> toJson(Object? Function(T value) toJsonT) =>
       _$TResponseToJson(this, toJsonT);
+
+  TResponse<T> copyWith({String? status, String? message, T? data}) {
+    return TResponse<T>(
+      status: status ?? this.status,
+      message: message ?? this.message,
+      data: data ?? this.data,
+    );
+  }
 }

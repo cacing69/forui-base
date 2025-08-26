@@ -566,7 +566,7 @@ final List<TileData> implementBacklogsStatic = [
   TileData(
     icon: FIcons.package,
     title: "Open File",
-    subtitle: 'https://pub.dev/packages/open_file',
+    subtitle: 'open_file, open_filex',
     status: false,
   ),
   TileData(
@@ -597,6 +597,30 @@ final List<TileData> implementBacklogsStatic = [
     icon: FIcons.package,
     title: "Workmanager",
     subtitle: 'https://pub.dev/packages/workmanager',
+    status: false,
+  ),
+  TileData(
+    icon: FIcons.package,
+    title: "Downloader",
+    subtitle: 'https://pub.dev/packages/flutter_downloader',
+    status: false,
+  ),
+  TileData(
+    icon: FIcons.package,
+    title: "Dotted Line",
+    subtitle: 'https://pub.dev/packages/dotted_line',
+    status: false,
+  ),
+  TileData(
+    icon: FIcons.package,
+    title: "Call Log",
+    subtitle: 'https://pub.dev/packages/call_log',
+    status: false,
+  ),
+  TileData(
+    icon: FIcons.package,
+    title: "Contact Manage ",
+    subtitle: 'https://pub.dev/packages/flutter_contacts',
     status: false,
   ),
 ];

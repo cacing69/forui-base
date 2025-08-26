@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:forui/forui.dart';
+import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_province_notifier.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_resident_notifier.dart';
+import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cctv_resident_tile.dart';
+import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cctv_resident_tile_skeletonizer.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cctv_screen_filter_widget.dart';
+import 'package:forui_base/shared/data/models/api_cctv/resident.dart';
+import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:jiffy/jiffy.dart';
@@ -19,9 +24,12 @@ class _AppCctvScreenState extends ConsumerState<AppCctvScreen>
   Widget build(BuildContext context) {
     final asyncResidentState = ref.watch(appCctvResidentNotifierProvider);
 
+    ref.watch(appCctvProvinceNotifierProvider);
+
     final Jiffy now = Jiffy.now();
 
     return FScaffold(
+      resizeToAvoidBottomInset: false,
       header: FHeader.nested(
         title: const Text('App : CCTV'),
         prefixes: [
@@ -53,33 +61,27 @@ class _AppCctvScreenState extends ConsumerState<AppCctvScreen>
         data: (rows) {
           return Column(
             children: [
-              ...?rows?.data?.map(
-                (row) => FItem(
-                  prefix: row.sexId == 0
-                      ? Icon(FIcons.venus)
-                      : Icon(FIcons.mars),
-                  suffix: Icon(FIcons.chevronRight),
-                  subtitle: Column(
-                    spacing: 5,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Builder(
-                        builder: (context) {
-                          final Jiffy dob = Jiffy.parse(row.dateOfBirth!);
-
-                          return Text(
-                            row.dateOfBirth != null
-                                ? "(${now.diff(dob, unit: Unit.year)}yo) ${dob.format(pattern: "d MMMM y")}"
-                                : "-",
-                          );
-                        },
+              (rows?.data?.isEmpty ?? false)
+                  ? Expanded(
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(FIcons.frown, size: 100),
+                            Gap(10),
+                            Text(
+                              "No data",
+                              style: context.theme.typography.base.copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                      Text(row.address?.toString() ?? "-"),
-                    ],
-                  ),
-                  title: Text(row.name ?? ''),
-                  onPress: () {},
-                ),
+                    )
+                  : SizedBox.shrink(),
+              ...?rows?.data?.map(
+                (row) => AppCctvResidentTile(resident: row, now: now),
               ),
             ],
           );
@@ -90,7 +92,7 @@ class _AppCctvScreenState extends ConsumerState<AppCctvScreen>
           return Placeholder(color: Colors.red);
         },
         loading: () {
-          return Placeholder(color: Colors.blue);
+          return Column(children: [AppCctvResidentTileSkeletonizer()]);
         },
       ),
     );

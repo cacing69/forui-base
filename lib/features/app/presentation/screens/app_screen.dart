@@ -35,54 +35,45 @@ class _AppScreenState extends State<AppScreen> {
             onTap: () {
               context.pushNamed(RouteName.appCctv.name);
             },
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  width: double.infinity,
-                  height: 90,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      image: DecorationImage(
-                        image: CachedNetworkImageProvider(
-                          "https://images.unsplash.com/photo-1713427508471-1611d7c9193e?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            child: Container(
+              padding: EdgeInsets.all(2),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                border: BoxBorder.all(
+                  color: context.theme.colors.border,
+                  width: context.theme.style.borderWidth,
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: double.infinity,
+                    height: 90,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        image: DecorationImage(
+                          image: CachedNetworkImageProvider(
+                            "https://images.unsplash.com/photo-1713427508471-1611d7c9193e?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                          ),
+                          fit: BoxFit.cover,
                         ),
-                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
-                ),
-                Gap(3),
-                Text("CCTV", style: TextStyle(fontWeight: FontWeight.bold)),
-                Gap(2),
-                Text(
-                  "Security camera surveillance",
-                  style: context.theme.typography.xs,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
+                  Gap(3),
+                  Text("CCTV", style: TextStyle(fontWeight: FontWeight.bold)),
+                  Gap(2),
+                  Text(
+                    "Security camera surveillance",
+                    style: context.theme.typography.xs,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
             ),
-            // FCard(
-            //   style: context.theme.cardStyle
-            //       .copyWith(
-            //         contentStyle: context.theme.cardStyle.contentStyle
-            //             .copyWith(padding: EdgeInsets.all(8))
-            //             .call,
-            //       )
-            //       .call,
-            //   image: CachedNetworkImage(
-            //     imageUrl:
-            //         "https://images.unsplash.com/photo-1622572771591-6ca7813cc39d?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            //   ),
-            //   title: Text(
-            //     "Streetfood",
-            //     style: context.theme.typography.sm.copyWith(
-            //       fontWeight: FontWeight.bold,
-            //     ),
-            //   ),
-            // ),
           ),
         ],
       ),
