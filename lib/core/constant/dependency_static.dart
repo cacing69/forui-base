@@ -1,7 +1,7 @@
 import 'package:forui/forui.dart';
 import 'package:forui_base/shared/data/models/app/dependency.dart';
 
-final List<Dependency> staticGeneralDependencies = [
+final List<Dependency> generalDependenciesStatic = [
   Dependency(
     icon: FIcons.codesandbox,
     name: "forui",
@@ -94,7 +94,7 @@ final List<Dependency> staticGeneralDependencies = [
   ),
 ];
 
-final List<Dependency> staticDevelopmentDependencies = [
+final List<Dependency> developmentDependenciesStatic = [
   Dependency(
     icon: FIcons.bugPlay,
     name: 'flutter_lints',

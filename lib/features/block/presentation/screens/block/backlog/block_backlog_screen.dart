@@ -42,7 +42,7 @@ class _BlockBacklogScreenState extends State<BlockBacklogScreen> {
             FItemGroup(
               divider: FItemDivider.indented,
               children: [
-                ...staticImplementBacklogs.map(
+                ...implementBacklogsStatic.map(
                   (e) => FItem(
                     prefix: Icon(e.icon),
                     title: Text(e.title!),
@@ -67,7 +67,7 @@ class _BlockBacklogScreenState extends State<BlockBacklogScreen> {
             FItemGroup(
               divider: FItemDivider.indented,
               children: [
-                ...staticCheckBacklogs.map(
+                ...checkBacklogsStatic.map(
                   (e) => FItem(
                     prefix: Icon(e.icon),
                     title: Text(e.title!),

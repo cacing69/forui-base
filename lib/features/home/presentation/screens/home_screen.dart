@@ -25,7 +25,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     return FScaffold(
       resizeToAvoidBottomInset: false,
       header: FHeader(
-        title: Text("Codebase"),
+        title: Text("Home"),
         suffixes: [
           FHeaderAction(
             icon:
@@ -97,7 +97,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                                           ),
                                           clipBehavior: Clip.antiAlias,
                                           child: CachedNetworkImage(
-                                            imageUrl: staticUser.avatar!,
+                                            imageUrl: userStatic.avatar!,
                                             placeholder: (context, url) =>
                                                 const Center(
                                                   child: Skeletonizer.zone(
@@ -128,7 +128,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            "${staticUser.firstName!} ${staticUser.lastName!}"
+                                            "${userStatic.firstName!} ${userStatic.lastName!}"
                                                 .trim(),
                                             style: context.theme.typography.lg
                                                 .copyWith(
@@ -249,7 +249,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 Gap(5),
-                ...staticGeneralDependencies.map((dep) {
+                ...generalDependenciesStatic.map((dep) {
                   return FItem(
                     prefix: Icon(dep.icon!),
                     title: Text(dep.name!),
@@ -277,7 +277,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 Gap(5),
-                ...staticDevelopmentDependencies.map((dep) {
+                ...developmentDependenciesStatic.map((dep) {
                   return FItem(
                     prefix: Icon(
                       dep.icon!,

@@ -95,6 +95,26 @@ class _BlockScreenState extends State<BlockScreen> {
                 ),
               ),
             ),
+            FButton.raw(
+              onPress: () {
+                context.pushNamed(RouteName.blockImageBase64Viewer.name);
+              },
+              child: SizedBox(
+                width: double.infinity,
+                child: FCard(
+                  title: Padding(
+                    padding: const EdgeInsets.only(bottom: 5),
+                    child: const Text(
+                      'Image Base64 Viewer',
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  ),
+                  subtitle: const Text(
+                    'Instantly decode and view an image from its Base64 data, provided either as a direct string or fetched from a URL.',
+                  ),
+                ),
+              ),
+            ),
             SizedBox(
               width: double.infinity,
               child: FCard(

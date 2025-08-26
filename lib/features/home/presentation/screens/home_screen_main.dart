@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:forui/forui.dart';
 import 'package:forui_base/features/block/presentation/screens/block_screen.dart';
 import 'package:forui_base/features/home/presentation/screens/home_screen.dart';
+import 'package:forui_base/features/app/presentation/screens/app_screen.dart';
 import 'package:forui_base/features/profile/presentation/screens/profile_screen.dart';
 
 class HomeScreenMain extends StatefulWidget {
@@ -13,6 +14,7 @@ class HomeScreenMain extends StatefulWidget {
 
 final List<Widget> contents = [
   const HomeScreen(),
+  const AppScreen(),
   const BlockScreen(),
   const ProfileScreen(),
 ];
@@ -35,7 +37,11 @@ class _HomeScreenMainState extends State<HomeScreenMain> {
             label: Text('Home'),
           ),
           FBottomNavigationBarItem(
-            icon: Icon(FIcons.layoutGrid),
+            icon: Icon(FIcons.component),
+            label: Text('Apps'),
+          ),
+          FBottomNavigationBarItem(
+            icon: Icon(FIcons.replaceAll),
             label: Text('Blocks'),
           ),
           FBottomNavigationBarItem(

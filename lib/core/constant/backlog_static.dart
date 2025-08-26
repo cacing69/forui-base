@@ -1,8 +1,13 @@
 import 'package:forui/forui.dart';
 import 'package:forui_base/shared/data/models/app/tile_data.dart';
 
-final List<TileData> staticImplementBacklogs = [
-  TileData(icon: FIcons.fingerprint, title: 'Local Biometric', status: false),
+final List<TileData> implementBacklogsStatic = [
+  TileData(
+    icon: FIcons.fingerprint,
+    title: 'Local Biometric',
+    subtitle: "https://pub.dev/packages/local_auth",
+    status: false,
+  ),
   TileData(
     icon: FIcons.text,
     title: 'Rich text editor (WYSIWYG)',
@@ -112,9 +117,76 @@ final List<TileData> staticImplementBacklogs = [
     subtitle: 'Retrieve a persistent UDID across app reinstalls',
     status: false,
   ),
+  TileData(
+    icon: FIcons.idCard,
+    title: 'Image Picker',
+    subtitle: 'https://pub.dev/packages/image_picker',
+    status: false,
+  ),
+  TileData(
+    icon: FIcons.idCard,
+    title: 'Permission Handler',
+    subtitle: 'https://pub.dev/packages/permission_handler',
+    status: false,
+  ),
+  TileData(
+    icon: FIcons.idCard,
+    title: 'File Picker',
+    subtitle: 'https://pub.dev/packages/file_picker',
+    status: false,
+  ),
+  TileData(
+    icon: FIcons.idCard,
+    title: 'Device Info',
+    subtitle: 'https://pub.dev/packages/device_info_plus',
+    status: false,
+  ),
+  TileData(
+    icon: FIcons.idCard,
+    title: 'Share Content',
+    subtitle: 'https://pub.dev/packages/share_plus',
+    status: false,
+  ),
+  TileData(
+    icon: FIcons.idCard,
+    title: 'Logger',
+    subtitle:
+        'https://pub.dev/packages/logger, https://pub.dev/packages/logging',
+    status: false,
+  ),
+  TileData(
+    icon: FIcons.idCard,
+    title: 'Geolocator',
+    subtitle: 'https://pub.dev/packages/geolocator',
+    status: false,
+  ),
+  TileData(
+    icon: FIcons.idCard,
+    title: 'Social Auth',
+    subtitle: 'Auth with google etc..',
+    status: false,
+  ),
+  TileData(
+    icon: FIcons.idCard,
+    title: 'App Links',
+    subtitle: 'Deep Links',
+    status: false,
+  ),
+  TileData(
+    icon: FIcons.idCard,
+    title: 'XML',
+    subtitle: 'Parser XML',
+    status: false,
+  ),
+  TileData(
+    icon: FIcons.idCard,
+    title: 'Geocoding',
+    subtitle: 'Parser XML',
+    status: false,
+  ),
 ];
 
-final List<TileData> staticCheckBacklogs = [
+final List<TileData> checkBacklogsStatic = [
   TileData(
     icon: FIcons.eye,
     title: 'Yaru',

@@ -6,10 +6,10 @@ import 'package:forui/widgets/button.dart';
 import 'package:forui/widgets/scaffold.dart';
 import 'package:go_router/go_router.dart';
 
-class FullScreenPhotoViewerScreen extends StatelessWidget {
+class FullScreenImageUrlViewerScreen extends StatelessWidget {
   final String imageUrl;
 
-  const FullScreenPhotoViewerScreen({super.key, required this.imageUrl});
+  const FullScreenImageUrlViewerScreen({super.key, required this.imageUrl});
 
   @override
   Widget build(BuildContext context) {

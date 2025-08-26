@@ -40,11 +40,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "${staticUser.firstName!} ${staticUser.lastName!}",
+                          "${userStatic.firstName!} ${userStatic.lastName!}",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         Text(
-                          staticUser.bio!,
+                          userStatic.bio!,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -74,7 +74,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               // );
 
                               context.pushNamed(
-                                RouteName.fullScreenPhotoViewer.name,
+                                RouteName.fullScreenImageUrlViewer.name,
                                 queryParameters: {
                                   'imageUrl':
                                       'https://avatars.githubusercontent.com/u/36250619?v=4',
@@ -142,7 +142,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                           clipBehavior: Clip.antiAlias,
                           child: CachedNetworkImage(
-                            imageUrl: staticUser.avatar!,
+                            imageUrl: userStatic.avatar!,
                             placeholder: (context, url) => const Center(
                               child: Skeletonizer.zone(
                                 child: Bone.circle(size: 70),

@@ -361,7 +361,9 @@ class _BlockLocationPickerScreenState
                         Flexible(
                           child: FButton(
                             style: FButtonStyle.outline(),
-                            onPress: () {},
+                            onPress: () {
+                              HapticFeedback.selectionClick();
+                            },
                             prefix: Icon(FIcons.check),
                             child: Text("Select Location"),
                           ),
