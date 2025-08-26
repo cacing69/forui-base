@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:forui_base/core/datasources/remote/api_cctv/api_cctv_service.dart';
 import 'package:forui_base/core/errors/error_wrapper.dart';
 import 'package:forui_base/core/errors/failure.dart';
+import 'package:forui_base/shared/data/models/api_cctv/province.dart';
 import 'package:forui_base/shared/data/models/api_cctv/resident.dart';
 import 'package:forui_base/shared/data/models/api_cctv/resident_query.dart';
 import 'package:forui_base/shared/data/models/api_cctv/t_response.dart';
@@ -26,6 +27,20 @@ class ApiCctvRepositoryImpl implements ApiCctvRepository {
   ) async {
     try {
       final response = await service.resident(query);
+      return Right(response);
+    } on Exception catch (e) {
+      return Left(errorWrapper(e));
+    } catch (e) {
+      return Left(
+        ServerFailure(message: 'An unexpected error occurred: ${e.toString()}'),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, TResponse<List<Province>>>> province() async {
+    try {
+      final response = await service.province();
       return Right(response);
     } on Exception catch (e) {
       return Left(errorWrapper(e));

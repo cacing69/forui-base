@@ -1,52 +1,52 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'resident_usecase.dart';
+part of 'province_usecase.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-@ProviderFor(residentUsecase)
-const residentUsecaseProvider = ResidentUsecaseProvider._();
+@ProviderFor(provinceUsecase)
+const provinceUsecaseProvider = ProvinceUsecaseProvider._();
 
-final class ResidentUsecaseProvider
+final class ProvinceUsecaseProvider
     extends
-        $FunctionalProvider<ResidentUsecase, ResidentUsecase, ResidentUsecase>
-    with $Provider<ResidentUsecase> {
-  const ResidentUsecaseProvider._()
+        $FunctionalProvider<ProvinceUsecase, ProvinceUsecase, ProvinceUsecase>
+    with $Provider<ProvinceUsecase> {
+  const ProvinceUsecaseProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'residentUsecaseProvider',
+        name: r'provinceUsecaseProvider',
         isAutoDispose: true,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$residentUsecaseHash();
+  String debugGetCreateSourceHash() => _$provinceUsecaseHash();
 
   @$internal
   @override
-  $ProviderElement<ResidentUsecase> $createElement($ProviderPointer pointer) =>
+  $ProviderElement<ProvinceUsecase> $createElement($ProviderPointer pointer) =>
       $ProviderElement(pointer);
 
   @override
-  ResidentUsecase create(Ref ref) {
-    return residentUsecase(ref);
+  ProvinceUsecase create(Ref ref) {
+    return provinceUsecase(ref);
   }
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(ResidentUsecase value) {
+  Override overrideWithValue(ProvinceUsecase value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<ResidentUsecase>(value),
+      providerOverride: $SyncValueProvider<ProvinceUsecase>(value),
     );
   }
 }
 
-String _$residentUsecaseHash() => r'565101b1fee15d40953919961e229cbf886481d7';
+String _$provinceUsecaseHash() => r'a1678d89c6d1f5749eb6c13e35ce155f9784f0a7';
 
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

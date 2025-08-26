@@ -4,6 +4,7 @@ import 'package:forui_base/shared/data/models/api_cctv/company.dart';
 import 'package:forui_base/shared/data/models/api_cctv/family.dart';
 import 'package:forui_base/shared/data/models/api_cctv/district.dart';
 import 'package:forui_base/shared/data/models/api_cctv/gojek.dart';
+import 'package:forui_base/shared/data/models/api_cctv/person.dart';
 import 'package:forui_base/shared/data/models/api_cctv/phone.dart';
 import 'package:forui_base/shared/data/models/api_cctv/pln.dart';
 import 'package:forui_base/shared/data/models/api_cctv/province.dart';
@@ -31,7 +32,9 @@ abstract class ApiCctvService {
   Future<TResponse<List<Resident>>> resident(@Queries() ResidentQuery params);
 
   @GET("/{personId}/resident.json")
-  Future<TResponse<Resident>> person(@Path("personId") String personId);
+  Future<TResponse<Person>> person({
+    @Path("personId") required String personId,
+  });
 
   @GET("/{personId}/{familyCardId}/family.json")
   Future<TResponse<List<Family>>> family(
@@ -54,17 +57,15 @@ abstract class ApiCctvService {
   @GET("/{personIdd}/company.json")
   Future<TResponse<List<Company>>> company(@Path("personId") String personId);
 
-  @GET("/province.json")
+  @GET("/master/province.json")
   Future<TResponse<List<Province>>> province();
 
-  @GET("/{parentId}/city.json")
-  Future<TResponse<List<City>>> city({@Path("parentId") String parentId});
+  @GET("/master/{parentId}/city.json")
+  Future<TResponse<List<City>>> city(@Path("parentId") String parentId);
 
-  @GET("/{parentId}/district.json")
-  Future<TResponse<List<District>>> district({
-    @Path("parentId") String parentId,
-  });
+  @GET("/master/{parentId}/district.json")
+  Future<TResponse<List<District>>> district(@Path("parentId") String parentId);
 
-  @GET("/{parentId}/village.json")
-  Future<TResponse<List<Village>>> village({@Path("parentId") String parentId});
+  @GET("/master/{parentId}/village.json")
+  Future<TResponse<List<Village>>> village(@Path("parentId") String parentId);
 }

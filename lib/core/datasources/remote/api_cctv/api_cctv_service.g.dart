@@ -55,12 +55,12 @@ class _ApiCctvService implements ApiCctvService {
   }
 
   @override
-  Future<TResponse<Resident>> person(String personId) async {
+  Future<TResponse<Person>> person({required String personId}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<TResponse<Resident>>(
+    final _options = _setStreamType<TResponse<Person>>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -71,11 +71,11 @@ class _ApiCctvService implements ApiCctvService {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late TResponse<Resident> _value;
+    late TResponse<Person> _value;
     try {
-      _value = TResponse<Resident>.fromJson(
+      _value = TResponse<Person>.fromJson(
         _result.data!,
-        (json) => Resident.fromJson(json as Map<String, dynamic>),
+        (json) => Person.fromJson(json as Map<String, dynamic>),
       );
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
@@ -307,7 +307,7 @@ class _ApiCctvService implements ApiCctvService {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/province.json',
+            '/master/province.json',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -334,7 +334,7 @@ class _ApiCctvService implements ApiCctvService {
   }
 
   @override
-  Future<TResponse<List<City>>> city({String parentId}) async {
+  Future<TResponse<List<City>>> city(String parentId) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -343,7 +343,7 @@ class _ApiCctvService implements ApiCctvService {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/${parentId}/city.json',
+            '/master/${parentId}/city.json',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -368,7 +368,7 @@ class _ApiCctvService implements ApiCctvService {
   }
 
   @override
-  Future<TResponse<List<District>>> district({String parentId}) async {
+  Future<TResponse<List<District>>> district(String parentId) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -377,7 +377,7 @@ class _ApiCctvService implements ApiCctvService {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/${parentId}/district.json',
+            '/master/${parentId}/district.json',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -404,7 +404,7 @@ class _ApiCctvService implements ApiCctvService {
   }
 
   @override
-  Future<TResponse<List<Village>>> village({String parentId}) async {
+  Future<TResponse<List<Village>>> village(String parentId) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -413,7 +413,7 @@ class _ApiCctvService implements ApiCctvService {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/${parentId}/village.json',
+            '/master/${parentId}/village.json',
             queryParameters: queryParameters,
             data: _data,
           )

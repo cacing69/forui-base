@@ -1,53 +1,54 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'app_cctv_notifier.dart';
+part of 'app_cctv_province_notifier.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-@ProviderFor(AppCctvNotifier)
-const appCctvNotifierProvider = AppCctvNotifierProvider._();
+@ProviderFor(AppCctvProvinceNotifier)
+const appCctvProvinceNotifierProvider = AppCctvProvinceNotifierProvider._();
 
-final class AppCctvNotifierProvider
+final class AppCctvProvinceNotifierProvider
     extends
         $NotifierProvider<
-          AppCctvNotifier,
-          AsyncValue<TResponse<List<Resident>>?>
+          AppCctvProvinceNotifier,
+          AsyncValue<TResponse<List<Province>>?>
         > {
-  const AppCctvNotifierProvider._()
+  const AppCctvProvinceNotifierProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'appCctvNotifierProvider',
+        name: r'appCctvProvinceNotifierProvider',
         isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$appCctvNotifierHash();
+  String debugGetCreateSourceHash() => _$appCctvProvinceNotifierHash();
 
   @$internal
   @override
-  AppCctvNotifier create() => AppCctvNotifier();
+  AppCctvProvinceNotifier create() => AppCctvProvinceNotifier();
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(AsyncValue<TResponse<List<Resident>>?> value) {
+  Override overrideWithValue(AsyncValue<TResponse<List<Province>>?> value) {
     return $ProviderOverride(
       origin: this,
       providerOverride:
-          $SyncValueProvider<AsyncValue<TResponse<List<Resident>>?>>(value),
+          $SyncValueProvider<AsyncValue<TResponse<List<Province>>?>>(value),
     );
   }
 }
 
-String _$appCctvNotifierHash() => r'5f9e5195bf44218705083a53a029bf7950bf1ad1';
+String _$appCctvProvinceNotifierHash() =>
+    r'bb33e32e4ff4aaccd87b28cc0f9330c8c941acf4';
 
-abstract class _$AppCctvNotifier
-    extends $Notifier<AsyncValue<TResponse<List<Resident>>?>> {
-  AsyncValue<TResponse<List<Resident>>?> build();
+abstract class _$AppCctvProvinceNotifier
+    extends $Notifier<AsyncValue<TResponse<List<Province>>?>> {
+  AsyncValue<TResponse<List<Province>>?> build();
   @$mustCallSuper
   @override
   void runBuild() {
@@ -55,17 +56,17 @@ abstract class _$AppCctvNotifier
     final ref =
         this.ref
             as $Ref<
-              AsyncValue<TResponse<List<Resident>>?>,
-              AsyncValue<TResponse<List<Resident>>?>
+              AsyncValue<TResponse<List<Province>>?>,
+              AsyncValue<TResponse<List<Province>>?>
             >;
     final element =
         ref.element
             as $ClassProviderElement<
               AnyNotifier<
-                AsyncValue<TResponse<List<Resident>>?>,
-                AsyncValue<TResponse<List<Resident>>?>
+                AsyncValue<TResponse<List<Province>>?>,
+                AsyncValue<TResponse<List<Province>>?>
               >,
-              AsyncValue<TResponse<List<Resident>>?>,
+              AsyncValue<TResponse<List<Province>>?>,
               Object?,
               Object?
             >;

@@ -4,10 +4,10 @@ import 'package:forui_base/shared/data/models/api_cctv/t_response.dart';
 import 'package:forui_base/shared/domain/usecases/api_cctv/resident_usecase.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'app_cctv_notifier.g.dart';
+part 'app_cctv_resident_notifier.g.dart';
 
 @Riverpod(keepAlive: true)
-class AppCctvNotifier extends _$AppCctvNotifier {
+class AppCctvResidentNotifier extends _$AppCctvResidentNotifier {
   @override
   AsyncValue<TResponse<List<Resident>>?> build() {
     perform(ResidentQuery());
@@ -17,7 +17,7 @@ class AppCctvNotifier extends _$AppCctvNotifier {
   Future<void> perform(ResidentQuery params) async {
     state = AsyncValue.loading();
 
-    final result = await ref.read(residentsUsecaseProvider).call(params);
+    final result = await ref.read(residentUsecaseProvider).call(params);
 
     result.fold(
       (failure) {
