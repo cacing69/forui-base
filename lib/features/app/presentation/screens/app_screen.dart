@@ -16,15 +16,7 @@ class _AppScreenState extends State<AppScreen> {
   @override
   Widget build(BuildContext context) {
     return FScaffold(
-      header: FHeader(
-        title: Text("Mini Apps"),
-        // suffixes: [
-        //   FHeaderAction(
-        //     icon: Icon(FIcons.logOut),
-        //     onPress: () => context.goNamed(RouteName.login.name),
-        //   ),
-        // ],
-      ),
+      header: FHeader(title: Text("Mini Apps")),
       child: GridView.count(
         crossAxisCount: 3,
         childAspectRatio: 2 / 3,

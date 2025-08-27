@@ -3,7 +3,6 @@ import 'package:forui_base/shared/data/models/api_cctv/city.dart';
 import 'package:forui_base/shared/data/models/api_cctv/company.dart';
 import 'package:forui_base/shared/data/models/api_cctv/family.dart';
 import 'package:forui_base/shared/data/models/api_cctv/district.dart';
-import 'package:forui_base/shared/data/models/api_cctv/family_path_params.dart';
 import 'package:forui_base/shared/data/models/api_cctv/gojek.dart';
 import 'package:forui_base/shared/data/models/api_cctv/person.dart';
 import 'package:forui_base/shared/data/models/api_cctv/phone.dart';

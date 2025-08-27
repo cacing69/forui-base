@@ -40,12 +40,8 @@ final pagingControllerProvider =
         fetchPage: (pageKey) async {
           final int start = (pageKey - 1) * 5;
 
-          final shouldStopFetching =
-              (ref.read(appCctvResidentNotifierProvider).value?.data?.length ??
-                  5) <
-              5;
-
-          if (shouldStopFetching) return [];
+          final lastRequest =
+              ref.read(appCctvResidentNotifierProvider).value?.data ?? [];
 
           await ref
               .read(appCctvResidentNotifierProvider.notifier)
@@ -54,6 +50,20 @@ final pagingControllerProvider =
                     .read(appCctvQueryNotifierProvider)
                     .copyWith(start: start.toString()),
               );
+
+          final latestRequest =
+              ref.read(appCctvResidentNotifierProvider).value?.data ?? [];
+
+          final isDuplicate =
+              latestRequest.length == lastRequest.length &&
+              List.generate(
+                latestRequest.length,
+                (index) => index,
+              ).every((i) => latestRequest[i] == lastRequest[i]);
+
+          if (isDuplicate) {
+            return [];
+          }
 
           return ref.read(appCctvResidentNotifierProvider).value!.data!;
         },
