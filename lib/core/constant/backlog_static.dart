@@ -625,8 +625,14 @@ final List<TileData> implementBacklogsStatic = [
   ),
   TileData(
     icon: FIcons.package,
-    title: "Contact Manage ",
+    title: "Contact Manage",
     subtitle: 'https://pub.dev/packages/flutter_contacts',
+    status: false,
+  ),
+  TileData(
+    icon: FIcons.package,
+    title: "OCR",
+    subtitle: 'https://pub.dev/packages/google_mlkit_text_recognition',
     status: false,
   ),
 ];

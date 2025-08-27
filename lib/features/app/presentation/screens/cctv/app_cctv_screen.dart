@@ -95,6 +95,15 @@ final pagingControllerProvider =
 class _AppCctvScreenState extends ConsumerState<AppCctvScreen>
     with TickerProviderStateMixin {
   @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(appCctvScreenFilterWidgetNotifierProvider.notifier).reset();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     ref.watch(appCctvProvinceNotifierProvider);
 

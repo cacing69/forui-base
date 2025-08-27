@@ -17,6 +17,8 @@ class ProfileScreen extends ConsumerStatefulWidget {
   ConsumerState<ProfileScreen> createState() => _ProfileScreenState();
 }
 
+enum LocaleApp { id, en }
+
 class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   // bool darkMode = true;
 
@@ -191,8 +193,21 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                     },
                   ),
                 ),
+                FSelectMenuTile.fromMap(
+                  const {'Indonesia': LocaleApp.id, 'English': LocaleApp.en},
+                  initialValue: LocaleApp.en,
+                  autoHide: true,
+                  prefix: const Icon(FIcons.bell),
+                  title: const Text('Language'),
+                  detailsBuilder: (_, values, _) =>
+                      Text(switch (values.firstOrNull) {
+                        LocaleApp.id => 'Indonesia',
+                        LocaleApp.en => 'English',
+                        _ => 'None',
+                      }),
+                ),
                 FTile(
-                  prefix: Icon(FIcons.moon),
+                  prefix: Icon(FIcons.code),
                   title: Text("Lorem"),
                   // suffix: Icon(FIcons.chevronRight),
                   onPress: () {},

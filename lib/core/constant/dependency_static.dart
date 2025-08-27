@@ -112,6 +112,11 @@ final List<Dependency> generalDependenciesStatic = [
     name: "infinite_scroll_pagination",
     url: "https://pub.dev/packages/infinite_scroll_pagination",
   ),
+  Dependency(
+    icon: FIcons.codesandbox,
+    name: "gal",
+    url: "https://pub.dev/packages/gal",
+  ),
 ];
 
 final List<Dependency> developmentDependenciesStatic = [

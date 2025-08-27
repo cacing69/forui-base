@@ -59,6 +59,7 @@ dependencies:
   jiffy: ^6.4.3
   stack_trace: ^1.12.1
   infinite_scroll_pagination: ^5.1.0
+  gal: ^2.3.2
 
 dev_dependencies:
   flutter_test:

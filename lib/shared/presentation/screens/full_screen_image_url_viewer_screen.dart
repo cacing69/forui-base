@@ -36,7 +36,7 @@ class FullScreenImageUrlViewerScreen extends StatelessWidget {
             ),
             Positioned(
               top: 16,
-              left: 16,
+              right: 16,
               child: FButton(
                 style: FButtonStyle.ghost(),
                 onPress: () => context.pop(),

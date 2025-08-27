@@ -15,6 +15,7 @@ import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cc
 import 'package:forui_base/router.dart';
 import 'package:forui_base/shared/data/models/api_cctv/person.dart';
 import 'package:forui_base/shared/data/models/api_cctv/t_response.dart';
+import 'package:gal/gal.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -68,7 +69,35 @@ class _AppCctvPersonScreenState extends ConsumerState<AppCctvPersonScreen> {
             },
           ),
         ],
-        suffixes: [FHeaderAction(icon: Icon(FIcons.info), onPress: () {})],
+        suffixes: [
+          FHeaderAction(
+            icon: Icon(FIcons.info),
+            onPress: () {
+              showFDialog(
+                context: context,
+                builder: (context, style, animation) => FDialog(
+                  animation: animation,
+                  direction: Axis.horizontal,
+                  title: const Text('About'),
+                  body: const Text(
+                    'Aute ex occaecat elit adipisicing laboris nisi et sunt deserunt do est.',
+                  ),
+                  actions: [
+                    FButton(
+                      style: FButtonStyle.outline(),
+                      onPress: () => Navigator.of(context).pop(),
+                      child: const Text('Cancel'),
+                    ),
+                    FButton(
+                      onPress: () => Navigator.of(context).pop(),
+                      child: const Text('Continue'),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+        ],
       ),
       child: asyncPersonState.when(
         data: (TResponse<Person>? res) {
@@ -490,6 +519,62 @@ class _AppCctvPersonScreenState extends ConsumerState<AppCctvPersonScreen> {
                             onPress: () => context.pushNamed(
                               RouteName.appCctvPersonTabEKtp.name,
                             ),
+                          ),
+                          FTile(
+                            prefix: Icon(FIcons.circleDot),
+                            suffix: Icon(FIcons.save),
+                            title: Text("Save Image"),
+                            onPress: () async {
+                              final hasAccess = await Gal.hasAccess(
+                                toAlbum: true,
+                              );
+
+                              if (!hasAccess) {
+                                showFDialog(
+                                  context: context,
+                                  builder: (context, style, animation) =>
+                                      FDialog(
+                                        animation: animation,
+                                        direction: Axis.horizontal,
+                                        title: const Text('Info'),
+                                        body: const Text('Permission denied'),
+                                        actions: [
+                                          FButton(
+                                            onPress: () => context.pop(),
+                                            child: const Text('Close'),
+                                          ),
+                                        ],
+                                      ),
+                                );
+
+                                showFToast(
+                                  context: context,
+                                  alignment: FToastAlignment.bottomCenter,
+                                  title: const Text('Photo saved'),
+                                );
+                              }
+
+                              // await Gal.requestAccess(toAlbum: true);
+
+                              if (res?.data?.photo != null) {
+                                final cleaned = res?.data?.photo
+                                    ?.split(',')
+                                    .last;
+
+                                final bytes = base64Decode(cleaned!);
+
+                                await Gal.putImageBytes(
+                                  bytes,
+                                  name: "${res!.data!.id}.jpg",
+                                );
+                              } else {
+                                showFToast(
+                                  context: context,
+                                  alignment: FToastAlignment.bottomCenter,
+                                  title: const Text('No photo found'),
+                                );
+                              }
+                            },
                           ),
                         ],
                       ),
