@@ -26,8 +26,8 @@ class _AppScreenState extends State<AppScreen> {
         // ],
       ),
       child: GridView.count(
-        crossAxisCount: 3,
-        childAspectRatio: 3 / 4,
+        crossAxisCount: 2,
+        childAspectRatio: 9 / 10,
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
         children: [
@@ -36,7 +36,7 @@ class _AppScreenState extends State<AppScreen> {
               context.pushNamed(RouteName.appCctv.name);
             },
             child: Container(
-              padding: EdgeInsets.all(2),
+              padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 border: BoxBorder.all(

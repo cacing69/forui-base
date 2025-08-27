@@ -55,7 +55,7 @@ class _ApiCctvService implements ApiCctvService {
   }
 
   @override
-  Future<TResponse<Person>> person({required String personId}) async {
+  Future<TResponse<Person>> person(String personId) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -85,10 +85,7 @@ class _ApiCctvService implements ApiCctvService {
   }
 
   @override
-  Future<TResponse<List<Family>>> family(
-    String personId,
-    String familyCardId,
-  ) async {
+  Future<TResponse<List<Family>>> family(FamilyPathParams params) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -97,7 +94,7 @@ class _ApiCctvService implements ApiCctvService {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/${personId}/${familyCardId}/family.json',
+            '/{personId}/{familyCardId}/family.json',
             queryParameters: queryParameters,
             data: _data,
           )

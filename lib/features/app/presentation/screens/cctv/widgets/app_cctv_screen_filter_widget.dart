@@ -4,15 +4,18 @@ import 'package:forui/forui.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_province_notifier.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_query_notifier.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_resident_notifier.dart';
+import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_screen.dart';
 import 'package:forui_base/shared/data/models/api_cctv/province.dart';
 import 'package:forui_base/shared/presentation/widgets/f_select_skeletonizer.dart';
 import 'package:forui_hooks/forui_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class AppCctvScreenFilterWidget extends StatefulHookConsumerWidget {
-  const AppCctvScreenFilterWidget({super.key});
+  // PagingController pagingController;
+  AppCctvScreenFilterWidget({super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -298,9 +301,17 @@ class _AppCctvScreenFilterWidgetState
                       child: FButton(
                         onPress: () {
                           // aksi reset
-                          ref
-                              .read(appCctvResidentNotifierProvider.notifier)
-                              .perform(ref.read(appCctvQueryNotifierProvider));
+                          // widget.pagingController.refresh();
+
+                          ref.watch(pagingControllerProvider).refresh();
+
+                          // ref
+                          //     .read(appCctvResidentNotifierProvider.notifier)
+                          //     .perform(
+                          //       ref
+                          //           .read(appCctvQueryNotifierProvider)
+                          //           .copyWith(start: "0"),
+                          //     );
 
                           context.pop();
                         },

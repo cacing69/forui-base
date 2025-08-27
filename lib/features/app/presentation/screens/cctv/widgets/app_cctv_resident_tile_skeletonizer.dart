@@ -14,23 +14,27 @@ class _AppCctvResidentTileSkeletonizerState
     extends State<AppCctvResidentTileSkeletonizer> {
   @override
   Widget build(BuildContext context) {
-    return Skeletonizer(
-      enabled: true,
-      child: FItem(
-        prefix: Icon(FIcons.mars),
-        suffix: Icon(FIcons.chevronRight),
-        subtitle: Column(
-          spacing: 5,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text("(29yo) 23 Lorem 1000"),
-            Text(
-              "Irure culpa ut anim excepteur excepteur. Consectetur anim tempor dolore proident.",
+    return Column(
+      children: [
+        Skeletonizer(
+          enabled: true,
+          child: FItem(
+            prefix: Icon(FIcons.mars),
+            suffix: Icon(FIcons.chevronRight),
+            subtitle: Column(
+              spacing: 5,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("(29yo) 23 Lorem 1000"),
+                Text(
+                  "Irure culpa ut anim excepteur excepteur. Consectetur anim tempor dolore proident.",
+                ),
+              ],
             ),
-          ],
+            title: Text('Do et laborum magna labore.'),
+          ),
         ),
-        title: Text('Do et laborum magna labore.'),
-      ),
+      ],
     );
   }
 }

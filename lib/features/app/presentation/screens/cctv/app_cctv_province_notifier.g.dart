@@ -21,7 +21,7 @@ final class AppCctvProvinceNotifierProvider
         argument: null,
         retry: null,
         name: r'appCctvProvinceNotifierProvider',
-        isAutoDispose: true,
+        isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -44,7 +44,7 @@ final class AppCctvProvinceNotifierProvider
 }
 
 String _$appCctvProvinceNotifierHash() =>
-    r'a6f1e8e599e8536ba3e38754a5c2d82ff27597e4';
+    r'4065892c8ce06c20cbade69fe8d6f721a9da64cb';
 
 abstract class _$AppCctvProvinceNotifier
     extends $Notifier<AsyncValue<TResponse<List<Province>>?>> {

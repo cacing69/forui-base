@@ -1,3 +1,4 @@
+import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_detail_screen.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_screen.dart';
 import 'package:forui_base/features/block/presentation/screens/block/backlog/block_backlog_screen.dart';
 import 'package:forui_base/features/block/presentation/screens/block/image_bas64_viewer/block_image_base64_viewer_screen.dart';
@@ -27,6 +28,7 @@ enum RouteName {
 
   // App
   appCctv,
+  appCctvDetail,
 }
 
 final router = GoRouter(
@@ -100,6 +102,11 @@ final router = GoRouter(
       path: '/app/cctv',
       name: RouteName.appCctv.name,
       builder: (context, state) => AppCctvScreen(),
+    ),
+    GoRoute(
+      path: '/app/cctv/detail',
+      name: RouteName.appCctvDetail.name,
+      builder: (context, state) => AppCctvDetailScreen(),
     ),
   ],
 );

@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:forui/forui.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_province_notifier.dart';
+import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_query_notifier.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_resident_notifier.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cctv_resident_tile.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cctv_resident_tile_skeletonizer.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cctv_screen_filter_widget.dart';
+import 'package:forui_base/router.dart';
 import 'package:forui_base/shared/data/models/api_cctv/resident.dart';
-import 'package:gap/gap.dart';
+import 'package:forui_base/shared/presentation/widgets/c_no_item_infinite_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:jiffy/jiffy.dart';
 
 class AppCctvScreen extends StatefulHookConsumerWidget {
@@ -18,12 +21,62 @@ class AppCctvScreen extends StatefulHookConsumerWidget {
   ConsumerState<AppCctvScreen> createState() => _AppCctvScreenState();
 }
 
+final pagingControllerProvider =
+    Provider.autoDispose<PagingController<int, Resident>>((ref) {
+      ref.keepAlive(); // ini akan mencegah dispose otomatis
+
+      final controller = PagingController<int, Resident>(
+        getNextPageKey: (state) =>
+            state.lastPageIsEmpty ? null : state.nextIntPageKey,
+        fetchPage: (pageKey) async {
+          final int start = (pageKey - 1) * 5;
+
+          await ref
+              .read(appCctvResidentNotifierProvider.notifier)
+              .perform(
+                ref
+                    .read(appCctvQueryNotifierProvider)
+                    .copyWith(start: start.toString()),
+              );
+
+          return ref.read(appCctvResidentNotifierProvider).value!.data!;
+        },
+      );
+
+      // provider dihapus
+      ref.onDispose(controller.dispose);
+
+      return controller;
+    });
+
 class _AppCctvScreenState extends ConsumerState<AppCctvScreen>
     with TickerProviderStateMixin {
+  // late final _pagingController = PagingController<int, Resident>(
+  //   getNextPageKey: (state) =>
+  //       state.lastPageIsEmpty ? null : state.nextIntPageKey,
+  //   fetchPage: (pageKey) async {
+  //     final int start = (pageKey - 1) * 5;
+
+  //     debugPrint("pageKey.toString()");
+  //     await ref
+  //         .read(appCctvResidentNotifierProvider.notifier)
+  //         .perform(
+  //           ref
+  //               .read(appCctvQueryNotifierProvider)
+  //               .copyWith(start: start.toString()),
+  //         );
+  //     return ref.read(appCctvResidentNotifierProvider).value!.data!;
+  //   },
+  // );
+
+  // @override
+  // void dispose() {
+  //   // _pagingController.dispose();
+  //   super.dispose();
+  // }
+
   @override
   Widget build(BuildContext context) {
-    final asyncResidentState = ref.watch(appCctvResidentNotifierProvider);
-
     ref.watch(appCctvProvinceNotifierProvider);
 
     final Jiffy now = Jiffy.now();
@@ -31,7 +84,7 @@ class _AppCctvScreenState extends ConsumerState<AppCctvScreen>
     return FScaffold(
       resizeToAvoidBottomInset: false,
       header: FHeader.nested(
-        title: const Text('App : CCTV'),
+        title: const Text('App : CCTV (Resident)'),
         prefixes: [
           FHeaderAction.back(
             onPress: () {
@@ -51,49 +104,44 @@ class _AppCctvScreenState extends ConsumerState<AppCctvScreen>
                   maxHeight: double.infinity,
                 ),
                 side: FLayout.rtl,
-                builder: (context) => AppCctvScreenFilterWidget(),
+                builder: (context) => AppCctvScreenFilterWidget(
+                  // pagingController: ref.watch(pagingControllerProvider),
+                ),
               );
             },
           ),
         ],
       ),
-      child: asyncResidentState.when(
-        data: (rows) {
-          return Column(
-            children: [
-              (rows?.data?.isEmpty ?? false)
-                  ? Expanded(
-                      child: Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(FIcons.frown, size: 100),
-                            Gap(10),
-                            Text(
-                              "No data",
-                              style: context.theme.typography.base.copyWith(
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    )
-                  : SizedBox.shrink(),
-              ...?rows?.data?.map(
-                (row) => AppCctvResidentTile(resident: row, now: now),
+      child: RefreshIndicator(
+        onRefresh: () async {
+          ref.read(appCctvQueryNotifierProvider.notifier).reset();
+          ref.watch(pagingControllerProvider).refresh();
+        },
+        child: PagingListener(
+          controller: ref.watch(pagingControllerProvider),
+          builder: (context, state, fetchNextPage) =>
+              PagedListView<int, Resident>.separated(
+                separatorBuilder: (context, index) => FDivider(
+                  style: (e) => e.copyWith(padding: EdgeInsets.all(1)),
+                ),
+                state: state,
+                fetchNextPage: fetchNextPage,
+                builderDelegate: PagedChildBuilderDelegate(
+                  itemBuilder: (context, item, index) => AppCctvResidentTile(
+                    resident: item,
+                    now: now,
+                    onPress: () =>
+                        context.pushNamed(RouteName.appCctvDetail.name),
+                  ),
+                  noItemsFoundIndicatorBuilder: (context) =>
+                      CNoItemInfinitePage(),
+                  firstPageProgressIndicatorBuilder: (context) =>
+                      AppCctvResidentTileSkeletonizer(),
+                  newPageProgressIndicatorBuilder: (context) =>
+                      AppCctvResidentTileSkeletonizer(),
+                ),
               ),
-            ],
-          );
-        },
-        error: (error, stackTrace) {
-          debugPrint(error.toString());
-          debugPrintStack(stackTrace: stackTrace);
-          return Placeholder(color: Colors.red);
-        },
-        loading: () {
-          return Column(children: [AppCctvResidentTileSkeletonizer()]);
-        },
+        ),
       ),
     );
   }

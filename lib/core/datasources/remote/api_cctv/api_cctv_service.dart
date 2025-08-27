@@ -3,6 +3,7 @@ import 'package:forui_base/shared/data/models/api_cctv/city.dart';
 import 'package:forui_base/shared/data/models/api_cctv/company.dart';
 import 'package:forui_base/shared/data/models/api_cctv/family.dart';
 import 'package:forui_base/shared/data/models/api_cctv/district.dart';
+import 'package:forui_base/shared/data/models/api_cctv/family_path_params.dart';
 import 'package:forui_base/shared/data/models/api_cctv/gojek.dart';
 import 'package:forui_base/shared/data/models/api_cctv/person.dart';
 import 'package:forui_base/shared/data/models/api_cctv/phone.dart';
@@ -32,15 +33,10 @@ abstract class ApiCctvService {
   Future<TResponse<List<Resident>>> resident(@Queries() ResidentQuery params);
 
   @GET("/{personId}/resident.json")
-  Future<TResponse<Person>> person({
-    @Path("personId") required String personId,
-  });
+  Future<TResponse<Person>> person(@Path("personId") String personId);
 
   @GET("/{personId}/{familyCardId}/family.json")
-  Future<TResponse<List<Family>>> family(
-    @Path("personId") String personId,
-    @Path("familyCardId") String familyCardId,
-  );
+  Future<TResponse<List<Family>>> family(FamilyPathParams params);
 
   @GET("/{personIdd}/phone.json")
   Future<TResponse<List<Phone>>> phone(@Path("personId") String personId);

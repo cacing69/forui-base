@@ -39,7 +39,7 @@ final class AppCctvQueryNotifierProvider
 }
 
 String _$appCctvQueryNotifierHash() =>
-    r'359eb99463b64f716cb26767a73d0a31052c45ae';
+    r'b831fa6eb95a862b0a38a3db1e4c190e2d583502';
 
 abstract class _$AppCctvQueryNotifier extends $Notifier<ResidentQuery> {
   ResidentQuery build();

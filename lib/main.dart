@@ -10,16 +10,18 @@ import 'package:forui_base/shared/presentation/providers/config_app_notifier.dar
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:stack_trace/stack_trace.dart';
 
-void main() {
-  Chain.capture(() {
-    runZonedGuarded(
+void main() async {
+  await Chain.capture(() async {
+    await runZonedGuarded(
       () {
+        WidgetsFlutterBinding.ensureInitialized();
+        SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
         runApp(const ProviderScope(child: Application()));
       },
       (error, stack) {
         final chain = Chain.forTrace(stack);
-        debugPrint('Global error: $error');
-        debugPrint('Trace lengkap:\n$chain');
+        debugPrint('Error: $error');
+        debugPrint('Trace :\n$chain');
       },
     );
   });

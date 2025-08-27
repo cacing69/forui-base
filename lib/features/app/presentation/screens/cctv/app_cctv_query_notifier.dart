@@ -33,4 +33,8 @@ class AppCctvQueryNotifier extends _$AppCctvQueryNotifier {
   void setSearch(String? search) {
     state = state.copyWith(search: search);
   }
+
+  void reset() {
+    state = ResidentQuery();
+  }
 }

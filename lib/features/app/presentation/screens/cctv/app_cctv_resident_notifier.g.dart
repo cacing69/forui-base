@@ -44,7 +44,7 @@ final class AppCctvResidentNotifierProvider
 }
 
 String _$appCctvResidentNotifierHash() =>
-    r'8669c13a476faf0857da670f8431c0fc07675227';
+    r'7c64d946154e6b01ed3c79a7910905ad209f59f6';
 
 abstract class _$AppCctvResidentNotifier
     extends $Notifier<AsyncValue<TResponse<List<Resident>>?>> {

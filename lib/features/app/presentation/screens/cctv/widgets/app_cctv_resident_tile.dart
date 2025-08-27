@@ -6,11 +6,13 @@ import 'package:jiffy/jiffy.dart';
 class AppCctvResidentTile extends StatefulWidget {
   final Resident resident;
   final Jiffy now;
+  final VoidCallback? onPress;
 
   const AppCctvResidentTile({
     super.key,
     required this.resident,
     required this.now,
+    this.onPress,
   });
 
   @override
@@ -44,7 +46,7 @@ class _AppCctvResidentTileState extends State<AppCctvResidentTile> {
         ],
       ),
       title: Text(widget.resident.name ?? ''),
-      onPress: () {},
+      onPress: widget?.onPress,
     );
   }
 }
