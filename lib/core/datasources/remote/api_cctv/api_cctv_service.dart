@@ -36,7 +36,10 @@ abstract class ApiCctvService {
   Future<TResponse<Person>> person(@Path("personId") String personId);
 
   @GET("/{personId}/{familyCardId}/family.json")
-  Future<TResponse<List<Family>>> family(FamilyPathParams params);
+  Future<TResponse<List<Family>>> family(
+    @Path("personId") String personId,
+    @Path("familyCardId") String family,
+  );
 
   @GET("/{personIdd}/phone.json")
   Future<TResponse<List<Phone>>> phone(@Path("personId") String personId);

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:forui/forui.dart';
+import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_person_family_notifier.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_person_notifier.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_province_notifier.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_query_notifier.dart';
@@ -8,6 +9,7 @@ import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cc
 import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cctv_resident_tile_skeletonizer.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cctv_screen_filter_widget.dart';
 import 'package:forui_base/router.dart';
+import 'package:forui_base/shared/data/models/api_cctv/family_path_params.dart';
 import 'package:forui_base/shared/data/models/api_cctv/resident.dart';
 import 'package:forui_base/shared/presentation/widgets/c_no_item_infinite_page.dart';
 import 'package:go_router/go_router.dart';
@@ -108,6 +110,15 @@ class _AppCctvScreenState extends ConsumerState<AppCctvScreen>
                       ref
                           .read(appCctvPersonNotifierProvider.notifier)
                           .perform(item.id.toString());
+
+                      ref
+                          .read(appCctvPersonFamilyNotifierProvider.notifier)
+                          .perform(
+                            FamilyPathParams(
+                              personId: item.id.toString(),
+                              familyCardId: item.familyCardId.toString(),
+                            ),
+                          );
 
                       context.pushNamed(RouteName.appCctvPerson.name);
                     },

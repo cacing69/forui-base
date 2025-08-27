@@ -85,7 +85,7 @@ class _ApiCctvService implements ApiCctvService {
   }
 
   @override
-  Future<TResponse<List<Family>>> family(FamilyPathParams params) async {
+  Future<TResponse<List<Family>>> family(String personId, String family) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -94,7 +94,7 @@ class _ApiCctvService implements ApiCctvService {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/{personId}/{familyCardId}/family.json',
+            '/${personId}/${family}/family.json',
             queryParameters: queryParameters,
             data: _data,
           )

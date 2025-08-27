@@ -46,7 +46,7 @@ class _AppCctvResidentTileState extends State<AppCctvResidentTile> {
         ],
       ),
       title: Text(widget.resident.name ?? ''),
-      onPress: widget?.onPress,
+      onPress: widget.onPress,
     );
   }
 }

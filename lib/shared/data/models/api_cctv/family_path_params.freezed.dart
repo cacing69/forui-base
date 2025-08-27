@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$FamilyPathParams {
 
-@Path("personId") String? get personId;@Path("familyCardId") String? get familyCardId;
+ String? get personId; String? get familyCardId;
 /// Create a copy of FamilyPathParams
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $FamilyPathParamsCopyWith<$Res>  {
   factory $FamilyPathParamsCopyWith(FamilyPathParams value, $Res Function(FamilyPathParams) _then) = _$FamilyPathParamsCopyWithImpl;
 @useResult
 $Res call({
-@Path("personId") String? personId,@Path("familyCardId") String? familyCardId
+ String? personId, String? familyCardId
 });
 
 
@@ -154,7 +154,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@Path("personId")  String? personId, @Path("familyCardId")  String? familyCardId)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? personId,  String? familyCardId)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _FamilyPathParams() when $default != null:
 return $default(_that.personId,_that.familyCardId);case _:
@@ -175,7 +175,7 @@ return $default(_that.personId,_that.familyCardId);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@Path("personId")  String? personId, @Path("familyCardId")  String? familyCardId)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? personId,  String? familyCardId)  $default,) {final _that = this;
 switch (_that) {
 case _FamilyPathParams():
 return $default(_that.personId,_that.familyCardId);case _:
@@ -195,7 +195,7 @@ return $default(_that.personId,_that.familyCardId);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@Path("personId")  String? personId, @Path("familyCardId")  String? familyCardId)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? personId,  String? familyCardId)?  $default,) {final _that = this;
 switch (_that) {
 case _FamilyPathParams() when $default != null:
 return $default(_that.personId,_that.familyCardId);case _:
@@ -210,11 +210,11 @@ return $default(_that.personId,_that.familyCardId);case _:
 @JsonSerializable()
 
 class _FamilyPathParams implements FamilyPathParams {
-  const _FamilyPathParams({@Path("personId") this.personId = "", @Path("familyCardId") this.familyCardId = ""});
+  const _FamilyPathParams({this.personId = "", this.familyCardId = ""});
   factory _FamilyPathParams.fromJson(Map<String, dynamic> json) => _$FamilyPathParamsFromJson(json);
 
-@override@JsonKey()@Path("personId") final  String? personId;
-@override@JsonKey()@Path("familyCardId") final  String? familyCardId;
+@override@JsonKey() final  String? personId;
+@override@JsonKey() final  String? familyCardId;
 
 /// Create a copy of FamilyPathParams
 /// with the given fields replaced by the non-null parameter values.
@@ -249,7 +249,7 @@ abstract mixin class _$FamilyPathParamsCopyWith<$Res> implements $FamilyPathPara
   factory _$FamilyPathParamsCopyWith(_FamilyPathParams value, $Res Function(_FamilyPathParams) _then) = __$FamilyPathParamsCopyWithImpl;
 @override @useResult
 $Res call({
-@Path("personId") String? personId,@Path("familyCardId") String? familyCardId
+ String? personId, String? familyCardId
 });
 
 

@@ -112,7 +112,10 @@ class ApiCctvRepositoryImpl implements ApiCctvRepository {
     FamilyPathParams params,
   ) async {
     try {
-      final response = await service.family(params);
+      final response = await service.family(
+        params.personId!,
+        params.familyCardId!,
+      );
       return Right(response);
     } on Exception catch (e) {
       return Left(errorWrapper(e));
