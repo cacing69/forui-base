@@ -156,6 +156,19 @@ class _AppCctvPersonScreenState extends ConsumerState<AppCctvPersonScreen> {
                         ),
                       ),
                     ),
+                    FTabEntry(
+                      label: const Icon(FIcons.tabletSmartphone),
+                      child: FTileGroup(
+                        label: const Text('Phone Number'),
+                        description: Column(
+                          children: [
+                            const Text('Phone numbers information overview'),
+                            Gap(20),
+                          ],
+                        ),
+                        children: [],
+                      ),
+                    ),
                   ],
                 ),
               ],
