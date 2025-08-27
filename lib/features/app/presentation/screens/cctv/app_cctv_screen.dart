@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:forui/forui.dart';
+import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_person_notifier.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_province_notifier.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_query_notifier.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_resident_notifier.dart';
@@ -43,7 +44,6 @@ final pagingControllerProvider =
         },
       );
 
-      // provider dihapus
       ref.onDispose(controller.dispose);
 
       return controller;
@@ -51,30 +51,6 @@ final pagingControllerProvider =
 
 class _AppCctvScreenState extends ConsumerState<AppCctvScreen>
     with TickerProviderStateMixin {
-  // late final _pagingController = PagingController<int, Resident>(
-  //   getNextPageKey: (state) =>
-  //       state.lastPageIsEmpty ? null : state.nextIntPageKey,
-  //   fetchPage: (pageKey) async {
-  //     final int start = (pageKey - 1) * 5;
-
-  //     debugPrint("pageKey.toString()");
-  //     await ref
-  //         .read(appCctvResidentNotifierProvider.notifier)
-  //         .perform(
-  //           ref
-  //               .read(appCctvQueryNotifierProvider)
-  //               .copyWith(start: start.toString()),
-  //         );
-  //     return ref.read(appCctvResidentNotifierProvider).value!.data!;
-  //   },
-  // );
-
-  // @override
-  // void dispose() {
-  //   // _pagingController.dispose();
-  //   super.dispose();
-  // }
-
   @override
   Widget build(BuildContext context) {
     ref.watch(appCctvProvinceNotifierProvider);
@@ -104,9 +80,7 @@ class _AppCctvScreenState extends ConsumerState<AppCctvScreen>
                   maxHeight: double.infinity,
                 ),
                 side: FLayout.rtl,
-                builder: (context) => AppCctvScreenFilterWidget(
-                  // pagingController: ref.watch(pagingControllerProvider),
-                ),
+                builder: (context) => AppCctvScreenFilterWidget(),
               );
             },
           ),
@@ -130,8 +104,13 @@ class _AppCctvScreenState extends ConsumerState<AppCctvScreen>
                   itemBuilder: (context, item, index) => AppCctvResidentTile(
                     resident: item,
                     now: now,
-                    onPress: () =>
-                        context.pushNamed(RouteName.appCctvDetail.name),
+                    onPress: () {
+                      ref
+                          .read(appCctvPersonNotifierProvider.notifier)
+                          .perform(item.id.toString());
+
+                      context.pushNamed(RouteName.appCctvPerson.name);
+                    },
                   ),
                   noItemsFoundIndicatorBuilder: (context) =>
                       CNoItemInfinitePage(),

@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Person {
 
- String? get fatherName; String? get rt; String? get rw; String? get weddingDate; String? get updatedDate; String? get villageName; String? get cityName; String? get educationName;@BigIntConverter() BigInt? get id; String? get religionName; String? get bloodTypeName; String? get placeOfBirth; String? get address; String? get districtName; String? get sexId; String? get work; String? get maritalName; String? get motherName; String? get photo; String? get dateOfBirth; String? get divorceDate; String? get divorceCertificateNumber; String? get birthCertificate;@BigIntConverter() BigInt? get familyCardId; String? get name; String? get marriageCertificateNumber; String? get postCode; String? get provinceName;
+ String? get fatherName; int? get rt; int? get rw; String? get weddingDate; String? get updatedDate; String? get villageName; String? get cityName; String? get educationName;@BigIntConverter() BigInt? get id; String? get religionName; String? get bloodTypeName; String? get placeOfBirth; String? get address; String? get districtName; int? get sexId; String? get work; String? get maritalName; String? get motherName; String? get photo; String? get dateOfBirth; String? get divorceDate; String? get divorceCertificateNumber; String? get birthCertificate;@BigIntConverter() BigInt? get familyCardId; String? get name; String? get marriageCertificateNumber; String? get postCode; String? get provinceName;
 /// Create a copy of Person
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $PersonCopyWith<$Res>  {
   factory $PersonCopyWith(Person value, $Res Function(Person) _then) = _$PersonCopyWithImpl;
 @useResult
 $Res call({
- String? fatherName, String? rt, String? rw, String? weddingDate, String? updatedDate, String? villageName, String? cityName, String? educationName,@BigIntConverter() BigInt? id, String? religionName, String? bloodTypeName, String? placeOfBirth, String? address, String? districtName, String? sexId, String? work, String? maritalName, String? motherName, String? photo, String? dateOfBirth, String? divorceDate, String? divorceCertificateNumber, String? birthCertificate,@BigIntConverter() BigInt? familyCardId, String? name, String? marriageCertificateNumber, String? postCode, String? provinceName
+ String? fatherName, int? rt, int? rw, String? weddingDate, String? updatedDate, String? villageName, String? cityName, String? educationName,@BigIntConverter() BigInt? id, String? religionName, String? bloodTypeName, String? placeOfBirth, String? address, String? districtName, int? sexId, String? work, String? maritalName, String? motherName, String? photo, String? dateOfBirth, String? divorceDate, String? divorceCertificateNumber, String? birthCertificate,@BigIntConverter() BigInt? familyCardId, String? name, String? marriageCertificateNumber, String? postCode, String? provinceName
 });
 
 
@@ -69,8 +69,8 @@ class _$PersonCopyWithImpl<$Res>
   return _then(_self.copyWith(
 fatherName: freezed == fatherName ? _self.fatherName : fatherName // ignore: cast_nullable_to_non_nullable
 as String?,rt: freezed == rt ? _self.rt : rt // ignore: cast_nullable_to_non_nullable
-as String?,rw: freezed == rw ? _self.rw : rw // ignore: cast_nullable_to_non_nullable
-as String?,weddingDate: freezed == weddingDate ? _self.weddingDate : weddingDate // ignore: cast_nullable_to_non_nullable
+as int?,rw: freezed == rw ? _self.rw : rw // ignore: cast_nullable_to_non_nullable
+as int?,weddingDate: freezed == weddingDate ? _self.weddingDate : weddingDate // ignore: cast_nullable_to_non_nullable
 as String?,updatedDate: freezed == updatedDate ? _self.updatedDate : updatedDate // ignore: cast_nullable_to_non_nullable
 as String?,villageName: freezed == villageName ? _self.villageName : villageName // ignore: cast_nullable_to_non_nullable
 as String?,cityName: freezed == cityName ? _self.cityName : cityName // ignore: cast_nullable_to_non_nullable
@@ -82,7 +82,7 @@ as String?,placeOfBirth: freezed == placeOfBirth ? _self.placeOfBirth : placeOfB
 as String?,address: freezed == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
 as String?,districtName: freezed == districtName ? _self.districtName : districtName // ignore: cast_nullable_to_non_nullable
 as String?,sexId: freezed == sexId ? _self.sexId : sexId // ignore: cast_nullable_to_non_nullable
-as String?,work: freezed == work ? _self.work : work // ignore: cast_nullable_to_non_nullable
+as int?,work: freezed == work ? _self.work : work // ignore: cast_nullable_to_non_nullable
 as String?,maritalName: freezed == maritalName ? _self.maritalName : maritalName // ignore: cast_nullable_to_non_nullable
 as String?,motherName: freezed == motherName ? _self.motherName : motherName // ignore: cast_nullable_to_non_nullable
 as String?,photo: freezed == photo ? _self.photo : photo // ignore: cast_nullable_to_non_nullable
@@ -180,7 +180,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? fatherName,  String? rt,  String? rw,  String? weddingDate,  String? updatedDate,  String? villageName,  String? cityName,  String? educationName, @BigIntConverter()  BigInt? id,  String? religionName,  String? bloodTypeName,  String? placeOfBirth,  String? address,  String? districtName,  String? sexId,  String? work,  String? maritalName,  String? motherName,  String? photo,  String? dateOfBirth,  String? divorceDate,  String? divorceCertificateNumber,  String? birthCertificate, @BigIntConverter()  BigInt? familyCardId,  String? name,  String? marriageCertificateNumber,  String? postCode,  String? provinceName)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? fatherName,  int? rt,  int? rw,  String? weddingDate,  String? updatedDate,  String? villageName,  String? cityName,  String? educationName, @BigIntConverter()  BigInt? id,  String? religionName,  String? bloodTypeName,  String? placeOfBirth,  String? address,  String? districtName,  int? sexId,  String? work,  String? maritalName,  String? motherName,  String? photo,  String? dateOfBirth,  String? divorceDate,  String? divorceCertificateNumber,  String? birthCertificate, @BigIntConverter()  BigInt? familyCardId,  String? name,  String? marriageCertificateNumber,  String? postCode,  String? provinceName)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Person() when $default != null:
 return $default(_that.fatherName,_that.rt,_that.rw,_that.weddingDate,_that.updatedDate,_that.villageName,_that.cityName,_that.educationName,_that.id,_that.religionName,_that.bloodTypeName,_that.placeOfBirth,_that.address,_that.districtName,_that.sexId,_that.work,_that.maritalName,_that.motherName,_that.photo,_that.dateOfBirth,_that.divorceDate,_that.divorceCertificateNumber,_that.birthCertificate,_that.familyCardId,_that.name,_that.marriageCertificateNumber,_that.postCode,_that.provinceName);case _:
@@ -201,7 +201,7 @@ return $default(_that.fatherName,_that.rt,_that.rw,_that.weddingDate,_that.updat
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? fatherName,  String? rt,  String? rw,  String? weddingDate,  String? updatedDate,  String? villageName,  String? cityName,  String? educationName, @BigIntConverter()  BigInt? id,  String? religionName,  String? bloodTypeName,  String? placeOfBirth,  String? address,  String? districtName,  String? sexId,  String? work,  String? maritalName,  String? motherName,  String? photo,  String? dateOfBirth,  String? divorceDate,  String? divorceCertificateNumber,  String? birthCertificate, @BigIntConverter()  BigInt? familyCardId,  String? name,  String? marriageCertificateNumber,  String? postCode,  String? provinceName)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? fatherName,  int? rt,  int? rw,  String? weddingDate,  String? updatedDate,  String? villageName,  String? cityName,  String? educationName, @BigIntConverter()  BigInt? id,  String? religionName,  String? bloodTypeName,  String? placeOfBirth,  String? address,  String? districtName,  int? sexId,  String? work,  String? maritalName,  String? motherName,  String? photo,  String? dateOfBirth,  String? divorceDate,  String? divorceCertificateNumber,  String? birthCertificate, @BigIntConverter()  BigInt? familyCardId,  String? name,  String? marriageCertificateNumber,  String? postCode,  String? provinceName)  $default,) {final _that = this;
 switch (_that) {
 case _Person():
 return $default(_that.fatherName,_that.rt,_that.rw,_that.weddingDate,_that.updatedDate,_that.villageName,_that.cityName,_that.educationName,_that.id,_that.religionName,_that.bloodTypeName,_that.placeOfBirth,_that.address,_that.districtName,_that.sexId,_that.work,_that.maritalName,_that.motherName,_that.photo,_that.dateOfBirth,_that.divorceDate,_that.divorceCertificateNumber,_that.birthCertificate,_that.familyCardId,_that.name,_that.marriageCertificateNumber,_that.postCode,_that.provinceName);case _:
@@ -221,7 +221,7 @@ return $default(_that.fatherName,_that.rt,_that.rw,_that.weddingDate,_that.updat
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? fatherName,  String? rt,  String? rw,  String? weddingDate,  String? updatedDate,  String? villageName,  String? cityName,  String? educationName, @BigIntConverter()  BigInt? id,  String? religionName,  String? bloodTypeName,  String? placeOfBirth,  String? address,  String? districtName,  String? sexId,  String? work,  String? maritalName,  String? motherName,  String? photo,  String? dateOfBirth,  String? divorceDate,  String? divorceCertificateNumber,  String? birthCertificate, @BigIntConverter()  BigInt? familyCardId,  String? name,  String? marriageCertificateNumber,  String? postCode,  String? provinceName)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? fatherName,  int? rt,  int? rw,  String? weddingDate,  String? updatedDate,  String? villageName,  String? cityName,  String? educationName, @BigIntConverter()  BigInt? id,  String? religionName,  String? bloodTypeName,  String? placeOfBirth,  String? address,  String? districtName,  int? sexId,  String? work,  String? maritalName,  String? motherName,  String? photo,  String? dateOfBirth,  String? divorceDate,  String? divorceCertificateNumber,  String? birthCertificate, @BigIntConverter()  BigInt? familyCardId,  String? name,  String? marriageCertificateNumber,  String? postCode,  String? provinceName)?  $default,) {final _that = this;
 switch (_that) {
 case _Person() when $default != null:
 return $default(_that.fatherName,_that.rt,_that.rw,_that.weddingDate,_that.updatedDate,_that.villageName,_that.cityName,_that.educationName,_that.id,_that.religionName,_that.bloodTypeName,_that.placeOfBirth,_that.address,_that.districtName,_that.sexId,_that.work,_that.maritalName,_that.motherName,_that.photo,_that.dateOfBirth,_that.divorceDate,_that.divorceCertificateNumber,_that.birthCertificate,_that.familyCardId,_that.name,_that.marriageCertificateNumber,_that.postCode,_that.provinceName);case _:
@@ -240,8 +240,8 @@ class _Person implements Person {
   factory _Person.fromJson(Map<String, dynamic> json) => _$PersonFromJson(json);
 
 @override@JsonKey() final  String? fatherName;
-@override@JsonKey() final  String? rt;
-@override@JsonKey() final  String? rw;
+@override@JsonKey() final  int? rt;
+@override@JsonKey() final  int? rw;
 @override@JsonKey() final  String? weddingDate;
 @override@JsonKey() final  String? updatedDate;
 @override@JsonKey() final  String? villageName;
@@ -253,7 +253,7 @@ class _Person implements Person {
 @override@JsonKey() final  String? placeOfBirth;
 @override@JsonKey() final  String? address;
 @override@JsonKey() final  String? districtName;
-@override@JsonKey() final  String? sexId;
+@override@JsonKey() final  int? sexId;
 @override@JsonKey() final  String? work;
 @override@JsonKey() final  String? maritalName;
 @override@JsonKey() final  String? motherName;
@@ -301,7 +301,7 @@ abstract mixin class _$PersonCopyWith<$Res> implements $PersonCopyWith<$Res> {
   factory _$PersonCopyWith(_Person value, $Res Function(_Person) _then) = __$PersonCopyWithImpl;
 @override @useResult
 $Res call({
- String? fatherName, String? rt, String? rw, String? weddingDate, String? updatedDate, String? villageName, String? cityName, String? educationName,@BigIntConverter() BigInt? id, String? religionName, String? bloodTypeName, String? placeOfBirth, String? address, String? districtName, String? sexId, String? work, String? maritalName, String? motherName, String? photo, String? dateOfBirth, String? divorceDate, String? divorceCertificateNumber, String? birthCertificate,@BigIntConverter() BigInt? familyCardId, String? name, String? marriageCertificateNumber, String? postCode, String? provinceName
+ String? fatherName, int? rt, int? rw, String? weddingDate, String? updatedDate, String? villageName, String? cityName, String? educationName,@BigIntConverter() BigInt? id, String? religionName, String? bloodTypeName, String? placeOfBirth, String? address, String? districtName, int? sexId, String? work, String? maritalName, String? motherName, String? photo, String? dateOfBirth, String? divorceDate, String? divorceCertificateNumber, String? birthCertificate,@BigIntConverter() BigInt? familyCardId, String? name, String? marriageCertificateNumber, String? postCode, String? provinceName
 });
 
 
@@ -322,8 +322,8 @@ class __$PersonCopyWithImpl<$Res>
   return _then(_Person(
 fatherName: freezed == fatherName ? _self.fatherName : fatherName // ignore: cast_nullable_to_non_nullable
 as String?,rt: freezed == rt ? _self.rt : rt // ignore: cast_nullable_to_non_nullable
-as String?,rw: freezed == rw ? _self.rw : rw // ignore: cast_nullable_to_non_nullable
-as String?,weddingDate: freezed == weddingDate ? _self.weddingDate : weddingDate // ignore: cast_nullable_to_non_nullable
+as int?,rw: freezed == rw ? _self.rw : rw // ignore: cast_nullable_to_non_nullable
+as int?,weddingDate: freezed == weddingDate ? _self.weddingDate : weddingDate // ignore: cast_nullable_to_non_nullable
 as String?,updatedDate: freezed == updatedDate ? _self.updatedDate : updatedDate // ignore: cast_nullable_to_non_nullable
 as String?,villageName: freezed == villageName ? _self.villageName : villageName // ignore: cast_nullable_to_non_nullable
 as String?,cityName: freezed == cityName ? _self.cityName : cityName // ignore: cast_nullable_to_non_nullable
@@ -335,7 +335,7 @@ as String?,placeOfBirth: freezed == placeOfBirth ? _self.placeOfBirth : placeOfB
 as String?,address: freezed == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
 as String?,districtName: freezed == districtName ? _self.districtName : districtName // ignore: cast_nullable_to_non_nullable
 as String?,sexId: freezed == sexId ? _self.sexId : sexId // ignore: cast_nullable_to_non_nullable
-as String?,work: freezed == work ? _self.work : work // ignore: cast_nullable_to_non_nullable
+as int?,work: freezed == work ? _self.work : work // ignore: cast_nullable_to_non_nullable
 as String?,maritalName: freezed == maritalName ? _self.maritalName : maritalName // ignore: cast_nullable_to_non_nullable
 as String?,motherName: freezed == motherName ? _self.motherName : motherName // ignore: cast_nullable_to_non_nullable
 as String?,photo: freezed == photo ? _self.photo : photo // ignore: cast_nullable_to_non_nullable

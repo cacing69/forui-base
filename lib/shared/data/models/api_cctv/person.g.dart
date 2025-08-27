@@ -8,8 +8,8 @@ part of 'person.dart';
 
 _Person _$PersonFromJson(Map<String, dynamic> json) => _Person(
   fatherName: json['fatherName'] as String? ?? null,
-  rt: json['rt'] as String? ?? null,
-  rw: json['rw'] as String? ?? null,
+  rt: (json['rt'] as num?)?.toInt() ?? null,
+  rw: (json['rw'] as num?)?.toInt() ?? null,
   weddingDate: json['weddingDate'] as String? ?? null,
   updatedDate: json['updatedDate'] as String? ?? null,
   villageName: json['villageName'] as String? ?? null,
@@ -21,7 +21,7 @@ _Person _$PersonFromJson(Map<String, dynamic> json) => _Person(
   placeOfBirth: json['placeOfBirth'] as String? ?? null,
   address: json['address'] as String? ?? null,
   districtName: json['districtName'] as String? ?? null,
-  sexId: json['sexId'] as String? ?? null,
+  sexId: (json['sexId'] as num?)?.toInt() ?? null,
   work: json['work'] as String? ?? null,
   maritalName: json['maritalName'] as String? ?? null,
   motherName: json['motherName'] as String? ?? null,

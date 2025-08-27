@@ -8,8 +8,8 @@ part 'person.freezed.dart';
 abstract class Person with _$Person {
   const factory Person({
     @Default(null) String? fatherName,
-    @Default(null) String? rt,
-    @Default(null) String? rw,
+    @Default(null) int? rt,
+    @Default(null) int? rw,
     @Default(null) String? weddingDate,
     @Default(null) String? updatedDate,
     @Default(null) String? villageName,
@@ -21,7 +21,7 @@ abstract class Person with _$Person {
     @Default(null) String? placeOfBirth,
     @Default(null) String? address,
     @Default(null) String? districtName,
-    @Default(null) String? sexId,
+    @Default(null) int? sexId,
     @Default(null) String? work,
     @Default(null) String? maritalName,
     @Default(null) String? motherName,
