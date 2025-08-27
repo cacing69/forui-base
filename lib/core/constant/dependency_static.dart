@@ -117,6 +117,16 @@ final List<Dependency> generalDependenciesStatic = [
     name: "gal",
     url: "https://pub.dev/packages/gal",
   ),
+  Dependency(
+    icon: FIcons.codesandbox,
+    name: "intl",
+    url: "https://pub.dev/packages/intl",
+  ),
+  Dependency(
+    icon: FIcons.codesandbox,
+    name: "flutter_localizations",
+    url: "https://pub.dev/packages/flutter_localizations",
+  ),
 ];
 
 final List<Dependency> developmentDependenciesStatic = [

@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:forui/forui.dart';
 import 'package:forui_base/core/constant/user_static.dart';
 import 'package:forui_base/features/profile/presentation/widgets/profile_social_link_widget.dart';
+import 'package:forui_base/l10n/app_localizations.dart';
 import 'package:forui_base/router.dart';
 import 'package:forui_base/shared/presentation/providers/config_app_notifier.dart';
 import 'package:gap/gap.dart';
@@ -17,16 +18,18 @@ class ProfileScreen extends ConsumerStatefulWidget {
   ConsumerState<ProfileScreen> createState() => _ProfileScreenState();
 }
 
-enum LocaleApp { id, en }
+enum LocaleApp { id, en, es }
 
 class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   // bool darkMode = true;
 
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context)!;
+
     return FScaffold(
       header: FHeader(
-        title: Text("Profile"),
+        title: Text(loc.profile),
         suffixes: [
           FHeaderAction(
             icon: Icon(FIcons.logOut),
@@ -162,7 +165,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             Gap.expand(10),
             ProfileSocialLinkWidget(),
             FTileGroup(
-              label: const Text('Settings'),
+              label: Text(loc.settings),
               description: const Text('Personalize your experience'),
               children: [
                 FTile(
@@ -194,15 +197,20 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   ),
                 ),
                 FSelectMenuTile.fromMap(
-                  const {'Indonesia': LocaleApp.id, 'English': LocaleApp.en},
+                  const {
+                    'Indonesia': LocaleApp.id,
+                    'English': LocaleApp.en,
+                    "Español": LocaleApp.es,
+                  },
                   initialValue: LocaleApp.en,
                   autoHide: true,
                   prefix: const Icon(FIcons.bell),
-                  title: const Text('Language'),
+                  title: Text(loc.language),
                   detailsBuilder: (_, values, _) =>
                       Text(switch (values.firstOrNull) {
                         LocaleApp.id => 'Indonesia',
                         LocaleApp.en => 'English',
+                        LocaleApp.es => 'Español',
                         _ => 'None',
                       }),
                 ),

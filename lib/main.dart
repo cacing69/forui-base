@@ -2,8 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:forui/forui.dart';
+import 'package:forui_base/l10n/app_localizations.dart';
 import 'package:forui_base/router.dart';
 import 'package:forui_base/shared/presentation/providers/config_app_notifier.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -56,6 +58,19 @@ class _ApplicationState extends ConsumerState<Application> {
 
     return MaterialApp.router(
       title: 'Forui Base',
+      localizationsDelegates: [
+        AppLocalizations.delegate, // Add this line
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        FLocalizations.delegate,
+      ],
+      locale: Locale('es'),
+      supportedLocales: [
+        Locale('id'), // Indonesia
+        Locale('en'), // English
+        Locale('es'), // Español
+      ],
       builder: (context, child) =>
           FTheme(data: configApp.themeData!, child: child!),
       theme: configApp.themeData!.toApproximateMaterialTheme().copyWith(
