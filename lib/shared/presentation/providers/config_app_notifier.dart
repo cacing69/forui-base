@@ -12,6 +12,8 @@ class ConfigAppNotifier extends _$ConfigAppNotifier {
   }
 
   void changeTheme(FThemeData newTheme) {
+    // TODO : need to persist theme data after closed
+
     state = state.copyWith(themeData: newTheme);
   }
 }

@@ -1,20 +1,25 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:forui/forui.dart';
 import 'package:forui_base/core/constant/user_static.dart';
+import 'package:forui_base/features/profile/presentation/widgets/profile_social_link_widget.dart';
 import 'package:forui_base/router.dart';
+import 'package:forui_base/shared/presentation/providers/config_app_notifier.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-class ProfileScreen extends StatefulWidget {
+class ProfileScreen extends ConsumerStatefulWidget {
   const ProfileScreen({super.key});
 
   @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
+  ConsumerState<ProfileScreen> createState() => _ProfileScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
+class _ProfileScreenState extends ConsumerState<ProfileScreen> {
+  // bool darkMode = true;
+
   @override
   Widget build(BuildContext context) {
     return FScaffold(
@@ -28,6 +33,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ],
       ),
       child: SingleChildScrollView(
+        physics: AlwaysScrollableScrollPhysics(),
         child: Column(
           children: [
             FCard(
@@ -61,18 +67,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             prefix: const Icon(FIcons.eye),
                             title: const Text('Preview Avatar'),
                             onPress: () {
-                              // showDialog(
-                              //   context: context,
-                              //   builder: (_) => Dialog(
-                              //     child: InteractiveViewer(
-                              //       child: Image.network(
-                              //         'https://avatars.githubusercontent.com/u/36250619?v=4',
-                              //         fit: BoxFit.contain,
-                              //       ),
-                              //     ),
-                              //   ),
-                              // );
-
                               context.pushNamed(
                                 RouteName.fullScreenImageUrlViewer.name,
                                 queryParameters: {
@@ -164,38 +158,43 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
             Gap.expand(10),
+            ProfileSocialLinkWidget(),
             FTileGroup(
-              label: const Text('Social Links'),
-              // description: const Text('Personalize your social links'),
+              label: const Text('Settings'),
+              description: const Text('Personalize your experience'),
               children: [
                 FTile(
-                  prefix: Icon(FIcons.mail),
-                  title: Text('Email'),
-                  details: Text("ibnuul@gmail.com"),
-                  onPress: () {},
+                  // prefix: Icon(FIcons.moon),
+                  title: FSwitch(
+                    style: (style) {
+                      return style.copyWith(
+                        childPadding: EdgeInsets.zero,
+                        labelPadding: EdgeInsets.symmetric(horizontal: 8),
+                      );
+                    },
+                    label: const Text('Dark Mode'),
+                    semanticsLabel: 'Dark Mode',
+                    value:
+                        ref.watch(configAppNotifierProvider).themeData ==
+                        FThemes.zinc.dark,
+                    onChange: (value) {
+                      if (ref.watch(configAppNotifierProvider).themeData ==
+                          FThemes.zinc.light) {
+                        ref
+                            .read(configAppNotifierProvider.notifier)
+                            .changeTheme(FThemes.zinc.dark);
+                      } else {
+                        ref
+                            .read(configAppNotifierProvider.notifier)
+                            .changeTheme(FThemes.zinc.light);
+                      }
+                    },
+                  ),
                 ),
                 FTile(
-                  prefix: Icon(FIcons.smartphone),
-                  title: Text('Phone'),
-                  details: Text("+62 896 7216 5341"),
-                  onPress: () {},
-                ),
-                FTile(
-                  prefix: Icon(FIcons.github),
-                  title: Text('Github'),
-                  details: Text("cacing69"),
-                  onPress: () {},
-                ),
-                FTile(
-                  prefix: Icon(FIcons.linkedin),
-                  title: Text('Linkedin'),
-                  details: Text("ibnul-mutaki"),
-                  onPress: () {},
-                ),
-                FTile(
-                  prefix: Icon(FIcons.facebook),
-                  title: Text('Facebook'),
-                  details: Text("ibnuul"),
+                  prefix: Icon(FIcons.moon),
+                  title: Text("Lorem"),
+                  // suffix: Icon(FIcons.chevronRight),
                   onPress: () {},
                 ),
               ],
