@@ -9,7 +9,9 @@ part 'app_cctv_district_notifier.g.dart';
 class AppCctvDistrictNotifier extends _$AppCctvDistrictNotifier {
   @override
   AsyncValue<TResponse<List<District>>?> build() {
-    return AsyncValue.loading();
+    return AsyncValue.data(
+      TResponse<List<District>>(status: 'success', message: null, data: []),
+    );
   }
 
   Future<void> perform(String parentId) async {

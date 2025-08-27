@@ -1,10 +1,18 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:forui/forui.dart';
+import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_city_notifier.dart';
+import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_district_notifier.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_province_notifier.dart';
-import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_query_notifier.dart';
+import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_resident_notifier.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_screen.dart';
+import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_village_notifier.dart';
+import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cctv_screen_filter_widget_notifier.dart';
+import 'package:forui_base/shared/data/models/api_cctv/city.dart';
+import 'package:forui_base/shared/data/models/api_cctv/district.dart';
 import 'package:forui_base/shared/data/models/api_cctv/province.dart';
+import 'package:forui_base/shared/data/models/api_cctv/resident_query.dart';
+import 'package:forui_base/shared/data/models/api_cctv/village.dart';
 import 'package:forui_base/shared/presentation/widgets/f_select_skeletonizer.dart';
 import 'package:forui_hooks/forui_hooks.dart';
 import 'package:gap/gap.dart';
@@ -24,24 +32,35 @@ class _AppCctvScreenFilterWidgetState
     with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    final asyncProvinceState = ref.watch(appCctvProvinceNotifierProvider);
+    final filterState = ref.watch(appCctvScreenFilterWidgetNotifierProvider);
 
-    final TextEditingController searchController = useTextEditingController();
+    final asyncProvinceState = ref.watch(appCctvProvinceNotifierProvider);
+    final asyncCityState = ref.watch(appCctvCityNotifierProvider);
+    final asyncDistrictState = ref.watch(appCctvDistrictNotifierProvider);
+    final asyncVillageState = ref.watch(appCctvVillageNotifierProvider);
+
+    final TextEditingController searchController = useTextEditingController(
+      text: filterState.search,
+    );
 
     final FSelectController<Province> provinceController = useFSelectController(
       vsync: this,
+      value: filterState.province,
     );
 
-    final FSelectController<Province> cityController = useFSelectController(
+    final FSelectController<City> cityController = useFSelectController(
       vsync: this,
+      value: filterState.city,
     );
 
-    final FSelectController<Province> districtController = useFSelectController(
+    final FSelectController<District> districtController = useFSelectController(
       vsync: this,
+      value: filterState.district,
     );
 
-    final FSelectController<Province> villageController = useFSelectController(
+    final FSelectController<Village> villageController = useFSelectController(
       vsync: this,
+      value: filterState.village,
     );
 
     return FScaffold(
@@ -90,8 +109,34 @@ class _AppCctvScreenFilterWidgetState
                               ],
                               onChange: (data) {
                                 ref
-                                    .read(appCctvQueryNotifierProvider.notifier)
-                                    .setProvinceId(data?.id.toString());
+                                    .read(
+                                      appCctvScreenFilterWidgetNotifierProvider
+                                          .notifier,
+                                    )
+                                    .setProvince(data);
+
+                                ref
+                                    .read(appCctvCityNotifierProvider.notifier)
+                                    .perform(data!.id.toString());
+
+                                ref
+                                    .read(
+                                      appCctvScreenFilterWidgetNotifierProvider
+                                          .notifier,
+                                    )
+                                    .setCity(null);
+                                ref
+                                    .read(
+                                      appCctvScreenFilterWidgetNotifierProvider
+                                          .notifier,
+                                    )
+                                    .setDistrict(null);
+                                ref
+                                    .read(
+                                      appCctvScreenFilterWidgetNotifierProvider
+                                          .notifier,
+                                    )
+                                    .setVillage(null);
 
                                 cityController.value = null;
                                 districtController.value = null;
@@ -109,9 +154,9 @@ class _AppCctvScreenFilterWidgetState
                             );
                           },
                         ),
-                        asyncProvinceState.when(
+                        asyncCityState.when(
                           data: (res) {
-                            return FSelect<Province>.searchBuilder(
+                            return FSelect<City>.searchBuilder(
                               hint: 'Select a City',
                               description: Text(
                                 "Choose a city or regency from the list",
@@ -129,15 +174,40 @@ class _AppCctvScreenFilterWidgetState
                                     ),
                               contentBuilder: (context, _, rows) => [
                                 for (final row in rows)
-                                  FSelectItem<Province>(
+                                  FSelectItem<City>(
                                     title: Text(row.name!),
                                     value: row,
                                   ),
                               ],
                               onChange: (data) {
                                 ref
-                                    .read(appCctvQueryNotifierProvider.notifier)
-                                    .setProvinceId(data?.id.toString());
+                                    .read(
+                                      appCctvScreenFilterWidgetNotifierProvider
+                                          .notifier,
+                                    )
+                                    .setCity(data);
+
+                                ref
+                                    .read(
+                                      appCctvDistrictNotifierProvider.notifier,
+                                    )
+                                    .perform(data!.id.toString());
+
+                                ref
+                                    .read(
+                                      appCctvScreenFilterWidgetNotifierProvider
+                                          .notifier,
+                                    )
+                                    .setDistrict(null);
+                                ref
+                                    .read(
+                                      appCctvScreenFilterWidgetNotifierProvider
+                                          .notifier,
+                                    )
+                                    .setVillage(null);
+
+                                districtController.value = null;
+                                villageController.value = null;
                               },
                             );
                           },
@@ -151,16 +221,16 @@ class _AppCctvScreenFilterWidgetState
                             );
                           },
                         ),
-                        asyncProvinceState.when(
+                        asyncDistrictState.when(
                           data: (res) {
-                            return FSelect<Province>.searchBuilder(
+                            return FSelect<District>.searchBuilder(
                               hint: 'Select a District',
                               controller: districtController,
                               enabled:
                                   provinceController.value != null &&
                                   cityController.value != null,
                               description: Text(
-                                "Choose a district or subdistrict from the list",
+                                "Choose a district from the list",
                               ),
                               label: Text("District"),
                               format: (s) => s.name!,
@@ -173,15 +243,33 @@ class _AppCctvScreenFilterWidgetState
                                     ),
                               contentBuilder: (context, _, rows) => [
                                 for (final row in rows)
-                                  FSelectItem<Province>(
+                                  FSelectItem<District>(
                                     title: Text(row.name!),
                                     value: row,
                                   ),
                               ],
                               onChange: (data) {
                                 ref
-                                    .read(appCctvQueryNotifierProvider.notifier)
-                                    .setProvinceId(data?.id.toString());
+                                    .read(
+                                      appCctvScreenFilterWidgetNotifierProvider
+                                          .notifier,
+                                    )
+                                    .setDistrict(data);
+
+                                ref
+                                    .read(
+                                      appCctvVillageNotifierProvider.notifier,
+                                    )
+                                    .perform(data!.id.toString());
+
+                                ref
+                                    .read(
+                                      appCctvScreenFilterWidgetNotifierProvider
+                                          .notifier,
+                                    )
+                                    .setVillage(null);
+
+                                villageController.value = null;
                               },
                             );
                           },
@@ -195,16 +283,16 @@ class _AppCctvScreenFilterWidgetState
                             );
                           },
                         ),
-                        asyncProvinceState.when(
+                        asyncVillageState.when(
                           data: (res) {
-                            return FSelect<Province>.searchBuilder(
+                            return FSelect<Village>.searchBuilder(
                               hint: 'Select a Village',
                               enabled:
                                   provinceController.value != null &&
                                   cityController.value != null &&
                                   districtController.value != null,
                               description: Text(
-                                "Choose a village or urban area from the list",
+                                "Choose a village from the list",
                               ),
                               controller: villageController,
                               label: Text("Village"),
@@ -218,15 +306,18 @@ class _AppCctvScreenFilterWidgetState
                                     ),
                               contentBuilder: (context, _, rows) => [
                                 for (final row in rows)
-                                  FSelectItem<Province>(
+                                  FSelectItem<Village>(
                                     title: Text(row.name!),
                                     value: row,
                                   ),
                               ],
                               onChange: (data) {
                                 ref
-                                    .read(appCctvQueryNotifierProvider.notifier)
-                                    .setProvinceId(data?.id.toString());
+                                    .read(
+                                      appCctvScreenFilterWidgetNotifierProvider
+                                          .notifier,
+                                    )
+                                    .setVillage(data);
                               },
                             );
                           },
@@ -241,6 +332,7 @@ class _AppCctvScreenFilterWidgetState
                           },
                         ),
                         FSlider(
+                          enabled: false,
                           label: Text("Age"),
                           description: Text(
                             "Select an age between 0 and 120 years",
@@ -262,15 +354,20 @@ class _AppCctvScreenFilterWidgetState
                           },
                         ),
                         FDateField(
+                          enabled: false,
                           label: Text('Date of Birth'),
                           description: Text("Choose a birrth date"),
                         ),
                         FTextField(
                           label: Text("Search"),
                           controller: searchController,
+                          clearable: (e) => e.text.isNotEmpty,
                           onChange: (value) {
                             ref
-                                .read(appCctvQueryNotifierProvider.notifier)
+                                .read(
+                                  appCctvScreenFilterWidgetNotifierProvider
+                                      .notifier,
+                                )
                                 .setSearch(value);
                           },
                           description: Text(
@@ -288,6 +385,14 @@ class _AppCctvScreenFilterWidgetState
                         style: FButtonStyle.outline(),
                         onPress: () {
                           // aksi reset
+                          ref
+                              .read(
+                                appCctvScreenFilterWidgetNotifierProvider
+                                    .notifier,
+                              )
+                              .reset();
+
+                          ref.read(pagingControllerProvider).refresh();
                         },
                         prefix: Icon(FIcons.x),
                         child: Text("Reset"),
@@ -300,15 +405,25 @@ class _AppCctvScreenFilterWidgetState
                           // aksi reset
                           // widget.pagingController.refresh();
 
-                          ref.read(pagingControllerProvider).refresh();
+                          ref
+                              .read(appCctvResidentNotifierProvider.notifier)
+                              .perform(
+                                ResidentQuery(
+                                  provinceId:
+                                      filterState.province?.id.toString() ??
+                                      "0",
+                                  cityId:
+                                      filterState.city?.id.toString() ?? "0",
+                                  districtId:
+                                      filterState.district?.id.toString() ??
+                                      "0",
+                                  villageId:
+                                      filterState.village?.id.toString() ?? "0",
+                                  search: filterState.search ?? "",
+                                ),
+                              );
 
-                          // ref
-                          //     .read(appCctvResidentNotifierProvider.notifier)
-                          //     .perform(
-                          //       ref
-                          //           .read(appCctvQueryNotifierProvider)
-                          //           .copyWith(start: "0"),
-                          //     );
+                          ref.read(pagingControllerProvider).refresh();
 
                           context.pop();
                         },

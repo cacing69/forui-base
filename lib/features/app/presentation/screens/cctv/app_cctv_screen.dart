@@ -8,15 +8,15 @@ import 'package:forui_base/features/app/presentation/screens/cctv/person/notifie
 import 'package:forui_base/features/app/presentation/screens/cctv/person/notifier/app_cctv_person_pln_notifier.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/person/notifier/app_cctv_person_vehicle_notifier.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_province_notifier.dart';
-import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_query_notifier.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_resident_notifier.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cctv_resident_tile.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cctv_resident_tile_skeletonizer.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cctv_screen_filter_widget.dart';
+import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cctv_screen_filter_widget_notifier.dart';
 import 'package:forui_base/router.dart';
 import 'package:forui_base/shared/data/models/api_cctv/family_path_params.dart';
 import 'package:forui_base/shared/data/models/api_cctv/resident.dart';
-// import 'package:forui_base/shared/presentation/widgets/c_no_item_infinite_page.dart';
+import 'package:forui_base/shared/data/models/api_cctv/resident_query.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -38,6 +38,19 @@ final pagingControllerProvider =
           return state.lastPageIsEmpty ? null : state.nextIntPageKey;
         },
         fetchPage: (pageKey) async {
+          // validate first dont auto request
+          final filterState = ref.read(
+            appCctvScreenFilterWidgetNotifierProvider,
+          );
+
+          if (filterState.province?.id == null &&
+              filterState.city?.id == null &&
+              filterState.district?.id == null &&
+              filterState.village?.id == null &&
+              (filterState.search ?? "").isEmpty) {
+            return [];
+          }
+
           final int start = (pageKey - 1) * 5;
 
           final lastRequest =
@@ -46,9 +59,14 @@ final pagingControllerProvider =
           await ref
               .read(appCctvResidentNotifierProvider.notifier)
               .perform(
-                ref
-                    .read(appCctvQueryNotifierProvider)
-                    .copyWith(start: start.toString()),
+                ResidentQuery(
+                  provinceId: filterState.province?.id.toString() ?? "0",
+                  cityId: filterState.city?.id.toString() ?? "0",
+                  districtId: filterState.district?.id.toString() ?? "0",
+                  villageId: filterState.village?.id.toString() ?? "0",
+                  search: filterState.search ?? "",
+                  start: start.toString(),
+                ),
               );
 
           final latestRequest =
@@ -113,7 +131,8 @@ class _AppCctvScreenState extends ConsumerState<AppCctvScreen>
       ),
       child: RefreshIndicator(
         onRefresh: () async {
-          ref.read(appCctvQueryNotifierProvider.notifier).reset();
+          ref.read(appCctvScreenFilterWidgetNotifierProvider.notifier).reset();
+
           ref.watch(pagingControllerProvider).refresh();
         },
         child: PagingListener(

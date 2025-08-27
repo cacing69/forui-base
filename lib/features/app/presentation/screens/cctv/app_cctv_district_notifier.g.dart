@@ -44,7 +44,7 @@ final class AppCctvDistrictNotifierProvider
 }
 
 String _$appCctvDistrictNotifierHash() =>
-    r'ae13c8487d5da7f12876f0cba71f3117f826bb43';
+    r'b89f71738f934ba343cf4ab2ec2f7e29ef1a4a15';
 
 abstract class _$AppCctvDistrictNotifier
     extends $Notifier<AsyncValue<TResponse<List<District>>?>> {

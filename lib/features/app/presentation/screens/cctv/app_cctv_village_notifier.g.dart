@@ -44,7 +44,7 @@ final class AppCctvVillageNotifierProvider
 }
 
 String _$appCctvVillageNotifierHash() =>
-    r'b73b9fc5544f28289743ab5451de27b95b9c8a0e';
+    r'794ac6a007f29e7639d851ca0fc70f3765f1da7e';
 
 abstract class _$AppCctvVillageNotifier
     extends $Notifier<AsyncValue<TResponse<List<Village>>?>> {

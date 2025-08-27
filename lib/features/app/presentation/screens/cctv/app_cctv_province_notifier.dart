@@ -11,7 +11,9 @@ class AppCctvProvinceNotifier extends _$AppCctvProvinceNotifier {
   @override
   AsyncValue<TResponse<List<Province>>?> build() {
     perform();
-    return AsyncValue.loading();
+    return AsyncValue.data(
+      TResponse<List<Province>>(status: 'success', message: null, data: []),
+    );
   }
 
   Future<void> perform() async {

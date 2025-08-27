@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/person/app_cctv_person_screen.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_screen.dart';
+import 'package:forui_base/features/app/presentation/screens/cctv/person/tab_overview/app_cctv_person_overview_tab_e_ktp_screen.dart';
 import 'package:forui_base/features/block/presentation/screens/block/backlog/block_backlog_screen.dart';
 import 'package:forui_base/features/block/presentation/screens/block/image_bas64_viewer/block_image_base64_viewer_screen.dart';
 import 'package:forui_base/features/block/presentation/screens/block/location_picker/block_location_picker_screen.dart';
@@ -29,6 +31,8 @@ enum RouteName {
   // App
   appCctv,
   appCctvPerson,
+  appCctvPersonTabFamily,
+  appCctvPersonTabEKtp,
 }
 
 final router = GoRouter(
@@ -107,6 +111,16 @@ final router = GoRouter(
       path: '/app/cctv/person',
       name: RouteName.appCctvPerson.name,
       builder: (context, state) => AppCctvPersonScreen(),
+    ),
+    GoRoute(
+      path: '/app/cctv/person/tab/family',
+      name: RouteName.appCctvPersonTabFamily.name,
+      builder: (context, state) => Placeholder(),
+    ),
+    GoRoute(
+      path: '/app/cctv/person/tab/e-ktp',
+      name: RouteName.appCctvPersonTabEKtp.name,
+      builder: (context, state) => AppCctvPersonOverviewTabEKtpScreen(),
     ),
   ],
 );

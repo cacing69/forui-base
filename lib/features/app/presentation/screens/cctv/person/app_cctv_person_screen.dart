@@ -396,6 +396,9 @@ class _AppCctvPersonScreenState extends ConsumerState<AppCctvPersonScreen> {
                             prefix: Icon(FIcons.idCard),
                             suffix: Icon(FIcons.eye),
                             title: Text("E-KTP"),
+                            onPress: () => context.pushNamed(
+                              RouteName.appCctvPersonTabEKtp.name,
+                            ),
                           ),
                         ],
                       ),
