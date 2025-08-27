@@ -41,19 +41,19 @@ abstract class ApiCctvService {
     @Path("familyCardId") String family,
   );
 
-  @GET("/{personIdd}/phone.json")
+  @GET("/{personId}/phone.json")
   Future<TResponse<List<Phone>>> phone(@Path("personId") String personId);
 
-  @GET("/{personIdd}/pln.json")
+  @GET("/{personId}/pln.json")
   Future<TResponse<List<Pln>>> pln(@Path("personId") String personId);
 
-  @GET("/{personIdd}/gojek.json")
+  @GET("/{personId}/gojek.json")
   Future<TResponse<List<Gojek>>> gojek(@Path("personId") String personId);
 
-  @GET("/{personIdd}/vehicle.json")
+  @GET("/{personId}/vehicle.json")
   Future<TResponse<List<Vehicle>>> vehicle(@Path("personId") String personId);
 
-  @GET("/{personIdd}/company.json")
+  @GET("/{personId}/company.json")
   Future<TResponse<List<Company>>> company(@Path("personId") String personId);
 
   @GET("/master/province.json")

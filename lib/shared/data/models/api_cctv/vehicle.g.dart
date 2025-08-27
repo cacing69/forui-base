@@ -18,7 +18,7 @@ _Vehicle _$VehicleFromJson(Map<String, dynamic> json) => _Vehicle(
   ownerName: json['ownerName'] as String? ?? null,
   registrationDate: json['registrationDate'] as String? ?? null,
   model: json['model'] as String? ?? null,
-  cylinder: json['cylinder'] as String? ?? null,
+  cylinder: (json['cylinder'] as num?)?.toInt() ?? null,
   vin: json['vin'] as String? ?? null,
   id: json['id'] as String? ?? null,
   brand: json['brand'] as String? ?? null,

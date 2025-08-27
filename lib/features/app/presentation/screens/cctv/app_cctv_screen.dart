@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:forui/forui.dart';
-import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_person_family_notifier.dart';
-import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_person_notifier.dart';
+import 'package:forui_base/features/app/presentation/screens/cctv/person/notifier/app_cctv_person_company_notifier.dart';
+import 'package:forui_base/features/app/presentation/screens/cctv/person/notifier/app_cctv_person_family_notifier.dart';
+import 'package:forui_base/features/app/presentation/screens/cctv/person/notifier/app_cctv_person_gojek_notifier.dart';
+import 'package:forui_base/features/app/presentation/screens/cctv/person/notifier/app_cctv_person_notifier.dart';
+import 'package:forui_base/features/app/presentation/screens/cctv/person/notifier/app_cctv_person_phone_notifier.dart';
+import 'package:forui_base/features/app/presentation/screens/cctv/person/notifier/app_cctv_person_pln_notifier.dart';
+import 'package:forui_base/features/app/presentation/screens/cctv/person/notifier/app_cctv_person_vehicle_notifier.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_province_notifier.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_query_notifier.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_resident_notifier.dart';
@@ -11,7 +16,7 @@ import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cc
 import 'package:forui_base/router.dart';
 import 'package:forui_base/shared/data/models/api_cctv/family_path_params.dart';
 import 'package:forui_base/shared/data/models/api_cctv/resident.dart';
-import 'package:forui_base/shared/presentation/widgets/c_no_item_infinite_page.dart';
+// import 'package:forui_base/shared/presentation/widgets/c_no_item_infinite_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -29,10 +34,18 @@ final pagingControllerProvider =
       ref.keepAlive(); // ini akan mencegah dispose otomatis
 
       final controller = PagingController<int, Resident>(
-        getNextPageKey: (state) =>
-            state.lastPageIsEmpty ? null : state.nextIntPageKey,
+        getNextPageKey: (state) {
+          return state.lastPageIsEmpty ? null : state.nextIntPageKey;
+        },
         fetchPage: (pageKey) async {
           final int start = (pageKey - 1) * 5;
+
+          final shouldStopFetching =
+              (ref.read(appCctvResidentNotifierProvider).value?.data?.length ??
+                  5) <
+              5;
+
+          if (shouldStopFetching) return [];
 
           await ref
               .read(appCctvResidentNotifierProvider.notifier)
@@ -120,11 +133,29 @@ class _AppCctvScreenState extends ConsumerState<AppCctvScreen>
                             ),
                           );
 
+                      ref
+                          .read(appCctvPersonPhoneNotifierProvider.notifier)
+                          .perform(item.id.toString());
+
+                      ref
+                          .read(appCctvPersonGojekNotifierProvider.notifier)
+                          .perform(item.id.toString());
+
+                      ref
+                          .read(appCctvPersonPlnNotifierProvider.notifier)
+                          .perform(item.id.toString());
+
+                      ref
+                          .read(appCctvPersonVehicleNotifierProvider.notifier)
+                          .perform(item.id.toString());
+
+                      ref
+                          .read(appCctvPersonCompanyNotifierProvider.notifier)
+                          .perform(item.id.toString());
+
                       context.pushNamed(RouteName.appCctvPerson.name);
                     },
                   ),
-                  noItemsFoundIndicatorBuilder: (context) =>
-                      CNoItemInfinitePage(),
                   firstPageProgressIndicatorBuilder: (context) =>
                       AppCctvResidentTileSkeletonizer(),
                   newPageProgressIndicatorBuilder: (context) =>

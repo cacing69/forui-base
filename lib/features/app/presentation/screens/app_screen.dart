@@ -26,8 +26,8 @@ class _AppScreenState extends State<AppScreen> {
         // ],
       ),
       child: GridView.count(
-        crossAxisCount: 2,
-        childAspectRatio: 9 / 10,
+        crossAxisCount: 3,
+        childAspectRatio: 2 / 3,
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
         children: [

@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Vehicle {
 
- String? get address; String? get color; String? get engineNumber; String? get fuel; String? get dueDate; String? get vehicleRegistrationDate; int? get paymentSamsat; String? get vehicleCategoryName; String? get ownerName; String? get registrationDate; String? get model; String? get cylinder; String? get vin; String? get id; String? get brand; int? get manufacturer;
+ String? get address; String? get color; String? get engineNumber; String? get fuel; String? get dueDate; String? get vehicleRegistrationDate; int? get paymentSamsat; String? get vehicleCategoryName; String? get ownerName; String? get registrationDate; String? get model; int? get cylinder; String? get vin; String? get id; String? get brand; int? get manufacturer;
 /// Create a copy of Vehicle
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $VehicleCopyWith<$Res>  {
   factory $VehicleCopyWith(Vehicle value, $Res Function(Vehicle) _then) = _$VehicleCopyWithImpl;
 @useResult
 $Res call({
- String? address, String? color, String? engineNumber, String? fuel, String? dueDate, String? vehicleRegistrationDate, int? paymentSamsat, String? vehicleCategoryName, String? ownerName, String? registrationDate, String? model, String? cylinder, String? vin, String? id, String? brand, int? manufacturer
+ String? address, String? color, String? engineNumber, String? fuel, String? dueDate, String? vehicleRegistrationDate, int? paymentSamsat, String? vehicleCategoryName, String? ownerName, String? registrationDate, String? model, int? cylinder, String? vin, String? id, String? brand, int? manufacturer
 });
 
 
@@ -79,7 +79,7 @@ as String?,ownerName: freezed == ownerName ? _self.ownerName : ownerName // igno
 as String?,registrationDate: freezed == registrationDate ? _self.registrationDate : registrationDate // ignore: cast_nullable_to_non_nullable
 as String?,model: freezed == model ? _self.model : model // ignore: cast_nullable_to_non_nullable
 as String?,cylinder: freezed == cylinder ? _self.cylinder : cylinder // ignore: cast_nullable_to_non_nullable
-as String?,vin: freezed == vin ? _self.vin : vin // ignore: cast_nullable_to_non_nullable
+as int?,vin: freezed == vin ? _self.vin : vin // ignore: cast_nullable_to_non_nullable
 as String?,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,brand: freezed == brand ? _self.brand : brand // ignore: cast_nullable_to_non_nullable
 as String?,manufacturer: freezed == manufacturer ? _self.manufacturer : manufacturer // ignore: cast_nullable_to_non_nullable
@@ -168,7 +168,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? address,  String? color,  String? engineNumber,  String? fuel,  String? dueDate,  String? vehicleRegistrationDate,  int? paymentSamsat,  String? vehicleCategoryName,  String? ownerName,  String? registrationDate,  String? model,  String? cylinder,  String? vin,  String? id,  String? brand,  int? manufacturer)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? address,  String? color,  String? engineNumber,  String? fuel,  String? dueDate,  String? vehicleRegistrationDate,  int? paymentSamsat,  String? vehicleCategoryName,  String? ownerName,  String? registrationDate,  String? model,  int? cylinder,  String? vin,  String? id,  String? brand,  int? manufacturer)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Vehicle() when $default != null:
 return $default(_that.address,_that.color,_that.engineNumber,_that.fuel,_that.dueDate,_that.vehicleRegistrationDate,_that.paymentSamsat,_that.vehicleCategoryName,_that.ownerName,_that.registrationDate,_that.model,_that.cylinder,_that.vin,_that.id,_that.brand,_that.manufacturer);case _:
@@ -189,7 +189,7 @@ return $default(_that.address,_that.color,_that.engineNumber,_that.fuel,_that.du
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? address,  String? color,  String? engineNumber,  String? fuel,  String? dueDate,  String? vehicleRegistrationDate,  int? paymentSamsat,  String? vehicleCategoryName,  String? ownerName,  String? registrationDate,  String? model,  String? cylinder,  String? vin,  String? id,  String? brand,  int? manufacturer)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? address,  String? color,  String? engineNumber,  String? fuel,  String? dueDate,  String? vehicleRegistrationDate,  int? paymentSamsat,  String? vehicleCategoryName,  String? ownerName,  String? registrationDate,  String? model,  int? cylinder,  String? vin,  String? id,  String? brand,  int? manufacturer)  $default,) {final _that = this;
 switch (_that) {
 case _Vehicle():
 return $default(_that.address,_that.color,_that.engineNumber,_that.fuel,_that.dueDate,_that.vehicleRegistrationDate,_that.paymentSamsat,_that.vehicleCategoryName,_that.ownerName,_that.registrationDate,_that.model,_that.cylinder,_that.vin,_that.id,_that.brand,_that.manufacturer);case _:
@@ -209,7 +209,7 @@ return $default(_that.address,_that.color,_that.engineNumber,_that.fuel,_that.du
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? address,  String? color,  String? engineNumber,  String? fuel,  String? dueDate,  String? vehicleRegistrationDate,  int? paymentSamsat,  String? vehicleCategoryName,  String? ownerName,  String? registrationDate,  String? model,  String? cylinder,  String? vin,  String? id,  String? brand,  int? manufacturer)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? address,  String? color,  String? engineNumber,  String? fuel,  String? dueDate,  String? vehicleRegistrationDate,  int? paymentSamsat,  String? vehicleCategoryName,  String? ownerName,  String? registrationDate,  String? model,  int? cylinder,  String? vin,  String? id,  String? brand,  int? manufacturer)?  $default,) {final _that = this;
 switch (_that) {
 case _Vehicle() when $default != null:
 return $default(_that.address,_that.color,_that.engineNumber,_that.fuel,_that.dueDate,_that.vehicleRegistrationDate,_that.paymentSamsat,_that.vehicleCategoryName,_that.ownerName,_that.registrationDate,_that.model,_that.cylinder,_that.vin,_that.id,_that.brand,_that.manufacturer);case _:
@@ -238,7 +238,7 @@ class _Vehicle implements Vehicle {
 @override@JsonKey() final  String? ownerName;
 @override@JsonKey() final  String? registrationDate;
 @override@JsonKey() final  String? model;
-@override@JsonKey() final  String? cylinder;
+@override@JsonKey() final  int? cylinder;
 @override@JsonKey() final  String? vin;
 @override@JsonKey() final  String? id;
 @override@JsonKey() final  String? brand;
@@ -277,7 +277,7 @@ abstract mixin class _$VehicleCopyWith<$Res> implements $VehicleCopyWith<$Res> {
   factory _$VehicleCopyWith(_Vehicle value, $Res Function(_Vehicle) _then) = __$VehicleCopyWithImpl;
 @override @useResult
 $Res call({
- String? address, String? color, String? engineNumber, String? fuel, String? dueDate, String? vehicleRegistrationDate, int? paymentSamsat, String? vehicleCategoryName, String? ownerName, String? registrationDate, String? model, String? cylinder, String? vin, String? id, String? brand, int? manufacturer
+ String? address, String? color, String? engineNumber, String? fuel, String? dueDate, String? vehicleRegistrationDate, int? paymentSamsat, String? vehicleCategoryName, String? ownerName, String? registrationDate, String? model, int? cylinder, String? vin, String? id, String? brand, int? manufacturer
 });
 
 
@@ -308,7 +308,7 @@ as String?,ownerName: freezed == ownerName ? _self.ownerName : ownerName // igno
 as String?,registrationDate: freezed == registrationDate ? _self.registrationDate : registrationDate // ignore: cast_nullable_to_non_nullable
 as String?,model: freezed == model ? _self.model : model // ignore: cast_nullable_to_non_nullable
 as String?,cylinder: freezed == cylinder ? _self.cylinder : cylinder // ignore: cast_nullable_to_non_nullable
-as String?,vin: freezed == vin ? _self.vin : vin // ignore: cast_nullable_to_non_nullable
+as int?,vin: freezed == vin ? _self.vin : vin // ignore: cast_nullable_to_non_nullable
 as String?,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,brand: freezed == brand ? _self.brand : brand // ignore: cast_nullable_to_non_nullable
 as String?,manufacturer: freezed == manufacturer ? _self.manufacturer : manufacturer // ignore: cast_nullable_to_non_nullable

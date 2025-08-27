@@ -9,6 +9,18 @@ final List<TileData> implementBacklogsStatic = [
     status: false,
   ),
   TileData(
+    icon: FIcons.fingerprint,
+    title: 'Push Notification',
+    subtitle: "Realtime push notification",
+    status: false,
+  ),
+  TileData(
+    icon: FIcons.fingerprint,
+    title: 'Websocket implement',
+    subtitle: "Realtime push notification",
+    status: false,
+  ),
+  TileData(
     icon: FIcons.text,
     title: 'Rich text editor (WYSIWYG)',
     subtitle: 'flutter_quill',
@@ -49,12 +61,6 @@ final List<TileData> implementBacklogsStatic = [
     icon: FIcons.play,
     title: 'Flutter Animate',
     subtitle: 'https://pub.dev/packages/flutter_animate',
-    status: false,
-  ),
-  TileData(
-    icon: FIcons.galleryHorizontal,
-    title: 'Infinite Scroll Pagination',
-    subtitle: 'https://pub.dev/packages/infinite_scroll_pagination',
     status: false,
   ),
   TileData(
@@ -625,7 +631,22 @@ final List<TileData> implementBacklogsStatic = [
   ),
 ];
 
+final doneBacklogsStatic = [
+  TileData(
+    icon: FIcons.galleryHorizontal,
+    title: 'Infinite Scroll Pagination',
+    subtitle: 'https://pub.dev/packages/infinite_scroll_pagination',
+    status: false,
+  ),
+];
+
 final List<TileData> checkBacklogsStatic = [
+  TileData(
+    icon: FIcons.eye,
+    title: 'Flutter Tailwind UI',
+    subtitle: 'https://github.com/tazatechnology/flutter-tailwind-ui',
+    status: false,
+  ),
   TileData(
     icon: FIcons.eye,
     title: 'Yaru',
@@ -666,6 +687,16 @@ final List<TileData> checkBacklogsStatic = [
     icon: FIcons.eye,
     title: 'NeuBrutal Kit',
     subtitle: 'https://github.com/Mani821/neubrutal_kit',
+    status: false,
+  ),
+];
+
+final List<TileData> librariesBacklogsStatic = [
+  TileData(
+    icon: FIcons.box,
+    title: 'Lorem',
+    subtitle:
+        'Ullamco dolor ut dolor do reprehenderit aliqua ad ea ex qui ea nostrud cillum.',
     status: false,
   ),
 ];

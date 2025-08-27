@@ -39,8 +39,6 @@ class _ApplicationState extends ConsumerState<Application> {
   void initState() {
     super.initState();
 
-    debugPrint('API URL: ${Env.apiAppCctvDomain}');
-
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final brightness = MediaQuery.of(context).platformBrightness;
       final notifier = ref.read(configAppNotifierProvider.notifier);

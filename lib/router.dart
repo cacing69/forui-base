@@ -1,4 +1,4 @@
-import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_person_screen.dart';
+import 'package:forui_base/features/app/presentation/screens/cctv/person/app_cctv_person_screen.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_screen.dart';
 import 'package:forui_base/features/block/presentation/screens/block/backlog/block_backlog_screen.dart';
 import 'package:forui_base/features/block/presentation/screens/block/image_bas64_viewer/block_image_base64_viewer_screen.dart';

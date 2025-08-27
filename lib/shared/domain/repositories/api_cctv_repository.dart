@@ -8,6 +8,7 @@ import 'package:forui_base/shared/data/models/api_cctv/family_path_params.dart';
 import 'package:forui_base/shared/data/models/api_cctv/gojek.dart';
 import 'package:forui_base/shared/data/models/api_cctv/person.dart';
 import 'package:forui_base/shared/data/models/api_cctv/phone.dart';
+import 'package:forui_base/shared/data/models/api_cctv/pln.dart';
 import 'package:forui_base/shared/data/models/api_cctv/province.dart';
 import 'package:forui_base/shared/data/models/api_cctv/resident.dart';
 import 'package:forui_base/shared/data/models/api_cctv/resident_query.dart';
@@ -31,6 +32,7 @@ abstract class ApiCctvRepository {
   );
   Future<Either<Failure, TResponse<List<Phone>>>> phone(String personId);
   Future<Either<Failure, TResponse<List<Gojek>>>> gojek(String personId);
+  Future<Either<Failure, TResponse<List<Pln>>>> pln(String personId);
   Future<Either<Failure, TResponse<List<Vehicle>>>> vehicle(String personId);
   Future<Either<Failure, TResponse<List<Company>>>> company(String personId);
 }

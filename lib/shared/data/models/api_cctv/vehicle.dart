@@ -17,7 +17,7 @@ abstract class Vehicle with _$Vehicle {
     @Default(null) String? ownerName,
     @Default(null) String? registrationDate,
     @Default(null) String? model,
-    @Default(null) String? cylinder,
+    @Default(null) int? cylinder,
     @Default(null) String? vin,
     @Default(null) String? id,
     @Default(null) String? brand,

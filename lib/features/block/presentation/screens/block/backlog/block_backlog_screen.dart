@@ -30,52 +30,80 @@ class _BlockBacklogScreenState extends State<BlockBacklogScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
+            FTabs(
               children: [
-                Gap(15),
-                Text(
-                  "Need to Implement",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-            FItemGroup(
-              divider: FItemDivider.indented,
-              children: [
-                ...implementBacklogsStatic.map(
-                  (e) => FItem(
-                    prefix: Icon(e.icon),
-                    title: Text(e.title!),
-                    subtitle: Text(e.subtitle ?? ""),
-                    suffix: (e.status ?? false)
-                        ? Icon(FIcons.gitPullRequestArrow)
-                        : Icon(FIcons.gitPullRequestDraft),
-                    onPress: () {},
+                FTabEntry(
+                  label: Icon(FIcons.layoutList),
+                  child: FItemGroup(
+                    divider: FItemDivider.indented,
+                    children: [
+                      ...implementBacklogsStatic.map(
+                        (e) => FItem(
+                          prefix: Icon(e.icon),
+                          title: Text(e.title!),
+                          subtitle: Text(e.subtitle ?? ""),
+                          suffix: (e.status ?? false)
+                              ? Icon(FIcons.gitPullRequestArrow)
+                              : Icon(FIcons.gitPullRequestDraft),
+                          onPress: () {},
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
-            Row(
-              children: [
-                Gap(15),
-                Text(
-                  "Need to Check",
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                FTabEntry(
+                  label: Icon(FIcons.listChecks),
+                  child: FItemGroup(
+                    divider: FItemDivider.indented,
+                    children: [
+                      ...doneBacklogsStatic.map(
+                        (e) => FItem(
+                          prefix: Icon(e.icon),
+                          title: Text(e.title!),
+                          subtitle: Text(e.subtitle ?? ""),
+                          suffix: Icon(FIcons.gitPullRequestArrow),
+                          // onPress: () {},
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ],
-            ),
-            FItemGroup(
-              divider: FItemDivider.indented,
-              children: [
-                ...checkBacklogsStatic.map(
-                  (e) => FItem(
-                    prefix: Icon(e.icon),
-                    title: Text(e.title!),
-                    subtitle: Text(e.subtitle!),
-                    suffix: (e.status ?? false)
-                        ? Icon(FIcons.gitPullRequestArrow)
-                        : Icon(FIcons.gitPullRequestDraft),
-                    onPress: () {},
+                FTabEntry(
+                  label: Icon(FIcons.view),
+                  child: FItemGroup(
+                    divider: FItemDivider.indented,
+                    children: [
+                      ...checkBacklogsStatic.map(
+                        (e) => FItem(
+                          prefix: Icon(e.icon),
+                          title: Text(e.title!),
+                          subtitle: Text(e.subtitle!),
+                          suffix: (e.status ?? false)
+                              ? Icon(FIcons.gitPullRequestArrow)
+                              : Icon(FIcons.gitPullRequestDraft),
+                          onPress: () {},
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                FTabEntry(
+                  label: Icon(FIcons.boxes),
+                  child: FItemGroup(
+                    divider: FItemDivider.indented,
+                    children: [
+                      ...librariesBacklogsStatic.map(
+                        (e) => FItem(
+                          prefix: Icon(e.icon),
+                          title: Text(e.title!),
+                          subtitle: Text(e.subtitle!),
+                          suffix: (e.status ?? false)
+                              ? Icon(FIcons.gitPullRequestArrow)
+                              : Icon(FIcons.gitPullRequestDraft),
+                          onPress: () {},
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],

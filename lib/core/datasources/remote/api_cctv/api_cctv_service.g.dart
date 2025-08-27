@@ -130,7 +130,7 @@ class _ApiCctvService implements ApiCctvService {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/{personIdd}/phone.json',
+            '/${personId}/phone.json',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -164,7 +164,7 @@ class _ApiCctvService implements ApiCctvService {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/{personIdd}/pln.json',
+            '/${personId}/pln.json',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -198,7 +198,7 @@ class _ApiCctvService implements ApiCctvService {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/{personIdd}/gojek.json',
+            '/${personId}/gojek.json',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -232,7 +232,7 @@ class _ApiCctvService implements ApiCctvService {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/{personIdd}/vehicle.json',
+            '/${personId}/vehicle.json',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -268,7 +268,7 @@ class _ApiCctvService implements ApiCctvService {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/{personIdd}/company.json',
+            '/${personId}/company.json',
             queryParameters: queryParameters,
             data: _data,
           )

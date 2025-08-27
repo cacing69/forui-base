@@ -10,6 +10,7 @@ import 'package:forui_base/shared/data/models/api_cctv/family_path_params.dart';
 import 'package:forui_base/shared/data/models/api_cctv/gojek.dart';
 import 'package:forui_base/shared/data/models/api_cctv/person.dart';
 import 'package:forui_base/shared/data/models/api_cctv/phone.dart';
+import 'package:forui_base/shared/data/models/api_cctv/pln.dart';
 import 'package:forui_base/shared/data/models/api_cctv/province.dart';
 import 'package:forui_base/shared/data/models/api_cctv/resident.dart';
 import 'package:forui_base/shared/data/models/api_cctv/resident_query.dart';
@@ -190,6 +191,20 @@ class ApiCctvRepositoryImpl implements ApiCctvRepository {
   ) async {
     try {
       final response = await service.village(parentId);
+      return Right(response);
+    } on Exception catch (e) {
+      return Left(errorWrapper(e));
+    } catch (e) {
+      return Left(
+        ServerFailure(message: 'An unexpected error occurred: ${e.toString()}'),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, TResponse<List<Pln>>>> pln(String personId) async {
+    try {
+      final response = await service.pln(personId);
       return Right(response);
     } on Exception catch (e) {
       return Left(errorWrapper(e));
