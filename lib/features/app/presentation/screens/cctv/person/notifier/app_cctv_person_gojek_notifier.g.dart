@@ -7,8 +7,7 @@ part of 'app_cctv_person_gojek_notifier.dart';
 // **************************************************************************
 
 @ProviderFor(AppCctvPersonGojekNotifier)
-const appCctvPersonGojekNotifierProvider =
-    AppCctvPersonGojekNotifierProvider._();
+const appCctvPersonGojekNotifierProvider = AppCctvPersonGojekNotifierFamily._();
 
 final class AppCctvPersonGojekNotifierProvider
     extends
@@ -16,19 +15,26 @@ final class AppCctvPersonGojekNotifierProvider
           AppCctvPersonGojekNotifier,
           AsyncValue<TResponse<List<Gojek>>?>
         > {
-  const AppCctvPersonGojekNotifierProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'appCctvPersonGojekNotifierProvider',
-        isAutoDispose: false,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
+  const AppCctvPersonGojekNotifierProvider._({
+    required AppCctvPersonGojekNotifierFamily super.from,
+    required String super.argument,
+  }) : super(
+         retry: null,
+         name: r'appCctvPersonGojekNotifierProvider',
+         isAutoDispose: false,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
 
   @override
   String debugGetCreateSourceHash() => _$appCctvPersonGojekNotifierHash();
+
+  @override
+  String toString() {
+    return r'appCctvPersonGojekNotifierProvider'
+        ''
+        '($argument)';
+  }
 
   @$internal
   @override
@@ -43,18 +49,57 @@ final class AppCctvPersonGojekNotifierProvider
       ),
     );
   }
+
+  @override
+  bool operator ==(Object other) {
+    return other is AppCctvPersonGojekNotifierProvider &&
+        other.argument == argument;
+  }
+
+  @override
+  int get hashCode {
+    return argument.hashCode;
+  }
 }
 
 String _$appCctvPersonGojekNotifierHash() =>
-    r'b88dbc0eb37243d7292f5116bcb14545632fcd8f';
+    r'0965c02f05d392e494dfe4c4fc0969a2934463ef';
+
+final class AppCctvPersonGojekNotifierFamily extends $Family
+    with
+        $ClassFamilyOverride<
+          AppCctvPersonGojekNotifier,
+          AsyncValue<TResponse<List<Gojek>>?>,
+          AsyncValue<TResponse<List<Gojek>>?>,
+          AsyncValue<TResponse<List<Gojek>>?>,
+          String
+        > {
+  const AppCctvPersonGojekNotifierFamily._()
+    : super(
+        retry: null,
+        name: r'appCctvPersonGojekNotifierProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: false,
+      );
+
+  AppCctvPersonGojekNotifierProvider call(String personId) =>
+      AppCctvPersonGojekNotifierProvider._(argument: personId, from: this);
+
+  @override
+  String toString() => r'appCctvPersonGojekNotifierProvider';
+}
 
 abstract class _$AppCctvPersonGojekNotifier
     extends $Notifier<AsyncValue<TResponse<List<Gojek>>?>> {
-  AsyncValue<TResponse<List<Gojek>>?> build();
+  late final _$args = ref.$arg as String;
+  String get personId => _$args;
+
+  AsyncValue<TResponse<List<Gojek>>?> build(String personId);
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
+    final created = build(_$args);
     final ref =
         this.ref
             as $Ref<

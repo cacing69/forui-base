@@ -28,7 +28,7 @@ class _AppScreenState extends State<AppScreen> {
               context.pushNamed(RouteName.appCctv.name);
             },
             child: Container(
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(5),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 border: BoxBorder.all(

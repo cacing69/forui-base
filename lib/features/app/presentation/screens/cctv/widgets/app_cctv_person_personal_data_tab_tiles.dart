@@ -33,10 +33,10 @@ List<FTile> getAppCctvPersonPersonalDataTabTiles({
     FTile(
       prefix: Icon(FIcons.wholeWord),
       title: const Text('Name'),
-      details: Text(person.name!),
+      details: Text(person.name ?? "-"),
       suffix: Icon(FIcons.copy),
       onPress: () async {
-        await Clipboard.setData(ClipboardData(text: person.name!));
+        await Clipboard.setData(ClipboardData(text: person.name ?? "-"));
       },
     ),
     FTile(
@@ -67,19 +67,19 @@ List<FTile> getAppCctvPersonPersonalDataTabTiles({
     FTile(
       prefix: Icon(FIcons.castle),
       title: const Text('PoB'),
-      details: Text(person.placeOfBirth!),
+      details: Text(person.placeOfBirth ?? "-"),
     ),
     FTile(
       prefix: Icon(FIcons.calendar),
       title: const Text('DoB'),
-      details: Text(person.dateOfBirth!),
+      details: Text(person.dateOfBirth ?? "-"),
     ),
     FTile(
       prefix: Icon(FIcons.info),
       title: const Text('Age'),
       details: Builder(
         builder: (context) {
-          final Jiffy dob = Jiffy.parse(person.dateOfBirth!);
+          final Jiffy dob = Jiffy.parse(person.dateOfBirth ?? "-");
           return Text("${now.diff(dob, unit: Unit.year)}yo");
         },
       ),

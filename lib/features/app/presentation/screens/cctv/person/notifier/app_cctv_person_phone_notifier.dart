@@ -8,7 +8,7 @@ part 'app_cctv_person_phone_notifier.g.dart';
 @Riverpod(keepAlive: true)
 class AppCctvPersonPhoneNotifier extends _$AppCctvPersonPhoneNotifier {
   @override
-  AsyncValue<TResponse<List<Phone>>?> build() {
+  AsyncValue<TResponse<List<Phone>>?> build(String personId) {
     return AsyncValue.data(
       TResponse<List<Phone>>(status: 'success', message: null, data: null),
     );

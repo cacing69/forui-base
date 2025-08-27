@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:forui/forui.dart';
+import 'package:forui_base/features/app/presentation/screens/cctv/person/app_cctv_person_skeletonizer.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/person/notifier/app_cctv_person_company_notifier.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/person/notifier/app_cctv_person_family_notifier.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/person/notifier/app_cctv_person_gojek_notifier.dart';
@@ -19,7 +21,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:jiffy/jiffy.dart';
 
 class AppCctvPersonScreen extends ConsumerStatefulWidget {
-  const AppCctvPersonScreen({super.key});
+  final String personId;
+
+  const AppCctvPersonScreen({super.key, required this.personId});
 
   @override
   ConsumerState<AppCctvPersonScreen> createState() =>
@@ -33,13 +37,26 @@ class _AppCctvPersonScreenState extends ConsumerState<AppCctvPersonScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final asyncPersonState = ref.watch(appCctvPersonNotifierProvider);
+    final asyncPersonState = ref.watch(
+      appCctvPersonNotifierProvider(widget.personId),
+    );
     final asyncFamilyState = ref.watch(appCctvPersonFamilyNotifierProvider);
-    final asyncPhoneState = ref.watch(appCctvPersonPhoneNotifierProvider);
-    final asyncGojekState = ref.watch(appCctvPersonGojekNotifierProvider);
-    final asyncPlnState = ref.watch(appCctvPersonPlnNotifierProvider);
-    final asyncVehicleState = ref.watch(appCctvPersonVehicleNotifierProvider);
-    final asyncCompanyState = ref.watch(appCctvPersonCompanyNotifierProvider);
+
+    final asyncPhoneState = ref.watch(
+      appCctvPersonPhoneNotifierProvider(widget.personId),
+    );
+    final asyncGojekState = ref.watch(
+      appCctvPersonGojekNotifierProvider(widget.personId),
+    );
+    final asyncPlnState = ref.watch(
+      appCctvPersonPlnNotifierProvider(widget.personId),
+    );
+    final asyncVehicleState = ref.watch(
+      appCctvPersonVehicleNotifierProvider(widget.personId),
+    );
+    final asyncCompanyState = ref.watch(
+      appCctvPersonCompanyNotifierProvider(widget.personId),
+    );
 
     return FScaffold(
       header: FHeader.nested(
@@ -61,34 +78,45 @@ class _AppCctvPersonScreenState extends ConsumerState<AppCctvPersonScreen> {
                 Center(
                   child: GestureDetector(
                     onTap: () {
-                      if (res?.data?.photo != null) {
+                      final photo = res?.data?.photo;
+                      if (photo != null && photo.isNotEmpty) {
                         context.pushNamed(
                           RouteName.fullScreenImageBase64Viewer.name,
-                          queryParameters: {"base64": res!.data!.photo!},
+                          queryParameters: {"base64": photo},
                         );
                       }
                     },
                     child: SizedBox(
                       height: 180,
                       width: 140,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          image: DecorationImage(
-                            image: res?.data?.photo != null
-                                ? MemoryImage(base64Decode(res!.data!.photo!))
-                                : AssetImage("assets/images/avatar.png"),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
+                      child: Builder(
+                        builder: (context) {
+                          final photo = res?.data?.photo;
+                          // image:
+
+                          return Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              image: DecorationImage(
+                                image: (photo != null && photo.isNotEmpty)
+                                    ? MemoryImage(base64Decode(photo))
+                                    : const AssetImage(
+                                            "assets/images/avatar.png",
+                                          )
+                                          as ImageProvider,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          );
+                        },
                       ),
                     ),
                   ),
                 ),
                 Gap(10),
-                FBadge(child: Text(res!.data!.id.toString())),
+                FBadge(child: Text(res?.data?.id.toString() ?? "-")),
                 Text(
-                  res.data!.name!,
+                  res?.data?.name ?? "-",
                   style: context.theme.typography.lg.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -109,7 +137,7 @@ class _AppCctvPersonScreenState extends ConsumerState<AppCctvPersonScreen> {
                         ),
                         children: getAppCctvPersonPersonalDataTabTiles(
                           context: context,
-                          person: res.data!,
+                          person: res?.data ?? Person(),
                           now: now,
                         ),
                       ),
@@ -150,10 +178,14 @@ class _AppCctvPersonScreenState extends ConsumerState<AppCctvPersonScreen> {
                                           Gap(3),
                                           Builder(
                                             builder: (context) {
+                                              final dobStr = fam.dateOfBirth;
+                                              if (dobStr == null ||
+                                                  dobStr.isEmpty) {
+                                                return const SizedBox.shrink();
+                                              }
                                               final Jiffy dob = Jiffy.parse(
-                                                fam.dateOfBirth!,
+                                                dobStr,
                                               );
-
                                               return Text(
                                                 "(${now.diff(dob, unit: Unit.year)}yo)",
                                               );
@@ -167,7 +199,62 @@ class _AppCctvPersonScreenState extends ConsumerState<AppCctvPersonScreen> {
                                       ),
                                     ],
                                   ),
-                                  onPress: () {},
+                                  onPress: () {
+                                    ref
+                                        .read(
+                                          appCctvPersonNotifierProvider(
+                                            fam.id.toString(),
+                                          ).notifier,
+                                        )
+                                        .perform(fam.id.toString());
+
+                                    ref
+                                        .read(
+                                          appCctvPersonPhoneNotifierProvider(
+                                            fam.id.toString(),
+                                          ).notifier,
+                                        )
+                                        .perform(fam.id.toString());
+
+                                    ref
+                                        .read(
+                                          appCctvPersonGojekNotifierProvider(
+                                            fam.id.toString(),
+                                          ).notifier,
+                                        )
+                                        .perform(fam.id.toString());
+
+                                    ref
+                                        .read(
+                                          appCctvPersonPlnNotifierProvider(
+                                            fam.id.toString(),
+                                          ).notifier,
+                                        )
+                                        .perform(fam.id.toString());
+
+                                    ref
+                                        .read(
+                                          appCctvPersonVehicleNotifierProvider(
+                                            fam.id.toString(),
+                                          ).notifier,
+                                        )
+                                        .perform(fam.id.toString());
+
+                                    ref
+                                        .read(
+                                          appCctvPersonCompanyNotifierProvider(
+                                            fam.id.toString(),
+                                          ).notifier,
+                                        )
+                                        .perform(fam.id.toString());
+
+                                    context.pushNamed(
+                                      RouteName.appCctvPerson.name,
+                                      pathParameters: {
+                                        "personId": fam.id.toString(),
+                                      },
+                                    );
+                                  },
                                 ),
                               ),
                             ];
@@ -199,10 +286,14 @@ class _AppCctvPersonScreenState extends ConsumerState<AppCctvPersonScreen> {
                                   (row) => FTile(
                                     title: Text(row.id?.toString() ?? "-"),
                                     prefix: Icon(FIcons.smartphone),
-                                    suffix: Icon(FIcons.chevronRight),
+                                    suffix: Icon(FIcons.copy),
                                     details: Text(row.providerName ?? "-"),
                                     subtitle: Text(row.registeredDate ?? "-"),
-                                    onPress: () {},
+                                    onPress: () async {
+                                      await Clipboard.setData(
+                                        ClipboardData(text: row.id.toString()),
+                                      );
+                                    },
                                   ),
                                 ),
                               ];
@@ -227,7 +318,7 @@ class _AppCctvPersonScreenState extends ConsumerState<AppCctvPersonScreen> {
                                   ];
                                 } else {
                                   return [
-                                    ...rows!.data!.map(
+                                    ...(rows?.data ?? []).map(
                                       (row) => FTile(
                                         title: Text(row.id?.toString() ?? "-"),
                                         prefix: Icon(FIcons.zap),
@@ -418,7 +509,8 @@ class _AppCctvPersonScreenState extends ConsumerState<AppCctvPersonScreen> {
             style: FAlertStyle.destructive(),
           );
         },
-        loading: () => Center(child: FProgress.circularIcon()),
+        // loading: () => Center(child: FProgress.circularIcon()),
+        loading: () => AppCctvPersonSkeletonizer(),
       ),
     );
   }

@@ -108,9 +108,21 @@ final router = GoRouter(
       builder: (context, state) => AppCctvScreen(),
     ),
     GoRoute(
-      path: '/app/cctv/person',
+      path: '/app/cctv/person/:personId',
       name: RouteName.appCctvPerson.name,
-      builder: (context, state) => AppCctvPersonScreen(),
+      builder: (context, state) {
+        debugPrint(
+          "state.pathParameters['personId']: ${state.pathParameters['personId']}",
+        );
+
+        if (state.pathParameters['personId'] == null) {
+          return Placeholder();
+        } else {
+          return AppCctvPersonScreen(
+            personId: state.pathParameters['personId'] ?? "",
+          );
+        }
+      },
     ),
     GoRoute(
       path: '/app/cctv/person/tab/family',

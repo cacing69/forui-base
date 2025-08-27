@@ -8,7 +8,7 @@ part 'app_cctv_person_gojek_notifier.g.dart';
 @Riverpod(keepAlive: true)
 class AppCctvPersonGojekNotifier extends _$AppCctvPersonGojekNotifier {
   @override
-  AsyncValue<TResponse<List<Gojek>>?> build() {
+  AsyncValue<TResponse<List<Gojek>>?> build(String personId) {
     return AsyncValue.data(
       TResponse<List<Gojek>>(status: 'success', message: null, data: null),
     );

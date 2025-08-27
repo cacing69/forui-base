@@ -7,7 +7,7 @@ part of 'app_cctv_person_pln_notifier.dart';
 // **************************************************************************
 
 @ProviderFor(AppCctvPersonPlnNotifier)
-const appCctvPersonPlnNotifierProvider = AppCctvPersonPlnNotifierProvider._();
+const appCctvPersonPlnNotifierProvider = AppCctvPersonPlnNotifierFamily._();
 
 final class AppCctvPersonPlnNotifierProvider
     extends
@@ -15,19 +15,26 @@ final class AppCctvPersonPlnNotifierProvider
           AppCctvPersonPlnNotifier,
           AsyncValue<TResponse<List<Pln>>?>
         > {
-  const AppCctvPersonPlnNotifierProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'appCctvPersonPlnNotifierProvider',
-        isAutoDispose: false,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
+  const AppCctvPersonPlnNotifierProvider._({
+    required AppCctvPersonPlnNotifierFamily super.from,
+    required String super.argument,
+  }) : super(
+         retry: null,
+         name: r'appCctvPersonPlnNotifierProvider',
+         isAutoDispose: false,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
 
   @override
   String debugGetCreateSourceHash() => _$appCctvPersonPlnNotifierHash();
+
+  @override
+  String toString() {
+    return r'appCctvPersonPlnNotifierProvider'
+        ''
+        '($argument)';
+  }
 
   @$internal
   @override
@@ -42,18 +49,57 @@ final class AppCctvPersonPlnNotifierProvider
       ),
     );
   }
+
+  @override
+  bool operator ==(Object other) {
+    return other is AppCctvPersonPlnNotifierProvider &&
+        other.argument == argument;
+  }
+
+  @override
+  int get hashCode {
+    return argument.hashCode;
+  }
 }
 
 String _$appCctvPersonPlnNotifierHash() =>
-    r'6f6a1f49c758a4f0f8bbedb0c3dab9baa86f2849';
+    r'f2f61805b95642f3280f212c2c639bd145b2d1e9';
+
+final class AppCctvPersonPlnNotifierFamily extends $Family
+    with
+        $ClassFamilyOverride<
+          AppCctvPersonPlnNotifier,
+          AsyncValue<TResponse<List<Pln>>?>,
+          AsyncValue<TResponse<List<Pln>>?>,
+          AsyncValue<TResponse<List<Pln>>?>,
+          String
+        > {
+  const AppCctvPersonPlnNotifierFamily._()
+    : super(
+        retry: null,
+        name: r'appCctvPersonPlnNotifierProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: false,
+      );
+
+  AppCctvPersonPlnNotifierProvider call(String personId) =>
+      AppCctvPersonPlnNotifierProvider._(argument: personId, from: this);
+
+  @override
+  String toString() => r'appCctvPersonPlnNotifierProvider';
+}
 
 abstract class _$AppCctvPersonPlnNotifier
     extends $Notifier<AsyncValue<TResponse<List<Pln>>?>> {
-  AsyncValue<TResponse<List<Pln>>?> build();
+  late final _$args = ref.$arg as String;
+  String get personId => _$args;
+
+  AsyncValue<TResponse<List<Pln>>?> build(String personId);
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
+    final created = build(_$args);
     final ref =
         this.ref
             as $Ref<

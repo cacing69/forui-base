@@ -91,6 +91,7 @@ class _AppCctvScreenFilterWidgetState
                                 "Choose a province from the list",
                               ),
                               controller: provinceController,
+                              clearable: true,
                               label: Text("Province"),
                               format: (s) => s.name!,
                               filter: (query) => query.isEmpty
@@ -162,6 +163,7 @@ class _AppCctvScreenFilterWidgetState
                                 "Choose a city or regency from the list",
                               ),
                               controller: cityController,
+                              clearable: true,
                               enabled: provinceController.value != null,
                               label: Text("City"),
                               format: (s) => s.name!,
@@ -226,6 +228,7 @@ class _AppCctvScreenFilterWidgetState
                             return FSelect<District>.searchBuilder(
                               hint: 'Select a District',
                               controller: districtController,
+                              clearable: true,
                               enabled:
                                   provinceController.value != null &&
                                   cityController.value != null,
@@ -295,6 +298,7 @@ class _AppCctvScreenFilterWidgetState
                                 "Choose a village from the list",
                               ),
                               controller: villageController,
+                              clearable: true,
                               label: Text("Village"),
                               format: (s) => s.name!,
                               filter: (query) => query.isEmpty
@@ -370,10 +374,9 @@ class _AppCctvScreenFilterWidgetState
                                 )
                                 .setSearch(value);
                           },
-                          description: Text(
-                            "Enter a search query (e.g., name, phone, ID)",
-                          ),
+                          description: Text("Type a search query"),
                         ),
+                        Gap(20),
                       ],
                     ),
                   ),

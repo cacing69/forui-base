@@ -150,7 +150,11 @@ class _AppCctvScreenState extends ConsumerState<AppCctvScreen>
                     now: now,
                     onPress: () {
                       ref
-                          .read(appCctvPersonNotifierProvider.notifier)
+                          .read(
+                            appCctvPersonNotifierProvider(
+                              item.id.toString(),
+                            ).notifier,
+                          )
                           .perform(item.id.toString());
 
                       ref
@@ -163,26 +167,49 @@ class _AppCctvScreenState extends ConsumerState<AppCctvScreen>
                           );
 
                       ref
-                          .read(appCctvPersonPhoneNotifierProvider.notifier)
+                          .read(
+                            appCctvPersonPhoneNotifierProvider(
+                              item.id.toString(),
+                            ).notifier,
+                          )
                           .perform(item.id.toString());
 
                       ref
-                          .read(appCctvPersonGojekNotifierProvider.notifier)
+                          .read(
+                            appCctvPersonGojekNotifierProvider(
+                              item.id.toString(),
+                            ).notifier,
+                          )
                           .perform(item.id.toString());
 
                       ref
-                          .read(appCctvPersonPlnNotifierProvider.notifier)
+                          .read(
+                            appCctvPersonPlnNotifierProvider(
+                              item.id.toString(),
+                            ).notifier,
+                          )
                           .perform(item.id.toString());
 
                       ref
-                          .read(appCctvPersonVehicleNotifierProvider.notifier)
+                          .read(
+                            appCctvPersonVehicleNotifierProvider(
+                              item.id.toString(),
+                            ).notifier,
+                          )
                           .perform(item.id.toString());
 
                       ref
-                          .read(appCctvPersonCompanyNotifierProvider.notifier)
+                          .read(
+                            appCctvPersonCompanyNotifierProvider(
+                              item.id.toString(),
+                            ).notifier,
+                          )
                           .perform(item.id.toString());
 
-                      context.pushNamed(RouteName.appCctvPerson.name);
+                      context.pushNamed(
+                        RouteName.appCctvPerson.name,
+                        pathParameters: {"personId": item.id.toString()},
+                      );
                     },
                   ),
                   firstPageProgressIndicatorBuilder: (context) =>

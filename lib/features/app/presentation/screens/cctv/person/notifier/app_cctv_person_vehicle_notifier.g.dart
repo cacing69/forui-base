@@ -8,7 +8,7 @@ part of 'app_cctv_person_vehicle_notifier.dart';
 
 @ProviderFor(AppCctvPersonVehicleNotifier)
 const appCctvPersonVehicleNotifierProvider =
-    AppCctvPersonVehicleNotifierProvider._();
+    AppCctvPersonVehicleNotifierFamily._();
 
 final class AppCctvPersonVehicleNotifierProvider
     extends
@@ -16,19 +16,26 @@ final class AppCctvPersonVehicleNotifierProvider
           AppCctvPersonVehicleNotifier,
           AsyncValue<TResponse<List<Vehicle>>?>
         > {
-  const AppCctvPersonVehicleNotifierProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'appCctvPersonVehicleNotifierProvider',
-        isAutoDispose: false,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
+  const AppCctvPersonVehicleNotifierProvider._({
+    required AppCctvPersonVehicleNotifierFamily super.from,
+    required String super.argument,
+  }) : super(
+         retry: null,
+         name: r'appCctvPersonVehicleNotifierProvider',
+         isAutoDispose: false,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
 
   @override
   String debugGetCreateSourceHash() => _$appCctvPersonVehicleNotifierHash();
+
+  @override
+  String toString() {
+    return r'appCctvPersonVehicleNotifierProvider'
+        ''
+        '($argument)';
+  }
 
   @$internal
   @override
@@ -42,18 +49,57 @@ final class AppCctvPersonVehicleNotifierProvider
           $SyncValueProvider<AsyncValue<TResponse<List<Vehicle>>?>>(value),
     );
   }
+
+  @override
+  bool operator ==(Object other) {
+    return other is AppCctvPersonVehicleNotifierProvider &&
+        other.argument == argument;
+  }
+
+  @override
+  int get hashCode {
+    return argument.hashCode;
+  }
 }
 
 String _$appCctvPersonVehicleNotifierHash() =>
-    r'067283a166052b839b1fbaa7ccd19f0f7c393429';
+    r'd1c2bd9a2f77edea5b94101916bce89ea6f3ffa4';
+
+final class AppCctvPersonVehicleNotifierFamily extends $Family
+    with
+        $ClassFamilyOverride<
+          AppCctvPersonVehicleNotifier,
+          AsyncValue<TResponse<List<Vehicle>>?>,
+          AsyncValue<TResponse<List<Vehicle>>?>,
+          AsyncValue<TResponse<List<Vehicle>>?>,
+          String
+        > {
+  const AppCctvPersonVehicleNotifierFamily._()
+    : super(
+        retry: null,
+        name: r'appCctvPersonVehicleNotifierProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: false,
+      );
+
+  AppCctvPersonVehicleNotifierProvider call(String personId) =>
+      AppCctvPersonVehicleNotifierProvider._(argument: personId, from: this);
+
+  @override
+  String toString() => r'appCctvPersonVehicleNotifierProvider';
+}
 
 abstract class _$AppCctvPersonVehicleNotifier
     extends $Notifier<AsyncValue<TResponse<List<Vehicle>>?>> {
-  AsyncValue<TResponse<List<Vehicle>>?> build();
+  late final _$args = ref.$arg as String;
+  String get personId => _$args;
+
+  AsyncValue<TResponse<List<Vehicle>>?> build(String personId);
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
+    final created = build(_$args);
     final ref =
         this.ref
             as $Ref<

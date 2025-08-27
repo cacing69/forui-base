@@ -8,7 +8,7 @@ part 'app_cctv_person_company_notifier.g.dart';
 @Riverpod(keepAlive: true)
 class AppCctvPersonCompanyNotifier extends _$AppCctvPersonCompanyNotifier {
   @override
-  AsyncValue<TResponse<List<Company>>?> build() {
+  AsyncValue<TResponse<List<Company>>?> build(String personId) {
     return AsyncValue.data(
       TResponse<List<Company>>(status: 'success', message: null, data: null),
     );
