@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:flutter/foundation.dart';
 import 'package:forui_base/core/datasources/remote/api_cctv/api_cctv_service.dart';
 import 'package:forui_base/core/errors/error_wrapper.dart';
 import 'package:forui_base/core/errors/failure.dart';
@@ -223,7 +224,9 @@ class ApiCctvRepositoryImpl implements ApiCctvRepository {
     try {
       final response = await service.companies(query);
       return Right(response);
-    } on Exception catch (e) {
+    } on Exception catch (e, strackTrace) {
+      debugPrint(e.toString());
+      debugPrintStack(stackTrace: strackTrace);
       return Left(errorWrapper(e));
     } catch (e) {
       return Left(

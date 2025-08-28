@@ -21,7 +21,8 @@ class AppCctvListCompanyNotifier extends _$AppCctvListCompanyNotifier {
 
     result.fold(
       (failure) {
-        debugPrint("failure.toString():${failure.message}");
+        debugPrint(failure.message);
+        debugPrintStack(stackTrace: StackTrace.current);
         state = AsyncValue.error(failure, StackTrace.current);
       },
       (data) {

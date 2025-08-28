@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:forui/forui.dart';
+import 'package:forui_base/core/constant/chart_colors.dart';
 import 'package:forui_base/features/app/presentation/screens/app_routes.dart';
 import 'package:forui_base/shared/data/models/api_cctv/company.dart';
 import 'package:forui_base/shared/domain/usecases/api_cctv/load_person_data_usecase_pack.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:fl_chart/fl_chart.dart';
 
 class AppCctvCompanyScreen extends ConsumerStatefulWidget {
   final Company company;
@@ -95,17 +97,14 @@ class _AppCctvCompanyScreenState extends ConsumerState<AppCctvCompanyScreen> {
                               widget.company.approvalNumber ?? "-",
                             ),
                           ),
-                          FTile(
-                            title: Text("WLKLP"),
-                            subtitle: Text(null ?? "-"),
-                          ),
+                          FTile(title: Text("WLKLP"), subtitle: Text("none")),
                           FTile(
                             title: Text("NPWP"),
                             subtitle: Text(widget.company.taxNumber ?? "-"),
                           ),
 
                           FTile(
-                            title: Text("OSS"),
+                            title: Text("Online Single Submission Number"),
                             subtitle: Text(
                               widget.company.onlineSingleSubmissionNumber ??
                                   "-",
@@ -113,11 +112,11 @@ class _AppCctvCompanyScreenState extends ConsumerState<AppCctvCompanyScreen> {
                           ),
                           FTile(
                             title: Text("Export"),
-                            subtitle: Text(null ?? "-"),
+                            subtitle: Text(widget.company.exportFlag ?? "-"),
                           ),
                           FTile(
                             title: Text("Import"),
-                            subtitle: Text(null ?? "-"),
+                            subtitle: Text(widget.company.importFlag ?? "-"),
                           ),
                           FTile(
                             title: Text("Business Actor Type"),
@@ -158,6 +157,69 @@ class _AppCctvCompanyScreenState extends ConsumerState<AppCctvCompanyScreen> {
                   label: Icon(FIcons.dollarSign),
                   child: Column(
                     children: [
+                      Gap(5),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          // Legend 1
+                          Row(
+                            children: [
+                              Container(
+                                width: 14,
+                                height: 14,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: ChartColors.dark[0],
+                                ),
+                              ),
+                              const SizedBox(width: 6),
+                              const Text("Domestic (60%)"),
+                            ],
+                          ),
+                          const Gap(20),
+
+                          // Legend 2
+                          Row(
+                            children: [
+                              Container(
+                                width: 14,
+                                height: 14,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: ChartColors.dark[1],
+                                ),
+                              ),
+                              const SizedBox(width: 6),
+                              const Text("Foreign (40%)"),
+                            ],
+                          ),
+                        ],
+                      ),
+                      AspectRatio(
+                        aspectRatio: 2.25,
+                        child: PieChart(
+                          PieChartData(
+                            borderData: FlBorderData(show: false),
+                            sectionsSpace: 2,
+                            centerSpaceRadius: 40,
+
+                            sections: [
+                              PieChartSectionData(
+                                value: 40,
+                                title: '40%',
+                                color: ChartColors.dark[0],
+                                radius: 30,
+                              ),
+                              PieChartSectionData(
+                                value: 60,
+                                title: '60%',
+                                color: ChartColors.dark[1],
+                                radius: 30,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                       FTileGroup(
                         label: const Text('Capital'),
                         children: [
@@ -270,7 +332,18 @@ class _AppCctvCompanyScreenState extends ConsumerState<AppCctvCompanyScreen> {
                                     (pic) => FTile(
                                       prefix: Icon(FIcons.user),
                                       title: Text(pic.name ?? "-"),
-                                      subtitle: Text(pic.id ?? "-"),
+                                      subtitle: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(pic.id ?? "-"),
+                                          Text(pic.position ?? "-"),
+                                          Text(pic.email ?? "-"),
+                                          Text(
+                                            "Foreign (${pic.foreignFlag ?? "-"})",
+                                          ),
+                                        ],
+                                      ),
                                       suffix: Icon(FIcons.chevronRight),
                                       onPress: () {
                                         final personId = pic.id.toString();
@@ -372,7 +445,6 @@ class _AppCctvCompanyScreenState extends ConsumerState<AppCctvCompanyScreen> {
                                           Text(legality.date ?? "-"),
                                         ],
                                       ),
-                                      suffix: Icon(FIcons.eye),
                                     ),
                                   )
                                   .toList()
@@ -400,7 +472,6 @@ class _AppCctvCompanyScreenState extends ConsumerState<AppCctvCompanyScreen> {
                                       title: Text(
                                         checklist.permissionName ?? "-",
                                       ),
-                                      suffix: Icon(FIcons.eye),
                                       subtitle: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,

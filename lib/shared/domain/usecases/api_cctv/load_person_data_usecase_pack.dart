@@ -65,13 +65,7 @@ class LoadPersonDataUsecasePack {
 
     if (loadFamily) {
       final String familyCardId =
-          ref
-              .read(appCctvPersonNotifierProvider(personId))
-              .value
-              ?.data
-              ?.familyCardId
-              .toString() ??
-          "";
+          "${ref.read(appCctvPersonNotifierProvider(personId)).value?.data?.familyCardId}";
 
       ref
           .read(appCctvPersonFamilyNotifierProvider.notifier)

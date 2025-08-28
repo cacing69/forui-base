@@ -25,8 +25,8 @@ class ReverseLatitudeLongitudeUsecase
   @override
   Future<Either<Failure, SearchResponse>> call(LatLng params) async {
     return await repository.reverse(
-      params.latitude.toString(),
-      params.longitude.toString(),
+      "${params.latitude}",
+      "${params.longitude}",
     );
   }
 }

@@ -45,7 +45,7 @@ final class AppCctvListCompanyNotifierProvider
 }
 
 String _$appCctvListCompanyNotifierHash() =>
-    r'ab482f9c8ee41875d3100f41fe24eb696b2e0da3';
+    r'3121a04dd21df70cd4a3f5aa8a4d04bd01e6c1ea';
 
 abstract class _$AppCctvListCompanyNotifier
     extends $Notifier<AsyncValue<TResponse<List<Company>>?>> {
