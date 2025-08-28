@@ -132,6 +132,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Language'**
   String get language;
+
+  /// No description provided for @previewAvatar.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview Avatar'**
+  String get previewAvatar;
+
+  /// No description provided for @confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get confirm;
+
+  /// No description provided for @personalizeYourExperience.
+  ///
+  /// In en, this message translates to:
+  /// **'Personalize your experience'**
+  String get personalizeYourExperience;
+
+  /// No description provided for @darkMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark Mode'**
+  String get darkMode;
+
+  /// No description provided for @lorem.
+  ///
+  /// In en, this message translates to:
+  /// **'Lorem'**
+  String get lorem;
+
+  /// No description provided for @uploadNewAvatar.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload New Avatar'**
+  String get uploadNewAvatar;
+
+  /// No description provided for @loremIpsumDolorSitAmet.
+  ///
+  /// In en, this message translates to:
+  /// **'Lorem ipsum dolor sit amet'**
+  String get loremIpsumDolorSitAmet;
+
+  /// No description provided for @none.
+  ///
+  /// In en, this message translates to:
+  /// **'None'**
+  String get none;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

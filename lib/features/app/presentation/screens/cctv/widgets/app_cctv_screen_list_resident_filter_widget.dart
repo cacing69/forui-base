@@ -1,12 +1,12 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:forui/forui.dart';
-import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_city_notifier.dart';
-import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_district_notifier.dart';
-import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_province_notifier.dart';
-import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_resident_notifier.dart';
+import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cctv_city_notifier.dart';
+import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cctv_district_notifier.dart';
+import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cctv_province_notifier.dart';
+import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_list_resident_notifier.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_list_resident_screen.dart';
-import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_village_notifier.dart';
+import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cctv_village_notifier.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cctv_screen_list_resident_filter_widget_notifier.dart';
 import 'package:forui_base/shared/data/models/api_cctv/city.dart';
 import 'package:forui_base/shared/data/models/api_cctv/district.dart';
@@ -460,7 +460,9 @@ class _AppCctvScreenListResidentFilterWidgetState
                           // widget.pagingController.refresh();
 
                           ref
-                              .read(appCctvResidentNotifierProvider.notifier)
+                              .read(
+                                appCctvListResidentNotifierProvider.notifier,
+                              )
                               .perform(
                                 ResidentQuery(
                                   provinceId:

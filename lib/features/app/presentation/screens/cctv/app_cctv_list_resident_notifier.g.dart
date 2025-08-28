@@ -1,37 +1,38 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'app_cctv_resident_notifier.dart';
+part of 'app_cctv_list_resident_notifier.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-@ProviderFor(AppCctvResidentNotifier)
-const appCctvResidentNotifierProvider = AppCctvResidentNotifierProvider._();
+@ProviderFor(AppCctvListResidentNotifier)
+const appCctvListResidentNotifierProvider =
+    AppCctvListResidentNotifierProvider._();
 
-final class AppCctvResidentNotifierProvider
+final class AppCctvListResidentNotifierProvider
     extends
         $NotifierProvider<
-          AppCctvResidentNotifier,
+          AppCctvListResidentNotifier,
           AsyncValue<TResponse<List<Resident>>?>
         > {
-  const AppCctvResidentNotifierProvider._()
+  const AppCctvListResidentNotifierProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'appCctvResidentNotifierProvider',
+        name: r'appCctvListResidentNotifierProvider',
         isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$appCctvResidentNotifierHash();
+  String debugGetCreateSourceHash() => _$appCctvListResidentNotifierHash();
 
   @$internal
   @override
-  AppCctvResidentNotifier create() => AppCctvResidentNotifier();
+  AppCctvListResidentNotifier create() => AppCctvListResidentNotifier();
 
   /// {@macro riverpod.override_with_value}
   Override overrideWithValue(AsyncValue<TResponse<List<Resident>>?> value) {
@@ -43,10 +44,10 @@ final class AppCctvResidentNotifierProvider
   }
 }
 
-String _$appCctvResidentNotifierHash() =>
-    r'7c64d946154e6b01ed3c79a7910905ad209f59f6';
+String _$appCctvListResidentNotifierHash() =>
+    r'd2c9da09383352e7b480cbd40e726669d4d02041';
 
-abstract class _$AppCctvResidentNotifier
+abstract class _$AppCctvListResidentNotifier
     extends $Notifier<AsyncValue<TResponse<List<Resident>>?>> {
   AsyncValue<TResponse<List<Resident>>?> build();
   @$mustCallSuper

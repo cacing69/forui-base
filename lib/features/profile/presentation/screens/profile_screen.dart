@@ -70,7 +70,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                         children: [
                           FItem(
                             prefix: const Icon(FIcons.eye),
-                            title: const Text('Preview Avatar'),
+                            title: Text(loc.previewAvatar),
                             onPress: () {
                               context.pushNamed(
                                 RouteName.fullScreenImageUrlViewer.name,
@@ -83,15 +83,13 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                           ),
                           FItem(
                             prefix: const Icon(FIcons.upload),
-                            title: const Text('Upload New Avatar'),
+                            title: Text(loc.uploadNewAvatar),
                             onPress: () => showFToast(
                               context: context,
                               icon: Icon(FIcons.info),
                               alignment: FToastAlignment.bottomCenter,
-                              title: const Text('Lorem'),
-                              description: const Text(
-                                'Lorem ipsum dolor sit amet',
-                              ),
+                              title: Text(loc.lorem),
+                              description: Text(loc.loremIpsumDolorSitAmet),
                               suffixBuilder: (context, entry) => IntrinsicHeight(
                                 child: FButton(
                                   style: context.theme.buttonStyles.primary
@@ -121,7 +119,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                                       )
                                       .call,
                                   onPress: entry.dismiss,
-                                  child: const Text('Confirm'),
+                                  child: Text(loc.confirm),
                                 ),
                               ),
                             ),
@@ -166,7 +164,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             ProfileSocialLinkWidget(),
             FTileGroup(
               label: Text(loc.settings),
-              description: const Text('Personalize your experience'),
+              description: Text(loc.personalizeYourExperience),
               children: [
                 FTile(
                   // prefix: Icon(FIcons.moon),
@@ -177,8 +175,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                         labelPadding: EdgeInsets.symmetric(horizontal: 8),
                       );
                     },
-                    label: const Text('Dark Mode'),
-                    semanticsLabel: 'Dark Mode',
+                    label: Text(loc.darkMode),
+                    semanticsLabel: loc.darkMode,
                     value:
                         ref.watch(configAppNotifierProvider).themeData ==
                         FThemes.zinc.dark,
@@ -211,12 +209,12 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                         LocaleApp.id => 'Indonesia',
                         LocaleApp.en => 'English',
                         LocaleApp.es => 'Español',
-                        _ => 'None',
+                        _ => loc.none,
                       }),
                 ),
                 FTile(
                   prefix: Icon(FIcons.code),
-                  title: Text("Lorem"),
+                  title: Text(loc.lorem),
                   // suffix: Icon(FIcons.chevronRight),
                   onPress: () {},
                 ),

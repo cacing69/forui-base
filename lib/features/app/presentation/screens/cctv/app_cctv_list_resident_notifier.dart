@@ -4,10 +4,10 @@ import 'package:forui_base/shared/data/models/api_cctv/t_response.dart';
 import 'package:forui_base/shared/domain/usecases/api_cctv/resident_usecase.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'app_cctv_resident_notifier.g.dart';
+part 'app_cctv_list_resident_notifier.g.dart';
 
 @Riverpod(keepAlive: true)
-class AppCctvResidentNotifier extends _$AppCctvResidentNotifier {
+class AppCctvListResidentNotifier extends _$AppCctvListResidentNotifier {
   @override
   AsyncValue<TResponse<List<Resident>>?> build() {
     // perform(ResidentQuery());

@@ -31,6 +31,9 @@ abstract class ApiCctvService {
   @GET("/resident.json")
   Future<TResponse<List<Resident>>> resident(@Queries() ResidentQuery params);
 
+  @GET("/company.json")
+  Future<TResponse<List<Company>>> companies(@Queries() ResidentQuery params);
+
   @GET("/{personId}/resident.json")
   Future<TResponse<Person>> person(@Path("personId") String personId);
 

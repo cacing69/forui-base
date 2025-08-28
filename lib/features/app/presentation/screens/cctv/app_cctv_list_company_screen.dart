@@ -8,8 +8,8 @@ import 'package:forui_base/features/app/presentation/screens/cctv/person/notifie
 import 'package:forui_base/features/app/presentation/screens/cctv/person/notifier/app_cctv_person_phone_notifier.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/person/notifier/app_cctv_person_pln_notifier.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/person/notifier/app_cctv_person_vehicle_notifier.dart';
-import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_province_notifier.dart';
-import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_resident_notifier.dart';
+import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cctv_province_notifier.dart';
+import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_list_resident_notifier.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cctv_resident_tile.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cctv_resident_tile_skeletonizer.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cctv_screen_list_resident_filter_widget_notifier.dart';
@@ -58,10 +58,10 @@ final pagingControllerProvider =
           final int start = (pageKey - 1) * 5;
 
           final lastRequest =
-              ref.read(appCctvResidentNotifierProvider).value?.data ?? [];
+              ref.read(appCctvListResidentNotifierProvider).value?.data ?? [];
 
           await ref
-              .read(appCctvResidentNotifierProvider.notifier)
+              .read(appCctvListResidentNotifierProvider.notifier)
               .perform(
                 ResidentQuery(
                   provinceId: filterState.province?.id.toString() ?? "0",
@@ -77,7 +77,7 @@ final pagingControllerProvider =
               );
 
           final latestRequest =
-              ref.read(appCctvResidentNotifierProvider).value?.data ?? [];
+              ref.read(appCctvListResidentNotifierProvider).value?.data ?? [];
 
           final isDuplicate =
               latestRequest.length == lastRequest.length &&
@@ -90,7 +90,7 @@ final pagingControllerProvider =
             return [];
           }
 
-          return ref.read(appCctvResidentNotifierProvider).value!.data!;
+          return ref.read(appCctvListResidentNotifierProvider).value!.data!;
         },
       );
 
@@ -122,7 +122,7 @@ class _AppCctvListCompanyScreenState
     return FScaffold(
       resizeToAvoidBottomInset: false,
       header: FHeader.nested(
-        title: const Text('App : CCTV (Person)'),
+        title: const Text('App : CCTV (Company)'),
         prefixes: [
           FHeaderAction.back(
             onPress: () {

@@ -65,7 +65,7 @@ class _ApplicationState extends ConsumerState<Application> {
         GlobalCupertinoLocalizations.delegate,
         FLocalizations.delegate,
       ],
-      locale: Locale('es'),
+      locale: Locale('en'),
       supportedLocales: [
         Locale('id'), // Indonesia
         Locale('en'), // English

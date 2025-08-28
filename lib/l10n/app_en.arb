@@ -5,5 +5,13 @@
     "blocks": "Blocks",
     "profile": "Profile",
     "settings": "Settings",
-    "language": "Language"
+    "language": "Language",
+    "previewAvatar": "Preview Avatar",
+    "confirm": "Confirm",
+    "personalizeYourExperience": "Personalize your experience",
+    "darkMode": "Dark Mode",
+    "lorem": "Lorem",
+    "uploadNewAvatar": "Upload New Avatar",
+    "loremIpsumDolorSitAmet": "Lorem ipsum dolor sit amet",
+    "none": "None"
 }

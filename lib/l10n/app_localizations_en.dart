@@ -25,4 +25,28 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get language => 'Language';
+
+  @override
+  String get previewAvatar => 'Preview Avatar';
+
+  @override
+  String get confirm => 'Confirm';
+
+  @override
+  String get personalizeYourExperience => 'Personalize your experience';
+
+  @override
+  String get darkMode => 'Dark Mode';
+
+  @override
+  String get lorem => 'Lorem';
+
+  @override
+  String get uploadNewAvatar => 'Upload New Avatar';
+
+  @override
+  String get loremIpsumDolorSitAmet => 'Lorem ipsum dolor sit amet';
+
+  @override
+  String get none => 'None';
 }
