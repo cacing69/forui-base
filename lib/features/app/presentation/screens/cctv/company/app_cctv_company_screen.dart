@@ -173,7 +173,14 @@ class _AppCctvCompanyScreenState extends ConsumerState<AppCctvCompanyScreen> {
                                 ),
                               ),
                               const SizedBox(width: 6),
-                              const Text("Domestic (60%)"),
+                              // Text(
+                              //   "Domestic (${calculatePercentage({"domestic": num.tryParse(widget.company.domesticCapitalAmount.toString()) ?? 0, "foreign": num.tryParse(widget.company.foreignCapitalAmount.toString()) ?? 0})["domestic"]})",
+                              //   style: context.theme.typography.sm,
+                              // ),
+                              Text(
+                                "Domestic (${widget.company.domesticCapitalPercentage})",
+                                style: context.theme.typography.sm,
+                              ),
                             ],
                           ),
                           const Gap(20),
@@ -190,7 +197,10 @@ class _AppCctvCompanyScreenState extends ConsumerState<AppCctvCompanyScreen> {
                                 ),
                               ),
                               const SizedBox(width: 6),
-                              const Text("Foreign (40%)"),
+                              Text(
+                                "Foreign (${widget.company.foreignCapitalPercentage})",
+                                style: context.theme.typography.sm,
+                              ),
                             ],
                           ),
                         ],
@@ -205,14 +215,22 @@ class _AppCctvCompanyScreenState extends ConsumerState<AppCctvCompanyScreen> {
 
                             sections: [
                               PieChartSectionData(
-                                value: 40,
-                                title: '40%',
+                                value: double.tryParse(
+                                  widget.company.domesticCapitalAmount
+                                      .toString(),
+                                ),
+                                title:
+                                    "${widget.company.domesticCapitalPercentage}%",
                                 color: ChartColors.dark[0],
                                 radius: 30,
                               ),
                               PieChartSectionData(
-                                value: 60,
-                                title: '60%',
+                                value: double.tryParse(
+                                  widget.company.foreignCapitalAmount
+                                      .toString(),
+                                ),
+                                title:
+                                    "${widget.company.foreignCapitalPercentage}%",
                                 color: ChartColors.dark[1],
                                 radius: 30,
                               ),
@@ -287,7 +305,17 @@ class _AppCctvCompanyScreenState extends ConsumerState<AppCctvCompanyScreen> {
                                       prefix: Icon(FIcons.fileUser),
                                       title: Text(shareholder.name ?? "-"),
                                       suffix: Icon(FIcons.chevronRight),
-                                      subtitle: Text(shareholder.id ?? "-"),
+                                      subtitle: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(shareholder.id ?? "-"),
+                                          Text(
+                                            shareholder.capital?.toString() ??
+                                                "-",
+                                          ),
+                                        ],
+                                      ),
                                       onPress: () {
                                         final personId = shareholder.id
                                             .toString();

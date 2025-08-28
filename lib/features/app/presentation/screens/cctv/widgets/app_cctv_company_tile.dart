@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:forui/forui.dart';
 import 'package:forui_base/shared/data/models/api_cctv/company.dart';
+import 'package:intl/intl.dart';
 
 class AppCctvCompanyTile extends StatefulWidget {
   final Company company;
@@ -15,6 +16,8 @@ class AppCctvCompanyTile extends StatefulWidget {
 class _AppCctvCompanyTileState extends State<AppCctvCompanyTile> {
   @override
   Widget build(BuildContext context) {
+    final totalCapitalAmount = widget.company.totalCapitalAmount ?? 0;
+
     return FItem(
       prefix: Icon(FIcons.building2),
       suffix: Icon(FIcons.chevronRight),
@@ -22,6 +25,10 @@ class _AppCctvCompanyTileState extends State<AppCctvCompanyTile> {
         spacing: 5,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Text(
+            "IDR ${NumberFormat.decimalPattern('id').format(num.tryParse(totalCapitalAmount.toString()))}",
+            style: TextStyle(fontWeight: FontWeight.w500),
+          ),
           Text(widget.company.id?.toString() ?? "-"),
           Text(widget.company.address?.toString() ?? "-"),
         ],
