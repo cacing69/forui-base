@@ -389,7 +389,7 @@ class _AppCctvScreenListResidentFilterWidgetState
                                 .setMinMaxAge(minValue, maxValue);
                           },
                         ),
-                        FDateField(
+                        FDateField.calendar(
                           label: Text('Date of Birth'),
                           controller: dobController,
                           description: Text("Choose date of birth"),

@@ -126,6 +126,7 @@ class _AppCctvListCompanyScreenState
                         onPress: () {
                           context.pushNamed(
                             FeatureAppRouteName.appCctvCompany.name,
+                            pathParameters: {"companyId": "${item.id}"},
                             extra: item,
                           );
                         },

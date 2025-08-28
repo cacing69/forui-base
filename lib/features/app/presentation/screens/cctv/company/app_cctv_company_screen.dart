@@ -140,16 +140,24 @@ class AppCctvCompanyScreen extends StatelessWidget {
                         label: const Text('Capital'),
                         children: [
                           FTile(
-                            prefix: Icon(FIcons.atSign),
-                            title: Text(company.email ?? "-"),
+                            title: Text("Domestic"),
+                            subtitle: Text(
+                              "${company.domesticCapitalAmount} (${company.domesticCapitalPercentage}%)",
+                            ),
                           ),
                           FTile(
-                            prefix: Icon(FIcons.smartphone),
-                            title: Text(company.phoneNumber ?? "-"),
+                            title: Text("Foreign"),
+                            subtitle: Text(
+                              "${company.foreignCapitalAmount} (${company.foreignCapitalPercentage}%)",
+                            ),
                           ),
                           FTile(
-                            prefix: Icon(FIcons.mapPinHouse),
-                            title: Text(company.address ?? "-"),
+                            title: Text("Total"),
+                            subtitle: Text("${company.totalCapitalAmount}"),
+                          ),
+                          FTile(
+                            title: Text("Base Total"),
+                            subtitle: Text("${company.baseCapitalTotal}"),
                           ),
                         ],
                       ),
@@ -157,23 +165,17 @@ class AppCctvCompanyScreen extends StatelessWidget {
                   ),
                 ),
                 FTabEntry(
-                  label: Icon(FIcons.blocks),
+                  label: Icon(FIcons.heartHandshake),
                   child: Column(
                     children: [
                       FTileGroup(
                         label: const Text('Shareholder'),
                         children: [
-                          FTile(
-                            prefix: Icon(FIcons.atSign),
-                            title: Text(company.email ?? "-"),
-                          ),
-                          FTile(
-                            prefix: Icon(FIcons.smartphone),
-                            title: Text(company.phoneNumber ?? "-"),
-                          ),
-                          FTile(
-                            prefix: Icon(FIcons.mapPinHouse),
-                            title: Text(company.address ?? "-"),
+                          ...?company.shareholders?.map(
+                            (shareholder) => FTile(
+                              prefix: Icon(FIcons.fileUser),
+                              title: Text(shareholder.name ?? "-"),
+                            ),
                           ),
                         ],
                       ),
@@ -187,17 +189,11 @@ class AppCctvCompanyScreen extends StatelessWidget {
                       FTileGroup(
                         label: const Text('PIC'),
                         children: [
-                          FTile(
-                            prefix: Icon(FIcons.atSign),
-                            title: Text(company.email ?? "-"),
-                          ),
-                          FTile(
-                            prefix: Icon(FIcons.smartphone),
-                            title: Text(company.phoneNumber ?? "-"),
-                          ),
-                          FTile(
-                            prefix: Icon(FIcons.mapPinHouse),
-                            title: Text(company.address ?? "-"),
+                          ...?company.pic?.map(
+                            (pic) => FTile(
+                              prefix: Icon(FIcons.user),
+                              title: Text(pic.name ?? "-"),
+                            ),
                           ),
                         ],
                       ),
@@ -209,24 +205,20 @@ class AppCctvCompanyScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       FTileGroup(
-                        label: const Text('Project'),
+                        label: const Text('Projects'),
                         children: [
-                          // if(company.projects != null && company.projects!.isNotEmpty){
-
-                          // } else {
-
-                          // }
-                          FTile(
-                            prefix: Icon(FIcons.atSign),
-                            title: Text(company.email ?? "-"),
-                          ),
-                          FTile(
-                            prefix: Icon(FIcons.smartphone),
-                            title: Text(company.phoneNumber ?? "-"),
-                          ),
-                          FTile(
-                            prefix: Icon(FIcons.mapPinHouse),
-                            title: Text(company.address ?? "-"),
+                          ...?company.projects?.map(
+                            (project) => FTile(
+                              prefix: Icon(FIcons.squareDashedKanban),
+                              title: Text(project.id ?? "-"),
+                              subtitle: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(project.invenstment ?? "-"),
+                                  Text(project.type ?? "-"),
+                                ],
+                              ),
+                            ),
                           ),
                         ],
                       ),
@@ -240,17 +232,11 @@ class AppCctvCompanyScreen extends StatelessWidget {
                       FTileGroup(
                         label: const Text('Legality'),
                         children: [
-                          FTile(
-                            prefix: Icon(FIcons.atSign),
-                            title: Text(company.email ?? "-"),
-                          ),
-                          FTile(
-                            prefix: Icon(FIcons.smartphone),
-                            title: Text(company.phoneNumber ?? "-"),
-                          ),
-                          FTile(
-                            prefix: Icon(FIcons.mapPinHouse),
-                            title: Text(company.address ?? "-"),
+                          ...?company.legalities?.map(
+                            (legality) => FTile(
+                              prefix: Icon(FIcons.bookA),
+                              title: Text(legality.name ?? "-"),
+                            ),
                           ),
                         ],
                       ),
@@ -264,17 +250,19 @@ class AppCctvCompanyScreen extends StatelessWidget {
                       FTileGroup(
                         label: const Text('Checklist'),
                         children: [
-                          FTile(
-                            prefix: Icon(FIcons.atSign),
-                            title: Text(company.email ?? "-"),
-                          ),
-                          FTile(
-                            prefix: Icon(FIcons.smartphone),
-                            title: Text(company.phoneNumber ?? "-"),
-                          ),
-                          FTile(
-                            prefix: Icon(FIcons.mapPinHouse),
-                            title: Text(company.address ?? "-"),
+                          ...?company.checklists?.map(
+                            (checklist) => FTile(
+                              prefix: Icon(FIcons.checkCheck),
+                              title: Text(checklist.permissionName ?? "-"),
+                              suffix: Icon(FIcons.eye),
+                              subtitle: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(checklist.id ?? "-"),
+                                  Text(checklist.agency ?? "-"),
+                                ],
+                              ),
+                            ),
                           ),
                         ],
                       ),
