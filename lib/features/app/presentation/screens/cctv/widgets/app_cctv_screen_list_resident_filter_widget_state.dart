@@ -1,4 +1,4 @@
-// class AppCctvScreenFilterWidgetState {}
+// class AppCctvScreenListResidentFilterWidgetState {}
 
 // import 'package:forui_base/core/utils/big_int_converter.dart';
 import 'package:forui_base/shared/data/models/api_cctv/city.dart';
@@ -7,13 +7,13 @@ import 'package:forui_base/shared/data/models/api_cctv/province.dart';
 import 'package:forui_base/shared/data/models/api_cctv/village.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'app_cctv_screen_filter_widget_state.g.dart';
-part 'app_cctv_screen_filter_widget_state.freezed.dart';
+part 'app_cctv_screen_list_resident_filter_widget_state.g.dart';
+part 'app_cctv_screen_list_resident_filter_widget_state.freezed.dart';
 
 @freezed
-abstract class AppCctvScreenFilterWidgetState
-    with _$AppCctvScreenFilterWidgetState {
-  const factory AppCctvScreenFilterWidgetState({
+abstract class AppCctvScreenListResidentFilterWidgetState
+    with _$AppCctvScreenListResidentFilterWidgetState {
+  const factory AppCctvScreenListResidentFilterWidgetState({
     @Default(null) Province? province,
     @Default(null) City? city,
     @Default(null) District? district,
@@ -22,8 +22,9 @@ abstract class AppCctvScreenFilterWidgetState
     @Default(null) int? maxAge,
     @Default(null) String? dateOfBirth,
     @Default(null) String? search,
-  }) = _AppCctvScreenFilterWidgetState;
+  }) = _AppCctvScreenListResidentFilterWidgetState;
 
-  factory AppCctvScreenFilterWidgetState.fromJson(Map<String, dynamic> json) =>
-      _$AppCctvScreenFilterWidgetStateFromJson(json);
+  factory AppCctvScreenListResidentFilterWidgetState.fromJson(
+    Map<String, dynamic> json,
+  ) => _$AppCctvScreenListResidentFilterWidgetStateFromJson(json);
 }

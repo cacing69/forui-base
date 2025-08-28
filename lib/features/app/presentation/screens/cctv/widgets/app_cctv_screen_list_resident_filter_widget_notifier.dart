@@ -1,21 +1,21 @@
-import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cctv_screen_filter_widget_state.dart';
+import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cctv_screen_list_resident_filter_widget_state.dart';
 import 'package:forui_base/shared/data/models/api_cctv/city.dart';
 import 'package:forui_base/shared/data/models/api_cctv/district.dart';
 import 'package:forui_base/shared/data/models/api_cctv/province.dart';
 import 'package:forui_base/shared/data/models/api_cctv/village.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'app_cctv_screen_filter_widget_notifier.g.dart';
+part 'app_cctv_screen_list_resident_filter_widget_notifier.g.dart';
 
 @Riverpod(keepAlive: true)
-class AppCctvScreenFilterWidgetNotifier
-    extends _$AppCctvScreenFilterWidgetNotifier {
+class AppCctvScreenListResidentFilterWidgetNotifier
+    extends _$AppCctvScreenListResidentFilterWidgetNotifier {
   @override
-  AppCctvScreenFilterWidgetState build() {
-    return AppCctvScreenFilterWidgetState();
+  AppCctvScreenListResidentFilterWidgetState build() {
+    return AppCctvScreenListResidentFilterWidgetState();
   }
 
-  void update(AppCctvScreenFilterWidgetState newState) {
+  void update(AppCctvScreenListResidentFilterWidgetState newState) {
     state = newState;
   }
 
@@ -48,6 +48,6 @@ class AppCctvScreenFilterWidgetNotifier
   }
 
   void reset() {
-    state = AppCctvScreenFilterWidgetState();
+    state = AppCctvScreenListResidentFilterWidgetState();
   }
 }

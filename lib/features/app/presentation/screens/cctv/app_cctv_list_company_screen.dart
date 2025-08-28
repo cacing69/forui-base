@@ -12,8 +12,8 @@ import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_provi
 import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_resident_notifier.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cctv_resident_tile.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cctv_resident_tile_skeletonizer.dart';
-import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cctv_screen_filter_widget.dart';
-import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cctv_screen_filter_widget_notifier.dart';
+import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cctv_screen_list_resident_filter_widget_notifier.dart';
+import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cctv_screen_list_resident_filter_widget.dart';
 import 'package:forui_base/shared/data/models/api_cctv/family_path_params.dart';
 import 'package:forui_base/shared/data/models/api_cctv/resident.dart';
 import 'package:forui_base/shared/data/models/api_cctv/resident_query.dart';
@@ -22,11 +22,12 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:jiffy/jiffy.dart';
 
-class AppCctvScreen extends StatefulHookConsumerWidget {
-  const AppCctvScreen({super.key});
+class AppCctvListCompanyScreen extends StatefulHookConsumerWidget {
+  const AppCctvListCompanyScreen({super.key});
 
   @override
-  ConsumerState<AppCctvScreen> createState() => _AppCctvScreenState();
+  ConsumerState<AppCctvListCompanyScreen> createState() =>
+      _AppCctvListCompanyScreenState();
 }
 
 final pagingControllerProvider =
@@ -40,7 +41,7 @@ final pagingControllerProvider =
         fetchPage: (pageKey) async {
           // validate first dont auto request
           final filterState = ref.read(
-            appCctvScreenFilterWidgetNotifierProvider,
+            appCctvScreenListResidentFilterWidgetNotifierProvider,
           );
 
           if (filterState.province?.id == null &&
@@ -98,14 +99,17 @@ final pagingControllerProvider =
       return controller;
     });
 
-class _AppCctvScreenState extends ConsumerState<AppCctvScreen>
+class _AppCctvListCompanyScreenState
+    extends ConsumerState<AppCctvListCompanyScreen>
     with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(appCctvScreenFilterWidgetNotifierProvider.notifier).reset();
+      ref
+          .read(appCctvScreenListResidentFilterWidgetNotifierProvider.notifier)
+          .reset();
     });
   }
 
@@ -118,7 +122,7 @@ class _AppCctvScreenState extends ConsumerState<AppCctvScreen>
     return FScaffold(
       resizeToAvoidBottomInset: false,
       header: FHeader.nested(
-        title: const Text('App : CCTV (Resident)'),
+        title: const Text('App : CCTV (Person)'),
         prefixes: [
           FHeaderAction.back(
             onPress: () {
@@ -127,6 +131,7 @@ class _AppCctvScreenState extends ConsumerState<AppCctvScreen>
           ),
         ],
         suffixes: [
+          FHeaderAction(icon: Icon(FIcons.fileArchive), onPress: () {}),
           FHeaderAction(
             icon: Icon(FIcons.funnel),
             onPress: () {
@@ -138,7 +143,7 @@ class _AppCctvScreenState extends ConsumerState<AppCctvScreen>
                   maxHeight: double.infinity,
                 ),
                 side: FLayout.rtl,
-                builder: (context) => AppCctvScreenFilterWidget(),
+                builder: (context) => AppCctvScreenListResidentFilterWidget(),
               );
             },
           ),
@@ -146,7 +151,11 @@ class _AppCctvScreenState extends ConsumerState<AppCctvScreen>
       ),
       child: RefreshIndicator(
         onRefresh: () async {
-          ref.read(appCctvScreenFilterWidgetNotifierProvider.notifier).reset();
+          ref
+              .read(
+                appCctvScreenListResidentFilterWidgetNotifierProvider.notifier,
+              )
+              .reset();
 
           ref.watch(pagingControllerProvider).refresh();
         },

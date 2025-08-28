@@ -5,9 +5,9 @@ import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_city_
 import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_district_notifier.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_province_notifier.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_resident_notifier.dart';
-import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_screen.dart';
+import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_list_resident_screen.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_village_notifier.dart';
-import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cctv_screen_filter_widget_notifier.dart';
+import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cctv_screen_list_resident_filter_widget_notifier.dart';
 import 'package:forui_base/shared/data/models/api_cctv/city.dart';
 import 'package:forui_base/shared/data/models/api_cctv/district.dart';
 import 'package:forui_base/shared/data/models/api_cctv/province.dart';
@@ -20,20 +20,22 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
-class AppCctvScreenFilterWidget extends StatefulHookConsumerWidget {
-  const AppCctvScreenFilterWidget({super.key});
+class AppCctvScreenListResidentFilterWidget extends StatefulHookConsumerWidget {
+  const AppCctvScreenListResidentFilterWidget({super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
-      _AppCctvScreenFilterWidgetState();
+      _AppCctvScreenListResidentFilterWidgetState();
 }
 
-class _AppCctvScreenFilterWidgetState
-    extends ConsumerState<AppCctvScreenFilterWidget>
+class _AppCctvScreenListResidentFilterWidgetState
+    extends ConsumerState<AppCctvScreenListResidentFilterWidget>
     with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    final filterState = ref.watch(appCctvScreenFilterWidgetNotifierProvider);
+    final filterState = ref.watch(
+      appCctvScreenListResidentFilterWidgetNotifierProvider,
+    );
 
     final asyncProvinceState = ref.watch(appCctvProvinceNotifierProvider);
     final asyncCityState = ref.watch(appCctvCityNotifierProvider);
@@ -74,7 +76,9 @@ class _AppCctvScreenFilterWidgetState
         );
 
     final FDateFieldController dobController = useFDateFieldController(
-      initialDate: null,
+      initialDate: filterState.dateOfBirth != null
+          ? DateTime.parse(filterState.dateOfBirth!)
+          : null,
     );
 
     return FScaffold(
@@ -125,7 +129,7 @@ class _AppCctvScreenFilterWidgetState
                               onChange: (data) {
                                 ref
                                     .read(
-                                      appCctvScreenFilterWidgetNotifierProvider
+                                      appCctvScreenListResidentFilterWidgetNotifierProvider
                                           .notifier,
                                     )
                                     .setProvince(data);
@@ -136,19 +140,19 @@ class _AppCctvScreenFilterWidgetState
 
                                 ref
                                     .read(
-                                      appCctvScreenFilterWidgetNotifierProvider
+                                      appCctvScreenListResidentFilterWidgetNotifierProvider
                                           .notifier,
                                     )
                                     .setCity(null);
                                 ref
                                     .read(
-                                      appCctvScreenFilterWidgetNotifierProvider
+                                      appCctvScreenListResidentFilterWidgetNotifierProvider
                                           .notifier,
                                     )
                                     .setDistrict(null);
                                 ref
                                     .read(
-                                      appCctvScreenFilterWidgetNotifierProvider
+                                      appCctvScreenListResidentFilterWidgetNotifierProvider
                                           .notifier,
                                     )
                                     .setVillage(null);
@@ -198,7 +202,7 @@ class _AppCctvScreenFilterWidgetState
                               onChange: (data) {
                                 ref
                                     .read(
-                                      appCctvScreenFilterWidgetNotifierProvider
+                                      appCctvScreenListResidentFilterWidgetNotifierProvider
                                           .notifier,
                                     )
                                     .setCity(data);
@@ -211,13 +215,13 @@ class _AppCctvScreenFilterWidgetState
 
                                 ref
                                     .read(
-                                      appCctvScreenFilterWidgetNotifierProvider
+                                      appCctvScreenListResidentFilterWidgetNotifierProvider
                                           .notifier,
                                     )
                                     .setDistrict(null);
                                 ref
                                     .read(
-                                      appCctvScreenFilterWidgetNotifierProvider
+                                      appCctvScreenListResidentFilterWidgetNotifierProvider
                                           .notifier,
                                     )
                                     .setVillage(null);
@@ -268,7 +272,7 @@ class _AppCctvScreenFilterWidgetState
                               onChange: (data) {
                                 ref
                                     .read(
-                                      appCctvScreenFilterWidgetNotifierProvider
+                                      appCctvScreenListResidentFilterWidgetNotifierProvider
                                           .notifier,
                                     )
                                     .setDistrict(data);
@@ -281,7 +285,7 @@ class _AppCctvScreenFilterWidgetState
 
                                 ref
                                     .read(
-                                      appCctvScreenFilterWidgetNotifierProvider
+                                      appCctvScreenListResidentFilterWidgetNotifierProvider
                                           .notifier,
                                     )
                                     .setVillage(null);
@@ -332,7 +336,7 @@ class _AppCctvScreenFilterWidgetState
                               onChange: (data) {
                                 ref
                                     .read(
-                                      appCctvScreenFilterWidgetNotifierProvider
+                                      appCctvScreenListResidentFilterWidgetNotifierProvider
                                           .notifier,
                                     )
                                     .setVillage(data);
@@ -379,7 +383,7 @@ class _AppCctvScreenFilterWidgetState
 
                             ref
                                 .read(
-                                  appCctvScreenFilterWidgetNotifierProvider
+                                  appCctvScreenListResidentFilterWidgetNotifierProvider
                                       .notifier,
                                 )
                                 .setMinMaxAge(minValue, maxValue);
@@ -393,7 +397,7 @@ class _AppCctvScreenFilterWidgetState
                             if (value != null) {
                               ref
                                   .read(
-                                    appCctvScreenFilterWidgetNotifierProvider
+                                    appCctvScreenListResidentFilterWidgetNotifierProvider
                                         .notifier,
                                   )
                                   .setDateOfBirth(
@@ -402,7 +406,7 @@ class _AppCctvScreenFilterWidgetState
                             } else {
                               ref
                                   .read(
-                                    appCctvScreenFilterWidgetNotifierProvider
+                                    appCctvScreenListResidentFilterWidgetNotifierProvider
                                         .notifier,
                                   )
                                   .setDateOfBirth(null);
@@ -416,7 +420,7 @@ class _AppCctvScreenFilterWidgetState
                           onChange: (value) {
                             ref
                                 .read(
-                                  appCctvScreenFilterWidgetNotifierProvider
+                                  appCctvScreenListResidentFilterWidgetNotifierProvider
                                       .notifier,
                                 )
                                 .setSearch(value);
@@ -437,7 +441,7 @@ class _AppCctvScreenFilterWidgetState
                           // aksi reset
                           ref
                               .read(
-                                appCctvScreenFilterWidgetNotifierProvider
+                                appCctvScreenListResidentFilterWidgetNotifierProvider
                                     .notifier,
                               )
                               .reset();

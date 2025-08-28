@@ -1,14 +1,15 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'app_cctv_screen_filter_widget_state.dart';
+part of 'app_cctv_screen_list_resident_filter_widget_state.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_AppCctvScreenFilterWidgetState _$AppCctvScreenFilterWidgetStateFromJson(
+_AppCctvScreenListResidentFilterWidgetState
+_$AppCctvScreenListResidentFilterWidgetStateFromJson(
   Map<String, dynamic> json,
-) => _AppCctvScreenFilterWidgetState(
+) => _AppCctvScreenListResidentFilterWidgetState(
   province: json['province'] == null
       ? null
       : Province.fromJson(json['province'] as Map<String, dynamic>),
@@ -27,8 +28,8 @@ _AppCctvScreenFilterWidgetState _$AppCctvScreenFilterWidgetStateFromJson(
   search: json['search'] as String? ?? null,
 );
 
-Map<String, dynamic> _$AppCctvScreenFilterWidgetStateToJson(
-  _AppCctvScreenFilterWidgetState instance,
+Map<String, dynamic> _$AppCctvScreenListResidentFilterWidgetStateToJson(
+  _AppCctvScreenListResidentFilterWidgetState instance,
 ) => <String, dynamic>{
   'province': instance.province,
   'city': instance.city,

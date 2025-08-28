@@ -25,7 +25,7 @@ class _AppScreenState extends State<AppScreen> {
         children: [
           GestureDetector(
             onTap: () {
-              context.pushNamed(FeatureAppRouteName.appCctv.name);
+              context.pushNamed(FeatureAppRouteName.appCctvListResident.name);
             },
             child: Container(
               padding: const EdgeInsets.all(5),

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'app_cctv_screen_filter_widget_state.dart';
+part of 'app_cctv_screen_list_resident_filter_widget_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -13,22 +13,22 @@ part of 'app_cctv_screen_filter_widget_state.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$AppCctvScreenFilterWidgetState {
+mixin _$AppCctvScreenListResidentFilterWidgetState {
 
  Province? get province; City? get city; District? get district; Village? get village; int? get minAge; int? get maxAge; String? get dateOfBirth; String? get search;
-/// Create a copy of AppCctvScreenFilterWidgetState
+/// Create a copy of AppCctvScreenListResidentFilterWidgetState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$AppCctvScreenFilterWidgetStateCopyWith<AppCctvScreenFilterWidgetState> get copyWith => _$AppCctvScreenFilterWidgetStateCopyWithImpl<AppCctvScreenFilterWidgetState>(this as AppCctvScreenFilterWidgetState, _$identity);
+$AppCctvScreenListResidentFilterWidgetStateCopyWith<AppCctvScreenListResidentFilterWidgetState> get copyWith => _$AppCctvScreenListResidentFilterWidgetStateCopyWithImpl<AppCctvScreenListResidentFilterWidgetState>(this as AppCctvScreenListResidentFilterWidgetState, _$identity);
 
-  /// Serializes this AppCctvScreenFilterWidgetState to a JSON map.
+  /// Serializes this AppCctvScreenListResidentFilterWidgetState to a JSON map.
   Map<String, dynamic> toJson();
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppCctvScreenFilterWidgetState&&(identical(other.province, province) || other.province == province)&&(identical(other.city, city) || other.city == city)&&(identical(other.district, district) || other.district == district)&&(identical(other.village, village) || other.village == village)&&(identical(other.minAge, minAge) || other.minAge == minAge)&&(identical(other.maxAge, maxAge) || other.maxAge == maxAge)&&(identical(other.dateOfBirth, dateOfBirth) || other.dateOfBirth == dateOfBirth)&&(identical(other.search, search) || other.search == search));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppCctvScreenListResidentFilterWidgetState&&(identical(other.province, province) || other.province == province)&&(identical(other.city, city) || other.city == city)&&(identical(other.district, district) || other.district == district)&&(identical(other.village, village) || other.village == village)&&(identical(other.minAge, minAge) || other.minAge == minAge)&&(identical(other.maxAge, maxAge) || other.maxAge == maxAge)&&(identical(other.dateOfBirth, dateOfBirth) || other.dateOfBirth == dateOfBirth)&&(identical(other.search, search) || other.search == search));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -37,15 +37,15 @@ int get hashCode => Object.hash(runtimeType,province,city,district,village,minAg
 
 @override
 String toString() {
-  return 'AppCctvScreenFilterWidgetState(province: $province, city: $city, district: $district, village: $village, minAge: $minAge, maxAge: $maxAge, dateOfBirth: $dateOfBirth, search: $search)';
+  return 'AppCctvScreenListResidentFilterWidgetState(province: $province, city: $city, district: $district, village: $village, minAge: $minAge, maxAge: $maxAge, dateOfBirth: $dateOfBirth, search: $search)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $AppCctvScreenFilterWidgetStateCopyWith<$Res>  {
-  factory $AppCctvScreenFilterWidgetStateCopyWith(AppCctvScreenFilterWidgetState value, $Res Function(AppCctvScreenFilterWidgetState) _then) = _$AppCctvScreenFilterWidgetStateCopyWithImpl;
+abstract mixin class $AppCctvScreenListResidentFilterWidgetStateCopyWith<$Res>  {
+  factory $AppCctvScreenListResidentFilterWidgetStateCopyWith(AppCctvScreenListResidentFilterWidgetState value, $Res Function(AppCctvScreenListResidentFilterWidgetState) _then) = _$AppCctvScreenListResidentFilterWidgetStateCopyWithImpl;
 @useResult
 $Res call({
  Province? province, City? city, District? district, Village? village, int? minAge, int? maxAge, String? dateOfBirth, String? search
@@ -56,14 +56,14 @@ $ProvinceCopyWith<$Res>? get province;$CityCopyWith<$Res>? get city;$DistrictCop
 
 }
 /// @nodoc
-class _$AppCctvScreenFilterWidgetStateCopyWithImpl<$Res>
-    implements $AppCctvScreenFilterWidgetStateCopyWith<$Res> {
-  _$AppCctvScreenFilterWidgetStateCopyWithImpl(this._self, this._then);
+class _$AppCctvScreenListResidentFilterWidgetStateCopyWithImpl<$Res>
+    implements $AppCctvScreenListResidentFilterWidgetStateCopyWith<$Res> {
+  _$AppCctvScreenListResidentFilterWidgetStateCopyWithImpl(this._self, this._then);
 
-  final AppCctvScreenFilterWidgetState _self;
-  final $Res Function(AppCctvScreenFilterWidgetState) _then;
+  final AppCctvScreenListResidentFilterWidgetState _self;
+  final $Res Function(AppCctvScreenListResidentFilterWidgetState) _then;
 
-/// Create a copy of AppCctvScreenFilterWidgetState
+/// Create a copy of AppCctvScreenListResidentFilterWidgetState
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? province = freezed,Object? city = freezed,Object? district = freezed,Object? village = freezed,Object? minAge = freezed,Object? maxAge = freezed,Object? dateOfBirth = freezed,Object? search = freezed,}) {
   return _then(_self.copyWith(
@@ -78,7 +78,7 @@ as String?,search: freezed == search ? _self.search : search // ignore: cast_nul
 as String?,
   ));
 }
-/// Create a copy of AppCctvScreenFilterWidgetState
+/// Create a copy of AppCctvScreenListResidentFilterWidgetState
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -90,7 +90,7 @@ $ProvinceCopyWith<$Res>? get province {
   return $ProvinceCopyWith<$Res>(_self.province!, (value) {
     return _then(_self.copyWith(province: value));
   });
-}/// Create a copy of AppCctvScreenFilterWidgetState
+}/// Create a copy of AppCctvScreenListResidentFilterWidgetState
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -102,7 +102,7 @@ $CityCopyWith<$Res>? get city {
   return $CityCopyWith<$Res>(_self.city!, (value) {
     return _then(_self.copyWith(city: value));
   });
-}/// Create a copy of AppCctvScreenFilterWidgetState
+}/// Create a copy of AppCctvScreenListResidentFilterWidgetState
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -114,7 +114,7 @@ $DistrictCopyWith<$Res>? get district {
   return $DistrictCopyWith<$Res>(_self.district!, (value) {
     return _then(_self.copyWith(district: value));
   });
-}/// Create a copy of AppCctvScreenFilterWidgetState
+}/// Create a copy of AppCctvScreenListResidentFilterWidgetState
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -130,8 +130,8 @@ $VillageCopyWith<$Res>? get village {
 }
 
 
-/// Adds pattern-matching-related methods to [AppCctvScreenFilterWidgetState].
-extension AppCctvScreenFilterWidgetStatePatterns on AppCctvScreenFilterWidgetState {
+/// Adds pattern-matching-related methods to [AppCctvScreenListResidentFilterWidgetState].
+extension AppCctvScreenListResidentFilterWidgetStatePatterns on AppCctvScreenListResidentFilterWidgetState {
 /// A variant of `map` that fallback to returning `orElse`.
 ///
 /// It is equivalent to doing:
@@ -144,10 +144,10 @@ extension AppCctvScreenFilterWidgetStatePatterns on AppCctvScreenFilterWidgetSta
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _AppCctvScreenFilterWidgetState value)?  $default,{required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _AppCctvScreenListResidentFilterWidgetState value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _AppCctvScreenFilterWidgetState() when $default != null:
+case _AppCctvScreenListResidentFilterWidgetState() when $default != null:
 return $default(_that);case _:
   return orElse();
 
@@ -166,10 +166,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _AppCctvScreenFilterWidgetState value)  $default,){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _AppCctvScreenListResidentFilterWidgetState value)  $default,){
 final _that = this;
 switch (_that) {
-case _AppCctvScreenFilterWidgetState():
+case _AppCctvScreenListResidentFilterWidgetState():
 return $default(_that);case _:
   throw StateError('Unexpected subclass');
 
@@ -187,10 +187,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _AppCctvScreenFilterWidgetState value)?  $default,){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _AppCctvScreenListResidentFilterWidgetState value)?  $default,){
 final _that = this;
 switch (_that) {
-case _AppCctvScreenFilterWidgetState() when $default != null:
+case _AppCctvScreenListResidentFilterWidgetState() when $default != null:
 return $default(_that);case _:
   return null;
 
@@ -210,7 +210,7 @@ return $default(_that);case _:
 
 @optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Province? province,  City? city,  District? district,  Village? village,  int? minAge,  int? maxAge,  String? dateOfBirth,  String? search)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _AppCctvScreenFilterWidgetState() when $default != null:
+case _AppCctvScreenListResidentFilterWidgetState() when $default != null:
 return $default(_that.province,_that.city,_that.district,_that.village,_that.minAge,_that.maxAge,_that.dateOfBirth,_that.search);case _:
   return orElse();
 
@@ -231,7 +231,7 @@ return $default(_that.province,_that.city,_that.district,_that.village,_that.min
 
 @optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Province? province,  City? city,  District? district,  Village? village,  int? minAge,  int? maxAge,  String? dateOfBirth,  String? search)  $default,) {final _that = this;
 switch (_that) {
-case _AppCctvScreenFilterWidgetState():
+case _AppCctvScreenListResidentFilterWidgetState():
 return $default(_that.province,_that.city,_that.district,_that.village,_that.minAge,_that.maxAge,_that.dateOfBirth,_that.search);case _:
   throw StateError('Unexpected subclass');
 
@@ -251,7 +251,7 @@ return $default(_that.province,_that.city,_that.district,_that.village,_that.min
 
 @optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Province? province,  City? city,  District? district,  Village? village,  int? minAge,  int? maxAge,  String? dateOfBirth,  String? search)?  $default,) {final _that = this;
 switch (_that) {
-case _AppCctvScreenFilterWidgetState() when $default != null:
+case _AppCctvScreenListResidentFilterWidgetState() when $default != null:
 return $default(_that.province,_that.city,_that.district,_that.village,_that.minAge,_that.maxAge,_that.dateOfBirth,_that.search);case _:
   return null;
 
@@ -263,9 +263,9 @@ return $default(_that.province,_that.city,_that.district,_that.village,_that.min
 /// @nodoc
 @JsonSerializable()
 
-class _AppCctvScreenFilterWidgetState implements AppCctvScreenFilterWidgetState {
-  const _AppCctvScreenFilterWidgetState({this.province = null, this.city = null, this.district = null, this.village = null, this.minAge = null, this.maxAge = null, this.dateOfBirth = null, this.search = null});
-  factory _AppCctvScreenFilterWidgetState.fromJson(Map<String, dynamic> json) => _$AppCctvScreenFilterWidgetStateFromJson(json);
+class _AppCctvScreenListResidentFilterWidgetState implements AppCctvScreenListResidentFilterWidgetState {
+  const _AppCctvScreenListResidentFilterWidgetState({this.province = null, this.city = null, this.district = null, this.village = null, this.minAge = null, this.maxAge = null, this.dateOfBirth = null, this.search = null});
+  factory _AppCctvScreenListResidentFilterWidgetState.fromJson(Map<String, dynamic> json) => _$AppCctvScreenListResidentFilterWidgetStateFromJson(json);
 
 @override@JsonKey() final  Province? province;
 @override@JsonKey() final  City? city;
@@ -276,20 +276,20 @@ class _AppCctvScreenFilterWidgetState implements AppCctvScreenFilterWidgetState 
 @override@JsonKey() final  String? dateOfBirth;
 @override@JsonKey() final  String? search;
 
-/// Create a copy of AppCctvScreenFilterWidgetState
+/// Create a copy of AppCctvScreenListResidentFilterWidgetState
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$AppCctvScreenFilterWidgetStateCopyWith<_AppCctvScreenFilterWidgetState> get copyWith => __$AppCctvScreenFilterWidgetStateCopyWithImpl<_AppCctvScreenFilterWidgetState>(this, _$identity);
+_$AppCctvScreenListResidentFilterWidgetStateCopyWith<_AppCctvScreenListResidentFilterWidgetState> get copyWith => __$AppCctvScreenListResidentFilterWidgetStateCopyWithImpl<_AppCctvScreenListResidentFilterWidgetState>(this, _$identity);
 
 @override
 Map<String, dynamic> toJson() {
-  return _$AppCctvScreenFilterWidgetStateToJson(this, );
+  return _$AppCctvScreenListResidentFilterWidgetStateToJson(this, );
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppCctvScreenFilterWidgetState&&(identical(other.province, province) || other.province == province)&&(identical(other.city, city) || other.city == city)&&(identical(other.district, district) || other.district == district)&&(identical(other.village, village) || other.village == village)&&(identical(other.minAge, minAge) || other.minAge == minAge)&&(identical(other.maxAge, maxAge) || other.maxAge == maxAge)&&(identical(other.dateOfBirth, dateOfBirth) || other.dateOfBirth == dateOfBirth)&&(identical(other.search, search) || other.search == search));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppCctvScreenListResidentFilterWidgetState&&(identical(other.province, province) || other.province == province)&&(identical(other.city, city) || other.city == city)&&(identical(other.district, district) || other.district == district)&&(identical(other.village, village) || other.village == village)&&(identical(other.minAge, minAge) || other.minAge == minAge)&&(identical(other.maxAge, maxAge) || other.maxAge == maxAge)&&(identical(other.dateOfBirth, dateOfBirth) || other.dateOfBirth == dateOfBirth)&&(identical(other.search, search) || other.search == search));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -298,15 +298,15 @@ int get hashCode => Object.hash(runtimeType,province,city,district,village,minAg
 
 @override
 String toString() {
-  return 'AppCctvScreenFilterWidgetState(province: $province, city: $city, district: $district, village: $village, minAge: $minAge, maxAge: $maxAge, dateOfBirth: $dateOfBirth, search: $search)';
+  return 'AppCctvScreenListResidentFilterWidgetState(province: $province, city: $city, district: $district, village: $village, minAge: $minAge, maxAge: $maxAge, dateOfBirth: $dateOfBirth, search: $search)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$AppCctvScreenFilterWidgetStateCopyWith<$Res> implements $AppCctvScreenFilterWidgetStateCopyWith<$Res> {
-  factory _$AppCctvScreenFilterWidgetStateCopyWith(_AppCctvScreenFilterWidgetState value, $Res Function(_AppCctvScreenFilterWidgetState) _then) = __$AppCctvScreenFilterWidgetStateCopyWithImpl;
+abstract mixin class _$AppCctvScreenListResidentFilterWidgetStateCopyWith<$Res> implements $AppCctvScreenListResidentFilterWidgetStateCopyWith<$Res> {
+  factory _$AppCctvScreenListResidentFilterWidgetStateCopyWith(_AppCctvScreenListResidentFilterWidgetState value, $Res Function(_AppCctvScreenListResidentFilterWidgetState) _then) = __$AppCctvScreenListResidentFilterWidgetStateCopyWithImpl;
 @override @useResult
 $Res call({
  Province? province, City? city, District? district, Village? village, int? minAge, int? maxAge, String? dateOfBirth, String? search
@@ -317,17 +317,17 @@ $Res call({
 
 }
 /// @nodoc
-class __$AppCctvScreenFilterWidgetStateCopyWithImpl<$Res>
-    implements _$AppCctvScreenFilterWidgetStateCopyWith<$Res> {
-  __$AppCctvScreenFilterWidgetStateCopyWithImpl(this._self, this._then);
+class __$AppCctvScreenListResidentFilterWidgetStateCopyWithImpl<$Res>
+    implements _$AppCctvScreenListResidentFilterWidgetStateCopyWith<$Res> {
+  __$AppCctvScreenListResidentFilterWidgetStateCopyWithImpl(this._self, this._then);
 
-  final _AppCctvScreenFilterWidgetState _self;
-  final $Res Function(_AppCctvScreenFilterWidgetState) _then;
+  final _AppCctvScreenListResidentFilterWidgetState _self;
+  final $Res Function(_AppCctvScreenListResidentFilterWidgetState) _then;
 
-/// Create a copy of AppCctvScreenFilterWidgetState
+/// Create a copy of AppCctvScreenListResidentFilterWidgetState
 /// with the given fields replaced by the non-null parameter values.
 @override @pragma('vm:prefer-inline') $Res call({Object? province = freezed,Object? city = freezed,Object? district = freezed,Object? village = freezed,Object? minAge = freezed,Object? maxAge = freezed,Object? dateOfBirth = freezed,Object? search = freezed,}) {
-  return _then(_AppCctvScreenFilterWidgetState(
+  return _then(_AppCctvScreenListResidentFilterWidgetState(
 province: freezed == province ? _self.province : province // ignore: cast_nullable_to_non_nullable
 as Province?,city: freezed == city ? _self.city : city // ignore: cast_nullable_to_non_nullable
 as City?,district: freezed == district ? _self.district : district // ignore: cast_nullable_to_non_nullable
@@ -340,7 +340,7 @@ as String?,
   ));
 }
 
-/// Create a copy of AppCctvScreenFilterWidgetState
+/// Create a copy of AppCctvScreenListResidentFilterWidgetState
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -352,7 +352,7 @@ $ProvinceCopyWith<$Res>? get province {
   return $ProvinceCopyWith<$Res>(_self.province!, (value) {
     return _then(_self.copyWith(province: value));
   });
-}/// Create a copy of AppCctvScreenFilterWidgetState
+}/// Create a copy of AppCctvScreenListResidentFilterWidgetState
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -364,7 +364,7 @@ $CityCopyWith<$Res>? get city {
   return $CityCopyWith<$Res>(_self.city!, (value) {
     return _then(_self.copyWith(city: value));
   });
-}/// Create a copy of AppCctvScreenFilterWidgetState
+}/// Create a copy of AppCctvScreenListResidentFilterWidgetState
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -376,7 +376,7 @@ $DistrictCopyWith<$Res>? get district {
   return $DistrictCopyWith<$Res>(_self.district!, (value) {
     return _then(_self.copyWith(district: value));
   });
-}/// Create a copy of AppCctvScreenFilterWidgetState
+}/// Create a copy of AppCctvScreenListResidentFilterWidgetState
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
