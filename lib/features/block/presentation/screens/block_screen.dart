@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:forui/forui.dart';
-import 'package:forui_base/router.dart';
+import 'package:forui_base/features/block/presentation/screens/block_routes.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 
@@ -57,7 +57,7 @@ class _BlockScreenState extends State<BlockScreen> {
           children: [
             FButton.raw(
               onPress: () {
-                context.pushNamed(RouteName.blockLocationPicker.name);
+                context.pushNamed(BlockRouteName.blockLocationPicker.name);
               },
               child: SizedBox(
                 width: double.infinity,
@@ -77,7 +77,7 @@ class _BlockScreenState extends State<BlockScreen> {
             ),
             FButton.raw(
               onPress: () {
-                context.pushNamed(RouteName.blockNominatimSearch.name);
+                context.pushNamed(BlockRouteName.blockNominatimSearch.name);
               },
               child: SizedBox(
                 width: double.infinity,
@@ -97,7 +97,7 @@ class _BlockScreenState extends State<BlockScreen> {
             ),
             FButton.raw(
               onPress: () {
-                context.pushNamed(RouteName.blockImageBase64Viewer.name);
+                context.pushNamed(BlockRouteName.blockImageBase64Viewer.name);
               },
               child: SizedBox(
                 width: double.infinity,

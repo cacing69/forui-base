@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/widgets.dart';
 import 'package:forui/forui.dart';
-import 'package:forui_base/router.dart';
+import 'package:forui_base/features/app/presentation/screens/app_routes.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 
@@ -25,7 +25,7 @@ class _AppScreenState extends State<AppScreen> {
         children: [
           GestureDetector(
             onTap: () {
-              context.pushNamed(RouteName.appCctv.name);
+              context.pushNamed(FeatureAppRouteName.appCctv.name);
             },
             child: Container(
               padding: const EdgeInsets.all(5),

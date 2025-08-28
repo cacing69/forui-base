@@ -5,7 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:forui/forui.dart';
 import 'package:forui_base/core/constant/dependency_static.dart';
 import 'package:forui_base/core/constant/user_static.dart';
-import 'package:forui_base/router.dart';
+import 'package:forui_base/features/block/presentation/screens/block_routes.dart';
 import 'package:forui_base/shared/presentation/providers/config_app_notifier.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
@@ -153,7 +153,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                                       label: const Text('Backlog'),
                                       onPress: () {
                                         context.pushNamed(
-                                          RouteName.blockBacklog.name,
+                                          BlockRouteName.blockBacklog.name,
                                         );
                                       },
                                     ),

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:forui/forui.dart';
+import 'package:forui_base/features/app/presentation/screens/app_routes.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/person/app_cctv_person_skeletonizer.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/person/notifier/app_cctv_person_company_notifier.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/person/notifier/app_cctv_person_family_notifier.dart';
@@ -278,7 +279,7 @@ class _AppCctvPersonScreenState extends ConsumerState<AppCctvPersonScreen> {
                                         .perform(fam.id.toString());
 
                                     context.pushNamed(
-                                      RouteName.appCctvPerson.name,
+                                      FeatureAppRouteName.appCctvPerson.name,
                                       pathParameters: {
                                         "personId": fam.id.toString(),
                                       },
@@ -517,7 +518,7 @@ class _AppCctvPersonScreenState extends ConsumerState<AppCctvPersonScreen> {
                             suffix: Icon(FIcons.eye),
                             title: Text("E-KTP"),
                             onPress: () => context.pushNamed(
-                              RouteName.appCctvPersonTabEKtp.name,
+                              FeatureAppRouteName.appCctvPersonTabEKtp.name,
                             ),
                           ),
                           FTile(

@@ -59,7 +59,7 @@ class _ApplicationState extends ConsumerState<Application> {
     return MaterialApp.router(
       title: 'Forui Base',
       localizationsDelegates: [
-        AppLocalizations.delegate, // Add this line
+        AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
