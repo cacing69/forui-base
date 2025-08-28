@@ -22,7 +22,6 @@ class LoadPersonDataUsecasePack {
 
   Future<void> call({
     required String personId,
-    String familyCardId = "",
     bool loadPhone = true,
     bool loadGojek = true,
     bool loadPln = true,
@@ -64,7 +63,16 @@ class LoadPersonDataUsecasePack {
           .perform(personId);
     }
 
-    if (loadFamily && familyCardId.isNotEmpty) {
+    if (loadFamily) {
+      final String familyCardId =
+          ref
+              .read(appCctvPersonNotifierProvider(personId))
+              .value
+              ?.data
+              ?.familyCardId
+              .toString() ??
+          "";
+
       ref
           .read(appCctvPersonFamilyNotifierProvider.notifier)
           .perform(

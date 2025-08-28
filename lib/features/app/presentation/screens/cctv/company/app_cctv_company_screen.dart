@@ -6,6 +6,7 @@ import 'package:forui_base/shared/data/models/api_cctv/company.dart';
 import 'package:forui_base/shared/domain/usecases/api_cctv/load_person_data_usecase_pack.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 
 class AppCctvCompanyScreen extends ConsumerStatefulWidget {
   final Company company;
@@ -163,25 +164,47 @@ class _AppCctvCompanyScreenState extends ConsumerState<AppCctvCompanyScreen> {
                           FTile(
                             title: Text("Domestic"),
                             subtitle: Text(
-                              "${widget.company.domesticCapitalAmount} (${widget.company.domesticCapitalPercentage}%)",
+                              "(${widget.company.domesticCapitalPercentage}%)",
+                            ),
+                            suffix: Text(
+                              NumberFormat.decimalPattern('id').format(
+                                num.tryParse(
+                                  "${widget.company.domesticCapitalAmount}",
+                                ),
+                              ),
                             ),
                           ),
                           FTile(
                             title: Text("Foreign"),
+                            suffix: Text(
+                              NumberFormat.decimalPattern('id').format(
+                                num.tryParse(
+                                  "${widget.company.foreignCapitalAmount}",
+                                ),
+                              ),
+                            ),
                             subtitle: Text(
-                              "${widget.company.foreignCapitalAmount} (${widget.company.foreignCapitalPercentage}%)",
+                              "(${widget.company.foreignCapitalPercentage}%)",
                             ),
                           ),
                           FTile(
                             title: Text("Total"),
-                            subtitle: Text(
-                              "${widget.company.totalCapitalAmount}",
+                            suffix: Text(
+                              NumberFormat.decimalPattern('id').format(
+                                num.tryParse(
+                                  widget.company.totalCapitalAmount.toString(),
+                                ),
+                              ),
                             ),
                           ),
                           FTile(
                             title: Text("Base Total"),
-                            subtitle: Text(
-                              "${widget.company.baseCapitalTotal}",
+                            suffix: Text(
+                              NumberFormat.decimalPattern('id').format(
+                                num.tryParse(
+                                  widget.company.baseCapitalTotal.toString(),
+                                ),
+                              ),
                             ),
                           ),
                         ],
@@ -201,6 +224,8 @@ class _AppCctvCompanyScreenState extends ConsumerState<AppCctvCompanyScreen> {
                                     (shareholder) => FTile(
                                       prefix: Icon(FIcons.fileUser),
                                       title: Text(shareholder.name ?? "-"),
+                                      suffix: Icon(FIcons.chevronRight),
+                                      subtitle: Text(shareholder.id ?? "-"),
                                       onPress: () {
                                         final personId = shareholder.id
                                             .toString();
@@ -245,6 +270,8 @@ class _AppCctvCompanyScreenState extends ConsumerState<AppCctvCompanyScreen> {
                                     (pic) => FTile(
                                       prefix: Icon(FIcons.user),
                                       title: Text(pic.name ?? "-"),
+                                      subtitle: Text(pic.id ?? "-"),
+                                      suffix: Icon(FIcons.chevronRight),
                                       onPress: () {
                                         final personId = pic.id.toString();
 
@@ -269,7 +296,7 @@ class _AppCctvCompanyScreenState extends ConsumerState<AppCctvCompanyScreen> {
                             : [
                                 FTile(
                                   prefix: Icon(FIcons.info),
-                                  title: Text("No projects available"),
+                                  title: Text("No PIC available"),
                                 ),
                               ],
                       ),
@@ -279,29 +306,45 @@ class _AppCctvCompanyScreenState extends ConsumerState<AppCctvCompanyScreen> {
                 FTabEntry(
                   label: Icon(FIcons.squareKanban),
                   child: Column(
-                    children: (widget.company.projects ?? []).isNotEmpty
-                        ? (widget.company.projects ?? [])
-                              .map(
-                                (project) => FTile(
-                                  prefix: const Icon(FIcons.squareDashedKanban),
-                                  title: Text(project.id ?? "-"),
-                                  subtitle: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(project.investment ?? "-"),
-                                      Text(project.type ?? "-"),
-                                    ],
-                                  ),
+                    children: [
+                      FTileGroup(
+                        label: const Text('Projects'),
+                        children: (widget.company.projects ?? []).isNotEmpty
+                            ? (widget.company.projects ?? [])
+                                  .map(
+                                    (project) => FTile(
+                                      prefix: Icon(FIcons.squareDashedKanban),
+                                      title: Text(project.id ?? "-"),
+                                      subtitle: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            NumberFormat.decimalPattern(
+                                              'id',
+                                            ).format(
+                                              num.tryParse(
+                                                "${project.investment}",
+                                              ),
+                                            ),
+                                          ),
+                                          Text(
+                                            project.type ?? "-",
+                                            maxLines: 10,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                  .toList()
+                            : [
+                                FTile(
+                                  prefix: Icon(FIcons.info),
+                                  title: Text("No projects available"),
                                 ),
-                              )
-                              .toList()
-                        : [
-                            FTile(
-                              prefix: Icon(FIcons.info),
-                              title: Text("No projects available"),
-                            ),
-                          ],
+                              ],
+                      ),
+                    ],
                   ),
                 ),
                 FTabEntry(
@@ -316,6 +359,20 @@ class _AppCctvCompanyScreenState extends ConsumerState<AppCctvCompanyScreen> {
                                     (legality) => FTile(
                                       prefix: Icon(FIcons.bookA),
                                       title: Text(legality.name ?? "-"),
+                                      subtitle: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(legality.type ?? "-"),
+                                          Text(
+                                            legality.address ?? "-",
+                                            maxLines: 10,
+                                          ),
+                                          Text(legality.phone ?? "-"),
+                                          Text(legality.date ?? "-"),
+                                        ],
+                                      ),
+                                      suffix: Icon(FIcons.eye),
                                     ),
                                   )
                                   .toList()
@@ -349,7 +406,10 @@ class _AppCctvCompanyScreenState extends ConsumerState<AppCctvCompanyScreen> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(checklist.id ?? "-"),
-                                          Text(checklist.agency ?? "-"),
+                                          Text(
+                                            checklist.agency ?? "-",
+                                            maxLines: 10,
+                                          ),
                                         ],
                                       ),
                                     ),
