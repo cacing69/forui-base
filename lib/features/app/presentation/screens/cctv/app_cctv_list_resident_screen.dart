@@ -1,20 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:forui/forui.dart';
 import 'package:forui_base/features/app/presentation/screens/app_routes.dart';
-import 'package:forui_base/features/app/presentation/screens/cctv/person/notifier/app_cctv_person_company_notifier.dart';
-import 'package:forui_base/features/app/presentation/screens/cctv/person/notifier/app_cctv_person_family_notifier.dart';
-import 'package:forui_base/features/app/presentation/screens/cctv/person/notifier/app_cctv_person_gojek_notifier.dart';
-import 'package:forui_base/features/app/presentation/screens/cctv/person/notifier/app_cctv_person_notifier.dart';
-import 'package:forui_base/features/app/presentation/screens/cctv/person/notifier/app_cctv_person_phone_notifier.dart';
-import 'package:forui_base/features/app/presentation/screens/cctv/person/notifier/app_cctv_person_pln_notifier.dart';
-import 'package:forui_base/features/app/presentation/screens/cctv/person/notifier/app_cctv_person_vehicle_notifier.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cctv_province_notifier.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_list_resident_notifier.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cctv_resident_tile.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cctv_resident_tile_skeletonizer.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cctv_screen_list_resident_filter_widget_notifier.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cctv_screen_list_resident_filter_widget.dart';
-import 'package:forui_base/shared/data/models/api_cctv/family_path_params.dart';
 import 'package:forui_base/shared/data/models/api_cctv/resident.dart';
 import 'package:forui_base/shared/data/models/api_cctv/resident_query.dart';
 import 'package:forui_base/shared/domain/usecases/api_cctv/load_person_data_usecase_pack.dart';
@@ -184,59 +176,6 @@ class _AppCctvListResidentScreenState
                       ref
                           .read(loadPersonDataUsecasePackProvider)
                           .call(personId: personId);
-
-                      // ref
-                      //     .read(
-                      //       appCctvPersonNotifierProvider(personId).notifier,
-                      //     )
-                      //     .perform(personId);
-
-                      // ref
-                      //     .read(appCctvPersonFamilyNotifierProvider.notifier)
-                      //     .perform(
-                      //       FamilyPathParams(
-                      //         personId: personId,
-                      //         familyCardId: item.familyCardId.toString(),
-                      //       ),
-                      //     );
-
-                      // ref
-                      //     .read(
-                      //       appCctvPersonPhoneNotifierProvider(
-                      //         personId,
-                      //       ).notifier,
-                      //     )
-                      //     .perform(personId);
-
-                      // ref
-                      //     .read(
-                      //       appCctvPersonGojekNotifierProvider(
-                      //         personId,
-                      //       ).notifier,
-                      //     )
-                      //     .perform(personId);
-
-                      // ref
-                      //     .read(
-                      //       appCctvPersonPlnNotifierProvider(personId).notifier,
-                      //     )
-                      //     .perform(personId);
-
-                      // ref
-                      //     .read(
-                      //       appCctvPersonVehicleNotifierProvider(
-                      //         personId,
-                      //       ).notifier,
-                      //     )
-                      //     .perform(personId);
-
-                      // ref
-                      //     .read(
-                      //       appCctvPersonCompanyNotifierProvider(
-                      //         personId,
-                      //       ).notifier,
-                      //     )
-                      //     .perform(personId);
 
                       context.pushNamed(
                         FeatureAppRouteName.appCctvPerson.name,
