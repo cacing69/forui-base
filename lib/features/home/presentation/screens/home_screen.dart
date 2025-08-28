@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:forui/forui.dart';
+import 'package:forui_base/core/constant/assets.dart';
 import 'package:forui_base/core/constant/dependency_static.dart';
 import 'package:forui_base/core/constant/user_static.dart';
 import 'package:forui_base/features/block/presentation/screens/block_routes.dart';
@@ -217,7 +218,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               child: SizedBox(
                 height: 50,
                 child: SvgPicture.asset(
-                  "assets/icons/forui-light.svg",
+                  Assets.svgIcons.foruiLight,
                   colorFilter: ColorFilter.mode(
                     context.theme.colors.primary,
                     BlendMode.srcIn,

@@ -17,5 +17,18 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Free Api
 
-- [ipify](https://api64.ipify.org)
-- OSRM
+- [ ][ipify](https://api64.ipify.org)
+- [ ] OSRM
+
+## Found on youtube video
+
+- [ ] step_progres_indicator // circular step progress indicator
+- [ ] liquid_pull_to_refresh
+- [ ] transparent_image
+- [ ] ionicons
+- [ ] lorem
+
+## Need to investigate
+
+- [ ] NestedScrollView
+- [ ] ValueNotifier/ValusListenableBuilder

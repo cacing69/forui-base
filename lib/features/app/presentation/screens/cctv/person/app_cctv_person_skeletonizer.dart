@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:forui/forui.dart';
+import 'package:forui_base/core/constant/assets.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:jiffy/jiffy.dart';
@@ -36,7 +37,7 @@ class _AppCctvPersonSkeletonizerState
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
                         image: DecorationImage(
-                          image: const AssetImage("assets/images/avatar.png"),
+                          image: AssetImage(Assets.pngImages.avatar),
                           fit: BoxFit.cover,
                         ),
                       ),

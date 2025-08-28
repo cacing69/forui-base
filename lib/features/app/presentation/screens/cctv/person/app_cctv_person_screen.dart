@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:forui/forui.dart';
+import 'package:forui_base/core/constant/assets.dart';
 import 'package:forui_base/features/app/presentation/screens/app_routes.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/person/app_cctv_person_skeletonizer.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/person/notifier/app_cctv_person_company_notifier.dart';
@@ -130,9 +131,7 @@ class _AppCctvPersonScreenState extends ConsumerState<AppCctvPersonScreen> {
                               image: DecorationImage(
                                 image: (photo != null && photo.isNotEmpty)
                                     ? MemoryImage(base64Decode(photo))
-                                    : const AssetImage(
-                                            "assets/images/avatar.png",
-                                          )
+                                    : AssetImage(Assets.pngImages.avatar)
                                           as ImageProvider,
                                 fit: BoxFit.cover,
                               ),

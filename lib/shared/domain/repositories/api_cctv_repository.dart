@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:forui_base/core/errors/failure.dart';
 import 'package:forui_base/shared/data/models/api_cctv/city.dart';
 import 'package:forui_base/shared/data/models/api_cctv/company.dart';
+import 'package:forui_base/shared/data/models/api_cctv/company_query.dart';
 import 'package:forui_base/shared/data/models/api_cctv/district.dart';
 import 'package:forui_base/shared/data/models/api_cctv/family.dart';
 import 'package:forui_base/shared/data/models/api_cctv/family_path_params.dart';
@@ -35,4 +36,8 @@ abstract class ApiCctvRepository {
   Future<Either<Failure, TResponse<List<Pln>>>> pln(String personId);
   Future<Either<Failure, TResponse<List<Vehicle>>>> vehicle(String personId);
   Future<Either<Failure, TResponse<List<Company>>>> company(String personId);
+
+  Future<Either<Failure, TResponse<List<Company>>>> companies(
+    CompanyQuery query,
+  );
 }

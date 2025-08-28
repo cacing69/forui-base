@@ -55,7 +55,7 @@ class _ApiCctvService implements ApiCctvService {
   }
 
   @override
-  Future<TResponse<List<Company>>> companies(ResidentQuery params) async {
+  Future<TResponse<List<Company>>> companies(CompanyQuery params) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.addAll(params.toJson());

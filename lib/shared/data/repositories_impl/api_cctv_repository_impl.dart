@@ -4,6 +4,7 @@ import 'package:forui_base/core/errors/error_wrapper.dart';
 import 'package:forui_base/core/errors/failure.dart';
 import 'package:forui_base/shared/data/models/api_cctv/city.dart';
 import 'package:forui_base/shared/data/models/api_cctv/company.dart';
+import 'package:forui_base/shared/data/models/api_cctv/company_query.dart';
 import 'package:forui_base/shared/data/models/api_cctv/district.dart';
 import 'package:forui_base/shared/data/models/api_cctv/family.dart';
 import 'package:forui_base/shared/data/models/api_cctv/family_path_params.dart';
@@ -205,6 +206,22 @@ class ApiCctvRepositoryImpl implements ApiCctvRepository {
   Future<Either<Failure, TResponse<List<Pln>>>> pln(String personId) async {
     try {
       final response = await service.pln(personId);
+      return Right(response);
+    } on Exception catch (e) {
+      return Left(errorWrapper(e));
+    } catch (e) {
+      return Left(
+        ServerFailure(message: 'An unexpected error occurred: ${e.toString()}'),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, TResponse<List<Company>>>> companies(
+    CompanyQuery query,
+  ) async {
+    try {
+      final response = await service.companies(query);
       return Right(response);
     } on Exception catch (e) {
       return Left(errorWrapper(e));
