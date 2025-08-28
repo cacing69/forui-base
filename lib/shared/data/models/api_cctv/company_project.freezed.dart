@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$CompanyProject {
 
- String? get name; String? get invenstment; String? get id; String? get type;
+ String? get name; String? get investment; String? get id; String? get type;
 /// Create a copy of CompanyProject
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $CompanyProjectCopyWith<CompanyProject> get copyWith => _$CompanyProjectCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CompanyProject&&(identical(other.name, name) || other.name == name)&&(identical(other.invenstment, invenstment) || other.invenstment == invenstment)&&(identical(other.id, id) || other.id == id)&&(identical(other.type, type) || other.type == type));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CompanyProject&&(identical(other.name, name) || other.name == name)&&(identical(other.investment, investment) || other.investment == investment)&&(identical(other.id, id) || other.id == id)&&(identical(other.type, type) || other.type == type));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,invenstment,id,type);
+int get hashCode => Object.hash(runtimeType,name,investment,id,type);
 
 @override
 String toString() {
-  return 'CompanyProject(name: $name, invenstment: $invenstment, id: $id, type: $type)';
+  return 'CompanyProject(name: $name, investment: $investment, id: $id, type: $type)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $CompanyProjectCopyWith<$Res>  {
   factory $CompanyProjectCopyWith(CompanyProject value, $Res Function(CompanyProject) _then) = _$CompanyProjectCopyWithImpl;
 @useResult
 $Res call({
- String? name, String? invenstment, String? id, String? type
+ String? name, String? investment, String? id, String? type
 });
 
 
@@ -65,10 +65,10 @@ class _$CompanyProjectCopyWithImpl<$Res>
 
 /// Create a copy of CompanyProject
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? name = freezed,Object? invenstment = freezed,Object? id = freezed,Object? type = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? name = freezed,Object? investment = freezed,Object? id = freezed,Object? type = freezed,}) {
   return _then(_self.copyWith(
 name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String?,invenstment: freezed == invenstment ? _self.invenstment : invenstment // ignore: cast_nullable_to_non_nullable
+as String?,investment: freezed == investment ? _self.investment : investment // ignore: cast_nullable_to_non_nullable
 as String?,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,type: freezed == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
 as String?,
@@ -156,10 +156,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? name,  String? invenstment,  String? id,  String? type)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? name,  String? investment,  String? id,  String? type)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CompanyProject() when $default != null:
-return $default(_that.name,_that.invenstment,_that.id,_that.type);case _:
+return $default(_that.name,_that.investment,_that.id,_that.type);case _:
   return orElse();
 
 }
@@ -177,10 +177,10 @@ return $default(_that.name,_that.invenstment,_that.id,_that.type);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? name,  String? invenstment,  String? id,  String? type)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? name,  String? investment,  String? id,  String? type)  $default,) {final _that = this;
 switch (_that) {
 case _CompanyProject():
-return $default(_that.name,_that.invenstment,_that.id,_that.type);case _:
+return $default(_that.name,_that.investment,_that.id,_that.type);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -197,10 +197,10 @@ return $default(_that.name,_that.invenstment,_that.id,_that.type);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? name,  String? invenstment,  String? id,  String? type)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? name,  String? investment,  String? id,  String? type)?  $default,) {final _that = this;
 switch (_that) {
 case _CompanyProject() when $default != null:
-return $default(_that.name,_that.invenstment,_that.id,_that.type);case _:
+return $default(_that.name,_that.investment,_that.id,_that.type);case _:
   return null;
 
 }
@@ -212,11 +212,11 @@ return $default(_that.name,_that.invenstment,_that.id,_that.type);case _:
 @JsonSerializable()
 
 class _CompanyProject implements CompanyProject {
-  const _CompanyProject({this.name = null, this.invenstment = null, this.id = null, this.type = null});
+  const _CompanyProject({this.name = null, this.investment = null, this.id = null, this.type = null});
   factory _CompanyProject.fromJson(Map<String, dynamic> json) => _$CompanyProjectFromJson(json);
 
 @override@JsonKey() final  String? name;
-@override@JsonKey() final  String? invenstment;
+@override@JsonKey() final  String? investment;
 @override@JsonKey() final  String? id;
 @override@JsonKey() final  String? type;
 
@@ -233,16 +233,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CompanyProject&&(identical(other.name, name) || other.name == name)&&(identical(other.invenstment, invenstment) || other.invenstment == invenstment)&&(identical(other.id, id) || other.id == id)&&(identical(other.type, type) || other.type == type));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CompanyProject&&(identical(other.name, name) || other.name == name)&&(identical(other.investment, investment) || other.investment == investment)&&(identical(other.id, id) || other.id == id)&&(identical(other.type, type) || other.type == type));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,invenstment,id,type);
+int get hashCode => Object.hash(runtimeType,name,investment,id,type);
 
 @override
 String toString() {
-  return 'CompanyProject(name: $name, invenstment: $invenstment, id: $id, type: $type)';
+  return 'CompanyProject(name: $name, investment: $investment, id: $id, type: $type)';
 }
 
 
@@ -253,7 +253,7 @@ abstract mixin class _$CompanyProjectCopyWith<$Res> implements $CompanyProjectCo
   factory _$CompanyProjectCopyWith(_CompanyProject value, $Res Function(_CompanyProject) _then) = __$CompanyProjectCopyWithImpl;
 @override @useResult
 $Res call({
- String? name, String? invenstment, String? id, String? type
+ String? name, String? investment, String? id, String? type
 });
 
 
@@ -270,10 +270,10 @@ class __$CompanyProjectCopyWithImpl<$Res>
 
 /// Create a copy of CompanyProject
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? name = freezed,Object? invenstment = freezed,Object? id = freezed,Object? type = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? name = freezed,Object? investment = freezed,Object? id = freezed,Object? type = freezed,}) {
   return _then(_CompanyProject(
 name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String?,invenstment: freezed == invenstment ? _self.invenstment : invenstment // ignore: cast_nullable_to_non_nullable
+as String?,investment: freezed == investment ? _self.investment : investment // ignore: cast_nullable_to_non_nullable
 as String?,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,type: freezed == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
 as String?,

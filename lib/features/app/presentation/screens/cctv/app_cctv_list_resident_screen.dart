@@ -17,6 +17,7 @@ import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cc
 import 'package:forui_base/shared/data/models/api_cctv/family_path_params.dart';
 import 'package:forui_base/shared/data/models/api_cctv/resident.dart';
 import 'package:forui_base/shared/data/models/api_cctv/resident_query.dart';
+import 'package:forui_base/shared/domain/usecases/api_cctv/load_person_data_usecase_pack.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -181,57 +182,61 @@ class _AppCctvListResidentScreenState
                       final String personId = item.id.toString();
 
                       ref
-                          .read(
-                            appCctvPersonNotifierProvider(personId).notifier,
-                          )
-                          .perform(personId);
+                          .read(loadPersonDataUsecasePackProvider)
+                          .call(personId: personId);
 
-                      ref
-                          .read(appCctvPersonFamilyNotifierProvider.notifier)
-                          .perform(
-                            FamilyPathParams(
-                              personId: personId,
-                              familyCardId: item.familyCardId.toString(),
-                            ),
-                          );
+                      // ref
+                      //     .read(
+                      //       appCctvPersonNotifierProvider(personId).notifier,
+                      //     )
+                      //     .perform(personId);
 
-                      ref
-                          .read(
-                            appCctvPersonPhoneNotifierProvider(
-                              personId,
-                            ).notifier,
-                          )
-                          .perform(personId);
+                      // ref
+                      //     .read(appCctvPersonFamilyNotifierProvider.notifier)
+                      //     .perform(
+                      //       FamilyPathParams(
+                      //         personId: personId,
+                      //         familyCardId: item.familyCardId.toString(),
+                      //       ),
+                      //     );
 
-                      ref
-                          .read(
-                            appCctvPersonGojekNotifierProvider(
-                              personId,
-                            ).notifier,
-                          )
-                          .perform(personId);
+                      // ref
+                      //     .read(
+                      //       appCctvPersonPhoneNotifierProvider(
+                      //         personId,
+                      //       ).notifier,
+                      //     )
+                      //     .perform(personId);
 
-                      ref
-                          .read(
-                            appCctvPersonPlnNotifierProvider(personId).notifier,
-                          )
-                          .perform(personId);
+                      // ref
+                      //     .read(
+                      //       appCctvPersonGojekNotifierProvider(
+                      //         personId,
+                      //       ).notifier,
+                      //     )
+                      //     .perform(personId);
 
-                      ref
-                          .read(
-                            appCctvPersonVehicleNotifierProvider(
-                              personId,
-                            ).notifier,
-                          )
-                          .perform(personId);
+                      // ref
+                      //     .read(
+                      //       appCctvPersonPlnNotifierProvider(personId).notifier,
+                      //     )
+                      //     .perform(personId);
 
-                      ref
-                          .read(
-                            appCctvPersonCompanyNotifierProvider(
-                              personId,
-                            ).notifier,
-                          )
-                          .perform(personId);
+                      // ref
+                      //     .read(
+                      //       appCctvPersonVehicleNotifierProvider(
+                      //         personId,
+                      //       ).notifier,
+                      //     )
+                      //     .perform(personId);
+
+                      // ref
+                      //     .read(
+                      //       appCctvPersonCompanyNotifierProvider(
+                      //         personId,
+                      //       ).notifier,
+                      //     )
+                      //     .perform(personId);
 
                       context.pushNamed(
                         FeatureAppRouteName.appCctvPerson.name,

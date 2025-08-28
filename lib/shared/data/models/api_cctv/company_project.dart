@@ -7,7 +7,7 @@ part 'company_project.freezed.dart';
 abstract class CompanyProject with _$CompanyProject {
   const factory CompanyProject({
     @Default(null) String? name,
-    @Default(null) String? invenstment,
+    @Default(null) String? investment,
     @Default(null) String? id,
     @Default(null) String? type,
   }) = _CompanyProject;

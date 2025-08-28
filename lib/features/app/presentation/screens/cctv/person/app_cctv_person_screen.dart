@@ -17,6 +17,7 @@ import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cc
 import 'package:forui_base/router.dart';
 import 'package:forui_base/shared/data/models/api_cctv/person.dart';
 import 'package:forui_base/shared/data/models/api_cctv/t_response.dart';
+import 'package:forui_base/shared/domain/usecases/api_cctv/load_person_data_usecase_pack.dart';
 import 'package:gal/gal.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
@@ -229,53 +230,61 @@ class _AppCctvPersonScreenState extends ConsumerState<AppCctvPersonScreen> {
                                     ],
                                   ),
                                   onPress: () {
-                                    ref
-                                        .read(
-                                          appCctvPersonNotifierProvider(
-                                            fam.id.toString(),
-                                          ).notifier,
-                                        )
-                                        .perform(fam.id.toString());
+                                    final String personId = fam.id.toString();
 
                                     ref
-                                        .read(
-                                          appCctvPersonPhoneNotifierProvider(
-                                            fam.id.toString(),
-                                          ).notifier,
-                                        )
-                                        .perform(fam.id.toString());
+                                        .read(loadPersonDataUsecasePackProvider)
+                                        .call(
+                                          personId: personId,
+                                          loadFamily: false,
+                                        );
+                                    // ref
+                                    //     .read(
+                                    //       appCctvPersonNotifierProvider(
+                                    //         fam.id.toString(),
+                                    //       ).notifier,
+                                    //     )
+                                    //     .perform(fam.id.toString());
 
-                                    ref
-                                        .read(
-                                          appCctvPersonGojekNotifierProvider(
-                                            fam.id.toString(),
-                                          ).notifier,
-                                        )
-                                        .perform(fam.id.toString());
+                                    // ref
+                                    //     .read(
+                                    //       appCctvPersonPhoneNotifierProvider(
+                                    //         fam.id.toString(),
+                                    //       ).notifier,
+                                    //     )
+                                    //     .perform(fam.id.toString());
 
-                                    ref
-                                        .read(
-                                          appCctvPersonPlnNotifierProvider(
-                                            fam.id.toString(),
-                                          ).notifier,
-                                        )
-                                        .perform(fam.id.toString());
+                                    // ref
+                                    //     .read(
+                                    //       appCctvPersonGojekNotifierProvider(
+                                    //         fam.id.toString(),
+                                    //       ).notifier,
+                                    //     )
+                                    //     .perform(fam.id.toString());
 
-                                    ref
-                                        .read(
-                                          appCctvPersonVehicleNotifierProvider(
-                                            fam.id.toString(),
-                                          ).notifier,
-                                        )
-                                        .perform(fam.id.toString());
+                                    // ref
+                                    //     .read(
+                                    //       appCctvPersonPlnNotifierProvider(
+                                    //         fam.id.toString(),
+                                    //       ).notifier,
+                                    //     )
+                                    //     .perform(fam.id.toString());
 
-                                    ref
-                                        .read(
-                                          appCctvPersonCompanyNotifierProvider(
-                                            fam.id.toString(),
-                                          ).notifier,
-                                        )
-                                        .perform(fam.id.toString());
+                                    // ref
+                                    //     .read(
+                                    //       appCctvPersonVehicleNotifierProvider(
+                                    //         fam.id.toString(),
+                                    //       ).notifier,
+                                    //     )
+                                    //     .perform(fam.id.toString());
+
+                                    // ref
+                                    //     .read(
+                                    //       appCctvPersonCompanyNotifierProvider(
+                                    //         fam.id.toString(),
+                                    //       ).notifier,
+                                    //     )
+                                    //     .perform(fam.id.toString());
 
                                     context.pushNamed(
                                       FeatureAppRouteName.appCctvPerson.name,
@@ -499,6 +508,9 @@ class _AppCctvPersonScreenState extends ConsumerState<AppCctvPersonScreen> {
                                     onPress: () {
                                       context.pushNamed(
                                         FeatureAppRouteName.appCctvCompany.name,
+                                        pathParameters: {
+                                          "companyId": "${row.id}",
+                                        },
                                         extra: row,
                                       );
                                     },
