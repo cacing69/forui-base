@@ -18,6 +18,7 @@ import 'package:forui_hooks/forui_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:intl/intl.dart';
 
 class AppCctvScreenFilterWidget extends StatefulHookConsumerWidget {
   const AppCctvScreenFilterWidget({super.key});
@@ -61,6 +62,19 @@ class _AppCctvScreenFilterWidgetState
     final FSelectController<Village> villageController = useFSelectController(
       vsync: this,
       value: filterState.village,
+    );
+
+    final FContinuousSliderController minMaxController =
+        useFContinuousRangeSliderController(
+          selection: FSliderSelection(
+            min: (filterState.minAge ?? 0) / 120,
+            max: (filterState.maxAge ?? 0) / 120,
+          ),
+          stepPercentage: 0.1,
+        );
+
+    final FDateFieldController dobController = useFDateFieldController(
+      initialDate: null,
     );
 
     return FScaffold(
@@ -336,14 +350,13 @@ class _AppCctvScreenFilterWidgetState
                           },
                         ),
                         FSlider(
-                          enabled: false,
+                          enabled: true,
                           label: Text("Age"),
+                          // initialSelection: FSliderSelection(min: 0, max: 1),
                           description: Text(
                             "Select an age between 0 and 120 years",
                           ),
-                          controller: FContinuousSliderController.range(
-                            selection: FSliderSelection(min: 0, max: 1),
-                          ),
+                          controller: minMaxController,
                           marks: [
                             FSliderMark(value: 0, label: Text('0')),
                             FSliderMark(value: 0.25, label: Text('30')),
@@ -356,11 +369,45 @@ class _AppCctvScreenFilterWidgetState
 
                             return Text(newValue.floor().toString());
                           },
+                          onChange: (FSliderSelection value) {
+                            debugPrint(value.toString());
+
+                            final int minValue = (120 * value.offset.min)
+                                .floor();
+                            final int maxValue = (120 * value.offset.max)
+                                .floor();
+
+                            ref
+                                .read(
+                                  appCctvScreenFilterWidgetNotifierProvider
+                                      .notifier,
+                                )
+                                .setMinMaxAge(minValue, maxValue);
+                          },
                         ),
                         FDateField(
-                          enabled: false,
                           label: Text('Date of Birth'),
-                          description: Text("Choose a birrth date"),
+                          controller: dobController,
+                          description: Text("Choose date of birth"),
+                          onChange: (value) {
+                            if (value != null) {
+                              ref
+                                  .read(
+                                    appCctvScreenFilterWidgetNotifierProvider
+                                        .notifier,
+                                  )
+                                  .setDateOfBirth(
+                                    DateFormat("yyyy-MM-dd").format(value),
+                                  );
+                            } else {
+                              ref
+                                  .read(
+                                    appCctvScreenFilterWidgetNotifierProvider
+                                        .notifier,
+                                  )
+                                  .setDateOfBirth(null);
+                            }
+                          },
                         ),
                         FTextField(
                           label: Text("Search"),

@@ -47,6 +47,9 @@ final pagingControllerProvider =
               filterState.city?.id == null &&
               filterState.district?.id == null &&
               filterState.village?.id == null &&
+              filterState.dateOfBirth == null &&
+              (filterState.minAge ?? 0) == 0 &&
+              (filterState.maxAge ?? 120) == 120 &&
               (filterState.search ?? "").isEmpty) {
             return [];
           }
@@ -65,6 +68,9 @@ final pagingControllerProvider =
                   districtId: filterState.district?.id.toString() ?? "0",
                   villageId: filterState.village?.id.toString() ?? "0",
                   search: filterState.search ?? "",
+                  minAge: filterState.minAge?.toString() ?? "0",
+                  maxAge: filterState.maxAge?.toString() ?? "120",
+                  birthDate: filterState.dateOfBirth ?? "",
                   start: start.toString(),
                 ),
               );

@@ -39,6 +39,14 @@ class AppCctvScreenFilterWidgetNotifier
     state = state.copyWith(search: search);
   }
 
+  void setMinMaxAge(int min, int max) {
+    state = state.copyWith(minAge: min, maxAge: max);
+  }
+
+  void setDateOfBirth(String? date) {
+    state = state.copyWith(dateOfBirth: date);
+  }
+
   void reset() {
     state = AppCctvScreenFilterWidgetState();
   }
