@@ -11,15 +11,15 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'companies_usecase.g.dart';
 
 @riverpod
-CompaniesUsecaes companiesUsecaes(Ref ref) {
-  return CompaniesUsecaes(ref.watch(apiCctvRepositoryProvider));
+CompaniesUsecase companiesUsecase(Ref ref) {
+  return CompaniesUsecase(ref.watch(apiCctvRepositoryProvider));
 }
 
-class CompaniesUsecaes
+class CompaniesUsecase
     implements UseCase<TResponse<List<Company>>, CompanyQuery> {
   final ApiCctvRepository repository;
 
-  CompaniesUsecaes(this.repository);
+  CompaniesUsecase(this.repository);
 
   @override
   Future<Either<Failure, TResponse<List<Company>>>> call(

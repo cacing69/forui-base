@@ -6,51 +6,51 @@ part of 'companies_usecase.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-@ProviderFor(companiesUsecaes)
-const companiesUsecaesProvider = CompaniesUsecaesProvider._();
+@ProviderFor(companiesUsecase)
+const companiesUsecaseProvider = CompaniesUsecaseProvider._();
 
-final class CompaniesUsecaesProvider
+final class CompaniesUsecaseProvider
     extends
         $FunctionalProvider<
-          CompaniesUsecaes,
-          CompaniesUsecaes,
-          CompaniesUsecaes
+          CompaniesUsecase,
+          CompaniesUsecase,
+          CompaniesUsecase
         >
-    with $Provider<CompaniesUsecaes> {
-  const CompaniesUsecaesProvider._()
+    with $Provider<CompaniesUsecase> {
+  const CompaniesUsecaseProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'companiesUsecaesProvider',
+        name: r'companiesUsecaseProvider',
         isAutoDispose: true,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$companiesUsecaesHash();
+  String debugGetCreateSourceHash() => _$companiesUsecaseHash();
 
   @$internal
   @override
-  $ProviderElement<CompaniesUsecaes> $createElement($ProviderPointer pointer) =>
+  $ProviderElement<CompaniesUsecase> $createElement($ProviderPointer pointer) =>
       $ProviderElement(pointer);
 
   @override
-  CompaniesUsecaes create(Ref ref) {
-    return companiesUsecaes(ref);
+  CompaniesUsecase create(Ref ref) {
+    return companiesUsecase(ref);
   }
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(CompaniesUsecaes value) {
+  Override overrideWithValue(CompaniesUsecase value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<CompaniesUsecaes>(value),
+      providerOverride: $SyncValueProvider<CompaniesUsecase>(value),
     );
   }
 }
 
-String _$companiesUsecaesHash() => r'494ebb70bf1f117b69f1dcc492591ca67f21118e';
+String _$companiesUsecaseHash() => r'fee0cd4dd63512249c62e4a71587c4f3b5fee8f4';
 
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

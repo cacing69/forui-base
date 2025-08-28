@@ -97,7 +97,7 @@ class _AppCctvScreenListResidentFilterWidgetState
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Filter",
+                          "Filter Resident",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         Gap(5),
@@ -446,7 +446,7 @@ class _AppCctvScreenListResidentFilterWidgetState
                               )
                               .reset();
 
-                          ref.read(pagingControllerProvider).refresh();
+                          ref.read(pagingResidentControllerProvider).refresh();
                         },
                         prefix: Icon(FIcons.x),
                         child: Text("Reset"),
@@ -479,7 +479,7 @@ class _AppCctvScreenListResidentFilterWidgetState
                                 ),
                               );
 
-                          ref.read(pagingControllerProvider).refresh();
+                          ref.read(pagingResidentControllerProvider).refresh();
 
                           context.pop();
                         },

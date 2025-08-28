@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:forui_base/shared/data/models/api_cctv/company.dart';
 import 'package:forui_base/shared/data/models/api_cctv/company_query.dart';
 import 'package:forui_base/shared/data/models/api_cctv/t_response.dart';
@@ -16,13 +17,15 @@ class AppCctvListCompanyNotifier extends _$AppCctvListCompanyNotifier {
   Future<void> perform(CompanyQuery params) async {
     state = AsyncValue.loading();
 
-    final result = await ref.read(companiesUsecaesProvider).call(params);
+    final result = await ref.read(companiesUsecaseProvider).call(params);
 
     result.fold(
       (failure) {
+        debugPrint("failure.toString():${failure.message}");
         state = AsyncValue.error(failure, StackTrace.current);
       },
       (data) {
+        debugPrint("data.toString():${data.toString()}");
         state = AsyncValue.data(data);
       },
     );

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_list_company_screen.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_list_resident_screen.dart';
+import 'package:forui_base/features/app/presentation/screens/cctv/company/app_cctv_company_screen.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/person/app_cctv_person_screen.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/person/tab_overview/app_cctv_person_overview_tab_e_ktp_screen.dart';
+import 'package:forui_base/shared/data/models/api_cctv/company.dart';
 import 'package:go_router/go_router.dart';
 
 enum FeatureAppRouteName {
@@ -10,6 +12,7 @@ enum FeatureAppRouteName {
   appCctvListResident,
   appCctvListCompany,
   appCctvPerson,
+  appCctvCompany,
   appCctvPersonTabFamily,
   appCctvPersonTabEKtp,
 }
@@ -36,6 +39,18 @@ final featureAppRoutes = [
         return AppCctvPersonScreen(
           personId: state.pathParameters['personId'] ?? "",
         );
+      }
+    },
+  ),
+  GoRoute(
+    path: '/app/cctv/company/:companyId',
+    name: FeatureAppRouteName.appCctvCompany.name,
+    builder: (context, state) {
+      if (state.pathParameters['companyId'] == null) {
+        // Todo create component that shown wrong parameter
+        return Placeholder();
+      } else {
+        return AppCctvCompanyScreen(company: state.extra as Company);
       }
     },
   ),

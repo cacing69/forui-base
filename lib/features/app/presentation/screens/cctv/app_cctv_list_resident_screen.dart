@@ -30,7 +30,7 @@ class AppCctvListResidentScreen extends StatefulHookConsumerWidget {
       _AppCctvListResidentScreenState();
 }
 
-final pagingControllerProvider =
+final pagingResidentControllerProvider =
     Provider.autoDispose<PagingController<int, Resident>>((ref) {
       ref.keepAlive(); // ini akan mencegah dispose otomatis
 
@@ -162,10 +162,10 @@ class _AppCctvListResidentScreenState
               )
               .reset();
 
-          ref.watch(pagingControllerProvider).refresh();
+          ref.read(pagingResidentControllerProvider).refresh();
         },
         child: PagingListener(
-          controller: ref.watch(pagingControllerProvider),
+          controller: ref.watch(pagingResidentControllerProvider),
           builder: (context, state, fetchNextPage) =>
               PagedListView<int, Resident>.separated(
                 separatorBuilder: (context, index) => FDivider(
@@ -178,19 +178,19 @@ class _AppCctvListResidentScreenState
                     resident: item,
                     now: now,
                     onPress: () {
+                      final String personId = item.id.toString();
+
                       ref
                           .read(
-                            appCctvPersonNotifierProvider(
-                              item.id.toString(),
-                            ).notifier,
+                            appCctvPersonNotifierProvider(personId).notifier,
                           )
-                          .perform(item.id.toString());
+                          .perform(personId);
 
                       ref
                           .read(appCctvPersonFamilyNotifierProvider.notifier)
                           .perform(
                             FamilyPathParams(
-                              personId: item.id.toString(),
+                              personId: personId,
                               familyCardId: item.familyCardId.toString(),
                             ),
                           );
@@ -198,46 +198,44 @@ class _AppCctvListResidentScreenState
                       ref
                           .read(
                             appCctvPersonPhoneNotifierProvider(
-                              item.id.toString(),
+                              personId,
                             ).notifier,
                           )
-                          .perform(item.id.toString());
+                          .perform(personId);
 
                       ref
                           .read(
                             appCctvPersonGojekNotifierProvider(
-                              item.id.toString(),
+                              personId,
                             ).notifier,
                           )
-                          .perform(item.id.toString());
+                          .perform(personId);
 
                       ref
                           .read(
-                            appCctvPersonPlnNotifierProvider(
-                              item.id.toString(),
-                            ).notifier,
+                            appCctvPersonPlnNotifierProvider(personId).notifier,
                           )
-                          .perform(item.id.toString());
+                          .perform(personId);
 
                       ref
                           .read(
                             appCctvPersonVehicleNotifierProvider(
-                              item.id.toString(),
+                              personId,
                             ).notifier,
                           )
-                          .perform(item.id.toString());
+                          .perform(personId);
 
                       ref
                           .read(
                             appCctvPersonCompanyNotifierProvider(
-                              item.id.toString(),
+                              personId,
                             ).notifier,
                           )
-                          .perform(item.id.toString());
+                          .perform(personId);
 
                       context.pushNamed(
                         FeatureAppRouteName.appCctvPerson.name,
-                        pathParameters: {"personId": item.id.toString()},
+                        pathParameters: {"personId": personId},
                       );
                     },
                   ),

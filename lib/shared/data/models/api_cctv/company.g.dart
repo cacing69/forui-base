@@ -53,7 +53,9 @@ _Company _$CompanyFromJson(Map<String, dynamic> json) => _Company(
       null,
   submissionDate: json['submissionDate'] as String? ?? null,
   approvalNumber: json['approvalNumber'] as String? ?? null,
-  domesticCapitalAmount: json['domesticCapitalAmount'] as String? ?? null,
+  domesticCapitalAmount: json['domesticCapitalAmount'] == null
+      ? null
+      : const BigIntConverter().fromJson(json['domesticCapitalAmount']),
   exportFlag: json['exportFlag'] as String? ?? null,
   phoneNumber: json['phoneNumber'] as String? ?? null,
   foreignCapitalPercentage:
@@ -62,7 +64,9 @@ _Company _$CompanyFromJson(Map<String, dynamic> json) => _Company(
       ? null
       : const BigIntConverter().fromJson(json['registrationNumber']),
   businessScale: json['businessScale'] as String? ?? null,
-  foreignCapitalAmount: json['foreignCapitalAmount'] as String? ?? null,
+  foreignCapitalAmount: json['foreignCapitalAmount'] == null
+      ? null
+      : const BigIntConverter().fromJson(json['foreignCapitalAmount']),
   name: json['name'] as String? ?? null,
   issueCapitalTotal: json['issueCapitalTotal'] == null
       ? null
@@ -96,7 +100,9 @@ Map<String, dynamic> _$CompanyToJson(_Company instance) => <String, dynamic>{
   'legalities': instance.legalities,
   'submissionDate': instance.submissionDate,
   'approvalNumber': instance.approvalNumber,
-  'domesticCapitalAmount': instance.domesticCapitalAmount,
+  'domesticCapitalAmount': const BigIntConverter().toJson(
+    instance.domesticCapitalAmount,
+  ),
   'exportFlag': instance.exportFlag,
   'phoneNumber': instance.phoneNumber,
   'foreignCapitalPercentage': instance.foreignCapitalPercentage,
@@ -104,7 +110,9 @@ Map<String, dynamic> _$CompanyToJson(_Company instance) => <String, dynamic>{
     instance.registrationNumber,
   ),
   'businessScale': instance.businessScale,
-  'foreignCapitalAmount': instance.foreignCapitalAmount,
+  'foreignCapitalAmount': const BigIntConverter().toJson(
+    instance.foreignCapitalAmount,
+  ),
   'name': instance.name,
   'issueCapitalTotal': const BigIntConverter().toJson(
     instance.issueCapitalTotal,

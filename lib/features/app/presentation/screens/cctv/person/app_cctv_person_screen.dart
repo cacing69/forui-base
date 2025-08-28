@@ -496,7 +496,12 @@ class _AppCctvPersonScreenState extends ConsumerState<AppCctvPersonScreen> {
                                         Text(row.address ?? "-"),
                                       ],
                                     ),
-                                    onPress: () {},
+                                    onPress: () {
+                                      context.pushNamed(
+                                        FeatureAppRouteName.appCctvCompany.name,
+                                        extra: row,
+                                      );
+                                    },
                                   ),
                                 ),
                               ];
