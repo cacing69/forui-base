@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:forui/forui.dart';
@@ -38,15 +39,15 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     };
 
     final themes = {
-      "zinc".capitalizeFirst(): AvailableThemeApp.zinc,
-      "slate".capitalizeFirst(): AvailableThemeApp.slate,
-      "red".capitalizeFirst(): AvailableThemeApp.red,
-      "rose".capitalizeFirst(): AvailableThemeApp.rose,
-      "orange".capitalizeFirst(): AvailableThemeApp.orange,
-      "green".capitalizeFirst(): AvailableThemeApp.green,
-      "bLue".capitalizeFirst(): AvailableThemeApp.blue,
-      "yellow".capitalizeFirst(): AvailableThemeApp.yellow,
-      "violet".capitalizeFirst(): AvailableThemeApp.violet,
+      AvailableThemeApp.zinc.name.capitalizeFirst(): AvailableThemeApp.zinc,
+      AvailableThemeApp.slate.name.capitalizeFirst(): AvailableThemeApp.slate,
+      AvailableThemeApp.red.name.capitalizeFirst(): AvailableThemeApp.red,
+      AvailableThemeApp.rose.name.capitalizeFirst(): AvailableThemeApp.rose,
+      AvailableThemeApp.orange.name.capitalizeFirst(): AvailableThemeApp.orange,
+      AvailableThemeApp.green.name.capitalizeFirst(): AvailableThemeApp.green,
+      AvailableThemeApp.blue.name.capitalizeFirst(): AvailableThemeApp.blue,
+      AvailableThemeApp.yellow.name.capitalizeFirst(): AvailableThemeApp.yellow,
+      AvailableThemeApp.violet.name.capitalizeFirst(): AvailableThemeApp.violet,
     };
 
     return FScaffold(
@@ -488,23 +489,26 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   },
                   detailsBuilder: (_, values, _) =>
                       Text(switch (values.firstOrNull) {
-                        AvailableThemeApp.zinc => "zinc".capitalizeFirst(),
-                        AvailableThemeApp.slate => "slate".capitalizeFirst(),
-                        AvailableThemeApp.red => "red".capitalizeFirst(),
-                        AvailableThemeApp.rose => "rose".capitalizeFirst(),
-                        AvailableThemeApp.orange => "orange".capitalizeFirst(),
-                        AvailableThemeApp.green => "green".capitalizeFirst(),
-                        AvailableThemeApp.blue => "blue".capitalizeFirst(),
-                        AvailableThemeApp.yellow => "yellow".capitalizeFirst(),
-                        AvailableThemeApp.violet => "violet".capitalizeFirst(),
+                        AvailableThemeApp.zinc =>
+                          AvailableThemeApp.zinc.name.capitalizeFirst(),
+                        AvailableThemeApp.slate =>
+                          AvailableThemeApp.slate.name.capitalizeFirst(),
+                        AvailableThemeApp.red =>
+                          AvailableThemeApp.red.name.capitalizeFirst(),
+                        AvailableThemeApp.rose =>
+                          AvailableThemeApp.rose.name.capitalizeFirst(),
+                        AvailableThemeApp.orange =>
+                          AvailableThemeApp.orange.name.capitalizeFirst(),
+                        AvailableThemeApp.green =>
+                          AvailableThemeApp.green.name.capitalizeFirst(),
+                        AvailableThemeApp.blue =>
+                          AvailableThemeApp.blue.name.capitalizeFirst(),
+                        AvailableThemeApp.yellow =>
+                          AvailableThemeApp.yellow.name.capitalizeFirst(),
+                        AvailableThemeApp.violet =>
+                          AvailableThemeApp.violet.name.capitalizeFirst(),
                         _ => loc.none,
                       }),
-                ),
-                FTile(
-                  prefix: Icon(FIcons.code),
-                  title: Text(loc.lorem),
-                  // suffix: Icon(FIcons.chevronRight),
-                  onPress: () {},
                 ),
               ],
             ),

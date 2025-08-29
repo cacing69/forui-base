@@ -2,6 +2,7 @@ import 'package:forui_base/features/app/presentation/screens/app_routes.dart';
 import 'package:forui_base/features/block/presentation/screens/block_routes.dart';
 import 'package:forui_base/features/home/presentation/screens/home_screen_main.dart';
 import 'package:forui_base/features/auth/presentation/screens/login_screen.dart';
+import 'package:forui_base/shared/presentation/screens/theme_switcher_screen.dart';
 import 'package:forui_base/shared/presentation/screens/full_screen_image_base64_viewer_screen.dart';
 import 'package:forui_base/shared/presentation/screens/full_screen_image_url_viewer_screen.dart';
 import 'package:forui_base/shared/presentation/screens/nominatim_search_location_screen.dart';
@@ -12,6 +13,7 @@ enum RouteName {
   init,
   home,
   login,
+  themeSwither,
   fullScreenImageUrlViewer,
   fullScreenImageBase64Viewer,
   nominatimSearchLocation,
@@ -34,6 +36,11 @@ final List<GoRoute> defaultRouter = [
     path: '/home',
     name: RouteName.home.name,
     builder: (context, state) => HomeScreenMain(),
+  ),
+  GoRoute(
+    path: '/theme-switcher',
+    name: RouteName.themeSwither.name,
+    builder: (context, state) => ThemeSwitcherScreen(),
   ),
   GoRoute(
     path: '/full-screen-image-url-viewer',
