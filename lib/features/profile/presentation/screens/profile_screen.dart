@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:forui/forui.dart';
 import 'package:forui_base/core/constant/user_static.dart';
+import 'package:forui_base/core/utils/helpers.dart';
 import 'package:forui_base/features/profile/presentation/widgets/profile_social_link_widget.dart';
 import 'package:forui_base/l10n/app_localizations.dart';
 import 'package:forui_base/router.dart';
@@ -94,7 +95,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                             onPress: () => showFToast(
                               context: context,
                               icon: Icon(FIcons.info),
-                              alignment: FToastAlignment.bottomCenter,
+                              alignment: FToastAlignment.topCenter,
                               title: Text(loc.lorem),
                               description: Text(loc.loremIpsumDolorSitAmet),
                               suffixBuilder: (context, entry) => IntrinsicHeight(
@@ -219,29 +220,53 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   autoHide: true,
                   prefix: const Icon(FIcons.languages),
                   title: Text(loc.language),
-                  onChange: (e) {
+                  onChange: (e) async {
                     final selected = e.firstOrNull;
+                    final prefs = await SharedPreferences.getInstance();
 
-                    switch (selected) {
-                      case null:
-                        showFToast(
-                          context: context,
-                          alignment: FToastAlignment.bottomCenter,
-                          title: const Text('Empty'),
-                        );
+                    if (context.mounted) {
+                      switch (selected) {
+                        case null:
+                          showForuiToast(
+                            context: context,
+                            title: Text("Empty"),
+                          );
 
-                      case LocaleApp.id:
-                        showFToast(
-                          context: context,
-                          alignment: FToastAlignment.bottomCenter,
-                          title: const Text('Diubah ke Bahasa Indonesia'),
-                        );
-                      case LocaleApp.en:
-                        // TODO: Handle this case.
-                        throw UnimplementedError();
-                      case LocaleApp.es:
-                        // TODO: Handle this case.
-                        throw UnimplementedError();
+                        case LocaleApp.id:
+                          showForuiToast(
+                            context: context,
+                            title: Text("Diubah ke Bahasa Indonesia"),
+                          );
+
+                          ref
+                              .read(configAppNotifierProvider.notifier)
+                              .changeLocale(Locale("id"));
+
+                          await prefs.setString('locale', "id");
+                        case LocaleApp.en:
+                          showForuiToast(
+                            context: context,
+                            title: Text("Changed to English"),
+                          );
+
+                          ref
+                              .read(configAppNotifierProvider.notifier)
+                              .changeLocale(Locale("en"));
+
+                          await prefs.setString('locale', "en");
+
+                        case LocaleApp.es:
+                          showForuiToast(
+                            context: context,
+                            title: Text("Cambiado a Español"),
+                          );
+
+                          ref
+                              .read(configAppNotifierProvider.notifier)
+                              .changeLocale(Locale("es"));
+
+                          await prefs.setString('locale', "es");
+                      }
                     }
                   },
                   detailsBuilder: (_, values, _) =>

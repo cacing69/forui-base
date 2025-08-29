@@ -44,7 +44,7 @@ class _ApplicationState extends ConsumerState<Application> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       final brightness = MediaQuery.of(context).platformBrightness;
-      final notifier = ref.read(configAppNotifierProvider.notifier);
+      final configAppNotifier = ref.read(configAppNotifierProvider.notifier);
 
       final prefs = await SharedPreferences.getInstance();
 
@@ -61,14 +61,26 @@ class _ApplicationState extends ConsumerState<Application> {
         }
       } else {
         if (brightness == Brightness.dark) {
-          notifier.changeTheme(FThemes.zinc.dark);
+          configAppNotifier.changeTheme(FThemes.zinc.dark);
 
           await prefs.setBool('isDarkTheme', true);
         } else {
-          notifier.changeTheme(FThemes.zinc.light);
+          configAppNotifier.changeTheme(FThemes.zinc.light);
 
           await prefs.setBool('isDarkTheme', false);
         }
+      }
+
+      // Locale handler
+      if (prefs.containsKey('locale')) {
+        final locale = prefs.getString('locale');
+        if (locale != null) {
+          configAppNotifier.changeLocale(Locale(locale));
+        } else {
+          configAppNotifier.changeLocale(Locale("en"));
+        }
+      } else {
+        configAppNotifier.changeLocale(Locale("en"));
       }
 
       SystemChannels.textInput.invokeMethod('TextInput.hide');
@@ -87,7 +99,7 @@ class _ApplicationState extends ConsumerState<Application> {
         GlobalCupertinoLocalizations.delegate,
         FLocalizations.delegate,
       ],
-      locale: Locale('en'),
+      locale: configApp.locale,
       supportedLocales: [
         Locale('id'), // Indonesia
         Locale('en'), // English

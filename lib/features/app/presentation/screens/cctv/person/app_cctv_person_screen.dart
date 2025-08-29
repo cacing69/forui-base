@@ -376,7 +376,7 @@ class _AppCctvPersonScreenState extends ConsumerState<AppCctvPersonScreen> {
                                                 onPress: () {
                                                   // TODO : https://www.kredibel.com/phone/id/82173776770
                                                   showComingSoonFlutterToast(
-                                                    context.theme,
+                                                    context,
                                                   );
                                                 },
                                               ),
@@ -388,7 +388,7 @@ class _AppCctvPersonScreenState extends ConsumerState<AppCctvPersonScreen> {
                                                 onPress: () {
                                                   // TODO : https://ceebydith.com/cek-hlr-lokasi-hp.html
                                                   showComingSoonFlutterToast(
-                                                    context.theme,
+                                                    context,
                                                   );
                                                 },
                                               ),
