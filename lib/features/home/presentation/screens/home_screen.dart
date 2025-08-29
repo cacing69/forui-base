@@ -7,7 +7,6 @@ import 'package:forui_base/core/constant/assets.dart';
 import 'package:forui_base/core/constant/dependency_static.dart';
 import 'package:forui_base/core/constant/user_static.dart';
 import 'package:forui_base/features/block/presentation/screens/block_routes.dart';
-import 'package:forui_base/shared/presentation/providers/config_app_notifier.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -28,25 +27,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       header: FHeader(
         title: Text("Home"),
         suffixes: [
-          FHeaderAction(
-            icon:
-                ref.watch(configAppNotifierProvider).themeData ==
-                    FThemes.zinc.light
-                ? Icon(FIcons.moon)
-                : Icon(FIcons.sun),
-            onPress: () {
-              if (ref.watch(configAppNotifierProvider).themeData ==
-                  FThemes.zinc.light) {
-                ref
-                    .read(configAppNotifierProvider.notifier)
-                    .changeTheme(FThemes.zinc.dark);
-              } else {
-                ref
-                    .read(configAppNotifierProvider.notifier)
-                    .changeTheme(FThemes.zinc.light);
-              }
-            },
-          ),
           FHeaderAction(
             icon: Icon(FIcons.menu),
             onPress: () {

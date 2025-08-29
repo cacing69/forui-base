@@ -94,12 +94,6 @@ final List<TileData> implementBacklogsStatic = [
     status: false,
   ),
   TileData(
-    icon: FIcons.settings,
-    title: 'ENVied',
-    subtitle: 'Handle environment variables',
-    status: false,
-  ),
-  TileData(
     icon: FIcons.book,
     title: 'PDF Viewer',
     subtitle: 'https://pub.dev/packages/pdfrx',
@@ -256,13 +250,7 @@ final List<TileData> implementBacklogsStatic = [
     subtitle: 'https://pub.dev/packages/pay',
     status: false,
   ),
-  TileData(
-    icon: FIcons.package,
-    title: 'Image Galery Saver',
-    subtitle:
-        'https://pub.dev/packages/image_gallery_saver, https://pub.dev/packages/gal',
-    status: false,
-  ),
+
   TileData(
     icon: FIcons.package,
     title: 'Internet Connection',
@@ -435,12 +423,6 @@ final List<TileData> implementBacklogsStatic = [
     icon: FIcons.package,
     title: "PIP View",
     subtitle: 'https://pub.dev/packages/pip_view',
-    status: false,
-  ),
-  TileData(
-    icon: FIcons.package,
-    title: "Shared Preferences",
-    subtitle: 'https://pub.dev/packages/shared_preferences',
     status: false,
   ),
   TileData(
@@ -642,6 +624,24 @@ final doneBacklogsStatic = [
     icon: FIcons.galleryHorizontal,
     title: 'Infinite Scroll Pagination',
     subtitle: 'https://pub.dev/packages/infinite_scroll_pagination',
+    status: false,
+  ),
+  TileData(
+    icon: FIcons.package,
+    title: "Shared Preferences",
+    subtitle: 'https://pub.dev/packages/shared_preferences',
+    status: false,
+  ),
+  TileData(
+    icon: FIcons.package,
+    title: 'Galery Saver',
+    subtitle: 'https://pub.dev/packages/gal',
+    status: false,
+  ),
+  TileData(
+    icon: FIcons.settings,
+    title: 'ENVied',
+    subtitle: 'Handle environment variables',
     status: false,
   ),
 ];

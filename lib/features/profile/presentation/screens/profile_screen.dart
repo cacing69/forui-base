@@ -9,6 +9,7 @@ import 'package:forui_base/router.dart';
 import 'package:forui_base/shared/presentation/providers/config_app_notifier.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class ProfileScreen extends ConsumerStatefulWidget {
@@ -167,32 +168,44 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               description: Text(loc.personalizeYourExperience),
               children: [
                 FTile(
-                  // prefix: Icon(FIcons.moon),
-                  title: FSwitch(
-                    style: (style) {
-                      return style.copyWith(
-                        childPadding: EdgeInsets.zero,
-                        labelPadding: EdgeInsets.symmetric(horizontal: 8),
-                      );
-                    },
-                    label: Text(loc.darkMode),
-                    semanticsLabel: loc.darkMode,
-                    value:
-                        ref.watch(configAppNotifierProvider).themeData ==
-                        FThemes.zinc.dark,
-                    onChange: (value) {
-                      if (ref.watch(configAppNotifierProvider).themeData ==
-                          FThemes.zinc.light) {
-                        ref
-                            .read(configAppNotifierProvider.notifier)
-                            .changeTheme(FThemes.zinc.dark);
-                      } else {
-                        ref
-                            .read(configAppNotifierProvider.notifier)
-                            .changeTheme(FThemes.zinc.light);
-                      }
-                    },
+                  title: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(loc.darkMode),
+                      FSwitch(
+                        style: (style) {
+                          return style.copyWith(
+                            childPadding: EdgeInsets.zero,
+                            labelPadding: EdgeInsets.symmetric(horizontal: 8),
+                          );
+                        },
+                        semanticsLabel: loc.darkMode,
+                        value:
+                            ref.watch(configAppNotifierProvider).themeData ==
+                            FThemes.zinc.dark,
+                        onChange: (value) async {
+                          final prefs = await SharedPreferences.getInstance();
+
+                          if (ref.watch(configAppNotifierProvider).themeData ==
+                              FThemes.zinc.light) {
+                            ref
+                                .read(configAppNotifierProvider.notifier)
+                                .changeTheme(FThemes.zinc.dark);
+
+                            // await prefs.setBool('isDarkTheme', false);
+                          } else {
+                            ref
+                                .read(configAppNotifierProvider.notifier)
+                                .changeTheme(FThemes.zinc.light);
+                          }
+
+                          await prefs.setBool('isDarkTheme', value);
+                        },
+                      ),
+                    ],
                   ),
+                  prefix: const Icon(FIcons.moon),
+                  // details:
                 ),
                 FSelectMenuTile.fromMap(
                   const {
@@ -202,7 +215,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   },
                   initialValue: LocaleApp.en,
                   autoHide: true,
-                  prefix: const Icon(FIcons.bell),
+                  prefix: const Icon(FIcons.languages),
                   title: Text(loc.language),
                   detailsBuilder: (_, values, _) =>
                       Text(switch (values.firstOrNull) {

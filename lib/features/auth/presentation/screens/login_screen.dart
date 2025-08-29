@@ -2,7 +2,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:forui/forui.dart';
 import 'package:forui_base/router.dart';
-import 'package:forui_base/shared/presentation/providers/config_app_notifier.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 
@@ -22,25 +21,25 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       header: FHeader(
         title: const Text('Authentication'),
         suffixes: [
-          FHeaderAction(
-            icon:
-                ref.watch(configAppNotifierProvider).themeData ==
-                    FThemes.zinc.light
-                ? Icon(FIcons.moon)
-                : Icon(FIcons.sun),
-            onPress: () {
-              if (ref.watch(configAppNotifierProvider).themeData ==
-                  FThemes.zinc.light) {
-                ref
-                    .read(configAppNotifierProvider.notifier)
-                    .changeTheme(FThemes.zinc.dark);
-              } else {
-                ref
-                    .read(configAppNotifierProvider.notifier)
-                    .changeTheme(FThemes.zinc.light);
-              }
-            },
-          ),
+          // FHeaderAction(
+          //   icon:
+          //       ref.watch(configAppNotifierProvider).themeData ==
+          //           FThemes.zinc.light
+          //       ? Icon(FIcons.moon)
+          //       : Icon(FIcons.sun),
+          //   onPress: () {
+          //     if (ref.watch(configAppNotifierProvider).themeData ==
+          //         FThemes.zinc.light) {
+          //       ref
+          //           .read(configAppNotifierProvider.notifier)
+          //           .changeTheme(FThemes.zinc.dark);
+          //     } else {
+          //       ref
+          //           .read(configAppNotifierProvider.notifier)
+          //           .changeTheme(FThemes.zinc.light);
+          //     }
+          //   },
+          // ),
           FHeaderAction(
             icon: Icon(FIcons.info),
             onPress: () => showFDialog(
@@ -65,7 +64,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         initialIndex: 0,
         children: [
           FTabEntry(
-            label: Text("Login"),
+            label: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              spacing: 5,
+              children: [Icon(FIcons.lockKeyhole), Text("Login")],
+            ),
             child: Column(
               children: [
                 const SizedBox(height: 5),
@@ -161,7 +164,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
             ),
           ),
           FTabEntry(
-            label: Text("Register"),
+            label: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              spacing: 5,
+              children: [Icon(FIcons.userPlus), Text("Register")],
+            ),
             child: Column(children: [Placeholder()]),
           ),
         ],

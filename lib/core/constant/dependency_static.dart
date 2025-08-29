@@ -132,6 +132,11 @@ final List<Dependency> generalDependenciesStatic = [
     name: "fl_chart",
     url: "https://pub.dev/packages/fl_chart",
   ),
+  Dependency(
+    icon: FIcons.codesandbox,
+    name: "shared_preferences",
+    url: "https://pub.dev/packages/shared_preferences",
+  ),
 ];
 
 final List<Dependency> developmentDependenciesStatic = [
