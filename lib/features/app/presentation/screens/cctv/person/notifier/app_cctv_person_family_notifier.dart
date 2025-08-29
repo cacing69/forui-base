@@ -30,6 +30,10 @@ class AppCctvPersonFamilyNotifier extends _$AppCctvPersonFamilyNotifier {
     );
   }
 
+  void loading() {
+    state = const AsyncValue.loading();
+  }
+
   void reset() {
     state = const AsyncValue.data(null);
   }

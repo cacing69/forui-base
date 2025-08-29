@@ -171,15 +171,19 @@ class _AppCctvListResidentScreenState
                     resident: item,
                     now: now,
                     onPress: () {
-                      final String personId = item.id.toString();
-
                       ref
                           .read(loadPersonDataUsecasePackProvider)
-                          .call(personId: personId);
+                          .call(
+                            personId: "${item.id}",
+                            familyCardId: "${item.familyCardId}",
+                          );
 
                       context.pushNamed(
                         FeatureAppRouteName.appCctvPerson.name,
-                        pathParameters: {"personId": personId},
+                        pathParameters: {
+                          "personId": "${item.id}",
+                          "sourceScreen": "resident",
+                        },
                       );
                     },
                   ),

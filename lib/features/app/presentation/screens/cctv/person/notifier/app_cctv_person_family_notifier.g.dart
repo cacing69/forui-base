@@ -45,7 +45,7 @@ final class AppCctvPersonFamilyNotifierProvider
 }
 
 String _$appCctvPersonFamilyNotifierHash() =>
-    r'd22c67524e3e08c4cb3c4649da7f36525f540fa3';
+    r'2a8b4dd42617065cd7daf880317216a0940bb5fb';
 
 abstract class _$AppCctvPersonFamilyNotifier
     extends $Notifier<AsyncValue<TResponse<List<Family>>?>> {

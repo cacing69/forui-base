@@ -30,7 +30,7 @@ final featureAppRoutes = [
     builder: (context, state) => AppCctvListCompanyScreen(),
   ),
   GoRoute(
-    path: '/app/cctv/person/:personId',
+    path: '/app/cctv/person/:personId/:sourceScreen',
     name: FeatureAppRouteName.appCctvPerson.name,
     builder: (context, state) {
       if (state.pathParameters['personId'] == null) {
@@ -38,6 +38,7 @@ final featureAppRoutes = [
       } else {
         return AppCctvPersonScreen(
           personId: state.pathParameters['personId'] ?? "",
+          sourceScreen: state.pathParameters['sourceScreen'] ?? "",
         );
       }
     },

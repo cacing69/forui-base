@@ -15,6 +15,7 @@ import 'package:forui_base/features/app/presentation/screens/cctv/person/notifie
 import 'package:forui_base/features/app/presentation/screens/cctv/person/notifier/app_cctv_person_vehicle_notifier.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cctv_person_personal_data_tab_tiles.dart';
 import 'package:forui_base/router.dart';
+import 'package:forui_base/shared/data/models/api_cctv/family_path_params.dart';
 import 'package:forui_base/shared/data/models/api_cctv/person.dart';
 import 'package:forui_base/shared/data/models/api_cctv/t_response.dart';
 import 'package:forui_base/shared/domain/usecases/api_cctv/load_person_data_usecase_pack.dart';
@@ -23,11 +24,17 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:jiffy/jiffy.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class AppCctvPersonScreen extends ConsumerStatefulWidget {
   final String personId;
+  final String sourceScreen;
 
-  const AppCctvPersonScreen({super.key, required this.personId});
+  const AppCctvPersonScreen({
+    super.key,
+    required this.personId,
+    required this.sourceScreen,
+  });
 
   @override
   ConsumerState<AppCctvPersonScreen> createState() =>
@@ -154,6 +161,24 @@ class _AppCctvPersonScreenState extends ConsumerState<AppCctvPersonScreen> {
                 ),
                 Gap(10),
                 FTabs(
+                  onChange: (index) {
+                    if (index == 1 && widget.sourceScreen == "company") {
+                      if (ref
+                              .read(appCctvPersonFamilyNotifierProvider)
+                              .value
+                              ?.data ==
+                          null) {
+                        ref
+                            .read(appCctvPersonFamilyNotifierProvider.notifier)
+                            .perform(
+                              FamilyPathParams(
+                                personId: res!.data!.id.toString(),
+                                familyCardId: res.data!.familyCardId.toString(),
+                              ),
+                            );
+                      }
+                    }
+                  },
                   children: [
                     FTabEntry(
                       label: const Icon(FIcons.user),
@@ -232,11 +257,14 @@ class _AppCctvPersonScreenState extends ConsumerState<AppCctvPersonScreen> {
                                   onPress: () {
                                     final String personId = fam.id.toString();
 
+                                    // TODO : Request familyCardId
+
                                     ref
                                         .read(loadPersonDataUsecasePackProvider)
                                         .call(
                                           personId: personId,
                                           loadFamily: false,
+                                          familyCardId: null,
                                         );
                                     // ref
                                     //     .read(
@@ -298,7 +326,26 @@ class _AppCctvPersonScreenState extends ConsumerState<AppCctvPersonScreen> {
                             ];
                           },
                           error: (error, stackTrave) => [],
-                          loading: () => [],
+                          loading: () => [
+                            FTile(
+                              title: Skeletonizer(child: Text("Lorem ipsum")),
+                              subtitle: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Skeletonizer(
+                                    child: Text("Lorem ipsum dolor"),
+                                  ),
+                                  Skeletonizer(
+                                    child: Text("Lorem ipsum dolor"),
+                                  ),
+                                ],
+                              ),
+                              prefix: Skeletonizer(child: Icon(FIcons.venus)),
+                              suffix: Skeletonizer(
+                                child: Icon(FIcons.chevronRight),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
