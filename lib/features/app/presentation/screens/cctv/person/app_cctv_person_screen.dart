@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:forui/forui.dart';
 import 'package:forui_base/core/constant/assets.dart';
+import 'package:forui_base/core/utils/helpers.dart';
 import 'package:forui_base/features/app/presentation/screens/app_routes.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/person/app_cctv_person_skeletonizer.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/person/notifier/app_cctv_person_company_notifier.dart';
@@ -14,6 +15,7 @@ import 'package:forui_base/features/app/presentation/screens/cctv/person/notifie
 import 'package:forui_base/features/app/presentation/screens/cctv/person/notifier/app_cctv_person_pln_notifier.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/person/notifier/app_cctv_person_vehicle_notifier.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cctv_person_personal_data_tab_tiles.dart';
+import 'package:forui_base/features/block/presentation/screens/block_routes.dart';
 import 'package:forui_base/router.dart';
 import 'package:forui_base/shared/data/models/api_cctv/family_path_params.dart';
 import 'package:forui_base/shared/data/models/api_cctv/person.dart';
@@ -25,6 +27,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class AppCctvPersonScreen extends ConsumerStatefulWidget {
   final String personId;
@@ -266,53 +269,6 @@ class _AppCctvPersonScreenState extends ConsumerState<AppCctvPersonScreen> {
                                           loadFamily: false,
                                           familyCardId: null,
                                         );
-                                    // ref
-                                    //     .read(
-                                    //       appCctvPersonNotifierProvider(
-                                    //         fam.id.toString(),
-                                    //       ).notifier,
-                                    //     )
-                                    //     .perform(fam.id.toString());
-
-                                    // ref
-                                    //     .read(
-                                    //       appCctvPersonPhoneNotifierProvider(
-                                    //         fam.id.toString(),
-                                    //       ).notifier,
-                                    //     )
-                                    //     .perform(fam.id.toString());
-
-                                    // ref
-                                    //     .read(
-                                    //       appCctvPersonGojekNotifierProvider(
-                                    //         fam.id.toString(),
-                                    //       ).notifier,
-                                    //     )
-                                    //     .perform(fam.id.toString());
-
-                                    // ref
-                                    //     .read(
-                                    //       appCctvPersonPlnNotifierProvider(
-                                    //         fam.id.toString(),
-                                    //       ).notifier,
-                                    //     )
-                                    //     .perform(fam.id.toString());
-
-                                    // ref
-                                    //     .read(
-                                    //       appCctvPersonVehicleNotifierProvider(
-                                    //         fam.id.toString(),
-                                    //       ).notifier,
-                                    //     )
-                                    //     .perform(fam.id.toString());
-
-                                    // ref
-                                    //     .read(
-                                    //       appCctvPersonCompanyNotifierProvider(
-                                    //         fam.id.toString(),
-                                    //       ).notifier,
-                                    //     )
-                                    //     .perform(fam.id.toString());
 
                                     context.pushNamed(
                                       FeatureAppRouteName.appCctvPerson.name,
@@ -371,12 +327,80 @@ class _AppCctvPersonScreenState extends ConsumerState<AppCctvPersonScreen> {
                                   (row) => FTile(
                                     title: Text(row.id?.toString() ?? "-"),
                                     prefix: Icon(FIcons.smartphone),
-                                    suffix: Icon(FIcons.copy),
+                                    suffix: Icon(FIcons.eye),
                                     details: Text(row.providerName ?? "-"),
                                     subtitle: Text(row.registeredDate ?? "-"),
-                                    onPress: () async {
-                                      await Clipboard.setData(
-                                        ClipboardData(text: row.id.toString()),
+                                    onPress: () {
+                                      showFDialog(
+                                        context: context,
+                                        builder: (context, style, animation) => FDialog(
+                                          style: style,
+                                          animation: animation,
+                                          direction: Axis.horizontal,
+                                          title: const Text('Action'),
+                                          body: FTileGroup(
+                                            children: [
+                                              FTile(
+                                                prefix: Icon(FIcons.copy),
+                                                title: Text("Copy"),
+                                                onPress: () async {
+                                                  await Clipboard.setData(
+                                                    ClipboardData(
+                                                      text: row.id.toString(),
+                                                    ),
+                                                  );
+                                                },
+                                              ),
+                                              FTile(
+                                                prefix: Icon(
+                                                  FIcons.externalLink,
+                                                ),
+                                                title: Text("aduannomor.id"),
+                                                onPress: () {
+                                                  context.pushNamed(
+                                                    BlockRouteName
+                                                        .blockWebviewSubmit
+                                                        .name,
+                                                    pathParameters: {
+                                                      "phoneNo": row.id
+                                                          .toString(),
+                                                    },
+                                                  );
+                                                },
+                                              ),
+                                              FTile(
+                                                prefix: Icon(
+                                                  FIcons.externalLink,
+                                                ),
+                                                title: Text("kredibel.com"),
+                                                onPress: () {
+                                                  // TODO : https://www.kredibel.com/phone/id/82173776770
+                                                  showComingSoonFlutterToast(
+                                                    context.theme,
+                                                  );
+                                                },
+                                              ),
+                                              FTile(
+                                                prefix: Icon(
+                                                  FIcons.externalLink,
+                                                ),
+                                                title: Text("kredibel.com"),
+                                                onPress: () {
+                                                  // TODO : https://ceebydith.com/cek-hlr-lokasi-hp.html
+                                                  showComingSoonFlutterToast(
+                                                    context.theme,
+                                                  );
+                                                },
+                                              ),
+                                            ],
+                                          ),
+                                          actions: [
+                                            FButton(
+                                              onPress: () => context.pop(),
+                                              child: const Text('Close'),
+                                            ),
+                                          ],
+                                        ),
                                       );
                                     },
                                   ),

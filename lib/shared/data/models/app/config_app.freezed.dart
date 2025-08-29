@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ConfigApp {
 
- FThemeData? get themeData;
+ FThemeData? get themeData; Locale? get locale;
 /// Create a copy of ConfigApp
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $ConfigAppCopyWith<ConfigApp> get copyWith => _$ConfigAppCopyWithImpl<ConfigApp>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ConfigApp&&(identical(other.themeData, themeData) || other.themeData == themeData));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ConfigApp&&(identical(other.themeData, themeData) || other.themeData == themeData)&&(identical(other.locale, locale) || other.locale == locale));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,themeData);
+int get hashCode => Object.hash(runtimeType,themeData,locale);
 
 @override
 String toString() {
-  return 'ConfigApp(themeData: $themeData)';
+  return 'ConfigApp(themeData: $themeData, locale: $locale)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $ConfigAppCopyWith<$Res>  {
   factory $ConfigAppCopyWith(ConfigApp value, $Res Function(ConfigApp) _then) = _$ConfigAppCopyWithImpl;
 @useResult
 $Res call({
- FThemeData? themeData
+ FThemeData? themeData, Locale? locale
 });
 
 
@@ -62,10 +62,11 @@ class _$ConfigAppCopyWithImpl<$Res>
 
 /// Create a copy of ConfigApp
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? themeData = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? themeData = freezed,Object? locale = freezed,}) {
   return _then(_self.copyWith(
 themeData: freezed == themeData ? _self.themeData : themeData // ignore: cast_nullable_to_non_nullable
-as FThemeData?,
+as FThemeData?,locale: freezed == locale ? _self.locale : locale // ignore: cast_nullable_to_non_nullable
+as Locale?,
   ));
 }
 
@@ -150,10 +151,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( FThemeData? themeData)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( FThemeData? themeData,  Locale? locale)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ConfigApp() when $default != null:
-return $default(_that.themeData);case _:
+return $default(_that.themeData,_that.locale);case _:
   return orElse();
 
 }
@@ -171,10 +172,10 @@ return $default(_that.themeData);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( FThemeData? themeData)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( FThemeData? themeData,  Locale? locale)  $default,) {final _that = this;
 switch (_that) {
 case _ConfigApp():
-return $default(_that.themeData);case _:
+return $default(_that.themeData,_that.locale);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -191,10 +192,10 @@ return $default(_that.themeData);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( FThemeData? themeData)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( FThemeData? themeData,  Locale? locale)?  $default,) {final _that = this;
 switch (_that) {
 case _ConfigApp() when $default != null:
-return $default(_that.themeData);case _:
+return $default(_that.themeData,_that.locale);case _:
   return null;
 
 }
@@ -206,10 +207,11 @@ return $default(_that.themeData);case _:
 
 
 class _ConfigApp implements ConfigApp {
-  const _ConfigApp({this.themeData = null});
+  const _ConfigApp({this.themeData = null, this.locale = null});
   
 
 @override@JsonKey() final  FThemeData? themeData;
+@override@JsonKey() final  Locale? locale;
 
 /// Create a copy of ConfigApp
 /// with the given fields replaced by the non-null parameter values.
@@ -221,16 +223,16 @@ _$ConfigAppCopyWith<_ConfigApp> get copyWith => __$ConfigAppCopyWithImpl<_Config
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ConfigApp&&(identical(other.themeData, themeData) || other.themeData == themeData));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ConfigApp&&(identical(other.themeData, themeData) || other.themeData == themeData)&&(identical(other.locale, locale) || other.locale == locale));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,themeData);
+int get hashCode => Object.hash(runtimeType,themeData,locale);
 
 @override
 String toString() {
-  return 'ConfigApp(themeData: $themeData)';
+  return 'ConfigApp(themeData: $themeData, locale: $locale)';
 }
 
 
@@ -241,7 +243,7 @@ abstract mixin class _$ConfigAppCopyWith<$Res> implements $ConfigAppCopyWith<$Re
   factory _$ConfigAppCopyWith(_ConfigApp value, $Res Function(_ConfigApp) _then) = __$ConfigAppCopyWithImpl;
 @override @useResult
 $Res call({
- FThemeData? themeData
+ FThemeData? themeData, Locale? locale
 });
 
 
@@ -258,10 +260,11 @@ class __$ConfigAppCopyWithImpl<$Res>
 
 /// Create a copy of ConfigApp
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? themeData = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? themeData = freezed,Object? locale = freezed,}) {
   return _then(_ConfigApp(
 themeData: freezed == themeData ? _self.themeData : themeData // ignore: cast_nullable_to_non_nullable
-as FThemeData?,
+as FThemeData?,locale: freezed == locale ? _self.locale : locale // ignore: cast_nullable_to_non_nullable
+as Locale?,
   ));
 }
 

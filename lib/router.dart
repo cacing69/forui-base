@@ -23,6 +23,7 @@ final List<GoRoute> defaultRouter = [
     path: '/',
     name: RouteName.init.name,
     builder: (context, state) => LoginScreen(),
+    // builder: (context, state) => BlockWebviewSubmitScreen(),
   ),
   GoRoute(
     path: '/login',

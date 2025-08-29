@@ -21,6 +21,12 @@ class ProfileScreen extends ConsumerStatefulWidget {
 
 enum LocaleApp { id, en, es }
 
+final localeItem = {
+  'Bahasa Indonesia': LocaleApp.id,
+  'English': LocaleApp.en,
+  "Español": LocaleApp.es,
+};
+
 class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   // bool darkMode = true;
 
@@ -208,18 +214,39 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   // details:
                 ),
                 FSelectMenuTile.fromMap(
-                  const {
-                    'Indonesia': LocaleApp.id,
-                    'English': LocaleApp.en,
-                    "Español": LocaleApp.es,
-                  },
+                  localeItem,
                   initialValue: LocaleApp.en,
                   autoHide: true,
                   prefix: const Icon(FIcons.languages),
                   title: Text(loc.language),
+                  onChange: (e) {
+                    final selected = e.firstOrNull;
+
+                    switch (selected) {
+                      case null:
+                        showFToast(
+                          context: context,
+                          alignment: FToastAlignment.bottomCenter,
+                          title: const Text('Empty'),
+                        );
+
+                      case LocaleApp.id:
+                        showFToast(
+                          context: context,
+                          alignment: FToastAlignment.bottomCenter,
+                          title: const Text('Diubah ke Bahasa Indonesia'),
+                        );
+                      case LocaleApp.en:
+                        // TODO: Handle this case.
+                        throw UnimplementedError();
+                      case LocaleApp.es:
+                        // TODO: Handle this case.
+                        throw UnimplementedError();
+                    }
+                  },
                   detailsBuilder: (_, values, _) =>
                       Text(switch (values.firstOrNull) {
-                        LocaleApp.id => 'Indonesia',
+                        LocaleApp.id => 'Bahasa Indonesia',
                         LocaleApp.en => 'English',
                         LocaleApp.es => 'Español',
                         _ => loc.none,

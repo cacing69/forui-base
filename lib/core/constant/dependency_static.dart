@@ -137,6 +137,16 @@ final List<Dependency> generalDependenciesStatic = [
     name: "shared_preferences",
     url: "https://pub.dev/packages/shared_preferences",
   ),
+  Dependency(
+    icon: FIcons.codesandbox,
+    name: "webview_flutter",
+    url: "https://pub.dev/packages/webview_flutter",
+  ),
+  Dependency(
+    icon: FIcons.codesandbox,
+    name: "fluttertoast",
+    url: "https://pub.dev/packages/fluttertoast",
+  ),
 ];
 
 final List<Dependency> developmentDependenciesStatic = [

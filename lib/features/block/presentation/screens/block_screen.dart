@@ -115,6 +115,27 @@ class _BlockScreenState extends State<BlockScreen> {
                 ),
               ),
             ),
+            FButton.raw(
+              onPress: () {
+                context.pushNamed(
+                  BlockRouteName.blockWebviewSubmit.name,
+                  pathParameters: {"phoneNo": ""},
+                );
+              },
+              child: SizedBox(
+                width: double.infinity,
+                child: FCard(
+                  title: Padding(
+                    padding: const EdgeInsets.only(bottom: 5),
+                    child: const Text(
+                      'Webview Submit',
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  ),
+                  subtitle: const Text('Submit Web Form view Webview'),
+                ),
+              ),
+            ),
             SizedBox(
               width: double.infinity,
               child: FCard(

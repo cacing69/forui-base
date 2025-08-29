@@ -2,6 +2,7 @@ import 'package:forui_base/features/block/presentation/screens/block/backlog/blo
 import 'package:forui_base/features/block/presentation/screens/block/image_bas64_viewer/block_image_base64_viewer_screen.dart';
 import 'package:forui_base/features/block/presentation/screens/block/location_picker/block_location_picker_screen.dart';
 import 'package:forui_base/features/block/presentation/screens/block/nominatim_search/block_nominatim_search_screen.dart';
+import 'package:forui_base/features/block/presentation/screens/block/webview_submit/block_webview_submit_screen.dart';
 import 'package:go_router/go_router.dart';
 
 enum BlockRouteName {
@@ -10,6 +11,7 @@ enum BlockRouteName {
   blockLocationPicker,
   blockImageBase64Viewer,
   blockBacklog,
+  blockWebviewSubmit,
 }
 
 final List<GoRoute> blockRoutes = [
@@ -35,5 +37,15 @@ final List<GoRoute> blockRoutes = [
     path: '/block/backlog',
     name: BlockRouteName.blockBacklog.name,
     builder: (context, state) => BlockBacklogScreen(),
+  ),
+
+  GoRoute(
+    path: '/block/webview-submit/:phoneNo',
+    name: BlockRouteName.blockWebviewSubmit.name,
+    builder: (context, state) {
+      return BlockWebviewSubmitScreen(
+        phoneNo: state.pathParameters['phoneNo'] ?? "",
+      );
+    },
   ),
 ];

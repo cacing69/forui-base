@@ -47,7 +47,7 @@ class _AppCctvPersonSkeletonizerState
               ),
             ),
             Gap(10),
-            FBadge(child: Text("0000000000000000")),
+            Text("0000000000000000"),
             Text(
               "PERSON NAME",
               style: context.theme.typography.lg.copyWith(
