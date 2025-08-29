@@ -5,5 +5,13 @@
     "blocks": "Blok",
     "profile": "Profil",
     "settings": "Pengaturan",
-    "language": "Bahasa"
+    "language": "Bahasa",
+    "previewAvatar": "Pratinjau Avatar",
+    "confirm": "Konfirmasi",
+    "personalizeYourExperience": "Personalisasi pengalaman Anda",
+    "darkMode": "Mode Gelap",
+    "lorem": "Lorem",
+    "uploadNewAvatar": "Unggah Avatar Baru",
+    "loremIpsumDolorSitAmet": "Lorem ipsum dolor sit amet",
+    "none": "Kosong"
 }
