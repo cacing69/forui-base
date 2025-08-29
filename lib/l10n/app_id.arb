@@ -13,5 +13,26 @@
     "lorem": "Lorem",
     "uploadNewAvatar": "Unggah Avatar Baru",
     "loremIpsumDolorSitAmet": "Lorem ipsum dolor sit amet",
-    "none": "Kosong"
+    "none": "Kosong",
+    "changedToLocaleMessage": "Diubah ke {language}",
+    "localeEnglish": "English",
+    "localeSpanish": "Español",
+    "localeIndonesian": "Bahasa Indonesia",
+    "@changedToLocaleMessage": {
+        "description": "Pesan yang ditampilkan ketika bahasa diubah",
+        "placeholders": {
+            "language": {
+                "type": "String",
+                "example": "Bahasa Indonesa"
+            }
+        }
+    },
+    "localeLanguageName": "Bahasa Indonesia",
+    "socialLinks": "Sosial Media",
+    "email": "Email",
+    "phone": "No. HP",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "facebook": "Facebook",
+    "empty": "Kosong"
 }

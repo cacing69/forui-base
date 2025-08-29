@@ -13,5 +13,26 @@
     "lorem": "Lorem",
     "uploadNewAvatar": "Subir nuevo avatar",
     "loremIpsumDolorSitAmet": "Lorem ipsum dolor sit amet",
-    "none": "Ninguno"
+    "none": "Ninguno",
+    "changedToLocaleMessage": "Cambiado a {language}",
+    "localeEnglish": "English",
+    "localeSpanish": "Español",
+    "localeIndonesian": "Bahasa Indonesia",
+    "@changedToLocaleMessage": {
+        "description": "Mensaje mostrado cuando se cambia el idioma",
+        "placeholders": {
+            "language": {
+                "type": "String",
+                "example": "Inglés"
+            }
+        }
+    },
+    "localeLanguageName": "Español",
+    "socialLinks": "Enlaces sociales",
+    "email": "Correo electrónico",
+    "phone": "Teléfono",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "facebook": "Facebook",
+    "empty": "Vacío"
 }
