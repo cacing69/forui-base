@@ -15,6 +15,7 @@ class _ProfileSocialLinkWidgetState extends State<ProfileSocialLinkWidget> {
   @override
   Widget build(BuildContext context) {
     final loc = AppLocalizations.of(context)!;
+
     return FTileGroup(
       label: Text(loc.socialLinks),
       // description: const Text('Personalize your social links'),

@@ -52,7 +52,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String changedToLocaleMessage(String language) {
-    return 'Changed to $language';
+    return 'Diubah ke $language';
   }
 
   @override
@@ -65,16 +65,16 @@ class AppLocalizationsId extends AppLocalizations {
   String get localeIndonesian => 'Bahasa Indonesia';
 
   @override
-  String get localeLanguageName => 'English';
+  String get localeLanguageName => 'Bahasa Indonesia';
 
   @override
-  String get socialLinks => 'Social Links';
+  String get socialLinks => 'Sosial Media';
 
   @override
   String get email => 'Email';
 
   @override
-  String get phone => 'Phone';
+  String get phone => 'No. HP';
 
   @override
   String get github => 'GitHub';
@@ -86,5 +86,5 @@ class AppLocalizationsId extends AppLocalizations {
   String get facebook => 'Facebook';
 
   @override
-  String get empty => 'Empty';
+  String get empty => 'Kosong';
 }

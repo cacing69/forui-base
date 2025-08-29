@@ -7,10 +7,12 @@ void showForuiToast({
   required BuildContext context,
   required Widget title,
   Widget? description,
+  Duration duration = const Duration(milliseconds: 1500),
 }) {
   showFToast(
     context: context,
     alignment: FToastAlignment.topCenter,
+    duration: duration,
     title: title,
     description: description,
   );
