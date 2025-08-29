@@ -2,6 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:forui/forui.dart';
+import 'package:forui_base/core/constant/shared_pref_key.dart';
+import 'package:forui_base/core/constant/static_string.dart';
 import 'package:forui_base/core/constant/user_static.dart';
 import 'package:forui_base/core/utils/helpers.dart';
 import 'package:forui_base/features/profile/presentation/widgets/profile_social_link_widget.dart';
@@ -22,18 +24,16 @@ class ProfileScreen extends ConsumerStatefulWidget {
 
 enum LocaleApp { id, en, es }
 
-final localeItem = {
-  'Bahasa Indonesia': LocaleApp.id,
-  'English': LocaleApp.en,
-  "Español": LocaleApp.es,
-};
-
 class _ProfileScreenState extends ConsumerState<ProfileScreen> {
-  // bool darkMode = true;
-
   @override
   Widget build(BuildContext context) {
     final loc = AppLocalizations.of(context)!;
+
+    final localeItem = {
+      loc.localeIndonesian: LocaleApp.id,
+      loc.localeEnglish: LocaleApp.en,
+      loc.localeSpanish: LocaleApp.es,
+    };
 
     return FScaffold(
       header: FHeader(
@@ -83,8 +83,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                               context.pushNamed(
                                 RouteName.fullScreenImageUrlViewer.name,
                                 queryParameters: {
-                                  'imageUrl':
-                                      'https://avatars.githubusercontent.com/u/36250619?v=4',
+                                  'imageUrl': userStatic.avatar,
                                 },
                               );
                             },
@@ -186,7 +185,6 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                             labelPadding: EdgeInsets.symmetric(horizontal: 8),
                           );
                         },
-                        semanticsLabel: loc.darkMode,
                         value:
                             ref.watch(configAppNotifierProvider).themeData ==
                             FThemes.zinc.dark,
@@ -199,14 +197,14 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                                 .read(configAppNotifierProvider.notifier)
                                 .changeTheme(FThemes.zinc.dark);
 
-                            // await prefs.setBool('isDarkTheme', false);
+                            // await prefs.setBool(SharedPrefKey.isDarkTheme, false);
                           } else {
                             ref
                                 .read(configAppNotifierProvider.notifier)
                                 .changeTheme(FThemes.zinc.light);
                           }
 
-                          await prefs.setBool('isDarkTheme', value);
+                          await prefs.setBool(SharedPrefKey.isDarkTheme, value);
                         },
                       ),
                     ],
@@ -229,51 +227,66 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                         case null:
                           showForuiToast(
                             context: context,
-                            title: Text("Empty"),
+                            title: Text(loc.empty),
                           );
 
                         case LocaleApp.id:
                           showForuiToast(
                             context: context,
-                            title: Text("Diubah ke Bahasa Indonesia"),
+                            title: Text(
+                              loc.changedToLocaleMessage(loc.localeIndonesian),
+                            ),
                           );
 
                           ref
                               .read(configAppNotifierProvider.notifier)
-                              .changeLocale(Locale("id"));
+                              .changeLocale(Locale(AvailableLocale.id));
 
-                          await prefs.setString('locale', "id");
+                          await prefs.setString(
+                            SharedPrefKey.locale,
+                            AvailableLocale.id,
+                          );
                         case LocaleApp.en:
                           showForuiToast(
                             context: context,
-                            title: Text("Changed to English"),
+                            title: Text(
+                              loc.changedToLocaleMessage(loc.localeEnglish),
+                            ),
                           );
 
                           ref
                               .read(configAppNotifierProvider.notifier)
-                              .changeLocale(Locale("en"));
+                              .changeLocale(Locale(AvailableLocale.en));
 
-                          await prefs.setString('locale', "en");
+                          await prefs.setString(
+                            SharedPrefKey.locale,
+                            AvailableLocale.en,
+                          );
 
                         case LocaleApp.es:
                           showForuiToast(
                             context: context,
-                            title: Text("Cambiado a Español"),
+                            title: Text(
+                              loc.changedToLocaleMessage(loc.localeSpanish),
+                            ),
                           );
 
                           ref
                               .read(configAppNotifierProvider.notifier)
-                              .changeLocale(Locale("es"));
+                              .changeLocale(Locale(AvailableLocale.es));
 
-                          await prefs.setString('locale', "es");
+                          await prefs.setString(
+                            SharedPrefKey.locale,
+                            AvailableLocale.es,
+                          );
                       }
                     }
                   },
                   detailsBuilder: (_, values, _) =>
                       Text(switch (values.firstOrNull) {
-                        LocaleApp.id => 'Bahasa Indonesia',
-                        LocaleApp.en => 'English',
-                        LocaleApp.es => 'Español',
+                        LocaleApp.id => loc.localeIndonesian,
+                        LocaleApp.en => loc.localeEnglish,
+                        LocaleApp.es => loc.localeSpanish,
                         _ => loc.none,
                       }),
                 ),

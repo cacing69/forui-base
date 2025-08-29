@@ -27,26 +27,49 @@ class AppLocalizationsEs extends AppLocalizations {
   String get language => 'Idioma';
 
   @override
-  String get previewAvatar => 'Preview Avatar';
+  String get previewAvatar => 'Ver avatar';
 
   @override
-  String get confirm => 'Confirm';
+  String get confirm => 'Confirmar';
 
   @override
-  String get personalizeYourExperience => 'Personalize your experience';
+  String get personalizeYourExperience => 'Personaliza tu experiencia';
 
   @override
-  String get darkMode => 'Dark Mode';
+  String get darkMode => 'Modo oscuro';
 
   @override
   String get lorem => 'Lorem';
 
   @override
-  String get uploadNewAvatar => 'Upload New Avatar';
+  String get uploadNewAvatar => 'Subir nuevo avatar';
 
   @override
   String get loremIpsumDolorSitAmet => 'Lorem ipsum dolor sit amet';
 
   @override
-  String get none => 'None';
+  String get none => 'Ninguno';
+
+  @override
+  String changedToLocaleMessage(String language) {
+    return 'Changed to $language';
+  }
+
+  @override
+  String get localeEnglish => 'English';
+
+  @override
+  String get localeSpanish => 'Español';
+
+  @override
+  String get localeIndonesian => 'Bahasa Indonesia';
+
+  @override
+  String get localeLanguageName => 'English';
+
+  @override
+  String get socialLinks => 'Social Links';
+
+  @override
+  String get empty => 'Empty';
 }

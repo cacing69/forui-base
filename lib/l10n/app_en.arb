@@ -13,5 +13,21 @@
     "lorem": "Lorem",
     "uploadNewAvatar": "Upload New Avatar",
     "loremIpsumDolorSitAmet": "Lorem ipsum dolor sit amet",
-    "none": "None"
+    "none": "None",
+    "changedToLocaleMessage": "Changed to {language}",
+    "localeEnglish": "English",
+    "localeSpanish": "Español",
+    "localeIndonesian": "Bahasa Indonesia",
+    "@changedToLocaleMessage": {
+        "description": "Message shown when language is changed",
+        "placeholders": {
+            "language": {
+                "type": "String",
+                "example": "English"
+            }
+        }
+    },
+    "localeLanguageName": "English",
+    "socialLinks": "Social Links",
+    "empty": "Empty"
 }

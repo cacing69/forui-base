@@ -180,6 +180,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'None'**
   String get none;
+
+  /// Message shown when language is changed
+  ///
+  /// In en, this message translates to:
+  /// **'Changed to {language}'**
+  String changedToLocaleMessage(String language);
+
+  /// No description provided for @localeEnglish.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get localeEnglish;
+
+  /// No description provided for @localeSpanish.
+  ///
+  /// In en, this message translates to:
+  /// **'Español'**
+  String get localeSpanish;
+
+  /// No description provided for @localeIndonesian.
+  ///
+  /// In en, this message translates to:
+  /// **'Bahasa Indonesia'**
+  String get localeIndonesian;
+
+  /// No description provided for @localeLanguageName.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get localeLanguageName;
+
+  /// No description provided for @socialLinks.
+  ///
+  /// In en, this message translates to:
+  /// **'Social Links'**
+  String get socialLinks;
+
+  /// No description provided for @empty.
+  ///
+  /// In en, this message translates to:
+  /// **'Empty'**
+  String get empty;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
