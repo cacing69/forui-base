@@ -9,7 +9,9 @@ import 'package:forui_base/core/constant/map_theme_data.dart';
 import 'package:forui_base/core/constant/shared_pref_key.dart';
 import 'package:forui_base/l10n/app_localizations.dart';
 import 'package:forui_base/router.dart';
+import 'package:forui_base/shared/data/models/hive/cached_response.dart';
 import 'package:forui_base/shared/presentation/providers/config_app_notifier.dart';
+import 'package:hive_ce_flutter/hive_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:stack_trace/stack_trace.dart';
@@ -19,6 +21,10 @@ void main() async {
     await runZonedGuarded(
       () async {
         WidgetsFlutterBinding.ensureInitialized();
+
+        await Hive.initFlutter();
+
+        Hive.registerAdapter(CachedResponseAdapter());
 
         SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
         runApp(const ProviderScope(child: Application()));

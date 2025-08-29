@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 import 'package:forui_base/core/datasources/remote/api_cctv/api_cctv_service.dart';
@@ -19,7 +21,9 @@ import 'package:forui_base/shared/data/models/api_cctv/resident_query.dart';
 import 'package:forui_base/shared/data/models/api_cctv/t_response.dart';
 import 'package:forui_base/shared/data/models/api_cctv/vehicle.dart';
 import 'package:forui_base/shared/data/models/api_cctv/village.dart';
+import 'package:forui_base/shared/data/models/hive/cached_response.dart';
 import 'package:forui_base/shared/domain/repositories/api_cctv_repository.dart';
+import 'package:hive_ce_flutter/hive_flutter.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'api_cctv_repository_impl.g.dart';
@@ -146,7 +150,37 @@ class ApiCctvRepositoryImpl implements ApiCctvRepository {
   @override
   Future<Either<Failure, TResponse<Person>>> person(String personId) async {
     try {
-      final response = await service.person(personId);
+      final box = await Hive.openBox<CachedResponse>(
+        'boxCachedTResponsePerson',
+      );
+
+      final String boxKey = "t_response_person_$personId";
+
+      late final TResponse<Person> response;
+
+      if (box.containsKey(boxKey)) {
+        debugPrint("repo_impl:found:load_from_api");
+        final cached = box.get(boxKey);
+
+        response = TResponse<Person>.fromJson(
+          jsonDecode(cached!.response) as Map<String, dynamic>,
+          (obj) => Person.fromJson(obj as Map<String, dynamic>),
+        );
+      } else {
+        debugPrint("repo_impl:not_found:load_from_box_hive");
+
+        response = await service.person(personId);
+
+        debugPrint("repo_impl:writing_cache_person_$personId");
+        await box.put(
+          boxKey,
+          CachedResponse(
+            key: boxKey,
+            response: jsonEncode(response.toJson((map) => map)),
+          ),
+        );
+      }
+
       return Right(response);
     } on Exception catch (e) {
       return Left(errorWrapper(e));
