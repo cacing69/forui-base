@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UserApp {
 
- String? get firstName; String? get lastName; String? get avatar; String? get bio; List<SocialLink>? get socialLinks;
+ String? get firstName; String? get lastName; String? get avatar; String? get bio; String? get email; String? get phone; String? get github; String? get linkedIn; String? get facebook;
 /// Create a copy of UserApp
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $UserAppCopyWith<UserApp> get copyWith => _$UserAppCopyWithImpl<UserApp>(this as
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserApp&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.avatar, avatar) || other.avatar == avatar)&&(identical(other.bio, bio) || other.bio == bio)&&const DeepCollectionEquality().equals(other.socialLinks, socialLinks));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserApp&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.avatar, avatar) || other.avatar == avatar)&&(identical(other.bio, bio) || other.bio == bio)&&(identical(other.email, email) || other.email == email)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.github, github) || other.github == github)&&(identical(other.linkedIn, linkedIn) || other.linkedIn == linkedIn)&&(identical(other.facebook, facebook) || other.facebook == facebook));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,firstName,lastName,avatar,bio,const DeepCollectionEquality().hash(socialLinks));
+int get hashCode => Object.hash(runtimeType,firstName,lastName,avatar,bio,email,phone,github,linkedIn,facebook);
 
 @override
 String toString() {
-  return 'UserApp(firstName: $firstName, lastName: $lastName, avatar: $avatar, bio: $bio, socialLinks: $socialLinks)';
+  return 'UserApp(firstName: $firstName, lastName: $lastName, avatar: $avatar, bio: $bio, email: $email, phone: $phone, github: $github, linkedIn: $linkedIn, facebook: $facebook)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $UserAppCopyWith<$Res>  {
   factory $UserAppCopyWith(UserApp value, $Res Function(UserApp) _then) = _$UserAppCopyWithImpl;
 @useResult
 $Res call({
- String? firstName, String? lastName, String? avatar, String? bio, List<SocialLink>? socialLinks
+ String? firstName, String? lastName, String? avatar, String? bio, String? email, String? phone, String? github, String? linkedIn, String? facebook
 });
 
 
@@ -65,14 +65,18 @@ class _$UserAppCopyWithImpl<$Res>
 
 /// Create a copy of UserApp
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? firstName = freezed,Object? lastName = freezed,Object? avatar = freezed,Object? bio = freezed,Object? socialLinks = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? firstName = freezed,Object? lastName = freezed,Object? avatar = freezed,Object? bio = freezed,Object? email = freezed,Object? phone = freezed,Object? github = freezed,Object? linkedIn = freezed,Object? facebook = freezed,}) {
   return _then(_self.copyWith(
 firstName: freezed == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
 as String?,lastName: freezed == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
 as String?,avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
 as String?,bio: freezed == bio ? _self.bio : bio // ignore: cast_nullable_to_non_nullable
-as String?,socialLinks: freezed == socialLinks ? _self.socialLinks : socialLinks // ignore: cast_nullable_to_non_nullable
-as List<SocialLink>?,
+as String?,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
+as String?,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+as String?,github: freezed == github ? _self.github : github // ignore: cast_nullable_to_non_nullable
+as String?,linkedIn: freezed == linkedIn ? _self.linkedIn : linkedIn // ignore: cast_nullable_to_non_nullable
+as String?,facebook: freezed == facebook ? _self.facebook : facebook // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -157,10 +161,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? firstName,  String? lastName,  String? avatar,  String? bio,  List<SocialLink>? socialLinks)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? firstName,  String? lastName,  String? avatar,  String? bio,  String? email,  String? phone,  String? github,  String? linkedIn,  String? facebook)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UserApp() when $default != null:
-return $default(_that.firstName,_that.lastName,_that.avatar,_that.bio,_that.socialLinks);case _:
+return $default(_that.firstName,_that.lastName,_that.avatar,_that.bio,_that.email,_that.phone,_that.github,_that.linkedIn,_that.facebook);case _:
   return orElse();
 
 }
@@ -178,10 +182,10 @@ return $default(_that.firstName,_that.lastName,_that.avatar,_that.bio,_that.soci
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? firstName,  String? lastName,  String? avatar,  String? bio,  List<SocialLink>? socialLinks)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? firstName,  String? lastName,  String? avatar,  String? bio,  String? email,  String? phone,  String? github,  String? linkedIn,  String? facebook)  $default,) {final _that = this;
 switch (_that) {
 case _UserApp():
-return $default(_that.firstName,_that.lastName,_that.avatar,_that.bio,_that.socialLinks);case _:
+return $default(_that.firstName,_that.lastName,_that.avatar,_that.bio,_that.email,_that.phone,_that.github,_that.linkedIn,_that.facebook);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -198,10 +202,10 @@ return $default(_that.firstName,_that.lastName,_that.avatar,_that.bio,_that.soci
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? firstName,  String? lastName,  String? avatar,  String? bio,  List<SocialLink>? socialLinks)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? firstName,  String? lastName,  String? avatar,  String? bio,  String? email,  String? phone,  String? github,  String? linkedIn,  String? facebook)?  $default,) {final _that = this;
 switch (_that) {
 case _UserApp() when $default != null:
-return $default(_that.firstName,_that.lastName,_that.avatar,_that.bio,_that.socialLinks);case _:
+return $default(_that.firstName,_that.lastName,_that.avatar,_that.bio,_that.email,_that.phone,_that.github,_that.linkedIn,_that.facebook);case _:
   return null;
 
 }
@@ -213,22 +217,18 @@ return $default(_that.firstName,_that.lastName,_that.avatar,_that.bio,_that.soci
 @JsonSerializable()
 
 class _UserApp implements UserApp {
-  const _UserApp({this.firstName = null, this.lastName = null, this.avatar = null, this.bio = null, final  List<SocialLink>? socialLinks = null}): _socialLinks = socialLinks;
+  const _UserApp({this.firstName = null, this.lastName = null, this.avatar = null, this.bio = null, this.email = null, this.phone = null, this.github = null, this.linkedIn = null, this.facebook = null});
   factory _UserApp.fromJson(Map<String, dynamic> json) => _$UserAppFromJson(json);
 
 @override@JsonKey() final  String? firstName;
 @override@JsonKey() final  String? lastName;
 @override@JsonKey() final  String? avatar;
 @override@JsonKey() final  String? bio;
- final  List<SocialLink>? _socialLinks;
-@override@JsonKey() List<SocialLink>? get socialLinks {
-  final value = _socialLinks;
-  if (value == null) return null;
-  if (_socialLinks is EqualUnmodifiableListView) return _socialLinks;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(value);
-}
-
+@override@JsonKey() final  String? email;
+@override@JsonKey() final  String? phone;
+@override@JsonKey() final  String? github;
+@override@JsonKey() final  String? linkedIn;
+@override@JsonKey() final  String? facebook;
 
 /// Create a copy of UserApp
 /// with the given fields replaced by the non-null parameter values.
@@ -243,16 +243,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserApp&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.avatar, avatar) || other.avatar == avatar)&&(identical(other.bio, bio) || other.bio == bio)&&const DeepCollectionEquality().equals(other._socialLinks, _socialLinks));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserApp&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.avatar, avatar) || other.avatar == avatar)&&(identical(other.bio, bio) || other.bio == bio)&&(identical(other.email, email) || other.email == email)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.github, github) || other.github == github)&&(identical(other.linkedIn, linkedIn) || other.linkedIn == linkedIn)&&(identical(other.facebook, facebook) || other.facebook == facebook));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,firstName,lastName,avatar,bio,const DeepCollectionEquality().hash(_socialLinks));
+int get hashCode => Object.hash(runtimeType,firstName,lastName,avatar,bio,email,phone,github,linkedIn,facebook);
 
 @override
 String toString() {
-  return 'UserApp(firstName: $firstName, lastName: $lastName, avatar: $avatar, bio: $bio, socialLinks: $socialLinks)';
+  return 'UserApp(firstName: $firstName, lastName: $lastName, avatar: $avatar, bio: $bio, email: $email, phone: $phone, github: $github, linkedIn: $linkedIn, facebook: $facebook)';
 }
 
 
@@ -263,7 +263,7 @@ abstract mixin class _$UserAppCopyWith<$Res> implements $UserAppCopyWith<$Res> {
   factory _$UserAppCopyWith(_UserApp value, $Res Function(_UserApp) _then) = __$UserAppCopyWithImpl;
 @override @useResult
 $Res call({
- String? firstName, String? lastName, String? avatar, String? bio, List<SocialLink>? socialLinks
+ String? firstName, String? lastName, String? avatar, String? bio, String? email, String? phone, String? github, String? linkedIn, String? facebook
 });
 
 
@@ -280,14 +280,18 @@ class __$UserAppCopyWithImpl<$Res>
 
 /// Create a copy of UserApp
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? firstName = freezed,Object? lastName = freezed,Object? avatar = freezed,Object? bio = freezed,Object? socialLinks = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? firstName = freezed,Object? lastName = freezed,Object? avatar = freezed,Object? bio = freezed,Object? email = freezed,Object? phone = freezed,Object? github = freezed,Object? linkedIn = freezed,Object? facebook = freezed,}) {
   return _then(_UserApp(
 firstName: freezed == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
 as String?,lastName: freezed == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
 as String?,avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
 as String?,bio: freezed == bio ? _self.bio : bio // ignore: cast_nullable_to_non_nullable
-as String?,socialLinks: freezed == socialLinks ? _self._socialLinks : socialLinks // ignore: cast_nullable_to_non_nullable
-as List<SocialLink>?,
+as String?,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
+as String?,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+as String?,github: freezed == github ? _self.github : github // ignore: cast_nullable_to_non_nullable
+as String?,linkedIn: freezed == linkedIn ? _self.linkedIn : linkedIn // ignore: cast_nullable_to_non_nullable
+as String?,facebook: freezed == facebook ? _self.facebook : facebook // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 

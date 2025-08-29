@@ -71,5 +71,20 @@ class AppLocalizationsEs extends AppLocalizations {
   String get socialLinks => 'Social Links';
 
   @override
+  String get email => 'Email';
+
+  @override
+  String get phone => 'Phone';
+
+  @override
+  String get github => 'GitHub';
+
+  @override
+  String get linkedin => 'LinkedIn';
+
+  @override
+  String get facebook => 'Facebook';
+
+  @override
   String get empty => 'Empty';
 }

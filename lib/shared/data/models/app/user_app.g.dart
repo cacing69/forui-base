@@ -11,11 +11,11 @@ _UserApp _$UserAppFromJson(Map<String, dynamic> json) => _UserApp(
   lastName: json['lastName'] as String? ?? null,
   avatar: json['avatar'] as String? ?? null,
   bio: json['bio'] as String? ?? null,
-  socialLinks:
-      (json['socialLinks'] as List<dynamic>?)
-          ?.map((e) => SocialLink.fromJson(e as Map<String, dynamic>))
-          .toList() ??
-      null,
+  email: json['email'] as String? ?? null,
+  phone: json['phone'] as String? ?? null,
+  github: json['github'] as String? ?? null,
+  linkedIn: json['linkedIn'] as String? ?? null,
+  facebook: json['facebook'] as String? ?? null,
 );
 
 Map<String, dynamic> _$UserAppToJson(_UserApp instance) => <String, dynamic>{
@@ -23,5 +23,9 @@ Map<String, dynamic> _$UserAppToJson(_UserApp instance) => <String, dynamic>{
   'lastName': instance.lastName,
   'avatar': instance.avatar,
   'bio': instance.bio,
-  'socialLinks': instance.socialLinks,
+  'email': instance.email,
+  'phone': instance.phone,
+  'github': instance.github,
+  'linkedIn': instance.linkedIn,
+  'facebook': instance.facebook,
 };

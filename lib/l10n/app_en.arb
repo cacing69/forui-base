@@ -29,5 +29,10 @@
     },
     "localeLanguageName": "English",
     "socialLinks": "Social Links",
+    "email": "Email",
+    "phone": "Phone",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "facebook": "Facebook",
     "empty": "Empty"
 }

@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ConfigApp {
 
- FThemeData? get themeData; Locale? get locale;
+ FThemeData? get themeData; bool? get isDarkMode; Locale? get locale; String? get theme;
 /// Create a copy of ConfigApp
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $ConfigAppCopyWith<ConfigApp> get copyWith => _$ConfigAppCopyWithImpl<ConfigApp>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ConfigApp&&(identical(other.themeData, themeData) || other.themeData == themeData)&&(identical(other.locale, locale) || other.locale == locale));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ConfigApp&&(identical(other.themeData, themeData) || other.themeData == themeData)&&(identical(other.isDarkMode, isDarkMode) || other.isDarkMode == isDarkMode)&&(identical(other.locale, locale) || other.locale == locale)&&(identical(other.theme, theme) || other.theme == theme));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,themeData,locale);
+int get hashCode => Object.hash(runtimeType,themeData,isDarkMode,locale,theme);
 
 @override
 String toString() {
-  return 'ConfigApp(themeData: $themeData, locale: $locale)';
+  return 'ConfigApp(themeData: $themeData, isDarkMode: $isDarkMode, locale: $locale, theme: $theme)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $ConfigAppCopyWith<$Res>  {
   factory $ConfigAppCopyWith(ConfigApp value, $Res Function(ConfigApp) _then) = _$ConfigAppCopyWithImpl;
 @useResult
 $Res call({
- FThemeData? themeData, Locale? locale
+ FThemeData? themeData, bool? isDarkMode, Locale? locale, String? theme
 });
 
 
@@ -62,11 +62,13 @@ class _$ConfigAppCopyWithImpl<$Res>
 
 /// Create a copy of ConfigApp
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? themeData = freezed,Object? locale = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? themeData = freezed,Object? isDarkMode = freezed,Object? locale = freezed,Object? theme = freezed,}) {
   return _then(_self.copyWith(
 themeData: freezed == themeData ? _self.themeData : themeData // ignore: cast_nullable_to_non_nullable
-as FThemeData?,locale: freezed == locale ? _self.locale : locale // ignore: cast_nullable_to_non_nullable
-as Locale?,
+as FThemeData?,isDarkMode: freezed == isDarkMode ? _self.isDarkMode : isDarkMode // ignore: cast_nullable_to_non_nullable
+as bool?,locale: freezed == locale ? _self.locale : locale // ignore: cast_nullable_to_non_nullable
+as Locale?,theme: freezed == theme ? _self.theme : theme // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -151,10 +153,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( FThemeData? themeData,  Locale? locale)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( FThemeData? themeData,  bool? isDarkMode,  Locale? locale,  String? theme)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ConfigApp() when $default != null:
-return $default(_that.themeData,_that.locale);case _:
+return $default(_that.themeData,_that.isDarkMode,_that.locale,_that.theme);case _:
   return orElse();
 
 }
@@ -172,10 +174,10 @@ return $default(_that.themeData,_that.locale);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( FThemeData? themeData,  Locale? locale)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( FThemeData? themeData,  bool? isDarkMode,  Locale? locale,  String? theme)  $default,) {final _that = this;
 switch (_that) {
 case _ConfigApp():
-return $default(_that.themeData,_that.locale);case _:
+return $default(_that.themeData,_that.isDarkMode,_that.locale,_that.theme);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -192,10 +194,10 @@ return $default(_that.themeData,_that.locale);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( FThemeData? themeData,  Locale? locale)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( FThemeData? themeData,  bool? isDarkMode,  Locale? locale,  String? theme)?  $default,) {final _that = this;
 switch (_that) {
 case _ConfigApp() when $default != null:
-return $default(_that.themeData,_that.locale);case _:
+return $default(_that.themeData,_that.isDarkMode,_that.locale,_that.theme);case _:
   return null;
 
 }
@@ -207,11 +209,13 @@ return $default(_that.themeData,_that.locale);case _:
 
 
 class _ConfigApp implements ConfigApp {
-  const _ConfigApp({this.themeData = null, this.locale = null});
+  const _ConfigApp({this.themeData = null, this.isDarkMode = null, this.locale = null, this.theme = null});
   
 
 @override@JsonKey() final  FThemeData? themeData;
+@override@JsonKey() final  bool? isDarkMode;
 @override@JsonKey() final  Locale? locale;
+@override@JsonKey() final  String? theme;
 
 /// Create a copy of ConfigApp
 /// with the given fields replaced by the non-null parameter values.
@@ -223,16 +227,16 @@ _$ConfigAppCopyWith<_ConfigApp> get copyWith => __$ConfigAppCopyWithImpl<_Config
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ConfigApp&&(identical(other.themeData, themeData) || other.themeData == themeData)&&(identical(other.locale, locale) || other.locale == locale));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ConfigApp&&(identical(other.themeData, themeData) || other.themeData == themeData)&&(identical(other.isDarkMode, isDarkMode) || other.isDarkMode == isDarkMode)&&(identical(other.locale, locale) || other.locale == locale)&&(identical(other.theme, theme) || other.theme == theme));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,themeData,locale);
+int get hashCode => Object.hash(runtimeType,themeData,isDarkMode,locale,theme);
 
 @override
 String toString() {
-  return 'ConfigApp(themeData: $themeData, locale: $locale)';
+  return 'ConfigApp(themeData: $themeData, isDarkMode: $isDarkMode, locale: $locale, theme: $theme)';
 }
 
 
@@ -243,7 +247,7 @@ abstract mixin class _$ConfigAppCopyWith<$Res> implements $ConfigAppCopyWith<$Re
   factory _$ConfigAppCopyWith(_ConfigApp value, $Res Function(_ConfigApp) _then) = __$ConfigAppCopyWithImpl;
 @override @useResult
 $Res call({
- FThemeData? themeData, Locale? locale
+ FThemeData? themeData, bool? isDarkMode, Locale? locale, String? theme
 });
 
 
@@ -260,11 +264,13 @@ class __$ConfigAppCopyWithImpl<$Res>
 
 /// Create a copy of ConfigApp
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? themeData = freezed,Object? locale = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? themeData = freezed,Object? isDarkMode = freezed,Object? locale = freezed,Object? theme = freezed,}) {
   return _then(_ConfigApp(
 themeData: freezed == themeData ? _self.themeData : themeData // ignore: cast_nullable_to_non_nullable
-as FThemeData?,locale: freezed == locale ? _self.locale : locale // ignore: cast_nullable_to_non_nullable
-as Locale?,
+as FThemeData?,isDarkMode: freezed == isDarkMode ? _self.isDarkMode : isDarkMode // ignore: cast_nullable_to_non_nullable
+as bool?,locale: freezed == locale ? _self.locale : locale // ignore: cast_nullable_to_non_nullable
+as Locale?,theme: freezed == theme ? _self.theme : theme // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 

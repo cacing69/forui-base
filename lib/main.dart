@@ -5,6 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:forui/forui.dart';
+import 'package:forui_base/core/constant/map_theme_data.dart';
+import 'package:forui_base/core/constant/shared_pref_key.dart';
 import 'package:forui_base/l10n/app_localizations.dart';
 import 'package:forui_base/router.dart';
 import 'package:forui_base/shared/presentation/providers/config_app_notifier.dart';
@@ -48,26 +50,48 @@ class _ApplicationState extends ConsumerState<Application> {
 
       final prefs = await SharedPreferences.getInstance();
 
-      if (prefs.containsKey('isDarkTheme')) {
-        final isDarkTheme = prefs.getBool('isDarkTheme') ?? false;
-        if (isDarkTheme) {
+      // Theme
+      if (prefs.containsKey(SharedPrefKey.theme)) {
+        final theme = prefs.getString(SharedPrefKey.theme);
+        if (theme != null) {
+          configAppNotifier.changeTheme(theme);
+        } else {
+          configAppNotifier.changeTheme("zinc");
+        }
+      } else {
+        configAppNotifier.changeTheme("zinc");
+      }
+
+      if (prefs.containsKey(SharedPrefKey.isDarkMode)) {
+        final isDarkMode = prefs.getBool(SharedPrefKey.isDarkMode) ?? false;
+        if (isDarkMode) {
           ref
               .read(configAppNotifierProvider.notifier)
-              .changeTheme(FThemes.zinc.dark);
+              .changeThemeData(
+                mapThemeDataDark[ref.read(configAppNotifierProvider).theme]!,
+              );
+
+          ref.read(configAppNotifierProvider.notifier).changeIsDarkMode(true);
         } else {
           ref
               .read(configAppNotifierProvider.notifier)
-              .changeTheme(FThemes.zinc.light);
+              .changeThemeData(
+                mapThemeDataLight[ref.read(configAppNotifierProvider).theme]!,
+              );
+
+          ref.read(configAppNotifierProvider.notifier).changeIsDarkMode(false);
         }
       } else {
         if (brightness == Brightness.dark) {
-          configAppNotifier.changeTheme(FThemes.zinc.dark);
+          configAppNotifier.changeThemeData(FThemes.zinc.dark);
+          ref.read(configAppNotifierProvider.notifier).changeIsDarkMode(true);
 
-          await prefs.setBool('isDarkTheme', true);
+          await prefs.setBool(SharedPrefKey.isDarkMode, true);
         } else {
-          configAppNotifier.changeTheme(FThemes.zinc.light);
+          configAppNotifier.changeThemeData(FThemes.zinc.light);
+          ref.read(configAppNotifierProvider.notifier).changeIsDarkMode(false);
 
-          await prefs.setBool('isDarkTheme', false);
+          await prefs.setBool(SharedPrefKey.isDarkMode, false);
         }
       }
 
@@ -90,6 +114,7 @@ class _ApplicationState extends ConsumerState<Application> {
   @override
   Widget build(BuildContext context) {
     final configApp = ref.watch(configAppNotifierProvider);
+
     return MaterialApp.router(
       title: 'Forui Base',
       localizationsDelegates: [

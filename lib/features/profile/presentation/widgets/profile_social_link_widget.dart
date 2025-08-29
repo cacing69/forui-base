@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:forui/forui.dart';
+import 'package:forui_base/core/constant/user_static.dart';
+import 'package:forui_base/l10n/app_localizations.dart';
 
 class ProfileSocialLinkWidget extends StatefulWidget {
   const ProfileSocialLinkWidget({super.key});
@@ -12,38 +14,39 @@ class ProfileSocialLinkWidget extends StatefulWidget {
 class _ProfileSocialLinkWidgetState extends State<ProfileSocialLinkWidget> {
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context)!;
     return FTileGroup(
-      label: const Text('Social Links'),
+      label: Text(loc.socialLinks),
       // description: const Text('Personalize your social links'),
       children: [
         FTile(
           prefix: Icon(FIcons.mail),
-          title: Text('Email'),
-          details: Text("ibnuul@gmail.com"),
+          title: Text(loc.email),
+          details: Text(userStatic.email!),
           onPress: () {},
         ),
         FTile(
           prefix: Icon(FIcons.smartphone),
-          title: Text('Phone'),
-          details: Text("+62 896 7216 5341"),
+          title: Text(loc.phone),
+          details: Text(userStatic.phone!),
           onPress: () {},
         ),
         FTile(
           prefix: Icon(FIcons.github),
-          title: Text('Github'),
-          details: Text("cacing69"),
+          title: Text(loc.github),
+          details: Text(userStatic.github!),
           onPress: () {},
         ),
         FTile(
           prefix: Icon(FIcons.linkedin),
-          title: Text('Linkedin'),
-          details: Text("ibnul-mutaki"),
+          title: Text(loc.linkedin),
+          details: Text(userStatic.linkedIn!),
           onPress: () {},
         ),
         FTile(
           prefix: Icon(FIcons.facebook),
-          title: Text('Facebook'),
-          details: Text("ibnuul"),
+          title: Text(loc.facebook),
+          details: Text(userStatic.facebook!),
           onPress: () {},
         ),
       ],

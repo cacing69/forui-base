@@ -9,6 +9,8 @@ part 'config_app.freezed.dart';
 abstract class ConfigApp with _$ConfigApp {
   const factory ConfigApp({
     @Default(null) FThemeData? themeData,
+    @Default(null) bool? isDarkMode,
     @Default(null) Locale? locale,
+    @Default(null) String? theme,
   }) = _ConfigApp;
 }

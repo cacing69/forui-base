@@ -12,10 +12,22 @@ class ConfigAppNotifier extends _$ConfigAppNotifier {
     return ConfigApp(themeData: FThemes.zinc.light);
   }
 
-  void changeTheme(FThemeData newTheme) {
+  void changeThemeData(FThemeData newThemeData) {
     // TODO : need to persist theme data after closed
 
-    state = state.copyWith(themeData: newTheme);
+    state = state.copyWith(themeData: newThemeData);
+  }
+
+  void changeIsDarkMode(bool darkMode) {
+    // TODO : need to persist theme data after closed
+
+    state = state.copyWith(isDarkMode: darkMode);
+  }
+
+  void changeTheme(String newTheme) {
+    // TODO : need to persist theme data after closed
+
+    state = state.copyWith(theme: newTheme);
   }
 
   void changeLocale(Locale locale) {

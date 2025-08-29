@@ -1,4 +1,5 @@
 abstract class SharedPrefKey {
-  static String isDarkTheme = "isDarkTheme";
+  static String isDarkMode = "isDarkMode";
   static String locale = "locale";
+  static String theme = "theme";
 }

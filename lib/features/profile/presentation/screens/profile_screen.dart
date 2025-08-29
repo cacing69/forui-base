@@ -2,10 +2,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:forui/forui.dart';
+import 'package:forui_base/core/constant/map_theme_data.dart';
 import 'package:forui_base/core/constant/shared_pref_key.dart';
 import 'package:forui_base/core/constant/static_string.dart';
 import 'package:forui_base/core/constant/user_static.dart';
 import 'package:forui_base/core/utils/helpers.dart';
+import 'package:forui_base/core/utils/string_extensions.dart';
 import 'package:forui_base/features/profile/presentation/widgets/profile_social_link_widget.dart';
 import 'package:forui_base/l10n/app_localizations.dart';
 import 'package:forui_base/router.dart';
@@ -22,7 +24,7 @@ class ProfileScreen extends ConsumerStatefulWidget {
   ConsumerState<ProfileScreen> createState() => _ProfileScreenState();
 }
 
-enum LocaleApp { id, en, es }
+enum AvailableLocaleApp { id, en, es }
 
 class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   @override
@@ -30,9 +32,21 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     final loc = AppLocalizations.of(context)!;
 
     final localeItem = {
-      loc.localeIndonesian: LocaleApp.id,
-      loc.localeEnglish: LocaleApp.en,
-      loc.localeSpanish: LocaleApp.es,
+      loc.localeIndonesian: AvailableLocaleApp.id,
+      loc.localeEnglish: AvailableLocaleApp.en,
+      loc.localeSpanish: AvailableLocaleApp.es,
+    };
+
+    final themes = {
+      "zinc".capitalizeFirst(): AvailableThemeApp.zinc,
+      "slate".capitalizeFirst(): AvailableThemeApp.slate,
+      "red".capitalizeFirst(): AvailableThemeApp.red,
+      "rose".capitalizeFirst(): AvailableThemeApp.rose,
+      "orange".capitalizeFirst(): AvailableThemeApp.orange,
+      "green".capitalizeFirst(): AvailableThemeApp.green,
+      "bLue".capitalizeFirst(): AvailableThemeApp.blue,
+      "yellow".capitalizeFirst(): AvailableThemeApp.yellow,
+      "violet".capitalizeFirst(): AvailableThemeApp.violet,
     };
 
     return FScaffold(
@@ -173,48 +187,9 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               label: Text(loc.settings),
               description: Text(loc.personalizeYourExperience),
               children: [
-                FTile(
-                  title: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(loc.darkMode),
-                      FSwitch(
-                        style: (style) {
-                          return style.copyWith(
-                            childPadding: EdgeInsets.zero,
-                            labelPadding: EdgeInsets.symmetric(horizontal: 8),
-                          );
-                        },
-                        value:
-                            ref.watch(configAppNotifierProvider).themeData ==
-                            FThemes.zinc.dark,
-                        onChange: (value) async {
-                          final prefs = await SharedPreferences.getInstance();
-
-                          if (ref.watch(configAppNotifierProvider).themeData ==
-                              FThemes.zinc.light) {
-                            ref
-                                .read(configAppNotifierProvider.notifier)
-                                .changeTheme(FThemes.zinc.dark);
-
-                            // await prefs.setBool(SharedPrefKey.isDarkTheme, false);
-                          } else {
-                            ref
-                                .read(configAppNotifierProvider.notifier)
-                                .changeTheme(FThemes.zinc.light);
-                          }
-
-                          await prefs.setBool(SharedPrefKey.isDarkTheme, value);
-                        },
-                      ),
-                    ],
-                  ),
-                  prefix: const Icon(FIcons.moon),
-                  // details:
-                ),
                 FSelectMenuTile.fromMap(
                   localeItem,
-                  initialValue: LocaleApp.en,
+                  initialValue: AvailableLocaleApp.en,
                   autoHide: true,
                   prefix: const Icon(FIcons.languages),
                   title: Text(loc.language),
@@ -230,7 +205,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                             title: Text(loc.empty),
                           );
 
-                        case LocaleApp.id:
+                        case AvailableLocaleApp.id:
                           showForuiToast(
                             context: context,
                             title: Text(
@@ -240,13 +215,13 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
 
                           ref
                               .read(configAppNotifierProvider.notifier)
-                              .changeLocale(Locale(AvailableLocale.id));
+                              .changeLocale(Locale(StaticString.id));
 
                           await prefs.setString(
                             SharedPrefKey.locale,
-                            AvailableLocale.id,
+                            StaticString.id,
                           );
-                        case LocaleApp.en:
+                        case AvailableLocaleApp.en:
                           showForuiToast(
                             context: context,
                             title: Text(
@@ -256,14 +231,14 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
 
                           ref
                               .read(configAppNotifierProvider.notifier)
-                              .changeLocale(Locale(AvailableLocale.en));
+                              .changeLocale(Locale(StaticString.en));
 
                           await prefs.setString(
                             SharedPrefKey.locale,
-                            AvailableLocale.en,
+                            StaticString.en,
                           );
 
-                        case LocaleApp.es:
+                        case AvailableLocaleApp.es:
                           showForuiToast(
                             context: context,
                             title: Text(
@@ -273,20 +248,255 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
 
                           ref
                               .read(configAppNotifierProvider.notifier)
-                              .changeLocale(Locale(AvailableLocale.es));
+                              .changeLocale(Locale(StaticString.es));
 
                           await prefs.setString(
                             SharedPrefKey.locale,
-                            AvailableLocale.es,
+                            StaticString.es,
                           );
                       }
                     }
                   },
                   detailsBuilder: (_, values, _) =>
                       Text(switch (values.firstOrNull) {
-                        LocaleApp.id => loc.localeIndonesian,
-                        LocaleApp.en => loc.localeEnglish,
-                        LocaleApp.es => loc.localeSpanish,
+                        AvailableLocaleApp.id => loc.localeIndonesian,
+                        AvailableLocaleApp.en => loc.localeEnglish,
+                        AvailableLocaleApp.es => loc.localeSpanish,
+                        _ => loc.none,
+                      }),
+                ),
+                FTile(
+                  title: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(loc.darkMode),
+                      FSwitch(
+                        style: (style) {
+                          return style.copyWith(
+                            childPadding: EdgeInsets.zero,
+                            labelPadding: EdgeInsets.symmetric(horizontal: 8),
+                          );
+                        },
+                        value:
+                            ref.watch(configAppNotifierProvider).isDarkMode ??
+                            false,
+                        onChange: (value) async {
+                          final prefs = await SharedPreferences.getInstance();
+
+                          if (value) {
+                            ref
+                                .read(configAppNotifierProvider.notifier)
+                                .changeThemeData(
+                                  mapThemeDataDark[ref
+                                      .read(configAppNotifierProvider)
+                                      .theme]!,
+                                );
+                          } else {
+                            ref
+                                .read(configAppNotifierProvider.notifier)
+                                .changeThemeData(
+                                  mapThemeDataLight[ref
+                                      .read(configAppNotifierProvider)
+                                      .theme]!,
+                                );
+                          }
+
+                          ref
+                              .read(configAppNotifierProvider.notifier)
+                              .changeIsDarkMode(value);
+
+                          await prefs.setBool(SharedPrefKey.isDarkMode, value);
+                        },
+                      ),
+                    ],
+                  ),
+                  prefix: const Icon(FIcons.moon),
+                  // details:
+                ),
+                FSelectMenuTile.fromMap(
+                  themes,
+                  initialValue: AvailableThemeApp.zinc,
+                  autoHide: true,
+                  prefix: const Icon(FIcons.palette),
+                  title: Text("Theme"),
+                  onChange: (e) async {
+                    final selectedTheme = e.firstOrNull;
+                    final prefs = await SharedPreferences.getInstance();
+                    final isDarkMode =
+                        prefs.getBool(SharedPrefKey.isDarkMode) ?? false;
+
+                    if (context.mounted) {
+                      switch (selectedTheme) {
+                        case null:
+                          showForuiToast(
+                            context: context,
+                            title: Text(loc.empty),
+                          );
+
+                        case AvailableThemeApp.zinc:
+                          if (isDarkMode) {
+                            ref
+                                .read(configAppNotifierProvider.notifier)
+                                .changeThemeData(FThemes.zinc.dark);
+                          } else {
+                            ref
+                                .read(configAppNotifierProvider.notifier)
+                                .changeThemeData(FThemes.zinc.light);
+                          }
+
+                          ref
+                              .read(configAppNotifierProvider.notifier)
+                              .changeTheme("zinc");
+
+                          prefs.setString(SharedPrefKey.theme, "zinc");
+                          break;
+                        case AvailableThemeApp.slate:
+                          if (isDarkMode) {
+                            ref
+                                .read(configAppNotifierProvider.notifier)
+                                .changeThemeData(FThemes.slate.dark);
+                          } else {
+                            ref
+                                .read(configAppNotifierProvider.notifier)
+                                .changeThemeData(FThemes.slate.light);
+                          }
+
+                          ref
+                              .read(configAppNotifierProvider.notifier)
+                              .changeTheme("slate");
+                          prefs.setString(SharedPrefKey.theme, "slate");
+                          break;
+                        case AvailableThemeApp.red:
+                          if (isDarkMode) {
+                            ref
+                                .read(configAppNotifierProvider.notifier)
+                                .changeThemeData(FThemes.red.dark);
+                          } else {
+                            ref
+                                .read(configAppNotifierProvider.notifier)
+                                .changeThemeData(FThemes.red.light);
+                          }
+
+                          ref
+                              .read(configAppNotifierProvider.notifier)
+                              .changeTheme("red");
+                          prefs.setString(SharedPrefKey.theme, "red");
+                          break;
+                        case AvailableThemeApp.rose:
+                          if (isDarkMode) {
+                            ref
+                                .read(configAppNotifierProvider.notifier)
+                                .changeThemeData(FThemes.rose.dark);
+                          } else {
+                            ref
+                                .read(configAppNotifierProvider.notifier)
+                                .changeThemeData(FThemes.rose.light);
+                          }
+
+                          ref
+                              .read(configAppNotifierProvider.notifier)
+                              .changeTheme("rose");
+
+                          prefs.setString(SharedPrefKey.theme, "rose");
+                          break;
+                        case AvailableThemeApp.orange:
+                          if (isDarkMode) {
+                            ref
+                                .read(configAppNotifierProvider.notifier)
+                                .changeThemeData(FThemes.orange.dark);
+                          } else {
+                            ref
+                                .read(configAppNotifierProvider.notifier)
+                                .changeThemeData(FThemes.orange.light);
+                          }
+
+                          ref
+                              .read(configAppNotifierProvider.notifier)
+                              .changeTheme("orange");
+                          prefs.setString(SharedPrefKey.theme, "orange");
+                          break;
+                        case AvailableThemeApp.green:
+                          if (isDarkMode) {
+                            ref
+                                .read(configAppNotifierProvider.notifier)
+                                .changeThemeData(FThemes.green.dark);
+                          } else {
+                            ref
+                                .read(configAppNotifierProvider.notifier)
+                                .changeThemeData(FThemes.green.light);
+                          }
+
+                          ref
+                              .read(configAppNotifierProvider.notifier)
+                              .changeTheme("green");
+
+                          prefs.setString(SharedPrefKey.theme, "green");
+                          break;
+                        case AvailableThemeApp.blue:
+                          if (isDarkMode) {
+                            ref
+                                .read(configAppNotifierProvider.notifier)
+                                .changeThemeData(FThemes.blue.dark);
+                          } else {
+                            ref
+                                .read(configAppNotifierProvider.notifier)
+                                .changeThemeData(FThemes.blue.light);
+                          }
+
+                          ref
+                              .read(configAppNotifierProvider.notifier)
+                              .changeTheme("blue");
+
+                          prefs.setString(SharedPrefKey.theme, "blue");
+                          break;
+                        case AvailableThemeApp.yellow:
+                          if (isDarkMode) {
+                            ref
+                                .read(configAppNotifierProvider.notifier)
+                                .changeThemeData(FThemes.yellow.dark);
+                          } else {
+                            ref
+                                .read(configAppNotifierProvider.notifier)
+                                .changeThemeData(FThemes.yellow.light);
+                          }
+
+                          ref
+                              .read(configAppNotifierProvider.notifier)
+                              .changeTheme("yellow");
+
+                          prefs.setString(SharedPrefKey.theme, "yellow");
+                          break;
+                        case AvailableThemeApp.violet:
+                          if (isDarkMode) {
+                            ref
+                                .read(configAppNotifierProvider.notifier)
+                                .changeThemeData(FThemes.violet.dark);
+                          } else {
+                            ref
+                                .read(configAppNotifierProvider.notifier)
+                                .changeThemeData(FThemes.violet.light);
+                          }
+
+                          ref
+                              .read(configAppNotifierProvider.notifier)
+                              .changeTheme("violet");
+
+                          prefs.setString(SharedPrefKey.theme, "violet");
+                          break;
+                      }
+                    }
+                  },
+                  detailsBuilder: (_, values, _) =>
+                      Text(switch (values.firstOrNull) {
+                        AvailableThemeApp.zinc => "zinc".capitalizeFirst(),
+                        AvailableThemeApp.slate => "slate".capitalizeFirst(),
+                        AvailableThemeApp.red => "red".capitalizeFirst(),
+                        AvailableThemeApp.rose => "rose".capitalizeFirst(),
+                        AvailableThemeApp.orange => "orange".capitalizeFirst(),
+                        AvailableThemeApp.green => "green".capitalizeFirst(),
+                        AvailableThemeApp.blue => "blue".capitalizeFirst(),
+                        AvailableThemeApp.yellow => "yellow".capitalizeFirst(),
+                        AvailableThemeApp.violet => "violet".capitalizeFirst(),
                         _ => loc.none,
                       }),
                 ),
