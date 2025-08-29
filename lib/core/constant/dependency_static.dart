@@ -147,6 +147,21 @@ final List<Dependency> generalDependenciesStatic = [
     name: "fluttertoast",
     url: "https://pub.dev/packages/fluttertoast",
   ),
+  Dependency(
+    icon: FIcons.codesandbox,
+    name: "hive_ce",
+    url: "https://pub.dev/packages/hive_ce",
+  ),
+  Dependency(
+    icon: FIcons.codesandbox,
+    name: "hive_ce_flutter",
+    url: "https://pub.dev/packages/hive_ce_flutter",
+  ),
+  Dependency(
+    icon: FIcons.codesandbox,
+    name: "logger",
+    url: "https://pub.dev/packages/logger",
+  ),
 ];
 
 final List<Dependency> developmentDependenciesStatic = [
@@ -199,5 +214,10 @@ final List<Dependency> developmentDependenciesStatic = [
     icon: FIcons.bugPlay,
     name: 'envied_generator',
     url: 'https://pub.dev/packages/envied_generator',
+  ),
+  Dependency(
+    icon: FIcons.bugPlay,
+    name: 'hive_ce_generator',
+    url: 'https://pub.dev/packages/hive_ce_generator',
   ),
 ];

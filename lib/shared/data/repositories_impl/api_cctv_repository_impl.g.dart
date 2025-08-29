@@ -51,7 +51,7 @@ final class ApiCctvRepositoryProvider
   }
 }
 
-String _$apiCctvRepositoryHash() => r'cccd2600a064c06b320ea98905469d11433e8dea';
+String _$apiCctvRepositoryHash() => r'ed99889df4cfb4c5028731469da375b77107d248';
 
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

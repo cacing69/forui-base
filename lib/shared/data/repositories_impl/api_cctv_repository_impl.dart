@@ -23,20 +23,26 @@ import 'package:forui_base/shared/data/models/api_cctv/vehicle.dart';
 import 'package:forui_base/shared/data/models/api_cctv/village.dart';
 import 'package:forui_base/shared/data/models/hive/cached_response.dart';
 import 'package:forui_base/shared/domain/repositories/api_cctv_repository.dart';
+import 'package:forui_base/shared/presentation/providers/logger_ref.dart';
 import 'package:hive_ce_flutter/hive_flutter.dart';
+import 'package:logger/logger.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'api_cctv_repository_impl.g.dart';
 
 @riverpod
 ApiCctvRepository apiCctvRepository(Ref ref) {
-  return ApiCctvRepositoryImpl(service: ref.watch(apiCctvServiceProvider));
+  return ApiCctvRepositoryImpl(
+    service: ref.read(apiCctvServiceProvider),
+    logger: ref.read(loggerRefProvider),
+  );
 }
 
 class ApiCctvRepositoryImpl implements ApiCctvRepository {
   final ApiCctvService service;
+  final Logger logger;
 
-  ApiCctvRepositoryImpl({required this.service});
+  ApiCctvRepositoryImpl({required this.service, required this.logger});
 
   @override
   Future<Either<Failure, TResponse<List<Resident>>>> resident(
@@ -156,10 +162,12 @@ class ApiCctvRepositoryImpl implements ApiCctvRepository {
 
       final String boxKey = "t_response_person_$personId";
 
+      logger.i("set_key:$boxKey");
+
       late final TResponse<Person> response;
 
       if (box.containsKey(boxKey)) {
-        debugPrint("repo_impl:found:load_from_api");
+        logger.i("hive_found:$boxKey");
         final cached = box.get(boxKey);
 
         response = TResponse<Person>.fromJson(
@@ -167,11 +175,11 @@ class ApiCctvRepositoryImpl implements ApiCctvRepository {
           (obj) => Person.fromJson(obj as Map<String, dynamic>),
         );
       } else {
-        debugPrint("repo_impl:not_found:load_from_box_hive");
+        logger.i("hive_not_found:$boxKey");
 
         response = await service.person(personId);
 
-        debugPrint("repo_impl:writing_cache_person_$personId");
+        logger.i("hive_write:$boxKey");
         await box.put(
           boxKey,
           CachedResponse(
