@@ -45,7 +45,7 @@ final class CityUsecaseProvider
   }
 }
 
-String _$cityUsecaseHash() => r'4c96c74ed6f1ac6e9dc3bd7f7c37c670e9d23e7c';
+String _$cityUsecaseHash() => r'e1eeb6e542f3754bdb22a50c87d98a3d846a826a';
 
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

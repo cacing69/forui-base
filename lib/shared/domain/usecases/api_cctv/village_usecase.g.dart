@@ -45,7 +45,7 @@ final class VillageUsecaseProvider
   }
 }
 
-String _$villageUsecaseHash() => r'03ea76cc46148eed1eb75237aef7160e7a7f76c8';
+String _$villageUsecaseHash() => r'b878f8987a57280b17388fbf107ab6033a931c3d';
 
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

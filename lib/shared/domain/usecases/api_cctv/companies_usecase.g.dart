@@ -50,7 +50,7 @@ final class CompaniesUsecaseProvider
   }
 }
 
-String _$companiesUsecaseHash() => r'e2174e796dc3de0961583cb54eff96b18afccfb7';
+String _$companiesUsecaseHash() => r'b78405f0c5d5c9137c2949bb05ff2be698b36c57';
 
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

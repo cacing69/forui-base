@@ -30,7 +30,6 @@ class GojekUsecase implements UseCase<TResponse<List<Gojek>>, String> {
 
   @override
   Future<Either<Failure, TResponse<List<Gojek>>>> call(String personId) async {
-    // return await repository.gojek(params);
     try {
       // cek cache
       final cacheData = await cache.get(personId);
