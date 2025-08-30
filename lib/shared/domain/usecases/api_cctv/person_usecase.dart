@@ -34,7 +34,7 @@ class PersonUsecase implements UseCase<TResponse<Person>, String> {
   @override
   Future<Either<Failure, TResponse<Person>>> call(String personId) async {
     try {
-      // 1cek cache
+      // cek cache
       final cacheData = await cache.get(personId);
       if (cacheData != null) {
         logger.i("person_cache_get:$personId");
