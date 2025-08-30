@@ -7,9 +7,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:forui/forui.dart';
 import 'package:forui_base/core/constant/map_theme_data.dart';
 import 'package:forui_base/core/constant/shared_pref_key.dart';
+import 'package:forui_base/hive_registrar.g.dart';
 import 'package:forui_base/l10n/app_localizations.dart';
 import 'package:forui_base/router.dart';
+import 'package:forui_base/shared/data/models/api_cctv/person.dart';
 import 'package:forui_base/shared/data/models/hive/cached_response.dart';
+import 'package:forui_base/shared/data/models/hive/t_response_adapter.dart';
 import 'package:forui_base/shared/presentation/providers/config_app_notifier.dart';
 import 'package:hive_ce_flutter/hive_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -24,7 +27,17 @@ void main() async {
 
         await Hive.initFlutter();
 
-        Hive.registerAdapter(CachedResponseAdapter());
+        // Generated Adapters
+        Hive.registerAdapters();
+
+        // Manual Adapters for handling Generic<T>
+        Hive.registerAdapter(
+          TResponseAdapter<Person>(
+            typeId: 1001,
+            fromJson: (json) => Person.fromJson(json),
+            toJson: (user) => user.toJson(),
+          ),
+        );
 
         SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
         runApp(const ProviderScope(child: Application()));
