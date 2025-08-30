@@ -1,4 +1,3 @@
-import 'package:forui_base/shared/data/models/api_cctv/district.dart';
 import 'package:forui_base/shared/data/models/api_cctv/t_response.dart';
 import 'package:forui_base/shared/data/models/api_cctv/village.dart';
 import 'package:hive_ce/hive.dart';
