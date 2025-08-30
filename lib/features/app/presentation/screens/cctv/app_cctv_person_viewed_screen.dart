@@ -37,11 +37,20 @@ class AppCctvPersonViewedScreen extends ConsumerWidget {
               ),
               child: SingleChildScrollView(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    entries.isNotEmpty
+                        ? Text(
+                            "Long press to delete item",
+                            style: context.theme.typography.xs,
+                          )
+                        : SizedBox.shrink(),
                     if (entries.isEmpty)
                       const Padding(
                         padding: EdgeInsets.all(16),
-                        child: Text("No viewed person yet."),
+                        child: Center(
+                          child: Expanded(child: Text("No viewed person yet.")),
+                        ),
                       )
                     else
                       FItemGroup(
