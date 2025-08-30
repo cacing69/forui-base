@@ -26,16 +26,15 @@ class TResponsePersonListVehicleCache {
     return _box!;
   }
 
-  Future<TResponse<List<Vehicle>>?> get(String vehicleId) async {
+  Future<TResponse<List<Vehicle>>?> get(String personId) async {
     final box = await getBox();
-    return box.get(keyName(vehicleId));
+    return box.get(keyName(personId));
   }
 
-  Future<void> put(String vehicleId, TResponse<List<Vehicle>> response) async {
+  Future<void> put(String personId, TResponse<List<Vehicle>> response) async {
     final box = await getBox();
-    await box.put(keyName(vehicleId), response);
+    await box.put(keyName(personId), response);
   }
 
-  String keyName(String vehicleId) =>
-      't_response_person_list_vehicle_$vehicleId';
+  String keyName(String personId) => 't_response_person_list_vehicle_$personId';
 }
