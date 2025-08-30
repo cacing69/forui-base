@@ -33,3 +33,26 @@ void showFlutterToast({BuildContext? context, required String message}) {
 void showComingSoonFlutterToast(BuildContext context) {
   showFlutterToast(context: context, message: "Coming soon!");
 }
+
+bool parseBool(String value, {bool defaultValue = false}) {
+  switch (value.toLowerCase()) {
+    case 'true':
+      return true;
+    case 'false':
+      return false;
+    case 'yes':
+      return true;
+    case 'no':
+      return false;
+    case '1':
+      return true;
+    case '0':
+      return false;
+    case 'on':
+      return true;
+    case 'off':
+      return false;
+    default:
+      return defaultValue;
+  }
+}

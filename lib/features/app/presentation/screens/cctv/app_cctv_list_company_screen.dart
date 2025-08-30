@@ -90,7 +90,7 @@ class _AppCctvListCompanyScreenState
     return FScaffold(
       resizeToAvoidBottomInset: false,
       header: FHeader.nested(
-        title: const Text('App : CCTV (Company)'),
+        title: const Text('CCTV : Company'),
         prefixes: [
           FHeaderAction.back(
             onPress: () {

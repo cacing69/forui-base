@@ -17,7 +17,7 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Free Api
 
-- [ ][ipify](https://api64.ipify.org)
+- [ ] [ipify](https://api64.ipify.org)
 - [ ] OSRM
 
 ## Found on youtube video

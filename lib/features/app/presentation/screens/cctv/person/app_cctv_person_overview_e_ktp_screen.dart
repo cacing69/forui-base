@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:forui/forui.dart';
 import 'package:go_router/go_router.dart';
 
-class AppCctvPersonOverviewTabEKtpScreen extends StatefulWidget {
-  const AppCctvPersonOverviewTabEKtpScreen({super.key});
+class AppCctvPersonOverviewEKtpScreen extends StatefulWidget {
+  const AppCctvPersonOverviewEKtpScreen({super.key});
 
   @override
-  State<AppCctvPersonOverviewTabEKtpScreen> createState() =>
-      _AppCctvPersonOverviewTabEKtpScreenState();
+  State<AppCctvPersonOverviewEKtpScreen> createState() =>
+      _AppCctvPersonOverviewEKtpScreenState();
 }
 
-class _AppCctvPersonOverviewTabEKtpScreenState
-    extends State<AppCctvPersonOverviewTabEKtpScreen> {
+class _AppCctvPersonOverviewEKtpScreenState
+    extends State<AppCctvPersonOverviewEKtpScreen> {
   @override
   Widget build(BuildContext context) {
     return FScaffold(

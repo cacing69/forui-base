@@ -332,7 +332,7 @@ class _AppCctvCompanyScreenState extends ConsumerState<AppCctvCompanyScreen> {
                                               .name,
                                           pathParameters: {
                                             "personId": personId,
-                                            "sourceScreen": "company",
+                                            "loadFamily": "true",
                                           },
                                         );
                                       },

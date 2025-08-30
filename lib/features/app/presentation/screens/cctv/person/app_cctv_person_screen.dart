@@ -30,12 +30,12 @@ import 'package:skeletonizer/skeletonizer.dart';
 
 class AppCctvPersonScreen extends ConsumerStatefulWidget {
   final String personId;
-  final String sourceScreen;
+  final String loadFamily;
 
   const AppCctvPersonScreen({
     super.key,
     required this.personId,
-    required this.sourceScreen,
+    required this.loadFamily,
   });
 
   @override
@@ -164,7 +164,7 @@ class _AppCctvPersonScreenState extends ConsumerState<AppCctvPersonScreen> {
                 Gap(10),
                 FTabs(
                   onChange: (index) {
-                    if (index == 1 && widget.sourceScreen == "company") {
+                    if (index == 1 && parseBool(widget.loadFamily)) {
                       if (ref
                               .read(appCctvPersonFamilyNotifierProvider)
                               .value
@@ -259,8 +259,6 @@ class _AppCctvPersonScreenState extends ConsumerState<AppCctvPersonScreen> {
                                   onPress: () {
                                     final String personId = fam.id.toString();
 
-                                    // TODO : Request familyCardId
-
                                     ref
                                         .read(loadPersonDataUsecasePackProvider)
                                         .call(
@@ -273,7 +271,7 @@ class _AppCctvPersonScreenState extends ConsumerState<AppCctvPersonScreen> {
                                       FeatureAppRouteName.appCctvPerson.name,
                                       pathParameters: {
                                         "personId": fam.id.toString(),
-                                        "sourceScreen": "person",
+                                        "loadFamily": "false",
                                       },
                                     );
                                   },
@@ -605,7 +603,7 @@ class _AppCctvPersonScreenState extends ConsumerState<AppCctvPersonScreen> {
                             suffix: Icon(FIcons.eye),
                             title: Text("E-KTP"),
                             onPress: () => context.pushNamed(
-                              FeatureAppRouteName.appCctvPersonTabEKtp.name,
+                              FeatureAppRouteName.appCctvPersonEKtp.name,
                             ),
                           ),
                           FTile(

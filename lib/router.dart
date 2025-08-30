@@ -69,5 +69,7 @@ final List<GoRoute> defaultRouter = [
 
 final router = GoRouter(
   initialLocation: '/',
+  // initialLocation: '/app/cctv/list-resident',
+  // initialLocation: '/app/cctv/person/viewed',
   routes: [...defaultRouter, ...blockRoutes, ...featureAppRoutes],
 );

@@ -24,24 +24,29 @@ PersonUsecase personUsecase(Ref ref) {
 }
 
 class PersonUsecase implements UseCase<TResponse<Person>, String> {
-  final ApiCctvRepository repository;
-  final Logger logger;
-  final TResponsePersonCache cache;
-  final PersonStringCache history;
+  final ApiCctvRepository _repository;
+  final Logger _logger;
+  final TResponsePersonCache _cache;
+  final PersonStringCache _history;
 
-  PersonUsecase(this.repository, this.logger, this.cache, this.history);
+  PersonUsecase(this._repository, this._logger, this._cache, this._history);
 
   @override
   Future<Either<Failure, TResponse<Person>>> call(String personId) async {
     try {
       // cek cache
-      final cacheData = await cache.get(personId);
+      final cacheData = await _cache.get(personId);
       if (cacheData != null) {
+        if (await _history.get(personId) == null) {
+          _logger.i("person_history_put:$personId");
+          await _history.put(personId, cacheData.data?.name ?? "-");
+        }
+
         return Right(cacheData);
       }
 
       // get from repository
-      final response = await repository.person(personId);
+      final response = await _repository.person(personId);
 
       // save to cache if [2xx]
       if (response.isRight()) {
@@ -49,14 +54,14 @@ class PersonUsecase implements UseCase<TResponse<Person>, String> {
           () => throw Exception("Unexpected null"),
         );
         try {
-          logger.i("person_cache_put:$personId");
+          _logger.i("person_cache_put:$personId");
 
-          await cache.put(personId, res);
+          await _cache.put(personId, res);
 
-          logger.i("person_history_put:$personId");
-          await history.put(personId, res.data?.name ?? "-");
+          _logger.i("person_history_put:$personId");
+          await _history.put(personId, res.data?.name ?? "-");
         } catch (e) {
-          logger.e("person_cache_put_failed: $e");
+          _logger.e("person_cache_put_failed: $e");
         }
       }
 

@@ -46,7 +46,7 @@ class Application extends ConsumerStatefulWidget {
 }
 
 class _ApplicationState extends ConsumerState<Application> {
-  late final StreamSubscription<bool> _connectionSub;
+  // late final StreamSubscription<bool> _connectionSub;
 
   @override
   void initState() {

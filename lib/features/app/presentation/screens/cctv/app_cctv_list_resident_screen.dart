@@ -122,7 +122,7 @@ class _AppCctvListResidentScreenState
     return FScaffold(
       resizeToAvoidBottomInset: false,
       header: FHeader.nested(
-        title: const Text('App : CCTV (Person)'),
+        title: const Text('CCTV : Resident'),
         prefixes: [
           FHeaderAction.back(
             onPress: () {
@@ -135,6 +135,12 @@ class _AppCctvListResidentScreenState
             icon: Icon(FIcons.fileArchive),
             onPress: () {
               context.pushNamed(FeatureAppRouteName.appCctvListCompany.name);
+            },
+          ),
+          FHeaderAction(
+            icon: Icon(FIcons.history),
+            onPress: () {
+              context.pushNamed(FeatureAppRouteName.appCctvPersonViewed.name);
             },
           ),
           FHeaderAction(
@@ -189,7 +195,7 @@ class _AppCctvListResidentScreenState
                         FeatureAppRouteName.appCctvPerson.name,
                         pathParameters: {
                           "personId": "${item.id}",
-                          "sourceScreen": "resident",
+                          "loadFamily": "false",
                         },
                       );
                     },
