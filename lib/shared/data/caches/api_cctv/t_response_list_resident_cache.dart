@@ -1,4 +1,4 @@
-import 'package:forui_base/shared/data/models/api_cctv/city.dart';
+import 'package:forui_base/shared/data/models/api_cctv/resident.dart';
 import 'package:forui_base/shared/data/models/api_cctv/resident_query.dart';
 import 'package:forui_base/shared/data/models/api_cctv/t_response.dart';
 import 'package:hive_ce/hive.dart';
@@ -17,22 +17,25 @@ class TResponseListResidentCache {
   factory TResponseListResidentCache() => _instance;
   TResponseListResidentCache._internal();
 
-  Box<TResponse<List<City>>>? _box;
+  Box<TResponse<List<Resident>>>? _box;
 
   final String _boxName = 'box_cached_t_response_list_resident';
 
-  Future<Box<TResponse<List<City>>>> getBox() async {
+  Future<Box<TResponse<List<Resident>>>> getBox() async {
     if (_box != null && _box!.isOpen) return _box!;
-    _box = await Hive.openBox<TResponse<List<City>>>(_boxName);
+    _box = await Hive.openBox<TResponse<List<Resident>>>(_boxName);
     return _box!;
   }
 
-  Future<TResponse<List<City>>?> get(ResidentQuery params) async {
+  Future<TResponse<List<Resident>>?> get(ResidentQuery params) async {
     final box = await getBox();
     return box.get(keyName(params));
   }
 
-  Future<void> put(ResidentQuery params, TResponse<List<City>> response) async {
+  Future<void> put(
+    ResidentQuery params,
+    TResponse<List<Resident>> response,
+  ) async {
     final box = await getBox();
     await box.put(keyName(params), response);
   }

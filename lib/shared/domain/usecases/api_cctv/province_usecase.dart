@@ -37,7 +37,7 @@ class ProvinceUsecase implements UseCase<TResponse<List<Province>>, NoParams> {
       // cek cache
       final cacheData = await cache.get("no_params");
       if (cacheData != null) {
-        logger.i("list_company_cache_get:no_params");
+        logger.i("list_province_cache_get:no_params");
         return Right(cacheData);
       }
 
@@ -50,11 +50,11 @@ class ProvinceUsecase implements UseCase<TResponse<List<Province>>, NoParams> {
           () => throw Exception("Unexpected null"),
         );
         try {
-          logger.i("list_company_cache_put:no_params");
+          logger.i("list_province_cache_put:no_params");
 
           await cache.put("no_params", res);
         } catch (e) {
-          logger.e("list_company_cache_put_failed: $e");
+          logger.e("list_province_cache_put_failed: $e");
         }
       }
 
