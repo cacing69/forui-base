@@ -3,16 +3,16 @@
 // Check in to version control
 
 import 'package:hive_ce/hive.dart';
-import 'package:forui_base/shared/data/models/hive/cached_response.dart';
+import 'package:forui_base/shared/data/models/hive/key_value.dart';
 
 extension HiveRegistrar on HiveInterface {
   void registerAdapters() {
-    registerAdapter(CachedResponseAdapter());
+    registerAdapter(KeyValueAdapter());
   }
 }
 
 extension IsolatedHiveRegistrar on IsolatedHiveInterface {
   void registerAdapters() {
-    registerAdapter(CachedResponseAdapter());
+    registerAdapter(KeyValueAdapter());
   }
 }

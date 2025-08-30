@@ -45,7 +45,7 @@ final class PersonUsecaseProvider
   }
 }
 
-String _$personUsecaseHash() => r'a9e2d2030cd8478854cd34f5fb4671f8b276224b';
+String _$personUsecaseHash() => r'6e5e9ce2fe32291a94ea70bb6728c5edce59892b';
 
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

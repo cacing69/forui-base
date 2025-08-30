@@ -11,7 +11,7 @@ import 'package:forui_base/hive_registrar.g.dart';
 import 'package:forui_base/l10n/app_localizations.dart';
 import 'package:forui_base/router.dart';
 import 'package:forui_base/shared/data/models/api_cctv/person.dart';
-import 'package:forui_base/shared/data/models/hive/cached_response.dart';
+import 'package:forui_base/shared/data/models/hive/key_value.dart';
 import 'package:forui_base/shared/data/models/hive/t_response_adapter.dart';
 import 'package:forui_base/shared/presentation/providers/config_app_notifier.dart';
 import 'package:hive_ce_flutter/hive_flutter.dart';
