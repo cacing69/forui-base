@@ -10,8 +10,6 @@ import 'package:forui_base/core/constant/shared_pref_key.dart';
 import 'package:forui_base/l10n/app_localizations.dart';
 import 'package:forui_base/router.dart';
 import 'package:forui_base/hive_registrator.dart';
-import 'package:forui_base/shared/data/models/api_cctv/vehicle.dart';
-import 'package:forui_base/shared/data/models/hive/t_response_adapter.dart';
 import 'package:forui_base/shared/presentation/providers/config_app_notifier.dart';
 import 'package:hive_ce_flutter/hive_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -27,16 +25,6 @@ void main() async {
         await Hive.initFlutter();
 
         await hiveRegistrator();
-
-        Hive.registerAdapter(
-          TResponseAdapter<List<Vehicle>>(
-            typeId: 1002,
-            fromJson: (json) => (json['data'] as List<dynamic>)
-                .map((e) => Vehicle.fromJson(e as Map<String, dynamic>))
-                .toList(),
-            toJson: (items) => {'data': items.map((e) => e.toJson()).toList()},
-          ),
-        );
 
         SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
         runApp(const ProviderScope(child: Application()));
@@ -58,9 +46,19 @@ class Application extends ConsumerStatefulWidget {
 }
 
 class _ApplicationState extends ConsumerState<Application> {
+  late final StreamSubscription<bool> _connectionSub;
+
   @override
   void initState() {
     super.initState();
+
+    // final connectionService = ref.read(connectionServiceProvider.notifier);
+
+    // _connectionSub = connectionService.statusStream.listen((isOnline) {
+    //   debugPrint("[INFO]_connectionSub:$isOnline");
+
+    //   showFlutterToast(message: isOnline ? "Online" : "Offline");
+    // });
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       final brightness = MediaQuery.of(context).platformBrightness;
@@ -155,5 +153,11 @@ class _ApplicationState extends ConsumerState<Application> {
       ),
       routerConfig: router,
     );
+  }
+
+  @override
+  void dispose() {
+    // _connectionSub.cancel();
+    super.dispose();
   }
 }

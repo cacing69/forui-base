@@ -5,5 +5,5 @@ part 'logger_ref.g.dart';
 
 @riverpod
 Logger loggerRef(Ref ref) {
-  return Logger(printer: PrefixPrinter(PrettyPrinter()));
+  return Logger(printer: PrefixPrinter(PrettyPrinter(printEmojis: false)));
 }

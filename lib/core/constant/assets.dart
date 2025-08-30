@@ -15,4 +15,6 @@ class _SvgIcons {
 
 class _PngIcons {
   final String icon = "assets/icons/icon.png";
+  final String defaultImagePlaceholder =
+      "assets/icons/default-image-placeholder.png";
 }

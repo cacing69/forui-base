@@ -10,9 +10,17 @@ class Failure extends Equatable implements Exception {
   String toString() => message;
 
   @override
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [message, data];
+}
+
+class ConnectionFailure extends Failure {
+  const ConnectionFailure({required super.message, super.data});
 }
 
 class ServerFailure extends Failure {
   const ServerFailure({required super.message, super.data});
+}
+
+class CacheFailure extends Failure {
+  const CacheFailure({required super.message, super.data});
 }

@@ -46,7 +46,7 @@ final class ResidentUsecaseProvider
   }
 }
 
-String _$residentUsecaseHash() => r'f138d0c82bdec501f2b3d20c384164db32566f8d';
+String _$residentUsecaseHash() => r'3713c4872d901251738f3b12a1e20d213ebd1039';
 
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

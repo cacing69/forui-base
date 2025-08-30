@@ -162,6 +162,16 @@ final List<Dependency> generalDependenciesStatic = [
     name: "logger",
     url: "https://pub.dev/packages/logger",
   ),
+  Dependency(
+    icon: FIcons.codesandbox,
+    name: "connectivity_plus",
+    url: "https://pub.dev/packages/connectivity_plus",
+  ),
+  Dependency(
+    icon: FIcons.codesandbox,
+    name: "internet_connection_checker_plus",
+    url: "https://pub.dev/packages/internet_connection_checker_plus",
+  ),
 ];
 
 final List<Dependency> developmentDependenciesStatic = [

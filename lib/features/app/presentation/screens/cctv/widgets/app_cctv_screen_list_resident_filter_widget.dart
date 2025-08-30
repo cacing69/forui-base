@@ -13,6 +13,7 @@ import 'package:forui_base/shared/data/models/api_cctv/district.dart';
 import 'package:forui_base/shared/data/models/api_cctv/province.dart';
 import 'package:forui_base/shared/data/models/api_cctv/resident_query.dart';
 import 'package:forui_base/shared/data/models/api_cctv/village.dart';
+import 'package:forui_base/shared/presentation/widgets/f_select_error.dart';
 import 'package:forui_base/shared/presentation/widgets/f_select_skeletonizer.dart';
 import 'package:forui_hooks/forui_hooks.dart';
 import 'package:gap/gap.dart';
@@ -164,7 +165,7 @@ class _AppCctvScreenListResidentFilterWidgetState
                             );
                           },
                           error: (error, stackTrace) {
-                            return SizedBox.shrink();
+                            return FSelectError(label: "Province");
                           },
                           loading: () {
                             return FSelectSkeletonizer(

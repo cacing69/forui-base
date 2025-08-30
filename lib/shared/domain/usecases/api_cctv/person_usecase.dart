@@ -37,7 +37,6 @@ class PersonUsecase implements UseCase<TResponse<Person>, String> {
       // cek cache
       final cacheData = await cache.get(personId);
       if (cacheData != null) {
-        logger.i("person_cache_get:$personId");
         return Right(cacheData);
       }
 

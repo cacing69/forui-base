@@ -273,6 +273,7 @@ class _AppCctvPersonScreenState extends ConsumerState<AppCctvPersonScreen> {
                                       FeatureAppRouteName.appCctvPerson.name,
                                       pathParameters: {
                                         "personId": fam.id.toString(),
+                                        "sourceScreen": "person",
                                       },
                                     );
                                   },

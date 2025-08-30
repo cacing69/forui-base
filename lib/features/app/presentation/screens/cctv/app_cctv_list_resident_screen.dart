@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:forui/forui.dart';
+import 'package:forui_base/core/errors/failure.dart';
 import 'package:forui_base/features/app/presentation/screens/app_routes.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cctv_province_notifier.dart';
 import 'package:forui_base/features/app/presentation/screens/cctv/app_cctv_list_resident_notifier.dart';
@@ -10,6 +11,7 @@ import 'package:forui_base/features/app/presentation/screens/cctv/widgets/app_cc
 import 'package:forui_base/shared/data/models/api_cctv/resident.dart';
 import 'package:forui_base/shared/data/models/api_cctv/resident_query.dart';
 import 'package:forui_base/shared/domain/usecases/api_cctv/load_person_data_usecase_pack.dart';
+import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -37,16 +39,21 @@ final pagingResidentControllerProvider =
             appCctvScreenListResidentFilterWidgetNotifierProvider,
           );
 
+          debugPrint("PHASE_1:CHECKING");
+
           if (filterState.province?.id == null &&
               filterState.city?.id == null &&
               filterState.district?.id == null &&
               filterState.village?.id == null &&
-              filterState.dateOfBirth == null &&
+              (filterState.dateOfBirth ?? "").isEmpty &&
               (filterState.minAge ?? 0) == 0 &&
               (filterState.maxAge ?? 120) == 120 &&
               (filterState.search ?? "").isEmpty) {
+            debugPrint("PHASE_1:FAILED");
             return [];
           }
+
+          debugPrint("PHASE_1:PASSED");
 
           final int start = (pageKey - 1) * 5;
 
@@ -191,6 +198,96 @@ class _AppCctvListResidentScreenState
                       AppCctvResidentTileSkeletonizer(),
                   newPageProgressIndicatorBuilder: (context) =>
                       AppCctvResidentTileSkeletonizer(),
+                  firstPageErrorIndicatorBuilder: (context) {
+                    final error = state.error;
+
+                    if (error is Failure) {
+                      return Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Something went wrong",
+                              style: context.theme.typography.xl,
+                            ),
+                            Gap(10),
+                            Text(
+                              error.message,
+                              style: context.theme.typography.base,
+                            ),
+                            Gap(10),
+                            Text(
+                              "Please try again later",
+                              style: context.theme.typography.xs,
+                            ),
+                            Gap(20),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.75,
+                              child: FButton(
+                                style: FButtonStyle.outline(),
+                                onPress: () {
+                                  fetchNextPage();
+                                },
+                                child: Text("Try Again"),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ); // tampilkan pesan dari Failure
+                    }
+
+                    return Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Something went wrong",
+                            style: context.theme.typography.xl,
+                          ),
+                          Gap(10),
+                          Text(
+                            "Unexpected error",
+                            style: context.theme.typography.base,
+                          ),
+                          Gap(10),
+                          Text(
+                            "Please try again later",
+                            style: context.theme.typography.xs,
+                          ),
+                          Gap(20),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.75,
+                            child: FButton(
+                              style: FButtonStyle.outline(),
+                              onPress: () {
+                                fetchNextPage();
+                              },
+                              child: Text("Try Again"),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                  newPageErrorIndicatorBuilder: (context) {
+                    final error = ref
+                        .watch(pagingResidentControllerProvider)
+                        .error;
+                    if (error is Failure) {
+                      return Center(
+                        child: Text(
+                          "Load more failed: ${error.message}",
+                          style: context.theme.typography.base,
+                        ),
+                      );
+                    }
+                    return Center(
+                      child: Text(
+                        "Unexpected error",
+                        style: context.theme.typography.base,
+                      ),
+                    );
+                  },
                 ),
               ),
         ),

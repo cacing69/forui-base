@@ -119,7 +119,7 @@ class _BlockScreenState extends State<BlockScreen> {
               onPress: () {
                 context.pushNamed(
                   BlockRouteName.blockWebviewSubmit.name,
-                  pathParameters: {"phoneNo": ""},
+                  pathParameters: {"phoneNo": "000"},
                 );
               },
               child: SizedBox(

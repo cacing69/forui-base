@@ -45,7 +45,7 @@ final class LoggerRefProvider
   }
 }
 
-String _$loggerRefHash() => r'c2be0a8aa54f8359d80e75d436f817561d8b5671';
+String _$loggerRefHash() => r'3e46a41b692c99c12bcc3b98b4f79e0414369a3f';
 
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
