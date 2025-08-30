@@ -45,7 +45,7 @@ final class VehicleUsecaseProvider
   }
 }
 
-String _$vehicleUsecaseHash() => r'7612c553026f7d127f6a82c90696322c5f40d7a1';
+String _$vehicleUsecaseHash() => r'99c62e3cd6c029ec58ef262ace3723793e61bcb1';
 
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

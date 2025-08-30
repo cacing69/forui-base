@@ -11,7 +11,7 @@ part 'province_usecase.g.dart';
 
 @riverpod
 ProvinceUsecase provinceUsecase(Ref ref) {
-  return ProvinceUsecase(ref.watch(apiCctvRepositoryProvider));
+  return ProvinceUsecase(ref.read(apiCctvRepositoryProvider));
 }
 
 class ProvinceUsecase implements UseCase<TResponse<List<Province>>, NoParams> {

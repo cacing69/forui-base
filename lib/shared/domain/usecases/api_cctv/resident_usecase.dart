@@ -12,7 +12,7 @@ part 'resident_usecase.g.dart';
 
 @riverpod
 ResidentUsecase residentUsecase(Ref ref) {
-  return ResidentUsecase(ref.watch(apiCctvRepositoryProvider));
+  return ResidentUsecase(ref.read(apiCctvRepositoryProvider));
 }
 
 class ResidentUsecase

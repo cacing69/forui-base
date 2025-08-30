@@ -11,7 +11,7 @@ part 'city_usecase.g.dart';
 
 @riverpod
 CityUsecase cityUsecase(Ref ref) {
-  return CityUsecase(ref.watch(apiCctvRepositoryProvider));
+  return CityUsecase(ref.read(apiCctvRepositoryProvider));
 }
 
 class CityUsecase implements UseCase<TResponse<List<City>>, String> {

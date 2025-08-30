@@ -11,7 +11,7 @@ part 'district_usecase.g.dart';
 
 @riverpod
 DistrictUsecase districtUsecase(Ref ref) {
-  return DistrictUsecase(ref.watch(apiCctvRepositoryProvider));
+  return DistrictUsecase(ref.read(apiCctvRepositoryProvider));
 }
 
 class DistrictUsecase implements UseCase<TResponse<List<District>>, String> {

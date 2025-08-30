@@ -3,22 +3,22 @@ import 'package:forui_base/shared/data/models/api_cctv/t_response.dart';
 import 'package:hive_ce/hive.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 't_response_person_gojek_cache.g.dart';
+part 't_response_person_list_gojek_cache.g.dart';
 
 @riverpod
-TResponsePersonGojekCache tResponsePersonGojekCacheRef(Ref ref) {
-  return TResponsePersonGojekCache();
+TResponsePersonListGojekCache tResponsePersonListGojekCacheRef(Ref ref) {
+  return TResponsePersonListGojekCache();
 }
 
-class TResponsePersonGojekCache {
-  static final TResponsePersonGojekCache _instance =
-      TResponsePersonGojekCache._internal();
-  factory TResponsePersonGojekCache() => _instance;
-  TResponsePersonGojekCache._internal();
+class TResponsePersonListGojekCache {
+  static final TResponsePersonListGojekCache _instance =
+      TResponsePersonListGojekCache._internal();
+  factory TResponsePersonListGojekCache() => _instance;
+  TResponsePersonListGojekCache._internal();
 
   Box<TResponse<List<Gojek>>>? _box;
 
-  final String _boxName = 'box_cached_t_response_person_gojek';
+  final String _boxName = 'box_cached_t_response_person_list_gojek';
 
   Future<Box<TResponse<List<Gojek>>>> getBox() async {
     if (_box != null && _box!.isOpen) return _box!;
@@ -36,5 +36,5 @@ class TResponsePersonGojekCache {
     await box.put(keyName(personId), response);
   }
 
-  String keyName(String personId) => 't_response_person_gojek_$personId';
+  String keyName(String personId) => 't_response_person_list_gojek_$personId';
 }

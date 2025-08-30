@@ -7,11 +7,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:forui/forui.dart';
 import 'package:forui_base/core/constant/map_theme_data.dart';
 import 'package:forui_base/core/constant/shared_pref_key.dart';
-import 'package:forui_base/hive_registrar.g.dart';
 import 'package:forui_base/l10n/app_localizations.dart';
 import 'package:forui_base/router.dart';
-import 'package:forui_base/shared/data/models/api_cctv/person.dart';
-import 'package:forui_base/shared/data/models/hive/key_value.dart';
+import 'package:forui_base/hive_registrator.dart';
+import 'package:forui_base/shared/data/models/api_cctv/vehicle.dart';
 import 'package:forui_base/shared/data/models/hive/t_response_adapter.dart';
 import 'package:forui_base/shared/presentation/providers/config_app_notifier.dart';
 import 'package:hive_ce_flutter/hive_flutter.dart';
@@ -27,15 +26,15 @@ void main() async {
 
         await Hive.initFlutter();
 
-        // Generated Adapters
-        Hive.registerAdapters();
+        await hiveRegistrator();
 
-        // Manual Adapters for handling Generic<T>
         Hive.registerAdapter(
-          TResponseAdapter<Person>(
-            typeId: 1001,
-            fromJson: (json) => Person.fromJson(json),
-            toJson: (user) => user.toJson(),
+          TResponseAdapter<List<Vehicle>>(
+            typeId: 1002,
+            fromJson: (json) => (json['data'] as List<dynamic>)
+                .map((e) => Vehicle.fromJson(e as Map<String, dynamic>))
+                .toList(),
+            toJson: (items) => {'data': items.map((e) => e.toJson()).toList()},
           ),
         );
 

@@ -45,7 +45,7 @@ final class GojekUsecaseProvider
   }
 }
 
-String _$gojekUsecaseHash() => r'd82ad30132e0e1bd16c6369b69de7b3859439e6f';
+String _$gojekUsecaseHash() => r'115cbeeb5ab48ff1707e4bd019cd1b7664727a1a';
 
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -46,7 +46,7 @@ final class DistrictUsecaseProvider
   }
 }
 
-String _$districtUsecaseHash() => r'a9ceeb278e3fbe397188546acc93b9a66a5db247';
+String _$districtUsecaseHash() => r'f5daaa5ec16566b4a0f152d0116b2827e51ec530';
 
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

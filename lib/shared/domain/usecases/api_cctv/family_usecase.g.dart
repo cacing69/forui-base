@@ -45,7 +45,7 @@ final class FamilyUsecaseProvider
   }
 }
 
-String _$familyUsecaseHash() => r'c0d7b7d3ec1125426b70baae47862012d580ba3c';
+String _$familyUsecaseHash() => r'b50cdb23ccb49b8be1533528a3437173ef18ecdc';
 
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

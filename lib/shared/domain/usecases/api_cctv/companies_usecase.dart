@@ -12,7 +12,7 @@ part 'companies_usecase.g.dart';
 
 @riverpod
 CompaniesUsecase companiesUsecase(Ref ref) {
-  return CompaniesUsecase(ref.watch(apiCctvRepositoryProvider));
+  return CompaniesUsecase(ref.read(apiCctvRepositoryProvider));
 }
 
 class CompaniesUsecase

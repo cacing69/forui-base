@@ -45,7 +45,7 @@ final class PlnUsecaseProvider
   }
 }
 
-String _$plnUsecaseHash() => r'3935df6fc9ab16dbf46918c4500cef2aa79a75f8';
+String _$plnUsecaseHash() => r'ce05544f5902835ac014a68a641b76cf83c9f709';
 
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

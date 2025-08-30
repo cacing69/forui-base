@@ -11,7 +11,7 @@ part 'village_usecase.g.dart';
 
 @riverpod
 VillageUsecase villageUsecase(Ref ref) {
-  return VillageUsecase(ref.watch(apiCctvRepositoryProvider));
+  return VillageUsecase(ref.read(apiCctvRepositoryProvider));
 }
 
 class VillageUsecase implements UseCase<TResponse<List<Village>>, String> {

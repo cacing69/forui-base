@@ -3,22 +3,22 @@ import 'package:forui_base/shared/data/models/api_cctv/family.dart';
 import 'package:hive_ce/hive.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 't_response_person_family_cache.g.dart';
+part 't_response_person_list_family_cache.g.dart';
 
 @riverpod
-TResponsePersonFamilyCache tResponsePersonFamilyCacheRef(Ref ref) {
-  return TResponsePersonFamilyCache();
+TResponsePersonListFamilyCache tResponsePersonListFamilyCacheRef(Ref ref) {
+  return TResponsePersonListFamilyCache();
 }
 
-class TResponsePersonFamilyCache {
-  static final TResponsePersonFamilyCache _instance =
-      TResponsePersonFamilyCache._internal();
-  factory TResponsePersonFamilyCache() => _instance;
-  TResponsePersonFamilyCache._internal();
+class TResponsePersonListFamilyCache {
+  static final TResponsePersonListFamilyCache _instance =
+      TResponsePersonListFamilyCache._internal();
+  factory TResponsePersonListFamilyCache() => _instance;
+  TResponsePersonListFamilyCache._internal();
 
   Box<TResponse<List<Family>>>? _box;
 
-  final String _boxName = 'box_cached_t_response_person_family';
+  final String _boxName = 'box_cached_t_response_person_list_family';
 
   Future<Box<TResponse<List<Family>>>> getBox() async {
     if (_box != null && _box!.isOpen) return _box!;
@@ -45,5 +45,5 @@ class TResponsePersonFamilyCache {
   }
 
   String keyName(String familyCardId, String personId) =>
-      't_response_person_family_${familyCardId}_$personId';
+      't_response_person_list_family_${familyCardId}_$personId';
 }

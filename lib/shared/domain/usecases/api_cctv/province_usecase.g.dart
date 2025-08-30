@@ -46,7 +46,7 @@ final class ProvinceUsecaseProvider
   }
 }
 
-String _$provinceUsecaseHash() => r'a1678d89c6d1f5749eb6c13e35ce155f9784f0a7';
+String _$provinceUsecaseHash() => r'4f3645f2e9c802e826c346f26de532a951f64c58';
 
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

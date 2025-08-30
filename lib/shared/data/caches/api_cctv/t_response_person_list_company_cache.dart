@@ -3,22 +3,22 @@ import 'package:forui_base/shared/data/models/api_cctv/company.dart';
 import 'package:hive_ce/hive.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 't_response_person_company_cache.g.dart';
+part 't_response_person_list_company_cache.g.dart';
 
 @riverpod
-TResponsePersonVehicleCache tResponsePersonVehicleCacheRef(Ref ref) {
-  return TResponsePersonVehicleCache();
+TResponsePersonListCompanyCache tResponsePersonListCompanyCacheRef(Ref ref) {
+  return TResponsePersonListCompanyCache();
 }
 
-class TResponsePersonVehicleCache {
-  static final TResponsePersonVehicleCache _instance =
-      TResponsePersonVehicleCache._internal();
-  factory TResponsePersonVehicleCache() => _instance;
-  TResponsePersonVehicleCache._internal();
+class TResponsePersonListCompanyCache {
+  static final TResponsePersonListCompanyCache _instance =
+      TResponsePersonListCompanyCache._internal();
+  factory TResponsePersonListCompanyCache() => _instance;
+  TResponsePersonListCompanyCache._internal();
 
   Box<TResponse<List<Company>>>? _box;
 
-  final String _boxName = 'box_cached_t_response_person_company';
+  final String _boxName = 'box_cached_t_response_person_list_company';
 
   Future<Box<TResponse<List<Company>>>> getBox() async {
     if (_box != null && _box!.isOpen) return _box!;
@@ -36,5 +36,6 @@ class TResponsePersonVehicleCache {
     await box.put(keyName(companyId), response);
   }
 
-  String keyName(String companyId) => 't_response_person_company_$companyId';
+  String keyName(String companyId) =>
+      't_response_person_list_company_$companyId';
 }
