@@ -70,7 +70,7 @@ class _AppCctvScreenListResidentFilterWidgetState
         useFContinuousRangeSliderController(
           selection: FSliderSelection(
             min: (filterState.minAge ?? 0) / 120,
-            max: (filterState.maxAge ?? 0) / 120,
+            max: (filterState.maxAge ?? 120) / 120,
           ),
           stepPercentage: 0.1,
         );
