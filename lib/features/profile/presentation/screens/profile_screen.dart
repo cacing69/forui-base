@@ -17,6 +17,7 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ProfileScreen extends ConsumerStatefulWidget {
   const ProfileScreen({super.key});
@@ -56,7 +57,16 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         suffixes: [
           FHeaderAction(
             icon: Icon(FIcons.logOut),
-            onPress: () => context.goNamed(RouteName.login.name),
+            onPress: () async {
+              await Supabase.instance.client.auth.signOut();
+
+              final prefs = await SharedPreferences.getInstance();
+
+              prefs.setBool("isAuthenticated", false);
+              if (context.mounted) {
+                context.goNamed(RouteName.login.name);
+              }
+            },
           ),
         ],
       ),

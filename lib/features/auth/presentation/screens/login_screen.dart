@@ -1,9 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/widgets.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:forui/forui.dart';
+import 'package:forui_base/core/config/env.dart';
 import 'package:forui_base/core/constant/assets.dart';
 import 'package:forui_base/core/utils/helpers.dart';
 import 'package:forui_base/router.dart';
@@ -11,6 +12,9 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:google_sign_in_platform_interface/google_sign_in_platform_interface.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 /// To run this example, replace this value with your client ID, and/or
 /// update the relevant configuration files, as described in the README.
@@ -19,8 +23,7 @@ import 'package:google_sign_in_platform_interface/google_sign_in_platform_interf
 
 // /// To run this example, replace this value with your server client ID, and/or
 // /// update the relevant configuration files, as described in the README.
-String? serverClientId =
-    "723034289820-laj5kvu11i8u0lftsvao6facpcn3fvhs.apps.googleusercontent.com"; // Android
+String? serverClientId = Env.googleSignInClientId; // Android
 
 // String? serverClientId =
 //     "723034289820-ngpiqla7cgvma3uui2qo9tk2vhc02f3c.apps.googleusercontent.com"; // Web
@@ -34,7 +37,7 @@ const List<String> scopes = <String>[
 ];
 // #enddocregion CheckAuthorization
 
-class LoginScreen extends ConsumerStatefulWidget {
+class LoginScreen extends StatefulHookConsumerWidget {
   const LoginScreen({super.key});
 
   @override
@@ -43,6 +46,7 @@ class LoginScreen extends ConsumerStatefulWidget {
 
 class _LoginScreenState extends ConsumerState<LoginScreen> {
   bool _obscureText = true;
+  bool _obscureTextRegister = true;
 
   GoogleSignInAccount? _currentUser;
   bool _isAuthorized = false; // has granted permissions?
@@ -88,6 +92,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     // });
     // );
     // #enddocregion Setup
+
+    // WidgetsBinding.instance.addPostFrameCallback((_) async {
+    //   _checkSession();
+    // });
   }
 
   Future<void> _handleAuthenticationEvent(
@@ -197,6 +205,18 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController loginEmailController =
+        useTextEditingController();
+
+    final TextEditingController loginPasswordController =
+        useTextEditingController();
+
+    final TextEditingController registerEmailController =
+        useTextEditingController();
+
+    final TextEditingController registerPasswordController =
+        useTextEditingController();
+
     return FScaffold(
       header: FHeader(
         title: const Text('Authentication'),
@@ -240,206 +260,372 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           ),
         ],
       ),
-      child: FTabs(
-        initialIndex: 0,
-        children: [
-          FTabEntry(
-            label: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              spacing: 5,
-              children: [Icon(FIcons.lockKeyhole), Text("Login")],
-            ),
-            child: Column(
-              children: [
-                const SizedBox(height: 5),
-                FCard(
-                  title: const Text('Login'),
-                  subtitle: const Text(
-                    'Enter your account details to sign in.',
-                  ),
-                  child: Column(
-                    children: [
-                      const FTextField(
-                        label: Text('Username'),
-                        hint: 'ex: cacing69',
-                      ),
-                      const SizedBox(height: 10),
-                      Stack(
-                        children: [
-                          FTextField(
-                            obscureText: _obscureText,
-                            label: Text('Password'),
-                            hint: 'ex: 123456',
-                            style: (e) => e.copyWith(
-                              contentPadding: e.contentPadding.add(
-                                EdgeInsetsGeometry.only(right: 25),
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            right: 0,
-                            bottom: 1,
-                            child: FButton.raw(
-                              style: FButtonStyle.ghost(),
-                              onPress: () {
-                                setState(() {
-                                  _obscureText = !_obscureText;
-                                });
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: AnimatedSwitcher(
-                                  duration: const Duration(milliseconds: 200),
-                                  transitionBuilder: (child, animation) {
-                                    return ScaleTransition(
-                                      scale: animation,
-                                      child: FadeTransition(
-                                        opacity: animation,
-                                        child: child,
-                                      ),
-                                    );
-                                  },
-                                  child: _obscureText
-                                      ? Icon(
-                                          FIcons.eyeOff,
-                                          key: const ValueKey('eyeOff'),
-                                        )
-                                      : Icon(
-                                          FIcons.eye,
-                                          key: const ValueKey('eye'),
-                                        ),
+      child: SingleChildScrollView(
+        child: FTabs(
+          initialIndex: 0,
+          children: [
+            FTabEntry(
+              label: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                spacing: 5,
+                children: [Icon(FIcons.logIn), Text("Login")],
+              ),
+              child: Column(
+                children: [
+                  const SizedBox(height: 5),
+                  FCard(
+                    title: const Text('Login'),
+                    subtitle: const Text(
+                      'Enter your account details to sign in.',
+                    ),
+                    child: Column(
+                      children: [
+                        FTextField(
+                          controller: loginEmailController,
+                          label: Text('Email'),
+                          hint: 'ex: email@domain.com',
+                        ),
+                        const SizedBox(height: 10),
+                        Stack(
+                          children: [
+                            FTextField(
+                              controller: loginPasswordController,
+                              obscureText: _obscureText,
+                              label: Text('Password'),
+                              hint: 'ex: 123456',
+                              style: (e) => e.copyWith(
+                                contentPadding: e.contentPadding.add(
+                                  EdgeInsetsGeometry.only(right: 25),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 16),
-                      FButton(
-                        onPress: () {
-                          context.goNamed(RouteName.home.name);
-                        },
-                        child: const Text('Login'),
-                      ),
-                      Gap(20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          FButton(
-                            style: FButtonStyle.outline(),
-                            onPress: () async {
-                              // await _ensureInitialized();
-
-                              // try {
-                              //   final AuthenticationResults?
-                              //   result = await GoogleSignInPlatform.instance
-                              //       .attemptLightweightAuthentication(
-                              //         const AttemptLightweightAuthenticationParameters(),
-                              //       );
-
-                              //   debugPrint(result.toString());
-                              //   // _setUser(result?.user);
-                              // } on GoogleSignInException catch (e) {
-                              //   setState(() {
-                              //     _errorMessage =
-                              //         e.code ==
-                              //             GoogleSignInExceptionCode.canceled
-                              //         ? ''
-                              //         : 'GoogleSignInException ${e.code}: ${e.description}';
-                              //   });
-                              // }
-
-                              try {
-                                await _ensureInitialized();
-                                final AuthenticationResults result =
-                                    await GoogleSignInPlatform.instance
-                                        .authenticate(
-                                          const AuthenticateParameters(),
-                                        );
-
-                                debugPrint(result.toString());
-                                // _setUser(result.user);
-                              } on GoogleSignInException catch (e) {
-                                setState(() {
-                                  _errorMessage =
-                                      e.code ==
-                                          GoogleSignInExceptionCode.canceled
-                                      ? ''
-                                      : 'GoogleSignInException ${e.code}: ${e.description}';
-                                });
-
-                                showFlutterToast(message: _errorMessage);
-                              }
-
-                              // #docregion ExplicitSignIn
-                              // if (_signIn!.supportsAuthenticate()) {
-                              //   try {
-                              //     final GoogleSignInAccount account =
-                              //         await _signIn!.authenticate(
-                              //           scopeHint: scopes,
-                              //         );
-
-                              //     debugPrint(account.toString());
-                              //   } catch (e) {
-                              //     // #enddocregion ExplicitSignIn
-                              //     _errorMessage = e.toString();
-                              //     // #docregion ExplicitSignIn
-                              //   }
-                              // }
-                              // if (GoogleSignIn.instance.supportsAuthenticate())
-                              //   ElevatedButton(
-                              //     onPressed: () async {
-                              //       try {
-                              //         await GoogleSignIn.instance.authenticate();
-                              //       } catch (e) {
-                              //         // #enddocregion ExplicitSignIn
-                              //         _errorMessage = e.toString();
-                              //         // #docregion ExplicitSignIn
-                              //       }
-                              //     },
-                              //     child: const Text('SIGN IN'),
-                              //   )
-                              // else ...<Widget>[
-                              //   if (kIsWeb)
-                              //     web.renderButton()
-                              //   // #enddocregion ExplicitSignIn
-                              //   else
-                              //     const Text(
-                              //         'This platform does not have a known authentication method')
-                              //   // #docregion ExplicitSignIn
-                              // ]
-                              // // #enddocregion ExplicitSignIn
-                            },
-                            // prefix: SvgPicture.asset(Assets.svgIcons.googleGLogo),
-                            child: SvgPicture.asset(
-                              Assets.svgIcons.googleGLogo,
+                            Positioned(
+                              right: 0,
+                              bottom: 1,
+                              child: FButton.raw(
+                                style: FButtonStyle.ghost(),
+                                onPress: () {
+                                  setState(() {
+                                    _obscureText = !_obscureText;
+                                  });
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: AnimatedSwitcher(
+                                    duration: const Duration(milliseconds: 200),
+                                    transitionBuilder: (child, animation) {
+                                      return ScaleTransition(
+                                        scale: animation,
+                                        child: FadeTransition(
+                                          opacity: animation,
+                                          child: child,
+                                        ),
+                                      );
+                                    },
+                                    child: _obscureText
+                                        ? Icon(
+                                            FIcons.eyeOff,
+                                            key: const ValueKey('eyeOff'),
+                                          )
+                                        : Icon(
+                                            FIcons.eye,
+                                            key: const ValueKey('eye'),
+                                          ),
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                      Gap(10),
-                      FButton(
-                        style: FButtonStyle.ghost(),
-                        onPress: () {
-                          context.goNamed(RouteName.home.name);
-                        },
-                        child: const Text('Login as Guest'),
-                      ),
-                    ],
+                          ],
+                        ),
+                        const SizedBox(height: 16),
+                        FButton(
+                          onPress: () async {
+                            try {
+                              final AuthResponse res = await Supabase
+                                  .instance
+                                  .client
+                                  .auth
+                                  .signInWithPassword(
+                                    email: loginEmailController.text,
+                                    password: loginPasswordController.text,
+                                  );
+                              final Session? session = res.session;
+                              final User? user = res.user;
+
+                              debugPrint(
+                                "session.toString():${session.toString()}",
+                              );
+                              debugPrint("user.toString():${user.toString()}");
+
+                              if (session != null) {
+                                final prefs =
+                                    await SharedPreferences.getInstance();
+
+                                prefs.setBool("isAuthenticated", true);
+
+                                if (context.mounted) {
+                                  context.goNamed(RouteName.home.name);
+                                }
+                              }
+                            } on AuthApiException catch (e, _) {
+                              if (context.mounted) {
+                                showFlutterToast(message: e.message);
+                              }
+                            }
+                          },
+                          child: const Text('Login'),
+                        ),
+                        Gap(20),
+                        Text("Sign in with"),
+                        Gap(20),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            FButton(
+                              style: FButtonStyle.outline(),
+                              onPress: () async {
+                                // await _ensureInitialized();
+
+                                // try {
+                                //   final AuthenticationResults?
+                                //   result = await GoogleSignInPlatform.instance
+                                //       .attemptLightweightAuthentication(
+                                //         const AttemptLightweightAuthenticationParameters(),
+                                //       );
+
+                                //   debugPrint(result.toString());
+                                //   // _setUser(result?.user);
+                                // } on GoogleSignInException catch (e) {
+                                //   setState(() {
+                                //     _errorMessage =
+                                //         e.code ==
+                                //             GoogleSignInExceptionCode.canceled
+                                //         ? ''
+                                //         : 'GoogleSignInException ${e.code}: ${e.description}';
+                                //   });
+                                // }
+
+                                try {
+                                  await _ensureInitialized();
+                                  final AuthenticationResults result =
+                                      await GoogleSignInPlatform.instance
+                                          .authenticate(
+                                            const AuthenticateParameters(),
+                                          );
+
+                                  debugPrint(result.toString());
+                                  // _setUser(result.user);
+                                } on GoogleSignInException catch (e) {
+                                  setState(() {
+                                    _errorMessage =
+                                        e.code ==
+                                            GoogleSignInExceptionCode.canceled
+                                        ? ''
+                                        : 'GoogleSignInException ${e.code}: ${e.description}';
+                                  });
+
+                                  showFlutterToast(message: _errorMessage);
+                                }
+
+                                // #docregion ExplicitSignIn
+                                // if (_signIn!.supportsAuthenticate()) {
+                                //   try {
+                                //     final GoogleSignInAccount account =
+                                //         await _signIn!.authenticate(
+                                //           scopeHint: scopes,
+                                //         );
+
+                                //     debugPrint(account.toString());
+                                //   } catch (e) {
+                                //     // #enddocregion ExplicitSignIn
+                                //     _errorMessage = e.toString();
+                                //     // #docregion ExplicitSignIn
+                                //   }
+                                // }
+                                // if (GoogleSignIn.instance.supportsAuthenticate())
+                                //   ElevatedButton(
+                                //     onPressed: () async {
+                                //       try {
+                                //         await GoogleSignIn.instance.authenticate();
+                                //       } catch (e) {
+                                //         // #enddocregion ExplicitSignIn
+                                //         _errorMessage = e.toString();
+                                //         // #docregion ExplicitSignIn
+                                //       }
+                                //     },
+                                //     child: const Text('SIGN IN'),
+                                //   )
+                                // else ...<Widget>[
+                                //   if (kIsWeb)
+                                //     web.renderButton()
+                                //   // #enddocregion ExplicitSignIn
+                                //   else
+                                //     const Text(
+                                //         'This platform does not have a known authentication method')
+                                //   // #docregion ExplicitSignIn
+                                // ]
+                                // // #enddocregion ExplicitSignIn
+                              },
+                              // prefix: SvgPicture.asset(Assets.svgIcons.googleGLogo),
+                              child: SvgPicture.asset(
+                                Assets.svgIcons.googleGLogo,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Gap(10),
+                        FButton(
+                          style: FButtonStyle.ghost(),
+                          onPress: () async {
+                            try {
+                              await Supabase.instance.client.auth
+                                  .signInAnonymously();
+
+                              if (context.mounted) {
+                                context.goNamed(RouteName.home.name);
+                              }
+                            } on AuthApiException catch (e, _) {
+                              if (context.mounted) {
+                                showFlutterToast(message: e.message);
+                              }
+                            }
+                          },
+                          child: const Text('Login as Guest'),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          FTabEntry(
-            label: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              spacing: 5,
-              children: [Icon(FIcons.userPlus), Text("Register")],
+            // FTabEntry(
+            //   label: Row(
+            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     spacing: 5,
+            //     children: [Icon(FIcons.userPlus), Text("Register")],
+            //   ),
+            //   child: Column(children: [Placeholder()]),
+            // ),
+            FTabEntry(
+              label: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                spacing: 5,
+                children: [Icon(FIcons.userPlus), Text("Register")],
+              ),
+              child: Column(
+                children: [
+                  const SizedBox(height: 5),
+                  FCard(
+                    title: const Text('Register'),
+                    subtitle: const Text('Fill all fields to register'),
+                    child: Column(
+                      children: [
+                        FTextField.email(
+                          controller: registerEmailController,
+                          label: Text('Email'),
+                          hint: 'ex: user@email.com',
+                        ),
+                        const Gap(10),
+                        Stack(
+                          children: [
+                            FTextField(
+                              controller: registerPasswordController,
+                              obscureText: _obscureTextRegister,
+                              label: Text('Password'),
+                              hint: 'ex: 123456',
+                              style: (e) => e.copyWith(
+                                contentPadding: e.contentPadding.add(
+                                  EdgeInsetsGeometry.only(right: 25),
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              right: 0,
+                              bottom: 1,
+                              child: FButton.raw(
+                                style: FButtonStyle.ghost(),
+                                onPress: () {
+                                  setState(() {
+                                    _obscureTextRegister =
+                                        !_obscureTextRegister;
+                                  });
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: AnimatedSwitcher(
+                                    duration: const Duration(milliseconds: 200),
+                                    transitionBuilder: (child, animation) {
+                                      return ScaleTransition(
+                                        scale: animation,
+                                        child: FadeTransition(
+                                          opacity: animation,
+                                          child: child,
+                                        ),
+                                      );
+                                    },
+                                    child: _obscureTextRegister
+                                        ? Icon(
+                                            FIcons.eyeOff,
+                                            key: const ValueKey('eyeOff'),
+                                          )
+                                        : Icon(
+                                            FIcons.eye,
+                                            key: const ValueKey('eye'),
+                                          ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+
+                        const SizedBox(height: 16),
+                        FButton(
+                          onPress: () async {
+                            // context.goNamed(RouteName.home.name);
+                            final AuthResponse res = await Supabase
+                                .instance
+                                .client
+                                .auth
+                                .signUp(
+                                  email: registerEmailController.text,
+                                  password: registerPasswordController.text,
+                                  emailRedirectTo:
+                                      'com.forui_base.cacing69://callback',
+                                );
+                            final Session? session = res.session;
+                            final User? user = res.user;
+
+                            debugPrint(
+                              "session.toString():${session.toString()}",
+                            );
+                            debugPrint("user.toString():${user.toString()}");
+                          },
+                          child: const Text('Register'),
+                        ),
+                        Gap(20),
+                        Text("Register with"),
+                        Gap(20),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            FButton(
+                              style: FButtonStyle.outline(),
+                              onPress: () async {},
+                              child: SvgPicture.asset(
+                                Assets.svgIcons.googleGLogo,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
-            child: Column(children: [Placeholder()]),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

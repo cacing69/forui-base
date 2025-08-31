@@ -5,6 +5,7 @@
 import FlutterMacOS
 import Foundation
 
+import app_links
 import connectivity_plus
 import gal
 import google_sign_in_ios
@@ -15,6 +16,7 @@ import url_launcher_macos
 import webview_flutter_wkwebview
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
+  AppLinksMacosPlugin.register(with: registry.registrar(forPlugin: "AppLinksMacosPlugin"))
   ConnectivityPlusPlugin.register(with: registry.registrar(forPlugin: "ConnectivityPlusPlugin"))
   GalPlugin.register(with: registry.registrar(forPlugin: "GalPlugin"))
   FLTGoogleSignInPlugin.register(with: registry.registrar(forPlugin: "FLTGoogleSignInPlugin"))

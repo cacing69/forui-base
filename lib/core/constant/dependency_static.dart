@@ -172,6 +172,26 @@ final List<Dependency> generalDependenciesStatic = [
     name: "internet_connection_checker_plus",
     url: "https://pub.dev/packages/internet_connection_checker_plus",
   ),
+  Dependency(
+    icon: FIcons.codesandbox,
+    name: "supabase_flutter",
+    url: "https://pub.dev/packages/supabase_flutter",
+  ),
+  Dependency(
+    icon: FIcons.codesandbox,
+    name: "google_sign_in",
+    url: "https://pub.dev/packages/google_sign_in",
+  ),
+  Dependency(
+    icon: FIcons.codesandbox,
+    name: "google_sign_in_platform_interface",
+    url: "https://pub.dev/packages/google_sign_in_platform_interface",
+  ),
+  Dependency(
+    icon: FIcons.codesandbox,
+    name: "supabase_flutter",
+    url: "https://pub.dev/packages/supabase_flutter",
+  ),
 ];
 
 final List<Dependency> developmentDependenciesStatic = [

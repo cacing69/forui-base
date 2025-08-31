@@ -13,4 +13,13 @@ abstract class Env {
 
   @EnviedField(varName: 'API_APP_CCTV_BEARER_TOKEN')
   static String apiAppCctvBearerToken = _Env.apiAppCctvBearerToken;
+
+  @EnviedField(varName: 'GOOGLE_SIGN_IN_CLIENT_ID')
+  static String googleSignInClientId = _Env.googleSignInClientId;
+
+  @EnviedField(varName: 'SUPABASE_URL')
+  static String supabaseUrl = _Env.supabaseUrl;
+
+  @EnviedField(varName: 'SUPABASE_ANON_KEY')
+  static String supabaseAnonKey = _Env.supabaseAnonKey;
 }

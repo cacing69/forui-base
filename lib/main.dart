@@ -5,8 +5,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:forui/forui.dart';
+import 'package:forui_base/core/config/env.dart';
 import 'package:forui_base/core/constant/map_theme_data.dart';
 import 'package:forui_base/core/constant/shared_pref_key.dart';
+import 'package:forui_base/core/utils/helpers.dart';
 import 'package:forui_base/l10n/app_localizations.dart';
 import 'package:forui_base/router.dart';
 import 'package:forui_base/hive_registrator.dart';
@@ -15,6 +17,7 @@ import 'package:hive_ce_flutter/hive_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:stack_trace/stack_trace.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
   await Chain.capture(() async {
@@ -25,6 +28,14 @@ void main() async {
         await Hive.initFlutter();
 
         await hiveRegistrator();
+
+        await Supabase.initialize(
+          url: Env.supabaseUrl,
+          anonKey: Env.supabaseAnonKey,
+        );
+
+        // Get a reference your Supabase client
+        // final supabase = Supabase.instance.client;
 
         SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
         runApp(const ProviderScope(child: Application()));
@@ -48,6 +59,8 @@ class Application extends ConsumerStatefulWidget {
 class _ApplicationState extends ConsumerState<Application> {
   // late final StreamSubscription<bool> _connectionSub;
 
+  late final StreamSubscription<AuthState> authSubscription;
+
   @override
   void initState() {
     super.initState();
@@ -61,10 +74,31 @@ class _ApplicationState extends ConsumerState<Application> {
     // });
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
+      final prefs = await SharedPreferences.getInstance();
+
+      final authSubscription = Supabase.instance.client.auth.onAuthStateChange
+          .listen((data) {
+            final AuthChangeEvent event = data.event;
+            final Session? session = data.session;
+            debugPrint('event: $event, session: $session');
+            switch (event) {
+              case AuthChangeEvent.initialSession: // handle initial session
+              case AuthChangeEvent.signedIn: // handle signed in
+                showFlutterToast(message: "Sign in success");
+                prefs.setBool("isAuthenticated", true);
+                break;
+              case AuthChangeEvent.signedOut: // handle signed out
+                prefs.setBool("isAuthenticated", false);
+              case AuthChangeEvent.passwordRecovery: // handle password recovery
+              case AuthChangeEvent.tokenRefreshed: // handle token refreshed
+              case AuthChangeEvent.userUpdated: // handle user updated
+              case AuthChangeEvent.userDeleted: // handle user deleted
+              case AuthChangeEvent
+                  .mfaChallengeVerified: // handle mfa challenge verified
+            }
+          });
       final brightness = MediaQuery.of(context).platformBrightness;
       final configAppNotifier = ref.read(configAppNotifierProvider.notifier);
-
-      final prefs = await SharedPreferences.getInstance();
 
       // Theme
       if (prefs.containsKey(SharedPrefKey.theme)) {
@@ -158,6 +192,7 @@ class _ApplicationState extends ConsumerState<Application> {
   @override
   void dispose() {
     // _connectionSub.cancel();
+    authSubscription.cancel();
     super.dispose();
   }
 }

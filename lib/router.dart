@@ -2,6 +2,7 @@ import 'package:forui_base/features/app/presentation/screens/app_routes.dart';
 import 'package:forui_base/features/block/presentation/screens/block_routes.dart';
 import 'package:forui_base/features/home/presentation/screens/home_screen_main.dart';
 import 'package:forui_base/features/auth/presentation/screens/login_screen.dart';
+import 'package:forui_base/features/splash/presentation/screens/splash_screen.dart';
 import 'package:forui_base/shared/presentation/screens/theme_switcher_screen.dart';
 import 'package:forui_base/shared/presentation/screens/full_screen_image_base64_viewer_screen.dart';
 import 'package:forui_base/shared/presentation/screens/full_screen_image_url_viewer_screen.dart';
@@ -24,7 +25,7 @@ final List<GoRoute> defaultRouter = [
   GoRoute(
     path: '/',
     name: RouteName.init.name,
-    builder: (context, state) => LoginScreen(),
+    builder: (context, state) => SplashScreen(),
     // builder: (context, state) => BlockWebviewSubmitScreen(),
   ),
   GoRoute(
