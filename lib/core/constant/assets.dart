@@ -11,6 +11,7 @@ class _PngImages {
 
 class _SvgIcons {
   final String foruiLight = "assets/icons/forui-light.svg";
+  final String googleGLogo = "assets/icons/google-g-logo.svg";
 }
 
 class _PngIcons {

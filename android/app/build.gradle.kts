@@ -31,7 +31,7 @@ android {
     }
 
     signingConfigs {
-        create("debug") {
+        create("staging") {
             keyAlias = "forui-base-debug"
             keyPassword = "230995#@"
             storeFile = file("forui-base-debug.jks")
@@ -40,11 +40,18 @@ android {
     }
 
     buildTypes {
-        release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+        debug {
+            signingConfig = signingConfigs.getByName("staging")
         }
+        release {
+            signingConfig = signingConfigs.getByName("staging")
+        }
+
+        // release {
+        //     // TODO: Add your own signing config for the release build.
+        //     // Signing with the debug keys for now, so `flutter run --release` works.
+        //     signingConfig = signingConfigs.getByName("debug")
+        // }
     }
 }
 
