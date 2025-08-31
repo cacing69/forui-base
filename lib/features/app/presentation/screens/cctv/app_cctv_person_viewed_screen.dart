@@ -39,12 +39,6 @@ class AppCctvPersonViewedScreen extends ConsumerWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    entries.isNotEmpty
-                        ? Text(
-                            "Long press to delete item",
-                            style: context.theme.typography.xs,
-                          )
-                        : SizedBox.shrink(),
                     if (entries.isEmpty)
                       const Padding(
                         padding: EdgeInsets.all(16),
@@ -56,7 +50,7 @@ class AppCctvPersonViewedScreen extends ConsumerWidget {
                         children: [
                           for (final e in entries.reversed)
                             FItem(
-                              prefix: const Icon(FIcons.user),
+                              prefix: const Icon(FIcons.history),
                               title: Text(e.value),
                               subtitle: Text("${e.key}"),
                               onPress: () {
@@ -72,35 +66,6 @@ class AppCctvPersonViewedScreen extends ConsumerWidget {
                                     "personId": personId,
                                     "loadFamily": "true",
                                   },
-                                );
-                              },
-                              onLongPress: () {
-                                showFDialog(
-                                  context: context,
-                                  builder: (context, style, animation) =>
-                                      FDialog(
-                                        animation: animation,
-                                        direction: Axis.horizontal,
-                                        title: const Text('Confirm'),
-                                        body: const Text(
-                                          'Do you want to delete this item?',
-                                        ),
-                                        actions: [
-                                          FButton(
-                                            style: FButtonStyle.outline(),
-                                            onPress: () =>
-                                                Navigator.of(context).pop(),
-                                            child: const Text('Cancel'),
-                                          ),
-                                          FButton(
-                                            onPress: () async {
-                                              await box.delete(e.key);
-                                              Navigator.of(context).pop();
-                                            },
-                                            child: const Text('Yes'),
-                                          ),
-                                        ],
-                                      ),
                                 );
                               },
                             ),
