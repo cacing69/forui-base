@@ -87,6 +87,7 @@ final pagingResidentControllerProvider =
               ).every((i) => latestRequest[i] == lastRequest[i]);
 
           if (isDuplicate) {
+            debugPrint("isDuplicate:true");
             return [];
           }
 

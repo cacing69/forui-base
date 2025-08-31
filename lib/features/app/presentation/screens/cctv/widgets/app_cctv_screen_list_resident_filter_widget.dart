@@ -460,25 +460,29 @@ class _AppCctvScreenListResidentFilterWidgetState
                           // aksi reset
                           // widget.pagingController.refresh();
 
-                          ref
-                              .read(
-                                appCctvListResidentNotifierProvider.notifier,
-                              )
-                              .perform(
-                                ResidentQuery(
-                                  provinceId:
-                                      filterState.province?.id.toString() ??
-                                      "0",
-                                  cityId:
-                                      filterState.city?.id.toString() ?? "0",
-                                  districtId:
-                                      filterState.district?.id.toString() ??
-                                      "0",
-                                  villageId:
-                                      filterState.village?.id.toString() ?? "0",
-                                  search: filterState.search ?? "",
-                                ),
-                              );
+                          // ref
+                          //     .read(
+                          //       appCctvListResidentNotifierProvider.notifier,
+                          //     )
+                          //     .perform(
+                          //       ResidentQuery(
+                          //         provinceId:
+                          //             filterState.province?.id.toString() ??
+                          //             "0",
+                          //         cityId:
+                          //             filterState.city?.id.toString() ?? "0",
+                          //         districtId:
+                          //             filterState.district?.id.toString() ??
+                          //             "0",
+                          //         minAge: filterState.minAge?.toString() ?? "0",
+                          //         birthDate: filterState.dateOfBirth ?? "0",
+                          //         maxAge:
+                          //             filterState.maxAge?.toString() ?? "120",
+                          //         villageId:
+                          //             filterState.village?.id.toString() ?? "0",
+                          //         search: filterState.search ?? "",
+                          //       ),
+                          //     );
 
                           ref.read(pagingResidentControllerProvider).refresh();
 

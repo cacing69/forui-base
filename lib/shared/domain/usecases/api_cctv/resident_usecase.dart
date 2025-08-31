@@ -47,7 +47,9 @@ class ResidentUsecase
       final cacheData = await _cache.get(params);
       if (cacheData != null) {
         _logger.i("list_resident_cache_get:$params");
-        _logger.i(cacheData.data);
+        _logger.i(
+          "list_resident_cache_length:${cacheData.data?.length ?? -999}",
+        );
         return Right(cacheData);
       }
 

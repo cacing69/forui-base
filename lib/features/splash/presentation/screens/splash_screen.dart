@@ -73,16 +73,14 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return FScaffold(
-      child: Expanded(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          spacing: 15,
-          children: [
-            FProgress.circularIcon(),
-            Text("Checking session", style: context.theme.typography.base),
-          ],
-        ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        spacing: 15,
+        children: [
+          FProgress.circularIcon(),
+          Text("Checking session", style: context.theme.typography.base),
+        ],
       ),
     );
   }

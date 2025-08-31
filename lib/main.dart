@@ -76,27 +76,27 @@ class _ApplicationState extends ConsumerState<Application> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       final prefs = await SharedPreferences.getInstance();
 
-      final authSubscription = Supabase.instance.client.auth.onAuthStateChange
-          .listen((data) {
-            final AuthChangeEvent event = data.event;
-            final Session? session = data.session;
-            debugPrint('event: $event, session: $session');
-            switch (event) {
-              case AuthChangeEvent.initialSession: // handle initial session
-              case AuthChangeEvent.signedIn: // handle signed in
-                showFlutterToast(message: "Sign in success");
-                prefs.setBool("isAuthenticated", true);
-                break;
-              case AuthChangeEvent.signedOut: // handle signed out
-                prefs.setBool("isAuthenticated", false);
-              case AuthChangeEvent.passwordRecovery: // handle password recovery
-              case AuthChangeEvent.tokenRefreshed: // handle token refreshed
-              case AuthChangeEvent.userUpdated: // handle user updated
-              case AuthChangeEvent.userDeleted: // handle user deleted
-              case AuthChangeEvent
-                  .mfaChallengeVerified: // handle mfa challenge verified
-            }
-          });
+      authSubscription = Supabase.instance.client.auth.onAuthStateChange.listen(
+        (data) {
+          final AuthChangeEvent event = data.event;
+          final Session? session = data.session;
+          debugPrint('event: $event, session: $session');
+          switch (event) {
+            case AuthChangeEvent.initialSession: // handle initial session
+            case AuthChangeEvent.signedIn: // handle signed in
+              prefs.setBool("isAuthenticated", true);
+              break;
+            case AuthChangeEvent.signedOut: // handle signed out
+              prefs.setBool("isAuthenticated", false);
+            case AuthChangeEvent.passwordRecovery: // handle password recovery
+            case AuthChangeEvent.tokenRefreshed: // handle token refreshed
+            case AuthChangeEvent.userUpdated: // handle user updated
+            case AuthChangeEvent.userDeleted: // handle user deleted
+            case AuthChangeEvent
+                .mfaChallengeVerified: // handle mfa challenge verified
+          }
+        },
+      );
       final brightness = MediaQuery.of(context).platformBrightness;
       final configAppNotifier = ref.read(configAppNotifierProvider.notifier);
 
