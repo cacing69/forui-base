@@ -48,9 +48,7 @@ class AppCctvPersonViewedScreen extends ConsumerWidget {
                     if (entries.isEmpty)
                       const Padding(
                         padding: EdgeInsets.all(16),
-                        child: Center(
-                          child: Expanded(child: Text("No viewed person yet.")),
-                        ),
+                        child: Center(child: Text("No viewed person yet.")),
                       )
                     else
                       FItemGroup(

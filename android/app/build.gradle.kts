@@ -30,6 +30,15 @@ android {
         versionName = flutter.versionName
     }
 
+    signingConfigs {
+        create("debug") {
+            keyAlias = "forui-base-debug"
+            keyPassword = "230995#@"
+            storeFile = file("forui-base-debug.jks")
+            storePassword = "230995#@"
+        }
+    }
+
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.
